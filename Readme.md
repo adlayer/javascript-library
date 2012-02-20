@@ -5,4 +5,5 @@
 
 ## Copyright
 
-Copyright (c) 2011 Gabriel de Oliveira Barbosa &lt;manobi.oliveira@gmail.com&gt;
+Copyright (c) 2011 Adlayer Adserver
+&lt;adalyer@adlayer.org&gt;
