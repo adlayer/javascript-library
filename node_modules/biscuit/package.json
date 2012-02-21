@@ -1,0 +1,13 @@
+{
+    "name": "biscuit"
+  , "version": "0.0.2"
+  , "description": "Real world library builder"
+  , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
+  , "dependencies": {
+		"hogan.js": "x.x.x",
+		"colors":"x.x.x",
+		"jshint":"x.x.x",
+		"uglify-js": "1.2.5"
+  }
+  , "main": "./index"
+}
