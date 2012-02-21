@@ -7,7 +7,7 @@ var Ad = function(){
 	var Format = require('../format').format;
 	Format.apply(this, arguments);
 	
-	var configs = require('../connection/configs').configs;
+	var configs = require('../configs').configs;
 	var Log = require('../models/log').log;
 	
 	/*	@property {string} link */

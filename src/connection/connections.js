@@ -6,7 +6,7 @@
 	var ConnectionsManager = require('./connection_manager').connection_manager;
 	ConnectionsManager = ConnectionsManager.getInstance();
 
-	var configs = require('./configs').configs;
+	var configs = require('../configs').configs;
 
 	ConnectionsManager.create('static', configs.sdk);
 	ConnectionsManager.create('page', configs.jocasta);
