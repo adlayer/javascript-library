@@ -6,7 +6,7 @@
 var page = (function(){
 	var EventEmitter = require('./node_modules/events').events.EventEmitter;
 	var keys = require('./keys').keys;
-	var connections = require('./connection/connections').connections;
+	var connections = require('./connections').connections;
 	
 	var api = new EventEmitter();
 	

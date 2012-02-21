@@ -18,7 +18,7 @@ exports.files = [
 	'src/connection/connection.js',
 	'src/connection/connection_manager.js',
 	
-	'src/connection/connections.js',
+	'src/connections.js',
 	
 	'src/size.js',
 	'src/format.js',

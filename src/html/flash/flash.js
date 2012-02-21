@@ -8,7 +8,7 @@ var Flash = function(id,src,link,width,height,rel){
 	HtmlTag.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
 	
-	var connection = require('../../connection/connections').connections;
+	var connection = require('../../connections').connections;
 	var Impression = require('../../models/impression').Impression;
 	var queryString = require('../../utils/querystring').querystring;
 	

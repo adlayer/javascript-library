@@ -5,7 +5,7 @@
 
 var Salvable = function () {};
 Salvable.prototype.save = function(){
-	var connections = require('../connection/connections').connections;
+	var connections = require('../connections').connections;
 	var query = {
 		//ad_id:this.ad_id,
 		campaign_id:this.campaign_id,
