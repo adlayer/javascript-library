@@ -23,6 +23,7 @@ var Connection = function(name, options){
 	
 	this.request = function(){
 		var JSONPRequest = require('../request/jsonp_request').jsonp_request;
+		var IMGRequest = require('../request/img_request').img_request;
 		var _self = this;
 		var id = 'n' + index++;
 
