@@ -9,4 +9,4 @@ var Log = function(){
 	this.space_id = "";
 	this.page_url = document.URL;
 };
-exports.log = Log;
+exports.Log = Log;

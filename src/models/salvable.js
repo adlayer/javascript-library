@@ -3,8 +3,8 @@
  * @todo: ver se é melhor passa o site por aqui ou no server
  */
 
-var Saveble = function () {};
-Saveble.prototype.save = function(){
+var Salvable = function () {};
+Salvable.prototype.save = function(){
 	var connections = require('../connection/connections').connections;
 	var query = {
 		//ad_id:this.ad_id,
@@ -16,3 +16,4 @@ Saveble.prototype.save = function(){
 	};
 	connections.impressions.request().img('/impression/' + this.ad_id, query);
 };
+exports.Salvable = Salvable;

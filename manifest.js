@@ -23,7 +23,7 @@ exports.files = [
 	'src/size.js',
 	'src/format.js',
 
-	'src/models/saveble.js',	
+	'src/models/salvable.js',	
 	'src/models/log.js',
 	'src/models/click.js',
 	'src/models/impression.js',
