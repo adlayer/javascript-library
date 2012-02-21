@@ -4,13 +4,13 @@
  * */
 var Flash = function(id,src,link,width,height,rel){
 	var HtmlTag = require('../html_tag').html_tag;
-	var EventEmitter = require('./node_modules/events').events.EventEmitter;
+	var EventEmitter = require('../../node_modules/events').events.EventEmitter;
 	HtmlTag.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
 	
 	var connection = require('../../connections').connections;
 	var Impression = require('../../models/impression').Impression;
-	var queryString = require('../../utils/querystring').querystring;
+	var queryString = require('../../node_modules/querystring').querystring;
 	
 	this.id = id;
 	this.rel = rel;
@@ -55,6 +55,7 @@ var Flash = function(id,src,link,width,height,rel){
 		});
 		
 		// exporting this instance to ads namespace
+		//todo: remove this from this place to work in node
 		Ad.ads[_self.id] = _self;
 	})(this);
 };
