@@ -45,7 +45,7 @@ var Flash = function(id,src,link,width,height,rel){
 	};
 	
 	var __construct = (function(_self){
-		
+		// todo: migrate this to class ad or swfAd
 		_self.addListener("load", function(){
 			var print = new Impression();
 			print.campaign_id = _self.rel;
