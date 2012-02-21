@@ -12,7 +12,7 @@ var EmbedTag = function(){
 	
 	/* @private */
 	var __construct = function(_self){
-		_self.src = _self.getSrc();
+		_self.src = file;
 		_self.element = document.createElement("embed");
 		
 		_self.extendAttributes(_self);

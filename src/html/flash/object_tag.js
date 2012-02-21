@@ -40,9 +40,9 @@ var ObjectTag = function(){
 		// http://stackoverflow.com/questions/1168494/how-do-i-programmatically-set-all-objects-to-have-the-wmode-set-to-opaque
 		var clone = _self.element.cloneNode(true);
 
-		clone.appendChild(new Param("movie",_self.getSrc()));
+		clone.appendChild(new Param("movie",file));
 		clone.appendChild(new Param("quality",_self.quality));		
-		clone.appendChild(new Param("src",_self.getSrc()));
+		clone.appendChild(new Param("src",file));
 		clone.appendChild(new Param("menu",_self.menu));
 		clone.appendChild(new Param("scale",_self.scale));
 		clone.appendChild(new Param("allowScriptAccess",_self.allowScriptAccess));
