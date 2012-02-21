@@ -10,4 +10,4 @@ var Impression = function(){
 	Salvable.apply(this,arguments);
 	this.type = "impression";
 };
-exports.impression = Impression;
+exports.Impression = Impression;

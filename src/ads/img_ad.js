@@ -10,9 +10,9 @@ var ImgAd = function(id, src, href, width, height, rel){
 	var Ad = require('./ad').ad;
 	var EventEmitter = require('./node_modules/events').events.EventEmitter;
 	var AnchorTag = require('../html/anchor_tag').anchor_tag;
-	var Click = require('../models/click').click;
+	var Click = require('../models/click').Click;
 	var ImgTag = require('../html/img_tag').img_tag;
-	var Impression = require('../models/impression').impression;
+	var Impression = require('../models/impression').Impression;
 	
 	HtmlTag.apply(this,arguments);
 	Ad.apply(this, arguments);

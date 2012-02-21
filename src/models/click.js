@@ -10,4 +10,4 @@ var Click = function(){
 	Salvable.apply(this,arguments);
 	this.type = "click";
 };
-exports.click = Click;
+exports.Click = Click;

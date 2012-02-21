@@ -9,7 +9,7 @@ var Flash = function(id,src,link,width,height,rel){
 	EventEmitter.apply(this, arguments);
 	
 	var connection = require('../../connection/connections').connections;
-	var Impression = require('../../models/impression').impression;
+	var Impression = require('../../models/impression').Impression;
 	var queryString = require('../../utils/querystring').querystring;
 	
 	this.id = id;
