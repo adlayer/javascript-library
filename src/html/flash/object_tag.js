@@ -8,7 +8,7 @@ var ObjectTag = function(){
 	var Flash = require('./flash').flash;
 	Size.apply(this, arguments);
 	Flash.apply(this, arguments);
-
+	
 
 	var CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
 	var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
@@ -32,7 +32,7 @@ var ObjectTag = function(){
 		_self.element.setAttribute("type","application/x-shockwave-flash");
 		_self.element.setAttribute("width",_self.width);
 		_self.element.setAttribute("height",_self.height);
-		_self.element.setAttribute("data",_self.getSrc());
+		_self.element.setAttribute("data",_self.src);
 		_self.element.setAttribute("id",_self.id);
 		_self.element.setAttribute("rel",_self.rel);
 		_self.element.setAttribute("classid",CLASSID);
@@ -41,9 +41,9 @@ var ObjectTag = function(){
 		// http://stackoverflow.com/questions/1168494/how-do-i-programmatically-set-all-objects-to-have-the-wmode-set-to-opaque
 		var clone = _self.element.cloneNode(true);
 
-		clone.appendChild(new Param("movie",file));
+		clone.appendChild(new Param("movie",_self.src));
 		clone.appendChild(new Param("quality",_self.quality));		
-		clone.appendChild(new Param("src",file));
+		clone.appendChild(new Param("src",_self.src));
 		clone.appendChild(new Param("menu",_self.menu));
 		clone.appendChild(new Param("scale",_self.scale));
 		clone.appendChild(new Param("allowScriptAccess",_self.allowScriptAccess));

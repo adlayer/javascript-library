@@ -5,6 +5,9 @@
 */
 
 var HtmlTag = function(){
+	var Size = require('../../size').size;
+	Size.apply(this, arguments);
+	
 	this.element = {};
 	this.id = "";
 	this.link = "";
