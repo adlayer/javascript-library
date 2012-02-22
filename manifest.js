@@ -30,7 +30,6 @@ exports.files = [
 	
 	'src/html/html_tag.js',
 
-	'src/html/embedable.js',	
 	'src/html/flash/flash.js',
 	'src/html/flash/embed_tag.js',
 	'src/html/flash/object_tag.js',
