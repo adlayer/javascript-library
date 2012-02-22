@@ -18,10 +18,12 @@ var SwfAd = function(id,file,link, width,height,campaign){
 	var connection = require('../../connections').connections;
 
 	Ad.apply(this, arguments);
-	
-	
+
+	this.campaign_id = campaign;	
+	this.id = id;
 	this.file = file;
 	this.element = {};
+	
 	/** 
 	* @public
 	* @return {String}
@@ -37,17 +39,24 @@ var SwfAd = function(id,file,link, width,height,campaign){
 	};
 	
 	var __construct = (function(_self){
-		
 		if(browser.msie){
 			_self.element = new ObjectTag(id, _self.getSrc(), link, width, height, campaign);
 		} else{
 			_self.element = new EmbedTag(id, _self.getSrc(), link, width, height, campaign);
 		}
 		
-		// exporting this instance to ads namespace
-		//todo: remove this from this place to work in node
+		_self.on("load", function(){
+			var print = new Impression();
+			print.campaign_id = _self.campaign_id;
+			print.space_id = _self.element.parentNode.id;
+			print.ad_id = _self.id;
+			print.save();
+		});
+	
 		Ad.ads[_self.id] = _self;
+		
 	})(this);
 	return this.element;
 };
+
 exports.swf_ad = SwfAd;

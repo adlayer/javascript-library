@@ -51,5 +51,6 @@ exports.files = [
 	
 	'src/page.js',
 	'src/init.js',
+	'src/track.js',
 	'src/api.js'
 ];

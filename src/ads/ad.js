@@ -51,17 +51,7 @@
 			url += "?" + queryString.stringfy(data);
 			return url;
 		};
-		
-		var __constructor = (function(self){
-			self.on("load", function(){
-				var print = new Impression();
-				print.campaign_id = _self.campaign_id;
-				print.space_id = _self.element.parentNode.id;
-				print.ad_id = _self.id;
-				print.save();
-			});
-		})(this);
-	
+
 	};
 	// Inherits from format
 	Ad.prototype = new Format();
@@ -73,7 +63,5 @@
 	Ad.getAd = function(id){
 		return Ad.ads[id];
 	};
-
-	exports.getAd = Ad.getAd;
 	exports.ad = Ad;
 })();

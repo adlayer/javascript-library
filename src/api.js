@@ -2,7 +2,7 @@
 	global.adlayer = {
 		auth: exports.keys,
 		connections: exports.connections,
-		getAd: exports.getAd,
-		page: exports.page
+		page: exports.page,
+		getAd: exports.ad.getAd
 	};
 })();

@@ -5,7 +5,8 @@
 
 var Salvable = function () {
 	var connections = require('../connections').connections;
-	this.save = function(){
+	this.save = function(callback){
+		console.log(this);
 		var query = {
 			//ad_id:this.ad_id,
 			campaign_id:this.campaign_id,
@@ -14,7 +15,7 @@ var Salvable = function () {
 			site_id: this.site_id,
 			page_id: this.page_id
 		};
-		connections.impressions.request().img('/impression/' + this.ad_id, query);
+		connections.impressions.request().img('/' + this.type + '/' + this.ad_id, query);
 	};
 };
 exports.Salvable = Salvable;
