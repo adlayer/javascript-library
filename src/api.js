@@ -3,6 +3,7 @@
 		auth: exports.keys,
 		connections: exports.connections,
 		page: exports.page,
-		getAd: exports.ad.getAd
+		getAd: exports.ad.getAd,
+		track: exports.track
 	};
 })();
