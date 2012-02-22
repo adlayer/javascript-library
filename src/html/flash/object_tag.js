@@ -21,35 +21,35 @@ var ObjectTag = function(){
 		this.name = name;
 		this.value = value;
 		this.element = document.createElement("param");
-		this.element.setAttribute("name",this.name);
-		this.element.setAttribute("value",this.value);
+		this.element.setAttribute("name", this.name);
+		this.element.setAttribute("value", this.value);
 		return this.element;
 	};
 
 	var __construct = function(_self) {
 		_self.element = document.createElement("object");
 		
-		_self.element.setAttribute("type","application/x-shockwave-flash");
-		_self.element.setAttribute("width",_self.width);
-		_self.element.setAttribute("height",_self.height);
-		_self.element.setAttribute("data",_self.src);
-		_self.element.setAttribute("id",_self.id);
-		_self.element.setAttribute("rel",_self.rel);
-		_self.element.setAttribute("classid",CLASSID);
-		_self.element.setAttribute("codebase",CODEBASE);
+		_self.element.setAttribute("type", "application/x-shockwave-flash");
+		_self.element.setAttribute("width", _self.width);
+		_self.element.setAttribute("height", _self.height);
+		_self.element.setAttribute("data", _self.src);
+		_self.element.setAttribute("id", _self.id);
+		_self.element.setAttribute("rel", _self.rel);
+		_self.element.setAttribute("classid", CLASSID);
+		_self.element.setAttribute("codebase", CODEBASE);
 		
 		// http://stackoverflow.com/questions/1168494/how-do-i-programmatically-set-all-objects-to-have-the-wmode-set-to-opaque
 		var clone = _self.element.cloneNode(true);
 
-		clone.appendChild(new Param("movie",_self.src));
-		clone.appendChild(new Param("quality",_self.quality));		
-		clone.appendChild(new Param("src",_self.src));
-		clone.appendChild(new Param("menu",_self.menu));
-		clone.appendChild(new Param("scale",_self.scale));
-		clone.appendChild(new Param("allowScriptAccess",_self.allowScriptAccess));
-		clone.appendChild(new Param("allowNetworking","all"));
-		clone.appendChild(new Param("base",_self.base));
-		clone.appendChild(new Param("wmode",_self.wmode));
+		clone.appendChild(new Param("movie", _self.src));
+		clone.appendChild(new Param("quality", _self.quality));		
+		clone.appendChild(new Param("src", _self.src));
+		clone.appendChild(new Param("menu", _self.menu));
+		clone.appendChild(new Param("scale", _self.scale));
+		clone.appendChild(new Param("allowScriptAccess", _self.allowScriptAccess));
+		clone.appendChild(new Param("allowNetworking", "all"));
+		clone.appendChild(new Param("base", _self.base));
+		clone.appendChild(new Param("wmode", _self.wmode));
 		
 		_self.element = clone;
 		
