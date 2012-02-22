@@ -9,6 +9,7 @@ var ObjectTag = function(){
 	Size.apply(this, arguments);
 	Flash.apply(this, arguments);
 
+
 	var CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
 	var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
 	var PLUGINSPAGE = "http://www.macromedia.com/go/getflashplayer";

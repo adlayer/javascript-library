@@ -6,7 +6,6 @@ var Flash = function(id,src,link,width,height,rel){
 	var HtmlTag = require('../html_tag').html_tag;
 	HtmlTag.apply(this, arguments);
 
-	
 	this.id = id;
 	this.rel = rel;
 	this.src = src;
@@ -23,10 +22,6 @@ var Flash = function(id,src,link,width,height,rel){
 	this.wmode = "transparent";//window,opaque,transparent
 	this.allowScriptAccess = "always";// "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
-	this.link = "";	
-	
-
-	
-
+	this.link = "";
 };
 exports.flash = Flash;
