@@ -13,8 +13,8 @@
 var SwfAd = function(id,file,link, width,height,campaign){
 	var queryString = require('../../node_modules/querystring').querystring;
 	var Ad = require('./ad').ad;
-	var ObjectTag = require('../html/flash/object_tag').object_tag;
-	var EmbedTag = require('../html/flash/embed_tag').embed_tag;
+	var ObjectTag = require('../html/flash/object_tag').ObjectTag;
+	var EmbedTag = require('../html/flash/embed_tag').EmbedTag;
 	var connection = require('../../connections').connections;
 
 	Ad.apply(this, arguments);
@@ -39,6 +39,7 @@ var SwfAd = function(id,file,link, width,height,campaign){
 	};
 	
 	var __construct = (function(_self){
+
 		if(browser.msie){
 			_self.element = new ObjectTag(id, _self.getSrc(), link, width, height, campaign);
 		} else{

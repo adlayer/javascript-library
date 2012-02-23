@@ -56,3 +56,4 @@ var ObjectTag = function(){
 	}(this);
 	return this.element;
 };
+exports.ObjectTag = ObjectTag;

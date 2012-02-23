@@ -17,4 +17,4 @@ var EmbedTag = function(){
 	})(this);
 	return this.element;
 };
-exports.embed_tag = EmbedTag;
+exports.EmbedTag = EmbedTag;
