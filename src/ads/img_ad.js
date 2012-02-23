@@ -29,17 +29,6 @@ var ImgAd = function(id, src, href, width, height, rel){
 		var anchor = new AnchorTag(id, _self.clickTag(), rel);
 		_self.element = anchor;
 		
-		_self.on("click",function(){
-			var click = new Click();
-			click.ad_id = anchor.id;
-			click.campaign_id = anchor.parentNode.rel;
-			click.space_id = anchor.parentNode.id;
-			click.save();
-		});
-		_self.addEventListener("click",function(){
-			return _self.emit("click");
-		});
-		
 		var img = new ImgTag(src);
 		_self.on("load",function(){
 			var print = new Impression();

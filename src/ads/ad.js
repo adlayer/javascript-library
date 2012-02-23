@@ -46,6 +46,7 @@
 			url += "/" + this.id;
 		
 			var data = new Click();
+			delete data.save;
 			data.campaign_id = this.campaign;
 			data.link = this.link;
 			url += "?" + queryString.stringfy(data);
