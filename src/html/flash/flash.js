@@ -20,6 +20,7 @@ var Flash = function(id,src,link,width,height,rel){
 	this.quality = "high"; //low,autolow,autohigh,medium,high,best ;
 	this.scale = "noscale"; //default,noborder,exactfit,noscale
 	this.wmode = "transparent";//window,opaque,transparent
+	this.type = "application/x-shockwave-flash";
 	this.allowScriptAccess = "always";// "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
 	this.link = "";
