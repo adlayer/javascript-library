@@ -4,7 +4,10 @@
   , "description": "Adlayer javascript domain library"
   , "keywords": []
   , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
-  , "dependencies": {"biscuit":"x.x.x"}
+  , "dependencies": {
+	"biscuit":"x.x.x",
+	"jsdom":"x.x.x"
+  }
   , "main": "index"
   , "engines": { "node": "0.6.x" }
 }
