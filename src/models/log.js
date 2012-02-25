@@ -1,5 +1,6 @@
 /**
  * @class Log
+ * @todo: Remove all depencies and get all via construtor params
  */
 var Log = function(){
 	var keys = require('../keys').keys;

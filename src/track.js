@@ -1,3 +1,6 @@
+/**
+* @todo: remove Impression dependencie
+*/
 var track = function(event, data, callback){
 	var Impression = require('./models/impression').Impression;
 	var eventList = {

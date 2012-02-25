@@ -1,6 +1,6 @@
 /**
  * @interface Saveble
- * @todo: ver se é melhor passa o site por aqui ou no server
+ * @todo: Remove static reference to connections impressions
  */
 
 var Salvable = function () {

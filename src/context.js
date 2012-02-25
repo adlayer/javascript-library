@@ -1,4 +1,4 @@
-// TODO: Remove browser sniffing and use feature detection
+// @todo: Remove browser sniffing and use feature detection
 var userAgent = navigator.userAgent.toLowerCase();
 var browser = {
 	version: (userAgent.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [])[1],

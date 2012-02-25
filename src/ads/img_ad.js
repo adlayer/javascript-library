@@ -41,7 +41,13 @@ var ImgAd = function(id, src, href, width, height, rel){
 			return _self.emit("load");
 		};
 		anchor.appendChild(img);
+		/**
+		* @todo do it outside e.g 
+		* var ad = new Ad('123');
+		* ads[ad.id] = ad;
+		*/
 		Ad.ads[anchor.id] = _self;
+		
 		return _self.element;
 	})(this);
 	return this.element;

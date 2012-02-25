@@ -1,3 +1,8 @@
+/**
+* @todo: Test in node
+* @todo: Change getAd to page.getAd
+*/
+
 (function(){
 	global.adlayer = {
 		auth: exports.keys,

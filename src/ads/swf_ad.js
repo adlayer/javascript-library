@@ -53,7 +53,11 @@ var SwfAd = function(id,file,link, width,height,campaign){
 			print.ad_id = _self.id;
 			print.save();
 		});
-	
+		/**
+		* @todo do it outside e.g 
+		* var ad = new Ad('123');
+		* ads[ad.id] = ad;
+		*/
 		Ad.ads[_self.id] = _self;
 		
 	})(this);

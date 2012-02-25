@@ -21,7 +21,7 @@
 		
 		/*	@property {string} link */
 		this.link			=	"";
-		/*	@property {string} id Id of ad in DOM and couchdb */
+		/*	@property {string} id Id of ad in DOM and uuid */
 		this.id				=	"";
 		/**
 		* @property	{object}	alternative	Properties	of	alternative	ad
@@ -40,7 +40,9 @@
 		
 		this.clickTag = function(){
 			var protocol = 'http:';
-		
+			
+			// http://tracker.adlayerapp.com:80/click/1234
+			
 			var url = protocol + '//' + configs.tracker.host + ':' + configs.tracker.port;
 			url += "/click";
 			url += "/" + this.id;
