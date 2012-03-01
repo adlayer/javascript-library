@@ -123,3 +123,8 @@ Event.prototype.validate = function(){
 	// default
 	return true;
 };
+
+Event.prototype.toQuery = function(){
+	var querystring = require('../node_modules/querystring').querystring;
+	return querystring.stringify(this);
+}
