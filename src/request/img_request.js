@@ -22,7 +22,7 @@ var IMGRequest = function(url, queries, callback){
 	
 	this.send = function(){
 		var imgReq = document.createElement("img");
-		imgReq.src = url + '?' + queryString.stringfy(this.queries);
+		imgReq.src = url + '?' + queryString.stringify(this.queries);
 		imgReq.onload = function () {
 			if(callback){callback();}
 		};

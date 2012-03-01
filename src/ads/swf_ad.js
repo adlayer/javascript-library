@@ -30,7 +30,7 @@ var SwfAd = function(id,file,link, width,height,campaign){
 	*/
 	this.getSrc = function(){
 		var preloaderUrl = connection['static'].getUrl() + '/lib/as3.swf';
-		var query = queryString.stringfy({
+		var query = queryString.stringify({
 			"src":this.file,
 			"ad_id":this.id,
 			"link":this.link

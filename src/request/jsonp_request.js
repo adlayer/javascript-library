@@ -24,7 +24,7 @@ var JSONPRequest = function(url, queries, callback, error){
 	
 	this.send = function(){
 		queries.callback = 'adlayer.connections.page.requests.' + this.id + '.callback';
-		var str = queryString.stringfy(this.queries);
+		var str = queryString.stringify(this.queries);
 		var resource = loadScript(this.url + '?' + str, undefined, error);
 		return this;
 	};

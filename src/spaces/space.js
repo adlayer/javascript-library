@@ -35,7 +35,7 @@ var Space = function(id){
 				if(adElement.href){
 					var link = queryString.parse(adElement.href);
 					link.space_id = this.id;
-					adElement.href = queryString.stringfy(link);
+					adElement.href = queryString.stringify(link);
 				}
 				
 				return this.element;

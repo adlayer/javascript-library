@@ -51,7 +51,7 @@
 			delete data.save;
 			data.campaign_id = this.campaign;
 			data.link = this.link;
-			url += "?" + queryString.stringfy(data);
+			url += "?" + queryString.stringify(data);
 			return url;
 		};
 
