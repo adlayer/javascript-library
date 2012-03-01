@@ -5,12 +5,6 @@
 *	@static track
 *		eg Event.track('impression', {}, function(){});
 *		// null
-*	@public toQuery
-*		eg new Event().toQuery() ;
-*		// ?time="20:30:31"&page_id=10&type="impression"&date=2012-12-02
-*	@public save
-*		eg new Event().save(function(){});
-*		// null
 */
 var Event = function( attributes ){
 	
@@ -109,6 +103,10 @@ Event.required = [
 	'page_url'
 ];
 
+Event.track = function(attributes){
+	return new Event(attributes).save();
+};
+
 /*
 * @public
 * @returns {Boolean} true for all attributes and false if any is missing
@@ -118,13 +116,23 @@ Event.prototype.validate = function(){
 		var attr = Event.required[i];
 		if( !this[attr] ){
 			return false;
-		}		
+		}	
 	}
 	// default
 	return true;
 };
-
+/*
+* @public
+* @returns {String} convert object to network string
+*/
 Event.prototype.toQuery = function(){
 	var querystring = require('../node_modules/querystring').querystring;
 	return querystring.stringify(this);
+}
+/*
+* @public
+* @returns {Error} convert object to network string
+*/
+Event.prototype.save = function(){
+	throw new Error('You should override this');
 }
