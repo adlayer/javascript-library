@@ -102,7 +102,9 @@ Event.required = [
 	'space_id',
 	'page_url'
 ];
-
+/*
+* @static
+*/
 Event.track = function(attributes){
 	return new Event(attributes).save();
 };
