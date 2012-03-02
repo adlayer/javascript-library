@@ -14,25 +14,43 @@
 *		eg new Event().place(new Ad());
 *		// {}
 */
-var Space = function(){
+var Space = function( attributes ){
 	/*
 	* Unique page id
 	* @type string
 	*/
-	this.id;
+	this.id = '';
 	/*
 	* Space type
 	* @type string
 	*/
-	this.type;
+	this.type = '';
 	/*
 	* Space status - true for active and false for inactive
 	* @type boolean
 	*/
-	this.status;
+	this.status = '';
 	/*
 	* Collection of ads linked to space
 	* @type array
 	*/
-	this.ads;
+	this.ads = [];
+	/*
+	* @private
+	* @returns {Object} return this to allow chain pattern
+	*/
+	var __construct = (function(self){
+		// initiate here
+		for( var attribute in attributes ){
+			if( attributes.hasOwnProperty(attribute) ){
+				self[attribute] = attributes[attribute];
+			}
+		}
+		return self;
+	})(this);
 };
+/**
+* @requires modules in browser
+* @exports Space as Space
+*/
+exports.Space = Space;

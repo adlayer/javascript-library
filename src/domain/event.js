@@ -130,11 +130,16 @@ Event.prototype.validate = function(){
 Event.prototype.toQuery = function(){
 	var querystring = require('../node_modules/querystring').querystring;
 	return querystring.stringify(this);
-}
+};
 /*
 * @public
 * @returns {Error} convert object to network string
 */
 Event.prototype.save = function(){
 	throw new Error('You should override this');
-}
+};
+/**
+* @requires modules in browser
+* @exports Event as Event
+*/
+exports.Event = Event;
