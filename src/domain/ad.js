@@ -28,10 +28,20 @@ var Ad = function( attributes ){
 	*/
 	this.file = '';
 	/*
+	* Destiny link
+	* @type string
+	*/
+	this.link = '';
+	/*
 	* Ad status
 	* @type boolean
 	*/
 	this.status = true;
+	/*
+	* Alternative Ad is another instance of Ad with graceful degradation
+	* @type object
+	*/
+	this.alternative = {};
 	
 	/*
 	* @private
