@@ -46,3 +46,8 @@ Site.prototype.hasDomain = function(domain){
 	}
 	return true;
 };
+/**
+* @requires modules in browser
+* @exports Event as Event
+*/
+exports.Site = Site;

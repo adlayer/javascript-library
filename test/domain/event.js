@@ -1,3 +1,4 @@
+var Event = require('../../src/domain/event').Event;
 describe('Event', function(){
 	
 	describe('#validate', function(){

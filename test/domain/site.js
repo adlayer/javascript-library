@@ -1,3 +1,4 @@
+var Site = require('../../src/domain/site').Site;
 describe('Site', function(){
 	describe('#hasDomain', function(){
 		var site = new Site({

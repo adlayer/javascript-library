@@ -1,3 +1,4 @@
+var Page = require('../../src/domain/page').Page;
 describe('Page', function(){
 	describe('#getActiveContent', function(){
 		it('should filter all content by status true', function(){
