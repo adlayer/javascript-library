@@ -1,4 +1,9 @@
+var expect = expect || require('expect.js');
+
 var Page = require('../../src/domain/page').Page;
+var Space = require('../../src/domain/space').Space;
+var Ad = require('../../src/domain/ad').Ad;
+
 describe('Page', function(){
 	describe('#getActiveContent', function(){
 		it('should filter all content by status true', function(){

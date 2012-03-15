@@ -1,4 +1,7 @@
+var expect = expect || require('expect.js');
+
 var Site = require('../../src/domain/site').Site;
+
 describe('Site', function(){
 	describe('#hasDomain', function(){
 		var site = new Site({
