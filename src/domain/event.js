@@ -112,7 +112,7 @@ Event.track = function(attributes){
 
 /*
 * @public
-* @returns {Boolean} true for all attributes and false if any is missing
+* @returns {String || Boolean} String of hour or false
 */
 Event.prototype.getHour = function(){
 	if( this.time ){
