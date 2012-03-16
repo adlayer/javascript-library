@@ -55,6 +55,11 @@ var Event = function( attributes ){
 	* @type string
 	*/
 	this.time = '';
+	/*
+	* First part of time hour
+	* @type number
+	*/
+	this.hour = 0;
 	
 	
 	
