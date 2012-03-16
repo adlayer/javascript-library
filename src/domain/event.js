@@ -1,10 +1,6 @@
 /**
 * @class
 * @param {Object} attributes
-* @todo:
-*	@static track
-*		eg Event.track('impression', {}, function(){});
-*		// null
 */
 var Event = function( attributes ){
 	
