@@ -22,6 +22,15 @@ describe('Event', function(){
 		});
 	});
 	
+	describe('#getHour', function(){
+		it('should return the first part of time attribute', function(){
+			var click = new Event({
+				time: '17:12:37.679Z'
+			});
+			expect(click.getHour()).to.be.equal('17');
+		});
+	});
+	
 	describe('#toQuery', function(){
 		it('should convert to querystring version of object', function(){
 			var click = new Event({

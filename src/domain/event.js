@@ -57,9 +57,9 @@ var Event = function( attributes ){
 	this.time = '';
 	/*
 	* First part of time hour
-	* @type number
+	* @type string
 	*/
-	this.hour = 0;
+	this.hour = '';
 	
 	
 	
@@ -110,6 +110,16 @@ Event.track = function(attributes){
 	return new Event(attributes).save();
 };
 
+/*
+* @public
+* @returns {Boolean} true for all attributes and false if any is missing
+*/
+Event.prototype.getHour = function(){
+	if( this.time ){
+		return this.time.split(':')[0];
+	}
+	return false;
+};
 /*
 * @public
 * @returns {Boolean} true for all attributes and false if any is missing
