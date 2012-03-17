@@ -99,9 +99,9 @@ var Event = function( attributes ){
 Event.required = [
 	'type',
 	'campaign_id',
-	'ad_id',
 	'space_id',
-	'page_url'
+	'page_url',
+	'page_id'
 ];
 /*
 * @static

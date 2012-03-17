@@ -18,10 +18,6 @@ var DomElement = function(){
 /*
 * @static
 */
-DomElement.document = document;
-/*
-* @static
-*/
 DomElement.create = function(tagName, document){
 	return document.createElement(tagName);
 };
@@ -30,7 +26,8 @@ DomElement.create = function(tagName, document){
 * @returns {Object} return the created element
 */
 DomElement.prototype.create = function(tagName, document){
-	document = DomElement.document || document;
+	//		file global || adlayer js module wrapper || passed document context
+	document = this.document || global.document || document;
 	this.element = DomElement.create(tagName, document);
 	return this.element;
 };

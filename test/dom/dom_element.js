@@ -22,7 +22,7 @@ describe('DomElement', function(){
 		});
 	});
 	describe('#addEventListener', function(){
-		it('Should observe an event', function(){
+		it('Should observe an dom event', function(){
 			var run = false;
 			
 			var anchor = new DomElement();

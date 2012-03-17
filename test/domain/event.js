@@ -16,6 +16,7 @@ describe('Event', function(){
 				ad_id: '456',
 				space_id: '789',
 				site_id: '101',
+				page_id: 'http://adlayerjavascriptlibrary.com/home',
 				page_url: 'http://adlayerjavascriptlibrary.com/home'
 			});
 			expect(click.validate()).to.be(true);
