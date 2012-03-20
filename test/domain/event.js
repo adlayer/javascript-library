@@ -74,6 +74,13 @@ describe('Event', function(){
 			var str = 'type=click&campaign_id=123&ad_id=456&space_id=789&site_id=101&page_url=http://adlayerjavascriptlibrary.com/home';
 			expect(click.toQuery()).to.be(str);
 		});
+		it('should not convert functions to querystring', function(){
+			var click = new Event({
+				type: 'click',
+				test:function(){}
+			});
+			expect(click.toQuery()).to.not.contain('test');
+		});
 	});
 	
 	describe('#save', function(){
