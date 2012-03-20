@@ -4,6 +4,43 @@ var Event = require('../../src/domain/event').Event;
 
 describe('Event', function(){
 	
+	describe('#getFullDate', function(){
+		it('Should convert date to ISOString', function(){
+			var click = new Event();
+			expect(click.getFullDate()).to.be.an('string');
+		});
+	});
+	
+	describe('#getDate', function(){
+		var click = new Event();
+		it('Should return the first part of a fulldate', function(){
+			expect(click.getFullDate()).to.contain(click.getDate());
+		});
+		it('Should be a part of a DateISOString', function(){
+			expect(click.getDate().split('-').length).to.be(3);
+		});
+	});
+	
+	describe('#getTime', function(){
+		var click = new Event();
+		it('Should return the second part of fulldate', function(){
+			expect(click.getFullDate()).to.contain(click.getTime());
+		});
+		it('Should be a part of a DateISOString', function(){
+			expect(click.getTime()).to.contain(':');
+			expect(click.getTime().split(':').length).to.be(3);
+		});
+	});
+	
+	describe('#getHour', function(){
+		it('Should return the first part of time attribute', function(){
+			var click = new Event({
+				time: '17:12:37.679Z'
+			});
+			expect(click.getHour()).to.be.equal('17');
+		});
+	});
+	
 	describe('#validate', function(){
 		it('should fail when some attribute is not present', function(){
 			var click = new Event();
@@ -23,14 +60,6 @@ describe('Event', function(){
 		});
 	});
 	
-	describe('#getHour', function(){
-		it('should return the first part of time attribute', function(){
-			var click = new Event({
-				time: '17:12:37.679Z'
-			});
-			expect(click.getHour()).to.be.equal('17');
-		});
-	});
 	
 	describe('#toQuery', function(){
 		it('should convert to querystring version of object', function(){

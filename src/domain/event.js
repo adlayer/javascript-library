@@ -3,6 +3,12 @@
 * @param {Object} attributes
 */
 var Event = function( attributes ){
+	/*
+	* date of event
+	* @type object
+	* @private
+	*/
+	var date = new Date();
 	
 	/***  WHAT ***/
 	/*
@@ -76,6 +82,17 @@ var Event = function( attributes ){
 	*/
 	this.browser = '';
 	
+	/**
+	* @privileged
+	* @returns {String} Even if date is not converted to string return ISOString
+	*/
+	this.getFullDate = function(){
+		if( typeof date === 'object' ){
+			return date = date.toISOString();
+		}
+		return date;
+	};
+	
 	/*
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -108,6 +125,22 @@ Event.required = [
 */
 Event.track = function(attributes){
 	return new Event(attributes).save();
+};
+
+/*
+* @public
+* @returns {String} The second part of a fulldate splited in T character
+*/
+Event.prototype.getDate = function(){
+	return this.getFullDate().split('T')[0];
+};
+
+/*
+* @public
+* @returns {String} The second part of a fulldate splited in T character
+*/
+Event.prototype.getTime = function(){
+	return this.getFullDate().split('T')[1];
 };
 
 /*
