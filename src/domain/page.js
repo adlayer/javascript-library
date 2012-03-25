@@ -45,10 +45,10 @@ var Page = function( attributes ){
 * @todo: should be readonly not modify the object just return filtered value
 */
 Page.prototype.getActiveContent = function(){
-	if( this.spaces && this.spaces.length > 0 ){
+	if( this.spaces && this.spaces.length >= 1 ){
 		// Run over and redesign every space (removing ads with status false)
 		this.spaces = this.spaces.map(function(space){
-			if( space.ads && space.ads.length > 0 ){
+			if( space.ads && space.ads.length >= 1 ){
 				space.ads = space.ads.filter(function(ad){
 					// If ad has status equal to false will auto removed from array
 					return ad.status;
