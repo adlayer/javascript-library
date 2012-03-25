@@ -53,9 +53,9 @@ Page.prototype.getActiveContent = function(){
 					// If ad has status equal to false will auto removed from array
 					return ad.status;
 				});
-				// re-assign modified space to spaces collection
-				return space;
 			}
+			// re-assign modified space to spaces collection
+			return space;
 		});
 	}
 	return this;
