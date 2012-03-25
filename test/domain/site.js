@@ -17,5 +17,9 @@ describe('Site', function(){
 		it('should return true when have domain in list', function(){
 			expect(site.hasDomain('adlayerjavascriptsdk.com')).to.be(true);
 		});
+		it('should identify a wildcard subdomain', function(){
+			site.domains.push('*adlayerjavascriptsdk.com');
+			expect(site.hasDomain('dev.adlayerjavascriptsdk.com')).to.be(true);
+		});
 	});
 });
