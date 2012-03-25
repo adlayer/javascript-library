@@ -49,13 +49,13 @@ Site.prototype.hasDomain = function(entry){
 	
 	function found(content, context){
 		return context.indexOf(content) !== -1;
-	};
+	}
 	
 	function removeSubdomain(entry){
 		var parts = entry.split('.');
 		var lastPart = parts.length;
 		return parts.slice(1, lastPart).join('.');
-	};
+	}
 	
 	// Found exact domain ?
 	if( found(entry, this.domains ) ){
