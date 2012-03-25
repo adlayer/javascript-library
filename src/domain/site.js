@@ -38,10 +38,11 @@ var Site = function( attributes ){
 };
 
 /**
-* @public
 * @description Find for exact domain or subdomain
-* @todo: change to regex
+* @public
+* @param {String} entry - Domain string
 * @returns {Boolean} - True when found a domain and false for not
+* @todo: change to regex
 */
 Site.prototype.hasDomain = function(entry){
 	var self = this;
