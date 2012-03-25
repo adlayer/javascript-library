@@ -47,15 +47,9 @@ var Site = function( attributes ){
 Site.prototype.hasDomain = function(entry){
 	var self = this;
 	var result = false;
-	
+
 	function found(content, context){
 		return context.indexOf(content) !== -1;
-	}
-	
-	function removeSubdomain(entry){
-		var parts = entry.split('.');
-		var lastPart = parts.length;
-		return parts.slice(1, lastPart).join('.');
 	}
 	
 	// Found exact domain ?
@@ -67,8 +61,9 @@ Site.prototype.hasDomain = function(entry){
 			// Current domain is a wildcard ?
 			var wildcard = found('*', domain);
 			if( wildcard ){
-				entry = removeSubdomain(entry);
-				if( found(entry, domain) ) result = true;
+				// Remove star
+				domain = domain.replace('*', '');
+				if( found(domain, entry) ) result = true;
 			}
 		});
 	}
