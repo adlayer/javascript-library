@@ -50,6 +50,9 @@ var Space = function( attributes ){
 	})(this);
 };
 
+/**
+* @return {Object} Ad
+*/
 Space.prototype.getRandomAd = function(){
 	var total = this.ads.length;
 	var index = Math.floor(Math.random() * total);
