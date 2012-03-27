@@ -22,7 +22,7 @@
 	
 	/*
 	* @public
-	* @returns {String} return the id of parentNode
+	* @returns {String} return the id of the first parent div
 	*/
 	AdDom.prototype.getSpaceId = function(){
 		var node = this.findParentTag('DIV');
