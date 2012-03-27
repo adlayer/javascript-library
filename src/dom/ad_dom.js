@@ -24,11 +24,17 @@
 	* @public
 	* @returns {String} return the id of parentNode
 	*/
-	AdDom.prototype.getSpaceId = function(){
-		return this.element.parentNode.id;
+	AdDom.prototype.getSpaceId = function(limit){
+		var node = this.findParentTag('DIV');
+		return node.id;
 	};
+	
 	/*
 	* @public
+	* @param {String} tracker url
+	* @param {String} site_id
+	* @param {String} page_id
+	* @param {String} page_url
 	* @returns {String} the full url to track this link
 	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
 	*/

@@ -18,7 +18,24 @@ describe('DomElement', function(){
 	});
 	describe('#create', function(){
 		it('Should create a dom Element and store at this.element', function(){
-			expect(	new DomElement().create('div', document).nodeName ).to.be.equal('DIV');
+			expect(	new DomElement().create('div', document).element.nodeName ).to.be.equal('DIV');
+		});
+	});
+	describe('#append', function(){
+		it('Should append a child', function(){
+			var div = new DomElement().create('div', document);
+			div.append(document.createElement('a'));
+			expect(div.element.childNodes.length).to.be(1);
+		});
+	});
+	describe('#findParentTag', function(){
+		it('Should find a specified tag ad parent', function(){
+			var root = new DomElement().create('div', document),
+				midle = new DomElement().create('span', document),
+				access = new DomElement().create('a', document);
+			midle.append(access.element);
+			root.append(midle.element);
+			expect( access.findParentTag('DIV') === root.element ).to.be.ok();
 		});
 	});
 	describe('#addEventListener', function(){

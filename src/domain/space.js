@@ -57,7 +57,7 @@ Space.prototype.getRandomAd = function(){
 	var total = this.ads.length;
 	var index = Math.floor(Math.random() * total);
 	return this.ads[index];
-};
+};	
 
 /**
 * @requires modules in browser

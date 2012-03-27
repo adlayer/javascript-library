@@ -23,14 +23,30 @@ DomElement.create = function(tagName, document){
 };
 /*
 * @public
-* @returns {Object} return the created element
+* @returns {Object} this
 */
 DomElement.prototype.create = function(tagName, document){
 	//		file global || adlayer js module wrapper || passed document context
 	document = this.document || global.document || document;
 	this.element = DomElement.create(tagName, document);
-	return this.element;
+	return this;
 };
+/*
+* @public
+* @returns {Object} this
+*/
+DomElement.prototype.append = function(child){
+	this.element.appendChild(child);
+	return this;
+};
+
+DomElement.prototype.findParentTag = function(tag){
+	var parent = this.element.parentNode;
+	while(parent.name != tag){
+		parent = parent.parentNode;
+	}
+	return parent;
+}
 /*
 * @public
 * @returns {Object} return this to allow chainability
