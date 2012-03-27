@@ -24,7 +24,7 @@
 	* @public
 	* @returns {String} return the id of parentNode
 	*/
-	AdDom.prototype.getSpaceId = function(limit){
+	AdDom.prototype.getSpaceId = function(){
 		var node = this.findParentTag('DIV');
 		return node.id;
 	};

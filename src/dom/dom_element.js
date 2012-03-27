@@ -39,7 +39,11 @@ DomElement.prototype.append = function(child){
 	this.element.appendChild(child);
 	return this;
 };
-
+/*
+* @public
+* @params {String} UPPERCASE tag name
+* @returns {Object} NativeDom
+*/
 DomElement.prototype.findParentTag = function(tag){
 	var parent = this.element.parentNode;
 	while(parent.name != tag){
