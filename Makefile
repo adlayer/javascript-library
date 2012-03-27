@@ -1,3 +1,5 @@
+default:
+	node build.js
 
 test:
 	./node_modules/mocha/bin/mocha test/domain/*.js --reporter spec

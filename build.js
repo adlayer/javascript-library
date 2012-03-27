@@ -1,5 +1,3 @@
-//var Biscuit = require('biscuit');
-var manifest  = require('./manifest');
 var smoosh = require('smoosh');
 
 Array.prototype.extends = function(base){
@@ -31,9 +29,4 @@ var config = {
 	},
 	"JAVASCRIPT": modules
 }
-
-desc('run default tasks');
-task('default', function(){
-	//new Biscuit(manifest);
-	smoosh.make(config);
-});
+smoosh.make(config);
