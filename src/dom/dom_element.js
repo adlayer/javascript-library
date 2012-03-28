@@ -46,7 +46,7 @@ DomElement.prototype.append = function(child){
 */
 DomElement.prototype.findParentTag = function(tag){
 	var parent = this.element.parentNode;
-	while(parent.name != tag){
+	while(parent.nodeName != tag){
 		parent = parent.parentNode;
 	}
 	return parent;
