@@ -3,8 +3,8 @@ var expect = expect || require('expect.js');
 if(!this.document){
 	var jsdom  = require("jsdom").jsdom,
 		context = jsdom(null),
-		window = context.createWindow();
-		global.document = window.document;
+		window = context.createWindow(),
+		document = window.document;
 }
 
 	
