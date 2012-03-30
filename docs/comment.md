@@ -1,11 +1,11 @@
 {{#tags}}	
-	{{#string}}
-		# {{type}} {{string}}
-	{{/string}}
+{{#string}}
+#{{type}} {{string}}
+{{/string}}
 	
-	{{#types}}
-		* {{type}} {{.}} {{name}}
-	{{/types}}
+{{#types}}
+	* {{type}} {{.}} {{name}}
+{{/types}}
 {{/tags}}
 
 {{#description}}

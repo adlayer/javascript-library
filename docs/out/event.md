@@ -1,7 +1,7 @@
-		# class Event
+# class Event
 	
 	
-		* param Object attributes
+	* param Object attributes
 
  <p>Create any event</p>
 
