@@ -6,7 +6,9 @@
 * {{type}} {{.}} {{name}}{{/types}}
 {{/tags}}
 {{#description}}
-	{{{code}}}
-{{{summary}}}
 
+{{{summary}}}
 {{/description}}
+```javascript
+{{{code}}}
+```
