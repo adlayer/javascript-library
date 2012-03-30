@@ -10,52 +10,12 @@
         "string": ""
       },
       {
-        "type": "\tstatic",
-        "string": "create"
+        "type": "*static",
+        "string": "create()"
       },
       {
-        "type": "\t\teg",
-        "string": "Space.create('teste', {});"
-      },
-      {
-        "type": "\t\t//",
-        "string": "{}"
-      },
-      {
-        "type": "\tpublic",
-        "string": "getAd"
-      },
-      {
-        "type": "\t\teg",
-        "string": "new Space().getAd('1234');"
-      },
-      {
-        "type": "\t\t//",
-        "string": "[{},{},{}]"
-      },
-      {
-        "type": "\tpublic",
-        "string": "save"
-      },
-      {
-        "type": "\t\teg",
-        "string": "new Event().save(function(){});"
-      },
-      {
-        "type": "\t\t//",
-        "string": "null"
-      },
-      {
-        "type": "\tpublic",
-        "string": "place"
-      },
-      {
-        "type": "\t\teg",
-        "string": "new Event().place(new Ad());"
-      },
-      {
-        "type": "\t\t//",
-        "string": "{}"
+        "type": "*public",
+        "string": "getAd()"
       }
     ],
     "description": {
@@ -143,8 +103,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,

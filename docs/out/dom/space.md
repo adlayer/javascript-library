@@ -2,29 +2,9 @@
 
 # todo: 
 
-# 	static create
+# *static create()
 
-# 		eg Space.create(&#39;teste&#39;, {});
-
-# 		// {}
-
-# 	public getAd
-
-# 		eg new Space().getAd(&#39;1234&#39;);
-
-# 		// [{},{},{}]
-
-# 	public save
-
-# 		eg new Event().save(function(){});
-
-# 		// null
-
-# 	public place
-
-# 		eg new Event().place(new Ad());
-
-# 		// {}
+# *public getAd()
 
 
 <p>Abstract class for spaces</p>
@@ -60,8 +40,9 @@ this.status = '';
 this.ads = [];
 ```
 <ul>
-<li>@private
-<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>
+<li>@method __construct
+<ul><li>@private</li>
+<li>@returns {Object} return this to allow chain pattern</li></ul></li>
 </ul>
 ```javascript
 var __construct = (function(self){
