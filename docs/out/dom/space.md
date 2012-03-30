@@ -1,3 +1,5 @@
+# class Space
+
 # todo: 
 
 # 	static create
@@ -25,7 +27,7 @@
 # 		// {}
 
 
-<p>@class</p>
+<p>Abstract class for spaces</p>
 ```javascript
 var Space = function( attributes ){
 ```
@@ -73,17 +75,20 @@ var __construct = (function(self){
 	})(this);
 };
 ```
-<p>@return {Object} Ad</p>
+<ul>
+<li>@return {Object} Ad</li>
+</ul>
 ```javascript
 Space.prototype.getRandomAd = function(){
-	var total = this.ads.length;
-	var index = Math.floor(Math.random() * total);
-	return this.ads[index];
-};
-```# exports Space as Space
-
-
-<p>@requires modules in browser</p>
+		var total = this.ads.length;
+		var index = Math.floor(Math.random() * total);
+		return this.ads[index];
+	};
+```
+<ul>
+<li>@requires modules in browser
+<ul><li>@exports Space as Space</li></ul></li>
+</ul>
 ```javascript
 exports.Space = Space;
 ```

@@ -2,6 +2,10 @@
   {
     "tags": [
       {
+        "type": "class",
+        "string": "Space"
+      },
+      {
         "type": "todo:",
         "string": ""
       },
@@ -55,8 +59,8 @@
       }
     ],
     "description": {
-      "full": "<p>@class</p>",
-      "summary": "<p>@class</p>",
+      "full": "<p>Abstract class for spaces</p>",
+      "summary": "<p>Abstract class for spaces</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -155,12 +159,12 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>@return {Object} Ad</p>",
-      "summary": "<p>@return {Object} Ad</p>",
+      "full": "<ul>\n<li>@return {Object} Ad</li>\n</ul>",
+      "summary": "<ul>\n<li>@return {Object} Ad</li>\n</ul>",
       "body": ""
     },
     "ignore": false,
-    "code": "Space.prototype.getRandomAd = function(){\n\tvar total = this.ads.length;\n\tvar index = Math.floor(Math.random() * total);\n\treturn this.ads[index];\n};",
+    "code": "Space.prototype.getRandomAd = function(){\n\t\tvar total = this.ads.length;\n\t\tvar index = Math.floor(Math.random() * total);\n\t\treturn this.ads[index];\n\t};",
     "ctx": {
       "type": "method",
       "constructor": "Space",
@@ -169,18 +173,12 @@
     }
   },
   {
-    "tags": [
-      {
-        "type": "exports",
-        "string": "Space as Space"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>@requires modules in browser</p>",
-      "summary": "<p>@requires modules in browser</p>",
+      "full": "<ul>\n<li>@requires modules in browser\n<ul><li>@exports Space as Space</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@requires modules in browser\n<ul><li>@exports Space as Space</li></ul></li>\n</ul>",
       "body": ""
     },
-    "isPrivate": false,
     "ignore": false,
     "code": "exports.Space = Space;",
     "ctx": {

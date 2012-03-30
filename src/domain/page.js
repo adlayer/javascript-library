@@ -1,29 +1,30 @@
 /**
-* @class
+* Abstract class for page
+*
+* @class Page
+* @constructor
+* @param {Object} attributes
 */
 var Page = function( attributes ){
-	/*
-	* Unique page id
-	* @type string
+	/**
+	* @property {String} id unique page id
 	*/
 	this.id = '';
-	/*
-	* Page name
-	* @type string
+	/**
+	* @property {String} name page name
 	*/
 	this.name = '';
-	/*
-	* Collection of page spaces
-	* @type array
+	/**
+	* @property {Array} spaces Collection of page spaces
 	*/
 	this.spaces = [];
-	/*
-	* Page status
-	* @type boolean - true for active and false for inactive
+	/**
+	* @property {Boolean} true for active and false for inactive
 	*/
 	this.status = true;
 	
 	/*
+	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
 	*/
@@ -38,6 +39,7 @@ var Page = function( attributes ){
 	})(this);
 };
 	/**
+	* @method getActiveContent
 	* @public
 	* @returns {Object} new Page() - return the instance itself to improve chainability
 	* @requires Javascript 1.6
