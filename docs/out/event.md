@@ -5,6 +5,7 @@
 * param Object attributes
 
 <b><p>Create any event</p></b>
+
 ```javascript
 var Event = function( attributes ){
 ```
@@ -12,6 +13,7 @@ var Event = function( attributes ){
 <li>@property {Object} date Instance of current date
 <ul><li>@private</li></ul></li>
 </ul></b>
+
 ```javascript
 var date = new Date();
 ```
@@ -19,6 +21,7 @@ var date = new Date();
 <li>@property {String} type Event type
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.type = '';
 ```
@@ -26,6 +29,7 @@ this.type = '';
 <li>@property {String} campaign_id Campaign Id
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.campaign_id = '';
 ```
@@ -33,6 +37,7 @@ this.campaign_id = '';
 <li>@property {String} ad_id Ad id
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.ad_id = '';
 ```
@@ -40,6 +45,7 @@ this.ad_id = '';
 <li>@property {String} space_id Space id
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.space_id = '';
 ```
@@ -47,6 +53,7 @@ this.space_id = '';
 <li>@property {String} site_id Site id
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.site_id = '';
 ```
@@ -54,6 +61,7 @@ this.site_id = '';
 <li>@property {String} page_url Url of the current page
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.page_url = '';
 ```
@@ -61,6 +69,7 @@ this.page_url = '';
 <li>@property {String} date Date ISO 8601 format
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.date = '';
 ```
@@ -68,6 +77,7 @@ this.date = '';
 <li>@property {String} time Time of event
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.time = '';
 ```
@@ -76,6 +86,7 @@ this.time = '';
 <ul><li>@description First part of a time iso</li>
 <li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.hour = '';
 ```
@@ -83,6 +94,7 @@ this.hour = '';
 <li>@property {String} ip Visitor ip
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.ip = '';
 ```
@@ -90,6 +102,7 @@ this.ip = '';
 <li>@property {String} browser User agent or browser
 <ul><li>@public</li></ul></li>
 </ul></b>
+
 ```javascript
 this.browser = '';
 ```
@@ -98,6 +111,7 @@ this.browser = '';
 <ul><li>@privileged</li>
 <li>@returns {String} Even if date is not converted to string return ISOString</li></ul></li>
 </ul></b>
+
 ```javascript
 this.getFullDate = function(){
 		if( typeof date === 'object' ){
@@ -111,6 +125,7 @@ this.getFullDate = function(){
 <ul><li>@private</li>
 <li>@returns {Object} return this to allow chain pattern</li></ul></li>
 </ul></b>
+
 ```javascript
 var __construct = (function(self){
 		// initiate here
@@ -127,6 +142,7 @@ var __construct = (function(self){
 <li>@property {Array} required List of all required attributes
 <ul><li>@static</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.required = [
 		'type',
@@ -141,6 +157,7 @@ Event.required = [
 <ul><li>@static</li>
 <li>@returns {Object} return the result of method save</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.track = function(attributes){
 		return new Event(attributes).save();
@@ -151,6 +168,7 @@ Event.track = function(attributes){
 <ul><li>@public</li>
 <li>@returns {String} The second part of a fulldate splited in T character</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.prototype.getDate = function(){
 		return this.getFullDate().split('T')[0];
@@ -161,6 +179,7 @@ Event.prototype.getDate = function(){
 <ul><li>@public</li>
 <li>@returns {String} he second part of a fulldate splited in T character</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.prototype.getTime = function(){
 		return this.getFullDate().split('T')[1];
@@ -171,6 +190,7 @@ Event.prototype.getTime = function(){
 <ul><li>@public</li>
 <li>@returns {String || Boolean} String of hour or false</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.prototype.getHour = function(){
 		if( this.time ){
@@ -184,6 +204,7 @@ Event.prototype.getHour = function(){
 <ul><li>@public</li>
 <li>@returns {Boolean} true for all attributes and false if any is missing</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.prototype.validate = function(){
 		for( var i = 0; i < Event.required.length; i++ ){
@@ -201,6 +222,7 @@ Event.prototype.validate = function(){
 <ul><li>@public</li>
 <li>@returns {String} convert object to network string</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.prototype.toQuery = function(){
 		var querystring = require('../node_modules/querystring').querystring;
@@ -212,6 +234,7 @@ Event.prototype.toQuery = function(){
 <ul><li>@public</li>
 <li>@returns {Error} convert object to network string</li></ul></li>
 </ul></b>
+
 ```javascript
 Event.prototype.save = function(){
 		throw new Error('You should override this');
@@ -221,6 +244,7 @@ Event.prototype.save = function(){
 <li>@requires modules in browser
 <ul><li>@exports Event as Event</li></ul></li>
 </ul></b>
+
 ```javascript
 exports.Event = Event;
 ```

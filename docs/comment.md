@@ -8,6 +8,7 @@
 {{#description}}
 
 <b>{{{summary}}}</b>
+
 {{/description}}
 ```javascript
 {{{code}}}
