@@ -83,17 +83,4 @@ task('docs', function(){
 
 		});
 	}
-	/**
-	var json = require('./docs/json/domain/event.json');
-	
-	var template = fs.readFileSync('docs/comment.md').toString();
-	template = Hogan.compile(template);
-
-	var render = [];
-	json.forEach(function(comment){
-		var output = template.render(comment);
-		render.push(output);
-	});
-	fs.writeFileSync('docs/out/event.md', render.join(''));
-	**/
 });
