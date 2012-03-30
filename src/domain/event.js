@@ -2,6 +2,7 @@
 * Create any event
 *
 * @class Event
+* @constructor
 * @param {Object} attributes
 */
 var Event = function( attributes ){
