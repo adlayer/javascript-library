@@ -1,7 +1,8 @@
 # class Space
 
-# todo: .create, #getAd
+# constructor 
 
+* param Object attributes
 
 <p>Abstract class for spaces</p>
 ```javascript

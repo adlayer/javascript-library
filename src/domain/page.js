@@ -4,8 +4,6 @@
 * @class Page
 * @constructor
 * @param {Object} attributes
-* @constructor
-* @param {Object} attributes
 */
 var Page = function( attributes ){
 	/**

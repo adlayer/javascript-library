@@ -6,8 +6,16 @@
         "string": "Space"
       },
       {
-        "type": "todo:",
-        "string": ".create, #getAd"
+        "type": "constructor",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "attributes",
+        "description": ""
       }
     ],
     "description": {

@@ -1,20 +1,21 @@
 /**
+* Abstract class for Formats
+*
 * @class
+* @constructor
+* @param {Object} attributes
 */
 var Format = function(){
-	/*
-	* Format type
-	* @type string
+	/**
+	* @property {String} type Typeof object
 	*/
 	this.type;
-	/*
-	* Height of resource
-	* @type string
+	/**
+	* @property {String} height Height of object
 	*/
 	this.height;
-	/*
-	* With of resource
-	* @type string
+	/**
+	* @property {String} width Width object
 	*/
 	this.with;
 }

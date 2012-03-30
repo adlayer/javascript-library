@@ -2,7 +2,8 @@
 * Abstract class for spaces
 *
 * @class Space
-* @todo: .create, #getAd
+* @constructor
+* @param {Object} attributes
 */
 var Space = function( attributes ){
 	/**
