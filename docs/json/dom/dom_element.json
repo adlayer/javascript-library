@@ -132,7 +132,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "DomElement.prototype.findParentTag = function(tag){\n\tvar parent = this.element.parentNode;\n\twhile(parent.nodeName != tag){\n\t\tparent = parent.parentNode;\n\t}\n\treturn parent;\n}",
+    "code": "DomElement.prototype.findParentTag = function(tag){\n\tvar parent = this.element.parentNode;\n\twhile(parent.nodeName != tag){\n\t\tparent = parent.parentNode;\n\t}\n\treturn parent;\n};",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",

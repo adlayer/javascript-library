@@ -1,8 +1,12 @@
 default:
-	node build.js
+	# Runing unit tests
+	make test
+	# Build library
+	jake
+	# Make documentation
+	jake docs
 
 test:
-	./node_modules/mocha/bin/mocha test/domain/*.js --reporter spec
-	./node_modules/mocha/bin/mocha test/dom/*.js --reporter spec
+	./node_modules/mocha/bin/mocha test/**/*.js --reporter spec
 
 .PHONY: test

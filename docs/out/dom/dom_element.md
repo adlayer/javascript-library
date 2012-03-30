@@ -58,7 +58,7 @@ DomElement.prototype.findParentTag = function(tag){
 		parent = parent.parentNode;
 	}
 	return parent;
-}
+};
 ```# returns {Object} return this to allow chainability
 
 
