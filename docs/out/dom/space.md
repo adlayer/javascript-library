@@ -1,10 +1,6 @@
 # class Space
 
-# todo: 
-
-# *static create()
-
-# *public getAd()
+# todo: .create, #getAd
 
 
 <p>Abstract class for spaces</p>
@@ -12,29 +8,25 @@
 var Space = function( attributes ){
 ```
 <ul>
-<li>Unique page id
-<ul><li>@type string</li></ul></li>
+<li>@property {String} id Unique space id</li>
 </ul>
 ```javascript
 this.id = '';
 ```
 <ul>
-<li>Space type
-<ul><li>@type string</li></ul></li>
+<li>@property {String} type Type of space</li>
 </ul>
 ```javascript
 this.type = '';
 ```
 <ul>
-<li>Space status - true for active and false for inactive
-<ul><li>@type boolean</li></ul></li>
+<li>@property {Boolean} status true for active and false for inactive</li>
 </ul>
 ```javascript
 this.status = '';
 ```
 <ul>
-<li>Collection of ads linked to space
-<ul><li>@type array</li></ul></li>
+<li>@property {Array} ads Collection of ads linked to space</li>
 </ul>
 ```javascript
 this.ads = [];
@@ -57,7 +49,8 @@ var __construct = (function(self){
 };
 ```
 <ul>
-<li>@return {Object} Ad</li>
+<li>@method getRandomAd
+<ul><li>@return {Object} Ad</li></ul></li>
 </ul>
 ```javascript
 Space.prototype.getRandomAd = function(){

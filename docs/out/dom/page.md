@@ -3,6 +3,9 @@
 # constructor 
 
 * param Object attributes
+# constructor 
+
+* param Object attributes
 
 <p>Abstract class for page</p>
 ```javascript

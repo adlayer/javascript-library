@@ -2,29 +2,23 @@
 * Abstract class for spaces
 *
 * @class Space
-* @todo:
-* *static create()
-* *public getAd()
+* @todo: .create, #getAd
 */
 var Space = function( attributes ){
-	/*
-	* Unique page id
-	* @type string
+	/**
+	* @property {String} id Unique space id
 	*/
 	this.id = '';
-	/*
-	* Space type
-	* @type string
+	/**
+	* @property {String} type Type of space
 	*/
 	this.type = '';
-	/*
-	* Space status - true for active and false for inactive
-	* @type boolean
+	/**
+	* @property {Boolean} status true for active and false for inactive
 	*/
 	this.status = '';
-	/*
-	* Collection of ads linked to space
-	* @type array
+	/**
+	* @property {Array} ads Collection of ads linked to space
 	*/
 	this.ads = [];
 	/*
@@ -44,6 +38,7 @@ var Space = function( attributes ){
 };
 
 	/**
+	* @method getRandomAd
 	* @return {Object} Ad
 	*/
 	Space.prototype.getRandomAd = function(){

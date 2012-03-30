@@ -16,6 +16,18 @@
         ],
         "name": "attributes",
         "description": ""
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "attributes",
+        "description": ""
       }
     ],
     "description": {
