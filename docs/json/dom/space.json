@@ -1,0 +1,194 @@
+[
+  {
+    "tags": [
+      {
+        "type": "todo:",
+        "string": ""
+      },
+      {
+        "type": "\tstatic",
+        "string": "create"
+      },
+      {
+        "type": "\t\teg",
+        "string": "Space.create('teste', {});"
+      },
+      {
+        "type": "\t\t//",
+        "string": "{}"
+      },
+      {
+        "type": "\tpublic",
+        "string": "getAd"
+      },
+      {
+        "type": "\t\teg",
+        "string": "new Space().getAd('1234');"
+      },
+      {
+        "type": "\t\t//",
+        "string": "[{},{},{}]"
+      },
+      {
+        "type": "\tpublic",
+        "string": "save"
+      },
+      {
+        "type": "\t\teg",
+        "string": "new Event().save(function(){});"
+      },
+      {
+        "type": "\t\t//",
+        "string": "null"
+      },
+      {
+        "type": "\tpublic",
+        "string": "place"
+      },
+      {
+        "type": "\t\teg",
+        "string": "new Event().place(new Ad());"
+      },
+      {
+        "type": "\t\t//",
+        "string": "{}"
+      }
+    ],
+    "description": {
+      "full": "<p>@class</p>",
+      "summary": "<p>@class</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Space = function( attributes ){",
+    "ctx": {
+      "type": "function",
+      "name": "Space",
+      "string": "Space()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Unique page id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Unique page id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.id = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "id",
+      "value": "''",
+      "string": "this.id"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Space type\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Space type\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.type = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "type",
+      "value": "''",
+      "string": "this.type"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Space status - true for active and false for inactive\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Space status - true for active and false for inactive\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.status = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "status",
+      "value": "''",
+      "string": "this.status"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Collection of ads linked to space\n<ul><li>@type array</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Collection of ads linked to space\n<ul><li>@type array</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.ads = [];",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "ads",
+      "value": "[]",
+      "string": "this.ads"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var __construct = (function(self){\n\t\t// initiate here\n\t\tfor( var attribute in attributes ){\n\t\t\tif( attributes.hasOwnProperty(attribute) ){\n\t\t\t\tself[attribute] = attributes[attribute];\n\t\t\t}\n\t\t}\n\t\treturn self;\n\t})(this);\n};",
+    "ctx": {
+      "type": "declaration",
+      "name": "__construct",
+      "value": "(function(self){",
+      "string": "__construct"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@return {Object} Ad</p>",
+      "summary": "<p>@return {Object} Ad</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Space.prototype.getRandomAd = function(){\n\tvar total = this.ads.length;\n\tvar index = Math.floor(Math.random() * total);\n\treturn this.ads[index];\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Space",
+      "name": "getRandomAd",
+      "string": "Space.prototype.getRandomAd()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "exports",
+        "string": "Space as Space"
+      }
+    ],
+    "description": {
+      "full": "<p>@requires modules in browser</p>",
+      "summary": "<p>@requires modules in browser</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.Space = Space;",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "Space",
+      "value": "Space",
+      "string": "exports.Space"
+    }
+  }
+]

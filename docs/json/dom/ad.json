@@ -1,0 +1,192 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@class</p>",
+      "summary": "<p>@class</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var Ad = function( attributes ){",
+    "ctx": {
+      "type": "function",
+      "name": "Ad",
+      "string": "Ad()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Ad id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Ad id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.id = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "id",
+      "value": "''",
+      "string": "this.id"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Name of ad creative\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Name of ad creative\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.name = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "name",
+      "value": "''",
+      "string": "this.name"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Id to campaign that belongs to\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Id to campaign that belongs to\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.campaign_id = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "campaign_id",
+      "value": "''",
+      "string": "this.campaign_id"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Ad type\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Ad type\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.type = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "type",
+      "value": "''",
+      "string": "this.type"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Path to  ad file\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Path to  ad file\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.file = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "file",
+      "value": "''",
+      "string": "this.file"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Destiny link\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Destiny link\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.link = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "link",
+      "value": "''",
+      "string": "this.link"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Ad status\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Ad status\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.status = true;",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "status",
+      "value": "true",
+      "string": "this.status"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Alternative Ad is another instance of Ad with graceful degradation\n<ul><li>@type object</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Alternative Ad is another instance of Ad with graceful degradation\n<ul><li>@type object</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.alternative = {};",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "alternative",
+      "value": "{}",
+      "string": "this.alternative"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var __construct = (function(self){\n\t\t// initiate here\n\t\tfor( var attribute in attributes ){\n\t\t\tif( attributes.hasOwnProperty(attribute) ){\n\t\t\t\tself[attribute] = attributes[attribute];\n\t\t\t}\n\t\t}\n\t\treturn self;\n\t})(this);\n};",
+    "ctx": {
+      "type": "declaration",
+      "name": "__construct",
+      "value": "(function(self){",
+      "string": "__construct"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "exports",
+        "string": "Ad as Ad"
+      }
+    ],
+    "description": {
+      "full": "<p>@requires modules in browser</p>",
+      "summary": "<p>@requires modules in browser</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.Ad = Ad;",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "Ad",
+      "value": "Ad",
+      "string": "exports.Ad"
+    }
+  }
+]

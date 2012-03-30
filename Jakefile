@@ -2,6 +2,9 @@
 var manifest  = require('./manifest');
 var smoosh = require('smoosh');
 var fs = require('fs');
+var Hogan = require('hogan.js');
+var exec = require('child_process').exec;
+var path = require('path');
 
 Array.prototype.extends = function(base){
 	return base.concat(this);
@@ -42,7 +45,45 @@ task('default', function(){
 
 desc('docs');
 task('docs', function(){
-	var Hogan = require('hogan.js');
+	var docs = 'docs';
+	var jsons = docs + '/' + 'json';
+	var out = docs + '/' + 'out';
+	
+	var template = fs.readFileSync('docs/comment.md').toString(),
+		template = Hogan.compile(template);
+	
+	// Discovering module names
+	for( var module in modules ){
+		// Run over module files
+		modules[module].forEach(function(file){
+			
+			var basename = path.basename(file, '.js');
+			var raw = jsons + '/' + module + '/' + basename + '.json';
+			
+			var command = 'dox < {file} > {json}',
+				command = command.replace('{file}', file),
+				command = command.replace('{json}', raw);
+				
+			// Write raw data to docs/json
+			exec(command, function(error, stdout, stderr){
+				if (error !== null) {
+					console.log('exec error: ' + error);
+				} else {
+					var json = require('./'+raw);
+					var render = [];
+					
+					json.forEach(function(comment){
+						var output = template.render(comment);
+						render.push(output);
+					});
+					
+					fs.writeFileSync(out + '/' + module + '/' + basename + '.md' , render.join(''));
+				}
+			});
+
+		});
+	}
+	/**
 	var json = require('./docs/json/domain/event.json');
 	
 	var template = fs.readFileSync('docs/comment.md').toString();
@@ -54,8 +95,5 @@ task('docs', function(){
 		render.push(output);
 	});
 	fs.writeFileSync('docs/out/event.md', render.join(''));
-/**	
-	var output = template.render(file);
-	console.log(output);
-**/
+	**/
 });

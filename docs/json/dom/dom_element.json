@@ -1,0 +1,165 @@
+[
+  {
+    "tags": [
+      {
+        "type": "link",
+        "string": "https://developer.mozilla.org/en/DOM/element"
+      }
+    ],
+    "description": {
+      "full": "<p>@class</p>",
+      "summary": "<p>@class</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var DomElement = function(){",
+    "ctx": {
+      "type": "function",
+      "name": "DomElement",
+      "string": "DomElement()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Element id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Element id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.id = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "id",
+      "value": "''",
+      "string": "this.id"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Dom element itself\n<ul><li>@type object</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Dom element itself\n<ul><li>@type object</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.element = {};\n};",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "element",
+      "value": "{}",
+      "string": "this.element"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@static</p>",
+      "summary": "<p>@static</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "DomElement.create = function(tagName, document){\n\treturn document.createElement(tagName);\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "DomElement",
+      "name": "create",
+      "string": "DomElement.create()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{Object} this"
+      }
+    ],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DomElement.prototype.create = function(tagName, document){\n\t//\t\tfile global || adlayer js module wrapper || passed document context\n\tdocument = this.document || global.document || document;\n\tthis.element = DomElement.create(tagName, document);\n\treturn this;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "DomElement",
+      "name": "create",
+      "string": "DomElement.prototype.create()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{Object} this"
+      }
+    ],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DomElement.prototype.append = function(child){\n\tthis.element.appendChild(child);\n\treturn this;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "DomElement",
+      "name": "append",
+      "string": "DomElement.prototype.append()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "params",
+        "string": "{String} UPPERCASE tag name"
+      },
+      {
+        "type": "returns",
+        "string": "{Object} NativeDom"
+      }
+    ],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DomElement.prototype.findParentTag = function(tag){\n\tvar parent = this.element.parentNode;\n\twhile(parent.nodeName != tag){\n\t\tparent = parent.parentNode;\n\t}\n\treturn parent;\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "DomElement",
+      "name": "findParentTag",
+      "string": "DomElement.prototype.findParentTag()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{Object} return this to allow chainability"
+      }
+    ],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DomElement.prototype.addEventListener = function(type, eventListener){\n\tif(typeof addEventListener === 'function'){\n\t\tthis.element.addEventListener(type, eventListener, false);\n\t} else if(typeof attachEvent === 'function'){\n\t\tthis.element.attachEvent('on' + type, eventListener);\n\t} else {\n\t\tthis.element['on' + type] = eventListener;\n\t}\n\treturn this;\n};\n\n\nexports.DomElement = DomElement;",
+    "ctx": {
+      "type": "method",
+      "constructor": "DomElement",
+      "name": "addEventListener",
+      "string": "DomElement.prototype.addEventListener()"
+    }
+  }
+]

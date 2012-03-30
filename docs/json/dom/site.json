@@ -1,0 +1,162 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@class</p>",
+      "summary": "<p>@class</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var Site = function( attributes ){",
+    "ctx": {
+      "type": "function",
+      "name": "Site",
+      "string": "Site()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Unique site id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Unique site id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.id = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "id",
+      "value": "''",
+      "string": "this.id"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Site name\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Site name\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.name = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "name",
+      "value": "''",
+      "string": "this.name"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Site status - true for active and  false for inactive\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Site status - true for active and  false for inactive\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.status = true;",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "status",
+      "value": "true",
+      "string": "this.status"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>Collection of all allowed domains\n<ul><li>@type array</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Collection of all allowed domains\n<ul><li>@type array</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.domains = [];",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "domains",
+      "value": "[]",
+      "string": "this.domains"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var __construct = (function(self){\n\t\t// initiate here\n\t\tfor( var attribute in attributes ){\n\t\t\tif( attributes.hasOwnProperty(attribute) ){\n\t\t\t\tself[attribute] = attributes[attribute];\n\t\t\t}\n\t\t}\n\t\treturn self;\n\t})(this);\n};",
+    "ctx": {
+      "type": "declaration",
+      "name": "__construct",
+      "value": "(function(self){",
+      "string": "__construct"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "public",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "entry",
+        "description": "- Domain string"
+      },
+      {
+        "type": "returns",
+        "string": "{Boolean} - True when found a domain and false for not"
+      },
+      {
+        "type": "todo:",
+        "string": "change to regex"
+      }
+    ],
+    "description": {
+      "full": "<p>@description Find for exact domain or subdomain</p>",
+      "summary": "<p>@description Find for exact domain or subdomain</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Site.prototype.hasDomain = function(entry){\n\tvar self = this;\n\tvar result = false;\n\n\tfunction found(content, context){\n\t\treturn context.indexOf(content) !== -1;\n\t}\n\t\n\t// Found exact domain ?\n\tif( found(entry, this.domains ) ){\n\t\tresult = true;\n\t} else {\n\t\t// Run in all domains\n\t\tthis.domains.forEach(function(domain){\n\t\t\t// Current domain is a wildcard ?\n\t\t\tvar wildcard = found('*', domain);\n\t\t\tif( wildcard ){\n\t\t\t\t// Remove star\n\t\t\t\tdomain = domain.replace('*', '');\n\t\t\t\tif( found(domain, entry) ) result = true;\n\t\t\t}\n\t\t});\n\t}\n\treturn result;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Site",
+      "name": "hasDomain",
+      "string": "Site.prototype.hasDomain()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "exports",
+        "string": "Event as Event"
+      }
+    ],
+    "description": {
+      "full": "<p>@requires modules in browser</p>",
+      "summary": "<p>@requires modules in browser</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.Site = Site;",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "Site",
+      "value": "Site",
+      "string": "exports.Site"
+    }
+  }
+]
