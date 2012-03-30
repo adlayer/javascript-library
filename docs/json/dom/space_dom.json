@@ -2,8 +2,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>@class\n<ul><li>@requires DomElement</li>\n<li>@requires Ad</li>\n<li>@requires Event</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@class\n<ul><li>@requires DomElement</li>\n<li>@requires Ad</li>\n<li>@requires Event</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>Space dom\n*\n<ul><li>@class SpaceDom</li>\n<li>@requires DomElement</li>\n<li>@requires Ad</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Space dom\n*\n<ul><li>@class SpaceDom</li>\n<li>@requires DomElement</li>\n<li>@requires Ad</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,

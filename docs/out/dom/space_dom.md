@@ -1,9 +1,10 @@
 
 <ul>
-<li>@class
-<ul><li>@requires DomElement</li>
-<li>@requires Ad</li>
-<li>@requires Event</li></ul></li>
+<li>Space dom
+*
+<ul><li>@class SpaceDom</li>
+<li>@requires DomElement</li>
+<li>@requires Ad</li></ul></li>
 </ul>
 ```javascript
 var SpaceDom = function(){

@@ -2,13 +2,17 @@
   {
     "tags": [
       {
+        "type": "class",
+        "string": "DomElement"
+      },
+      {
         "type": "link",
         "string": "https://developer.mozilla.org/en/DOM/element"
       }
     ],
     "description": {
-      "full": "<p>@class</p>",
-      "summary": "<p>@class</p>",
+      "full": "<p>Abstract class for dom/html elements </p>",
+      "summary": "<p>Abstract class for dom/html elements </p>",
       "body": ""
     },
     "isPrivate": false,
@@ -23,8 +27,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Element id\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Element id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} id Id attribute of object</li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} id Id attribute of object</li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -40,8 +44,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Dom element itself\n<ul><li>@type object</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Dom element itself\n<ul><li>@type object</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {Object} element Dom element itself</li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Object} element Dom element itself</li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -55,12 +59,38 @@
     }
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "tagName",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "document",
+        "description": ""
+      },
+      {
+        "type": "static",
+        "string": ""
+      },
+      {
+        "type": "returns",
+        "string": "{Object} element"
+      }
+    ],
     "description": {
-      "full": "<p>@static</p>",
-      "summary": "<p>@static</p>",
+      "full": "<p>@method create</p>",
+      "summary": "<p>@method create</p>",
       "body": ""
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "DomElement.create = function(tagName, document){\n\treturn document.createElement(tagName);\n};",
     "ctx": {
@@ -73,13 +103,33 @@
   {
     "tags": [
       {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "tagName",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "document",
+        "description": ""
+      },
+      {
+        "type": "public",
+        "string": ""
+      },
+      {
         "type": "returns",
-        "string": "{Object} this"
+        "string": "{Object} this - Chainable method"
       }
     ],
     "description": {
-      "full": "<p>@public</p>",
-      "summary": "<p>@public</p>",
+      "full": "<p>@method create</p>",
+      "summary": "<p>@method create</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -95,13 +145,25 @@
   {
     "tags": [
       {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "child",
+        "description": ""
+      },
+      {
+        "type": "public",
+        "string": ""
+      },
+      {
         "type": "returns",
-        "string": "{Object} this"
+        "string": "{Object} this - Chainable method"
       }
     ],
     "description": {
-      "full": "<p>@public</p>",
-      "summary": "<p>@public</p>",
+      "full": "<p>@method append</p>",
+      "summary": "<p>@method append</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -117,17 +179,25 @@
   {
     "tags": [
       {
-        "type": "params",
-        "string": "{String} UPPERCASE tag name"
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "tag",
+        "description": "UPPERCASE tag name"
+      },
+      {
+        "type": "public",
+        "string": ""
       },
       {
         "type": "returns",
-        "string": "{Object} NativeDom"
+        "string": "{Object} parentElement"
       }
     ],
     "description": {
-      "full": "<p>@public</p>",
-      "summary": "<p>@public</p>",
+      "full": "<p>@method findParentTag</p>",
+      "summary": "<p>@method findParentTag</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -143,13 +213,33 @@
   {
     "tags": [
       {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "type",
+        "description": "Event name like 'click', 'load', 'mouseover'"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "eventListener",
+        "description": "Callback for event trigger"
+      },
+      {
+        "type": "public",
+        "string": ""
+      },
+      {
         "type": "returns",
         "string": "{Object} return this to allow chainability"
       }
     ],
     "description": {
-      "full": "<p>@public</p>",
-      "summary": "<p>@public</p>",
+      "full": "<p>@method addEventListener</p>",
+      "summary": "<p>@method addEventListener</p>",
       "body": ""
     },
     "isPrivate": false,

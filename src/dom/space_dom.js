@@ -6,10 +6,11 @@
 	
 	
 	/*
-	* @class
+	* Space dom
+	*
+	* @class SpaceDom
 	* @requires DomElement
 	* @requires Ad
-	* @requires Event
 	*/
 	var SpaceDom = function(){
 		// extends Space
