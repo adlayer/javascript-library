@@ -3,18 +3,8 @@
 *
 * @class Space
 * @todo:
-*	@static create
-*		eg Space.create('teste', {});
-*		// {}
-*	@public getAd
-*		eg new Space().getAd('1234');
-*		// [{},{},{}]
-*	@public save
-*		eg new Event().save(function(){});
-*		// null
-*	@public place
-*		eg new Event().place(new Ad());
-*		// {}
+* *static create()
+* *public getAd()
 */
 var Space = function( attributes ){
 	/*
@@ -38,6 +28,7 @@ var Space = function( attributes ){
 	*/
 	this.ads = [];
 	/*
+	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
 	*/
