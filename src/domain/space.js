@@ -1,5 +1,7 @@
 /**
-* @class
+* Abstract class for spaces
+*
+* @class Space
 * @todo:
 *	@static create
 *		eg Space.create('teste', {});
@@ -50,17 +52,17 @@ var Space = function( attributes ){
 	})(this);
 };
 
-/**
-* @return {Object} Ad
-*/
-Space.prototype.getRandomAd = function(){
-	var total = this.ads.length;
-	var index = Math.floor(Math.random() * total);
-	return this.ads[index];
-};	
+	/**
+	* @return {Object} Ad
+	*/
+	Space.prototype.getRandomAd = function(){
+		var total = this.ads.length;
+		var index = Math.floor(Math.random() * total);
+		return this.ads[index];
+	};	
 
-/**
-* @requires modules in browser
-* @exports Space as Space
-*/
-exports.Space = Space;
+	/**
+	* @requires modules in browser
+	* @exports Space as Space
+	*/
+	exports.Space = Space;

@@ -63,6 +63,7 @@ var Ad = function( attributes ){
 		return self;
 	})(this);
 };
+
 /**
 * @requires modules in browser
 * @exports Ad as Ad
