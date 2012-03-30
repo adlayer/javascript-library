@@ -1,11 +1,29 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "class",
+        "string": "Ad"
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "attributes",
+        "description": ""
+      }
+    ],
     "description": {
-      "full": "<p>@class</p>",
-      "summary": "<p>@class</p>",
+      "full": "<p>Abstract class for ads</p>",
+      "summary": "<p>Abstract class for ads</p>",
       "body": ""
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "var Ad = function( attributes ){",
     "ctx": {
@@ -17,8 +35,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Ad id\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Ad id\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} id Id of ad\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} id Id of ad\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -34,8 +52,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Name of ad creative\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Name of ad creative\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} name Name of ad creative\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} name Name of ad creative\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -51,8 +69,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Id to campaign that belongs to\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Id to campaign that belongs to\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} campaign_id Id to campaign that belongs to\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} campaign_id Id to campaign that belongs to\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -68,8 +86,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Ad type\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Ad type\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} type Ad type\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} type Ad type\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -85,8 +103,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Path to  ad file\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Path to  ad file\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} file Path to ad file\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} file Path to ad file\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -102,8 +120,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Destiny link\n<ul><li>@type string</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Destiny link\n<ul><li>@type string</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {String} link destiny link\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} link destiny link\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -119,8 +137,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Ad status\n<ul><li>@type boolean</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Ad status\n<ul><li>@type boolean</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {Boolean} status Ad status\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Boolean} status Ad status\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -136,8 +154,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>Alternative Ad is another instance of Ad with graceful degradation\n<ul><li>@type object</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>Alternative Ad is another instance of Ad with graceful degradation\n<ul><li>@type object</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation\n<ul><li>@public</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation\n<ul><li>@public</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
@@ -153,8 +171,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@private\n<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,

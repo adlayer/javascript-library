@@ -1,49 +1,55 @@
 /**
-* @class
+* Abstract class for ads
+*
+* @class Ad
+* @constructor
+* @param {Object} attributes
 */
 var Ad = function( attributes ){
 	/*
-	* Ad id
-	* @type string
+	* @property {String} id Id of ad
+	* @public
 	*/
 	this.id = '';
 	/*
-	* Name of ad creative
-	* @type string
+	* @property {String} name Name of ad creative
+	* @public
 	*/
 	this.name = '';
 	/*
-	* Id to campaign that belongs to
-	* @type string
+	* @property {String} campaign_id Id to campaign that belongs to
+	* @public
 	*/
 	this.campaign_id = '';
 	/*
-	* Ad type
-	* @type string
+	* @property {String} type Ad type
+	* @public
 	*/
 	this.type = '';
 	/*
-	* Path to  ad file
-	* @type string
+	* @property {String} file Path to ad file
+	* @public
 	*/
 	this.file = '';
 	/*
-	* Destiny link
-	* @type string
+	* @property {String} link destiny link
+	* @public
 	*/
 	this.link = '';
 	/*
-	* Ad status
-	* @type boolean
+	* @property {Boolean} status Ad status
+	* @public
 	*/
 	this.status = true;
 	/*
-	* Alternative Ad is another instance of Ad with graceful degradation
-	* @type object
+	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
+	* @public
 	*/
 	this.alternative = {};
 	
+
 	/*
+	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
 	*/

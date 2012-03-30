@@ -1,67 +1,73 @@
+# class Ad
 
-<p>@class</p>
+# constructor 
+
+* param Object attributes
+
+<p>Abstract class for ads</p>
 ```javascript
 var Ad = function( attributes ){
 ```
 <ul>
-<li>Ad id
-<ul><li>@type string</li></ul></li>
+<li>@property {String} id Id of ad
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.id = '';
 ```
 <ul>
-<li>Name of ad creative
-<ul><li>@type string</li></ul></li>
+<li>@property {String} name Name of ad creative
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.name = '';
 ```
 <ul>
-<li>Id to campaign that belongs to
-<ul><li>@type string</li></ul></li>
+<li>@property {String} campaign_id Id to campaign that belongs to
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.campaign_id = '';
 ```
 <ul>
-<li>Ad type
-<ul><li>@type string</li></ul></li>
+<li>@property {String} type Ad type
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.type = '';
 ```
 <ul>
-<li>Path to  ad file
-<ul><li>@type string</li></ul></li>
+<li>@property {String} file Path to ad file
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.file = '';
 ```
 <ul>
-<li>Destiny link
-<ul><li>@type string</li></ul></li>
+<li>@property {String} link destiny link
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.link = '';
 ```
 <ul>
-<li>Ad status
-<ul><li>@type boolean</li></ul></li>
+<li>@property {Boolean} status Ad status
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.status = true;
 ```
 <ul>
-<li>Alternative Ad is another instance of Ad with graceful degradation
-<ul><li>@type object</li></ul></li>
+<li>@property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
+<ul><li>@public</li></ul></li>
 </ul>
 ```javascript
 this.alternative = {};
 ```
 <ul>
-<li>@private
-<ul><li>@returns {Object} return this to allow chain pattern</li></ul></li>
+<li>@method __construct
+<ul><li>@private</li>
+<li>@returns {Object} return this to allow chain pattern</li></ul></li>
 </ul>
 ```javascript
 var __construct = (function(self){
