@@ -7,7 +7,8 @@
   , "dependencies": {
 	"biscuit":"x.x.x",
 	"jsdom":"x.x.x",
-	"mocha": "x.x.x"
+	"mocha": "x.x.x",
+	"hogan.js": "x.x.x"
   }
   , "main": "index"
   , "engines": { "node": "0.6.x" }
