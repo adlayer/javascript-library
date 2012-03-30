@@ -4,100 +4,100 @@
 
 * param Object attributes
 
-<p>Create any event</p>
+<b><p>Create any event</p></b>
 ```javascript
 var Event = function( attributes ){
 ```
-<ul>
+<b><ul>
 <li>@property {Object} date Instance of current date
 <ul><li>@private</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 var date = new Date();
 ```
-<ul>
+<b><ul>
 <li>@property {String} type Event type
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.type = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} campaign_id Campaign Id
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.campaign_id = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} ad_id Ad id
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.ad_id = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} space_id Space id
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.space_id = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} site_id Site id
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.site_id = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} page_url Url of the current page
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.page_url = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} date Date ISO 8601 format
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.date = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} time Time of event
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.time = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} hour
 <ul><li>@description First part of a time iso</li>
 <li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.hour = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} ip Visitor ip
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.ip = '';
 ```
-<ul>
+<b><ul>
 <li>@property {String} browser User agent or browser
 <ul><li>@public</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.browser = '';
 ```
-<ul>
+<b><ul>
 <li>@method getFullDate
 <ul><li>@privileged</li>
 <li>@returns {String} Even if date is not converted to string return ISOString</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 this.getFullDate = function(){
 		if( typeof date === 'object' ){
@@ -106,11 +106,11 @@ this.getFullDate = function(){
 		return date;
 	};
 ```
-<ul>
+<b><ul>
 <li>@method __construct
 <ul><li>@private</li>
 <li>@returns {Object} return this to allow chain pattern</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 var __construct = (function(self){
 		// initiate here
@@ -123,10 +123,10 @@ var __construct = (function(self){
 	})(this);
 };
 ```
-<ul>
+<b><ul>
 <li>@property {Array} required List of all required attributes
 <ul><li>@static</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.required = [
 		'type',
@@ -136,41 +136,41 @@ Event.required = [
 		'page_id'
 	];
 ```
-<ul>
+<b><ul>
 <li>@method track
 <ul><li>@static</li>
 <li>@returns {Object} return the result of method save</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.track = function(attributes){
 		return new Event(attributes).save();
 	};
 ```
-<ul>
+<b><ul>
 <li>@method getDate
 <ul><li>@public</li>
 <li>@returns {String} The second part of a fulldate splited in T character</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.prototype.getDate = function(){
 		return this.getFullDate().split('T')[0];
 	};
 ```
-<ul>
+<b><ul>
 <li>@method getTime
 <ul><li>@public</li>
 <li>@returns {String} he second part of a fulldate splited in T character</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.prototype.getTime = function(){
 		return this.getFullDate().split('T')[1];
 	};
 ```
-<ul>
+<b><ul>
 <li>@method getHour
 <ul><li>@public</li>
 <li>@returns {String || Boolean} String of hour or false</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.prototype.getHour = function(){
 		if( this.time ){
@@ -179,11 +179,11 @@ Event.prototype.getHour = function(){
 		return false;
 	};
 ```
-<ul>
+<b><ul>
 <li>@method validate
 <ul><li>@public</li>
 <li>@returns {Boolean} true for all attributes and false if any is missing</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.prototype.validate = function(){
 		for( var i = 0; i < Event.required.length; i++ ){
@@ -196,31 +196,31 @@ Event.prototype.validate = function(){
 		return true;
 	};
 ```
-<ul>
+<b><ul>
 <li>@method toQuery
 <ul><li>@public</li>
 <li>@returns {String} convert object to network string</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.prototype.toQuery = function(){
 		var querystring = require('../node_modules/querystring').querystring;
 		return querystring.stringify(this);
 	};
 ```
-<ul>
+<b><ul>
 <li>@method save
 <ul><li>@public</li>
 <li>@returns {Error} convert object to network string</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 Event.prototype.save = function(){
 		throw new Error('You should override this');
 	};
 ```
-<ul>
+<b><ul>
 <li>@requires modules in browser
 <ul><li>@exports Event as Event</li></ul></li>
-</ul>
+</ul></b>
 ```javascript
 exports.Event = Event;
 ```

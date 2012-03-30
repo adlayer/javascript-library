@@ -7,7 +7,7 @@
 {{/tags}}
 {{#description}}
 
-{{{summary}}}
+<b>{{{summary}}}</b>
 {{/description}}
 ```javascript
 {{{code}}}
