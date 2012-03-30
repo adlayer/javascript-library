@@ -4,7 +4,7 @@
 {{/string}}
 	
 {{#types}}
-	* {{type}} {{.}} {{name}}
+* {{type}} {{.}} {{name}}
 {{/types}}
 {{/tags}}
 
