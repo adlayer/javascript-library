@@ -7,7 +7,7 @@
 */
 var Event = function( attributes ){
 	/*
-	* @property {Object} date Instance of current date
+	* @property {Object} __date__ Instance of current date
 	* @private
 	*/
 	var date = new Date();

@@ -9,7 +9,7 @@
 var Event = function( attributes ){
 ```
 <ul>
-<li>@property {Object} date Instance of current date
+<li>@property {Object} <strong>date</strong> Instance of current date
 <ul><li>@private</li></ul></li>
 </ul>
 ```javascript

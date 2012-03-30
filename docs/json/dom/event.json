@@ -35,8 +35,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>@property {Object} date Instance of current date\n<ul><li>@private</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@property {Object} date Instance of current date\n<ul><li>@private</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>@property {Object} <strong>date</strong> Instance of current date\n<ul><li>@private</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Object} <strong>date</strong> Instance of current date\n<ul><li>@private</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
