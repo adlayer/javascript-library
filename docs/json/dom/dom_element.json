@@ -59,40 +59,14 @@
     }
   },
   {
-    "tags": [
-      {
-        "type": "param",
-        "types": [
-          "String"
-        ],
-        "name": "tagName",
-        "description": ""
-      },
-      {
-        "type": "param",
-        "types": [
-          "Object"
-        ],
-        "name": "document",
-        "description": ""
-      },
-      {
-        "type": "static",
-        "string": ""
-      },
-      {
-        "type": "returns",
-        "string": "{Object} element"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>@method create</p>",
-      "summary": "<p>@method create</p>",
+      "full": "<ul>\n<li>@method create\n<ul><li>@param {String} tagName</li>\n<li>@param {Object} document</li>\n<li>@static</li>\n<li>@returns {Object} element</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method create\n<ul><li>@param {String} tagName</li>\n<li>@param {Object} document</li>\n<li>@static</li>\n<li>@returns {Object} element</li></ul></li>\n</ul>",
       "body": ""
     },
-    "isPrivate": false,
     "ignore": false,
-    "code": "DomElement.create = function(tagName, document){\n\treturn document.createElement(tagName);\n};",
+    "code": "DomElement.create = function(tagName, document){\n\t\treturn document.createElement(tagName);\n\t};",
     "ctx": {
       "type": "method",
       "receiver": "DomElement",
@@ -101,40 +75,14 @@
     }
   },
   {
-    "tags": [
-      {
-        "type": "param",
-        "types": [
-          "String"
-        ],
-        "name": "tagName",
-        "description": ""
-      },
-      {
-        "type": "param",
-        "types": [
-          "Object"
-        ],
-        "name": "document",
-        "description": ""
-      },
-      {
-        "type": "public",
-        "string": ""
-      },
-      {
-        "type": "returns",
-        "string": "{Object} this - Chainable method"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>@method create</p>",
-      "summary": "<p>@method create</p>",
+      "full": "<ul>\n<li>@method create\n<ul><li>@param {String} tagName</li>\n<li>@param {Object} document</li>\n<li>@public</li>\n<li>@returns {Object} this - Chainable method</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method create\n<ul><li>@param {String} tagName</li>\n<li>@param {Object} document</li>\n<li>@public</li>\n<li>@returns {Object} this - Chainable method</li></ul></li>\n</ul>",
       "body": ""
     },
-    "isPrivate": false,
     "ignore": false,
-    "code": "DomElement.prototype.create = function(tagName, document){\n\t//\t\tfile global || adlayer js module wrapper || passed document context\n\tdocument = this.document || global.document || document;\n\tthis.element = DomElement.create(tagName, document);\n\treturn this;\n};",
+    "code": "DomElement.prototype.create = function(tagName, document){\n\t\t//\t\tfile global || adlayer js module wrapper || passed document context\n\t\tdocument = this.document || global.document || document;\n\t\tthis.element = DomElement.create(tagName, document);\n\t\treturn this;\n\t};",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",
@@ -143,32 +91,14 @@
     }
   },
   {
-    "tags": [
-      {
-        "type": "param",
-        "types": [
-          "Object"
-        ],
-        "name": "child",
-        "description": ""
-      },
-      {
-        "type": "public",
-        "string": ""
-      },
-      {
-        "type": "returns",
-        "string": "{Object} this - Chainable method"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>@method append</p>",
-      "summary": "<p>@method append</p>",
+      "full": "<ul>\n<li>@method append\n<ul><li>@param {Object} child</li>\n<li>@public</li>\n<li>@returns {Object} this - Chainable method</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method append\n<ul><li>@param {Object} child</li>\n<li>@public</li>\n<li>@returns {Object} this - Chainable method</li></ul></li>\n</ul>",
       "body": ""
     },
-    "isPrivate": false,
     "ignore": false,
-    "code": "DomElement.prototype.append = function(child){\n\tthis.element.appendChild(child);\n\treturn this;\n};",
+    "code": "DomElement.prototype.append = function(child){\n\t\tthis.element.appendChild(child);\n\t\treturn this;\n\t};",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",
@@ -177,32 +107,14 @@
     }
   },
   {
-    "tags": [
-      {
-        "type": "param",
-        "types": [
-          "String"
-        ],
-        "name": "tag",
-        "description": "UPPERCASE tag name"
-      },
-      {
-        "type": "public",
-        "string": ""
-      },
-      {
-        "type": "returns",
-        "string": "{Object} parentElement"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>@method findParentTag</p>",
-      "summary": "<p>@method findParentTag</p>",
+      "full": "<ul>\n<li>@method findParentTag\n<ul><li>@param {String} tag UPPERCASE tag name</li>\n<li>@public</li>\n<li>@returns {Object} parentElement</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method findParentTag\n<ul><li>@param {String} tag UPPERCASE tag name</li>\n<li>@public</li>\n<li>@returns {Object} parentElement</li></ul></li>\n</ul>",
       "body": ""
     },
-    "isPrivate": false,
     "ignore": false,
-    "code": "DomElement.prototype.findParentTag = function(tag){\n\tvar parent = this.element.parentNode;\n\twhile(parent.nodeName != tag){\n\t\tparent = parent.parentNode;\n\t}\n\treturn parent;\n};",
+    "code": "DomElement.prototype.findParentTag = function(tag){\n\t\tvar parent = this.element.parentNode;\n\t\twhile(parent.nodeName != tag){\n\t\t\tparent = parent.parentNode;\n\t\t}\n\t\treturn parent;\n\t};",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",
@@ -211,45 +123,19 @@
     }
   },
   {
-    "tags": [
-      {
-        "type": "param",
-        "types": [
-          "String"
-        ],
-        "name": "type",
-        "description": "Event name like 'click', 'load', 'mouseover'"
-      },
-      {
-        "type": "param",
-        "types": [
-          "Function"
-        ],
-        "name": "eventListener",
-        "description": "Callback for event trigger"
-      },
-      {
-        "type": "public",
-        "string": ""
-      },
-      {
-        "type": "returns",
-        "string": "{Object} return this to allow chainability"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>@method addEventListener</p>",
-      "summary": "<p>@method addEventListener</p>",
+      "full": "<ul>\n<li>@method addDomEventListener\n<ul><li>@param {String} type Event name like 'click', 'load', 'mouseover'</li>\n<li>@param {Function} eventListener Callback for event trigger</li>\n<li>@public</li>\n<li>@returns {Object} return this to allow chainability</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method addDomEventListener\n<ul><li>@param {String} type Event name like 'click', 'load', 'mouseover'</li>\n<li>@param {Function} eventListener Callback for event trigger</li>\n<li>@public</li>\n<li>@returns {Object} return this to allow chainability</li></ul></li>\n</ul>",
       "body": ""
     },
-    "isPrivate": false,
     "ignore": false,
-    "code": "DomElement.prototype.addEventListener = function(type, eventListener){\n\tif(typeof addEventListener === 'function'){\n\t\tthis.element.addEventListener(type, eventListener, false);\n\t} else if(typeof attachEvent === 'function'){\n\t\tthis.element.attachEvent('on' + type, eventListener);\n\t} else {\n\t\tthis.element['on' + type] = eventListener;\n\t}\n\treturn this;\n};\n\n\nexports.DomElement = DomElement;",
+    "code": "DomElement.prototype.addDomEventListener = function(type, eventListener){\n\t\tif(typeof addEventListener === 'function'){\n\t\t\tthis.element.addEventListener(type, eventListener, false);\n\t\t} else if(typeof attachEvent === 'function'){\n\t\t\tthis.element.attachEvent('on' + type, eventListener);\n\t\t} else {\n\t\t\tthis.element['on' + type] = eventListener;\n\t\t}\n\t\treturn this;\n\t};\n\n\n\texports.DomElement = DomElement;",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",
-      "name": "addEventListener",
-      "string": "DomElement.prototype.addEventListener()"
+      "name": "addDomEventListener",
+      "string": "DomElement.prototype.addDomEventListener()"
     }
   }
 ]

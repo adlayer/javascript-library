@@ -19,80 +19,80 @@ this.id = '';
 ```javascript
 this.element = {};
 };
-```* param String tagName
-* param Object document
-# static 
-
-# returns {Object} element
-
-
-<p>@method create</p>
+```
+<ul>
+<li>@method create
+<ul><li>@param {String} tagName</li>
+<li>@param {Object} document</li>
+<li>@static</li>
+<li>@returns {Object} element</li></ul></li>
+</ul>
 ```javascript
 DomElement.create = function(tagName, document){
-	return document.createElement(tagName);
-};
-```* param String tagName
-* param Object document
-# public 
-
-# returns {Object} this - Chainable method
-
-
-<p>@method create</p>
+		return document.createElement(tagName);
+	};
+```
+<ul>
+<li>@method create
+<ul><li>@param {String} tagName</li>
+<li>@param {Object} document</li>
+<li>@public</li>
+<li>@returns {Object} this - Chainable method</li></ul></li>
+</ul>
 ```javascript
 DomElement.prototype.create = function(tagName, document){
-	//		file global || adlayer js module wrapper || passed document context
-	document = this.document || global.document || document;
-	this.element = DomElement.create(tagName, document);
-	return this;
-};
-```* param Object child
-# public 
-
-# returns {Object} this - Chainable method
-
-
-<p>@method append</p>
+		//		file global || adlayer js module wrapper || passed document context
+		document = this.document || global.document || document;
+		this.element = DomElement.create(tagName, document);
+		return this;
+	};
+```
+<ul>
+<li>@method append
+<ul><li>@param {Object} child</li>
+<li>@public</li>
+<li>@returns {Object} this - Chainable method</li></ul></li>
+</ul>
 ```javascript
 DomElement.prototype.append = function(child){
-	this.element.appendChild(child);
-	return this;
-};
-```* param String tag
-# public 
-
-# returns {Object} parentElement
-
-
-<p>@method findParentTag</p>
+		this.element.appendChild(child);
+		return this;
+	};
+```
+<ul>
+<li>@method findParentTag
+<ul><li>@param {String} tag UPPERCASE tag name</li>
+<li>@public</li>
+<li>@returns {Object} parentElement</li></ul></li>
+</ul>
 ```javascript
 DomElement.prototype.findParentTag = function(tag){
-	var parent = this.element.parentNode;
-	while(parent.nodeName != tag){
-		parent = parent.parentNode;
-	}
-	return parent;
-};
-```* param String type
-* param Function eventListener
-# public 
-
-# returns {Object} return this to allow chainability
-
-
-<p>@method addEventListener</p>
+		var parent = this.element.parentNode;
+		while(parent.nodeName != tag){
+			parent = parent.parentNode;
+		}
+		return parent;
+	};
+```
+<ul>
+<li>@method addDomEventListener
+<ul><li>@param {String} type Event name like 'click', 'load', 'mouseover'</li>
+<li>@param {Function} eventListener Callback for event trigger</li>
+<li>@public</li>
+<li>@returns {Object} return this to allow chainability</li></ul></li>
+</ul>
 ```javascript
-DomElement.prototype.addEventListener = function(type, eventListener){
-	if(typeof addEventListener === 'function'){
-		this.element.addEventListener(type, eventListener, false);
-	} else if(typeof attachEvent === 'function'){
-		this.element.attachEvent('on' + type, eventListener);
-	} else {
-		this.element['on' + type] = eventListener;
-	}
-	return this;
-};
+DomElement.prototype.addDomEventListener = function(type, eventListener){
+		if(typeof addEventListener === 'function'){
+			this.element.addEventListener(type, eventListener, false);
+		} else if(typeof attachEvent === 'function'){
+			this.element.attachEvent('on' + type, eventListener);
+		} else {
+			this.element['on' + type] = eventListener;
+		}
+		return this;
+	};
 
 
-exports.DomElement = DomElement;
+	exports.DomElement = DomElement;
 ```

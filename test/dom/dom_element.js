@@ -38,14 +38,14 @@ describe('DomElement', function(){
 			expect( access.findParentTag('DIV') === root.element ).to.be.ok();
 		});
 	});
-	describe('#addEventListener', function(){
+	describe('#addDomEventListener', function(){
 		it('Should observe an dom event', function(){
 			var run = false;
 			
 			var anchor = new DomElement();
 			anchor.create('a', document);
 			
-			anchor.addEventListener('click', function(){
+			anchor.addDomEventListener('click', function(){
 				run = true;
 			});
 			
