@@ -7,6 +7,8 @@
 <p>Abstract class for spaces</p>
 ```javascript
 var Space = function( attributes ){
+	var Core = require('./core').Core;
+	Core.apply(this, arguments);
 ```
 <ul>
 <li>@property {String} id Unique space id</li>
@@ -38,15 +40,9 @@ this.ads = [];
 <li>@returns {Object} return this to allow chain pattern</li></ul></li>
 </ul>
 ```javascript
-var __construct = (function(self){
-		// initiate here
-		for( var attribute in attributes ){
-			if( attributes.hasOwnProperty(attribute) ){
-				self[attribute] = attributes[attribute];
-			}
-		}
-		return self;
-	})(this);
+var __construct = function(self){
+		self = self.extend(attributes);
+	}(this);
 };
 ```
 <ul>

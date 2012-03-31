@@ -7,6 +7,8 @@
 <p>Create any event</p>
 ```javascript
 var Event = function( attributes ){
+	var Core = require('./core').Core;
+	Core.apply(this, arguments);
 ```
 <ul>
 <li>@property {Object} <strong>date</strong> Instance of current date
@@ -112,15 +114,9 @@ this.getFullDate = function(){
 <li>@returns {Object} return this to allow chain pattern</li></ul></li>
 </ul>
 ```javascript
-var __construct = (function(self){
-		// initiate here
-		for( var attribute in attributes ){
-			if( attributes.hasOwnProperty(attribute) ){
-				self[attribute] = attributes[attribute];
-			}
-		}
-		return self;
-	})(this);
+var __construct = function(self){
+		self = self.extend(attributes);
+	}(this);
 };
 ```
 <ul>

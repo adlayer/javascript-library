@@ -12,6 +12,7 @@ Array.prototype.extends = function(base){
 
 var modules = {};
 modules.domain = [
+	"./src/domain/core.js",
 	"./src/domain/event.js", 
 	"./src/domain/ad.js",
 	"./src/domain/space.js",

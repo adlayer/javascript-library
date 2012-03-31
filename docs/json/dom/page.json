@@ -25,7 +25,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "var Page = function( attributes ){",
+    "code": "var Page = function( attributes ){\n\tvar Core = require('./core').Core;\n\tCore.apply(this, arguments);",
     "ctx": {
       "type": "function",
       "name": "Page",
@@ -108,12 +108,11 @@
       "body": ""
     },
     "ignore": false,
-    "code": "var __construct = (function(self){\n\t\t// initiate here\n\t\tfor( var attribute in attributes ){\n\t\t\tif( attributes.hasOwnProperty(attribute) ){\n\t\t\t\tself[attribute] = attributes[attribute];\n\t\t\t}\n\t\t}\n\t\treturn self;\n\t})(this);\n};",
+    "code": "var __construct = function(self){\n\t\tself = self.extend(attributes);\n\t}(this);\n};",
     "ctx": {
-      "type": "declaration",
+      "type": "function",
       "name": "__construct",
-      "value": "(function(self){",
-      "string": "__construct"
+      "string": "__construct()"
     }
   },
   {

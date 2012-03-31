@@ -6,6 +6,8 @@
 * @param {Object} attributes
 */
 var Ad = function( attributes ){
+	var Core = require('./core').Core;
+	Core.apply(this, arguments);
 	/*
 	* @property {String} id Id of ad
 	* @public
@@ -53,15 +55,9 @@ var Ad = function( attributes ){
 	* @private
 	* @returns {Object} return this to allow chain pattern
 	*/
-	var __construct = (function(self){
-		// initiate here
-		for( var attribute in attributes ){
-			if( attributes.hasOwnProperty(attribute) ){
-				self[attribute] = attributes[attribute];
-			}
-		}
-		return self;
-	})(this);
+	var __construct = function(self){
+		self = self.extend(attributes);
+	}(this);
 };
 
 /**

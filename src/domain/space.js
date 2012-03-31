@@ -6,6 +6,8 @@
 * @param {Object} attributes
 */
 var Space = function( attributes ){
+	var Core = require('./core').Core;
+	Core.apply(this, arguments);
 	/**
 	* @property {String} id Unique space id
 	*/
@@ -22,20 +24,15 @@ var Space = function( attributes ){
 	* @property {Array} ads Collection of ads linked to space
 	*/
 	this.ads = [];
+	
 	/*
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
 	*/
-	var __construct = (function(self){
-		// initiate here
-		for( var attribute in attributes ){
-			if( attributes.hasOwnProperty(attribute) ){
-				self[attribute] = attributes[attribute];
-			}
-		}
-		return self;
-	})(this);
+	var __construct = function(self){
+		self = self.extend(attributes);
+	}(this);
 };
 
 	/**
