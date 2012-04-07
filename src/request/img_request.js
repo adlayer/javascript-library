@@ -15,9 +15,11 @@ var ImgRequest = function(){
 	/*
 	* @method send
 	* @public
+	* @param {Object} options
 	* @returns {Object} this to chain
 	*/
-	ImgRequest.prototype.send = function(){
+	ImgRequest.prototype.send = function(options){
+		if(options) this.extend(options);
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
 		var document = this.document || document;
 		var img = document.createElement('img');

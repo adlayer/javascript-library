@@ -64,9 +64,11 @@ var JsonpRequest = function(){
 	/*
 	* @method send
 	* @public
+	* @param {Object} options
 	* @returns {Object} this to chain
 	*/
-	JsonpRequest.prototype.send = function(){
+	JsonpRequest.prototype.send = function(options){
+		if(options) this.extend(options);
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
 		function loadScript(url, document){
 			var script = document.createElement("script");
