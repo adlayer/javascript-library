@@ -1,32 +1,30 @@
-/**
- * @class IMGRequest
- * @implements HttpRequest
- * @classDescription Make an http request expeting for img return
- * @param {String} url
- * @param {Object} queries
- * @param {Function} callback
- */
-var IMGRequest = function(url, queries, callback){
-	var HttpRequest = require('./http_request').http_request;
+/*
+* Loads an img
+*
+* @class ImgRequest
+* @constructor
+* @param {Object} Attributes
+* @param {Function} callback
+* @example new ImgRequest({document:document, url}, callback)
+*/
+var ImgRequest = function(){
+	var HttpRequest = require('./http_request').HttpRequest;
 	HttpRequest.apply(this, arguments);
-
-	this.url = url;
-	this.id = '';
-	this.queries = queries || {};
-	this.callback = callback;
-	
-	this.setId = function(id){
-		this.id = id;
-		return this;
-	};
-	
-	this.send = function(){
-		var imgReq = document.createElement("img");
-		imgReq.src = url + '?' + queryString.stringify(this.queries);
-		imgReq.onload = function () {
-			if(callback){callback();}
-		};
-		return this;
-	};
 };
-exports.img_request = IMGRequest;
+
+	/*
+	* @method send
+	* @public
+	* @returns {Object} this to chain
+	*/
+	ImgRequest.prototype.send = function(){
+		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
+		var document = this.document || document;
+		var img = document.createElement('img');
+		img.src = img.getUrl();
+		if(this.callback){
+			img.onload = this.callback.apply({ok:true});
+		}
+		return this;
+	};
+	exports.JsonpRequest = JsonpRequest;

@@ -1,32 +1,81 @@
-/**
- * @class JSONPRequest
- * @implements HttpRequest
- * @classDescription Make an http request expeting for jsonp return
- * @param {String} url
- * @param {Object} queries
- * @param {Function} callback
- */
-var JSONPRequest = function(url, queries, callback, error){
-	var queryString = require('../node_modules/querystring').querystring;
-	var loadScript = require('../utils/loadscript').loadscript;
-	var HttpRequest = require('./http_request').http_request;
+/*
+* Make an http request expeting for jsonp return
+*
+* @class JsonpRequest
+* @constructor
+* @param {Object} Attributes
+* @param {Function} callback
+* @example new JsonpRequest({document:document, url}, callback).serCallback('root.global.callback')
+*/
+var JsonpRequest = function(){
+	var HttpRequest = require('./http_request').HttpRequest;
 	HttpRequest.apply(this, arguments);
-
-	this.url = url;
-	this.id = '';
-	this.queries = queries || {};
-	this.callback = callback;
 	
-	this.setId = function(id){
-		this.id = id;
-		return this;
-	};
+	/*
+	* @method wrap
+	* @private
+	* @param {Function} fn
+	* @returns {Function} wrapper
+	*/
+	function wrap(fn){
+		function wrapper(data){
+			if( data ) {
+				fn(null, data);
+			} else {
+				fn(new Error('No Response'), null);
+			}
+		}
+		return wrapper;
+	}
 	
-	this.send = function(){
-		queries.callback = 'adlayer.connections.page.requests.' + this.id + '.callback';
-		var str = queryString.stringify(this.queries);
-		var resource = loadScript(this.url + '?' + str, undefined, error);
-		return this;
+	/*
+	* @method wrap
+	* @privileged
+	* @param {Object} obj
+	* @returns {Function} wrapper
+	*/
+	this.expose = function(obj){
+		var fn = this.callback;
+		obj.callback = wrap(fn);
 	};
 };
-exports.jsonp_request = JSONPRequest;
+
+	/*
+	* @method setCallback
+	* @public
+	* @param {String} str callback namespace
+	* @param {Function} callback
+	* @returns {Boolean}
+	*/
+	JsonpRequest.prototype.setCallback = function(str, callback){
+		this.qs.callback = str;
+		if(callback) this.callback = callback;
+	};
+
+	/*
+	* @method validate
+	* @public
+	* @returns {Boolean}
+	*/
+	JsonpRequest.prototype.validate = function(){
+		return this.qs.callback !== undefined;
+	};
+
+	/*
+	* @method send
+	* @public
+	* @returns {Object} this to chain
+	*/
+	JsonpRequest.prototype.send = function(){
+		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
+		function loadScript(url, document){
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = url;
+			document.getElementsByTagName("head")[0].appendChild(script);
+			return script;
+		}
+		loadScript(this.getUrl(), this.document || document);
+		return this;
+	};
+	exports.JsonpRequest = JsonpRequest;
