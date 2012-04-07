@@ -1,5 +1,5 @@
 /**
-* Make http requests
+* Abstract class to make http requests
 *
 * @class HttpRequest
 * @constructor
