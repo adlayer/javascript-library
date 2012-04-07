@@ -6,7 +6,7 @@ if(!this.document){
 		document = window.document;
 }
 
-var ImgRequest = require('../../src/request/jsonp_request').JsonpRequest;
+var ImgRequest = require('../../src/request/img_request').ImgRequest;
 
 describe('ImgRequest', function(){	
 	describe('#send', function(){
@@ -17,8 +17,10 @@ describe('ImgRequest', function(){
 				host: 'localhost',
 				path: '/',
 			}, function(err, response){
-				expect(err).to.be.ok();
+				run = true;
 			});
+			request.callback();
+			expect(run).to.be.ok();
 			request.document = document;
 			request.send();
 		});

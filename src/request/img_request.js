@@ -21,10 +21,10 @@ var ImgRequest = function(){
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
 		var document = this.document || document;
 		var img = document.createElement('img');
-		img.src = img.getUrl();
-		if(this.callback){
+		img.src = this.getUrl();
+		if( this.callback ){
 			img.onload = this.callback.apply({ok:true});
 		}
 		return this;
 	};
-	exports.JsonpRequest = JsonpRequest;
+	exports.ImgRequest = ImgRequest;
