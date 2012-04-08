@@ -130,4 +130,11 @@ describe('JsonpRequest', function(){
 			request.send();
 		});
 	});
+	
+	describe('make', function(){
+		it('Should make a request', function(){			
+			var request = JsonpRequest.make({}, function(){}, document);
+			expect(request instanceof JsonpRequest).to.be.ok();
+		});
+	});
 });

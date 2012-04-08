@@ -67,8 +67,10 @@ var JsonpRequest = function(){
 	* @param {Object} options
 	* @returns {Object} this to chain
 	*/
-	JsonpRequest.prototype.send = function(options){
-		if(options) this.extend(options);
+	JsonpRequest.prototype.send = function(data){
+		//todo: use merge to data-> query
+		if(data) this.qs = data;
+		
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
 		function loadScript(url, document){
 			var script = document.createElement("script");
@@ -80,4 +82,21 @@ var JsonpRequest = function(){
 		loadScript(this.getUrl(), this.document || document);
 		return this;
 	};
+
+	/*
+	* @method make
+	* @static
+	* @param {Object} options	
+	* @param {Function} callback
+	* @returns {DOMObject} document
+	*/	
+	JsonpRequest.make = function(options, callback, document){
+		var instance = new JsonpRequest(options, callback);
+		if(document){
+			instance.document = document;
+		}
+		instance.send();
+		return instance;
+	};
+	
 	exports.JsonpRequest = JsonpRequest;

@@ -15,11 +15,13 @@ var ImgRequest = function(){
 	/*
 	* @method send
 	* @public
-	* @param {Object} options
+	* @param {Object} data
 	* @returns {Object} this to chain
 	*/
-	ImgRequest.prototype.send = function(options){
-		if(options) this.extend(options);
+	ImgRequest.prototype.send = function(data){
+		//todo: use merge to data-> query
+		if(data) this.qs = data;
+		
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
 		var document = this.document || document;
 		var img = document.createElement('img');
@@ -29,4 +31,21 @@ var ImgRequest = function(){
 		}
 		return this;
 	};
+	
+	/*
+	* @method make
+	* @static
+	* @param {Object} options	
+	* @param {Function} callback
+	* @returns {DOMObject} document
+	*/
+	ImgRequest.make = function(options, callback, document){
+		var instance = new ImgRequest(options, callback);
+		if(document){
+			instance.document = document;
+		}
+		instance.send();
+		return instance;
+	};
+	
 	exports.ImgRequest = ImgRequest;
