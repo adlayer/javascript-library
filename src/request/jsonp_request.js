@@ -45,6 +45,7 @@ var JsonpRequest = function(){
 	* @public
 	* @param {String} str callback namespace
 	* @param {Function} callback
+	* @param {Object} obj to expose
 	* @returns {Object} this to chain
 	*/
 	JsonpRequest.prototype.setCallback = function(str, callback, obj){
