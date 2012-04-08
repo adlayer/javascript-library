@@ -45,11 +45,13 @@ var JsonpRequest = function(){
 	* @public
 	* @param {String} str callback namespace
 	* @param {Function} callback
-	* @returns {Boolean}
+	* @returns {Object} this to chain
 	*/
-	JsonpRequest.prototype.setCallback = function(str, callback){
+	JsonpRequest.prototype.setCallback = function(str, callback, obj){
 		this.qs.callback = str;
 		if(callback) this.callback = callback;
+		if(obj) this.expose(obj);
+		return this;
 	};
 
 	/*
@@ -89,6 +91,7 @@ var JsonpRequest = function(){
 	* @param {Object} options	
 	* @param {Function} callback
 	* @returns {DOMObject} document
+	* @example: JsonpRequest.make(options, callback, document).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback, document){
 		var instance = new JsonpRequest(options, callback);

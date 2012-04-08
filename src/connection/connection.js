@@ -1,6 +1,22 @@
 /**
 * @class Connection
 */
+
+/**
+	## Using in node.js
+	
+	// hack request
+	var request = require('request');
+	request.jsonp = request.get;
+	
+	// Hacking lib.connection
+	var connection = require('connection');
+	connection.prototype.request = request;
+	
+	// Your code goes here	
+
+**/
+
 var Connection = function(name, options){
 	var index = 0;
 	this.name = name;

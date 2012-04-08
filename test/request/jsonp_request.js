@@ -34,6 +34,22 @@ describe('JsonpRequest', function(){
 			expect(request.callback).to.be.ok();
 			expect(run).to.be.ok();
 		});
+		it('Should assign to query string and as callback and expose object', function(){
+			var run = false;
+			var root = {};
+			var request = new JsonpRequest({
+				host: 'localhost',
+				path: '/'
+			});
+			request.qs = {test: 'ok'};
+			request.setCallback('root.callback', function(){
+				run = true;
+			}, root);
+			request.callback();
+			expect(request.callback).to.be.ok();
+			expect(run).to.be.ok();
+			expect(root.callback).to.be.ok();
+		});
 	});
 	
 	describe('#expose', function(){
