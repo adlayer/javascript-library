@@ -17,8 +17,11 @@ describe('HttpRequest', function(){
 				var request = new HttpRequest();
 				request.host = 'localhost';
 				request.path = '/';
+				request.qs = {
+					anyquery: 'ok'
+				};
 				request.query = 'test=ok';
-				expect(request.getUrl()).to.be.equal('http://localhost/?test=ok');
+				expect(request.getUrl()).to.be.equal('http://localhost/?test=ok&anyquery=ok');
 			});
 		});
 	});

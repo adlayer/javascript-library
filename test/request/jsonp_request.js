@@ -7,48 +7,20 @@ if(!this.document){
 }
 
 var JsonpRequest = require('../../src/request/jsonp_request').JsonpRequest;
+JsonpRequest.document = document;
 
 describe('JsonpRequest', function(){
-	
-	describe('#setCallback', function(){
-		it('Should set the JSONP callback namespace into querystring', function(){
+
+	describe('#queryCallback', function(){
+		it('Should configure the callback namespace', function(){
 			var request = new JsonpRequest({
 				host: 'localhost',
 				path: '/'
-			});
-			request.qs = {test: 'ok'};
-			request.setCallback('root.callback');
-			expect(request.getUrl()).to.contain('callback=root.callback');
-		});
-		it('Should assign to query string and as callback', function(){
-			var run = false;
-			var request = new JsonpRequest({
-				host: 'localhost',
-				path: '/'
-			});
-			request.qs = {test: 'ok'};
-			request.setCallback('root.callback', function(){
+			}, function(err, response){
 				run = true;
 			});
-			request.callback();
-			expect(request.callback).to.be.ok();
-			expect(run).to.be.ok();
-		});
-		it('Should assign to query string and as callback and expose object', function(){
-			var run = false;
-			var root = {};
-			var request = new JsonpRequest({
-				host: 'localhost',
-				path: '/'
-			});
-			request.qs = {test: 'ok'};
-			request.setCallback('root.callback', function(){
-				run = true;
-			}, root);
-			request.callback();
-			expect(request.callback).to.be.ok();
-			expect(run).to.be.ok();
-			expect(root.callback).to.be.ok();
+			request.queryCallback('root.adlayer');
+			expect(request.getUrl()).to.contain('root.adlayer');
 		});
 	});
 	
@@ -74,6 +46,7 @@ describe('JsonpRequest', function(){
 			expect(run).to.be.ok();
 		});
 	});
+	
 	describe('wrap', function(){
 		it('Should get an error', function(){
 			var root = {};
@@ -116,7 +89,7 @@ describe('JsonpRequest', function(){
 				host: 'localhost',
 				path: '/'
 			});
-			request.setCallback('root.callback');
+			request.queryCallback('root.callback');
 			expect(request.validate()).to.be.ok();
 		});
 		it('Should not validate without callback', function(){
@@ -142,14 +115,13 @@ describe('JsonpRequest', function(){
 			}, function(err, response){
 				expect(err).to.be.ok();
 			});
-			request.document = document;
 			request.send();
 		});
 	});
 	
 	describe('make', function(){
 		it('Should make a request', function(){			
-			var request = JsonpRequest.make({}, function(){}, document);
+			var request = JsonpRequest.make({}, function(){});
 			expect(request instanceof JsonpRequest).to.be.ok();
 		});
 	});

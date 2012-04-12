@@ -5,7 +5,7 @@
 * @constructor
 * @param {Object} Attributes
 * @param {Function} callback
-* @example new JsonpRequest({document:document, url}, callback).serCallback('root.global.callback')
+* @example new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')
 */
 var JsonpRequest = function(){
 	var HttpRequest = require('./http_request').HttpRequest;
@@ -39,19 +39,14 @@ var JsonpRequest = function(){
 		obj.callback = wrap(fn);
 	};
 };
-
 	/*
-	* @method setCallback
+	* @method queryCallback
 	* @public
-	* @param {String} str callback namespace
-	* @param {Function} callback
-	* @param {Object} obj to expose
+	* @param {String} string to call in jsonpresult
 	* @returns {Object} this to chain
 	*/
-	JsonpRequest.prototype.setCallback = function(str, callback, obj){
+	JsonpRequest.prototype.queryCallback = function(str){
 		this.qs.callback = str;
-		if(callback) this.callback = callback;
-		if(obj) this.expose(obj);
 		return this;
 	};
 
@@ -73,7 +68,6 @@ var JsonpRequest = function(){
 	JsonpRequest.prototype.send = function(data){
 		//todo: use merge to data-> query
 		if(data) this.qs = data;
-		
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
 		function loadScript(url, document){
 			var script = document.createElement("script");
@@ -82,23 +76,26 @@ var JsonpRequest = function(){
 			document.getElementsByTagName("head")[0].appendChild(script);
 			return script;
 		}
-		loadScript(this.getUrl(), this.document || document);
+		loadScript(this.getUrl(), JsonpRequest.document || document);
 		return this;
 	};
-
+	
+	/*
+	* @property {Object} DomObject
+	* @static
+	*/
+	JsonpRequest.document = undefined;
+	
 	/*
 	* @method make
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
-	* @returns {DOMObject} document
-	* @example: JsonpRequest.make(options, callback, document).expose(root)
+	* @returns {Object} this to chain
+	* @example: JsonpRequest.make(options, callback).expose(root)
 	*/	
-	JsonpRequest.make = function(options, callback, document){
+	JsonpRequest.make = function(options, callback){
 		var instance = new JsonpRequest(options, callback);
-		if(document){
-			instance.document = document;
-		}
 		instance.send();
 		return instance;
 	};

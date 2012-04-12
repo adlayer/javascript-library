@@ -31,10 +31,14 @@ var HttpRequest = function( attributes, callback ){
 			this.url += '://';
 			this.url += this.host;
 			this.url += this.path;
+			
 			if (this.qs){
-				this.query += queryString.stringify(this.qs);
+				this.query = [this.query, queryString.stringify(this.qs)].join('&');
 			}
-			this.url += '?' + this.query;
+			if (this.query){
+				this.url += '?' + this.query;	
+			}
+			
 		}
 		return this.url;
 	};
