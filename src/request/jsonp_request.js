@@ -10,34 +10,6 @@
 var JsonpRequest = function(){
 	var HttpRequest = require('./http_request').HttpRequest;
 	HttpRequest.apply(this, arguments);
-	
-	/*
-	* @method wrap
-	* @private
-	* @param {Function} fn
-	* @returns {Function} wrapper
-	*/
-	function wrap(fn){
-		function wrapper(data){
-			if( data ) {
-				fn(null, data);
-			} else {
-				fn(new Error('No Response'), null);
-			}
-		}
-		return wrapper;
-	}
-	
-	/*
-	* @method wrap
-	* @privileged
-	* @param {Object} obj
-	* @returns {Function} wrapper
-	*/
-	this.expose = function(obj){
-		var fn = this.callback;
-		obj.callback = wrap(fn);
-	};
 };
 	/*
 	* @method queryCallback

@@ -7,41 +7,38 @@
 * @param {Function} callback
 */
 var HttpRequest = function( attributes, callback ){
-	var Core = require('../domain/core').Core;
-	var queryString = require('../node_modules/querystring').querystring;
-	Core.apply(this, arguments);
+	var Http = require('./http').Http;
+	Http.apply(this, arguments);
 	
-	this.host = '';
-	this.protocol = 'http';
-	this.port = 80;
-	this.path = '';
-	this.qs = {};
-	this.query = '';
-	this.url = '';
 	this.callback = undefined;
-
+	
 	/*
-	* @method getUrl
-	* @privileged
-	* @returns {String} full url
+	* @method wrap
+	* @private
+	* @param {Function} fn
+	* @returns {Function} wrapper
 	*/
-	this.getUrl = function(){
-		if( !this.url ){
-			this.url = this.protocol;
-			this.url += '://';
-			this.url += this.host;
-			this.url += this.path;
-			
-			if (this.qs){
-				this.query = [this.query, queryString.stringify(this.qs)].join('&');
+	function wrap(fn){
+		function wrapper(data){
+			if( data ) {
+				fn(null, data);
+			} else {
+				fn(new Error('No Response'), null);
 			}
-			if (this.query){
-				this.url += '?' + this.query;	
-			}
-			
 		}
-		return this.url;
-	};
+		return wrapper;
+	}
+	
+	/*
+	* @method expose
+	* @privileged
+	* @param {Object} obj
+	* @returns {Function} wrapper
+	*/
+	this.expose = function(obj){
+		var fn = this.callback;
+		obj.callback = wrap(fn);
+	};	
 	
 	/*
 	* @method __construct

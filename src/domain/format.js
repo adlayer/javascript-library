@@ -9,13 +9,14 @@ var Format = function(){
 	/**
 	* @property {String} type Typeof object
 	*/
-	this.type;
+	this.type = '';
 	/**
 	* @property {String} height Height of object
 	*/
-	this.height;
+	this.height = 0;
 	/**
 	* @property {String} width Width object
 	*/
-	this.with;
-}
+	this.width = 0;
+};
+exports.Format = Format;

@@ -17,48 +17,60 @@
 
 **/
 
-var Connection = function(name, options){
-	var index = 0;
-	this.name = name;
+var Connection = function( attributes ){
+	var Http = require('../request/http').Http;
+	Http.apply(this, arguments);
+	
+	this._index = 0;
+	
+	this.name = '';
 	this.requests = {};
-
-	this.protocol = options.protocol;
-	this.host = options.host;
-	this.port = options.port;
-	this.path = options.path;
 	
-	this.getUrl = function(){
-		var url = '';
-		url += this.protocol + '://';
-		url += this.host;
-		url +=':' + this.port;
-		
-		this.url = url;
-		return this.url;
-	};
-	
-	this.request = function(){
-		var JSONPRequest = require('../request/jsonp_request').jsonp_request;
-		var IMGRequest = require('../request/img_request').img_request;
-		var _self = this;
-		var id = 'n' + index++;
-
-		return {
-			jsonp: function(path, queries, callback, error){
-				var instance = new JSONPRequest( _self.getUrl() + path, queries, callback, error);
-				instance.setId(id);
-				instance.send();
-				_self.requests[id] = instance;
-				return _self.requests[id];
-			},
-			img: function(path, queries, callback, error){
-				var instance = new IMGRequest(_self.getUrl() + path, queries, callback, error);
-				instance.setId(id);
-				instance.send();
-				_self.requests[id] = instance;
-				return _self.requests[id];
-			}
-		};
-	};
+	/*
+	* @method __construct
+	* @private
+	* @returns {Object} return this to allow chain pattern
+	*/
+	var __construct = function(self){
+		if( typeof attributes === 'string' ){
+			self.url = attributes;
+		} else {
+			self = self.extend(attributes);
+		}
+	}(this);
 };
-exports.connection = Connection;
+
+Connection.prototype.id = function(){
+	return 'n' + this._index;
+};
+
+Connection.prototype.newId = function(){
+	this._index++;
+	return this.id();
+};
+
+Connection.prototype.request = require('../request/request').request;
+
+Connection.prototype.get = function(path, data, callback){
+	if(typeof data === 'function') {
+		callback = data;
+	}
+	
+	// get callback path and asign as callcack querystring;
+	data.callback = [this.name, 'requests', this.id(), 'callback'].join('.');
+	
+	this.path = path;
+	this.qs = data;
+	
+	// Allocate request id namespace
+	this.requests[this.id()] = {};
+	
+	// Make a get request
+	this.request().get(this, callback).expose(this.requests[this.id()]);
+	
+	// Increment id for the next
+	this.newId();
+	
+	return this;
+};
+exports.Connection = Connection;

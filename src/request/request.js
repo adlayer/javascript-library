@@ -7,6 +7,6 @@ function request(){
 		jsonp: JsonpRequest.make,
 		get: JsonpRequest.make,
 		img: ImgRequest.make
-	}
+	};
 }
 exports.request = request;
