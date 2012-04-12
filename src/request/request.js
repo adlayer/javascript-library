@@ -5,6 +5,7 @@ function request(){
 	
 	return {
 		jsonp: JsonpRequest.make,
+		get: JsonpRequest.make,
 		img: ImgRequest.make
 	}
 }
