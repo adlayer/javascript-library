@@ -49,6 +49,10 @@ Connection.prototype.newId = function(){
 	return this.id();
 };
 
+Connection.prototype.getCallbackPath = function(){
+	return [this.name, 'requests', this.id(), 'callback'].join('.');
+};
+
 Connection.prototype.request = require('../request/request').request;
 
 Connection.prototype.get = function(path, data, callback){
@@ -57,7 +61,7 @@ Connection.prototype.get = function(path, data, callback){
 	}
 	
 	// get callback path and asign as callcack querystring;
-	data.callback = [this.name, 'requests', this.id(), 'callback'].join('.');
+	data.callback = this.getCallbackPath();
 	
 	this.path = path;
 	this.qs = data;

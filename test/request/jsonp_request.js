@@ -22,7 +22,7 @@ describe('JsonpRequest', function(){
 			request.queryCallback('root.adlayer');
 			expect(request.getUrl()).to.contain('root.adlayer');
 		});
-	});
+	});	
 
 	
 	describe('#validate', function(){

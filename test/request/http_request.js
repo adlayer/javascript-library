@@ -56,7 +56,6 @@ describe('Http', function(){
 			
 			request.expose(root);
 			root.callback({ok:true});
-
 		});
 	})
 	
