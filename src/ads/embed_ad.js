@@ -15,7 +15,7 @@
 * @property {Boolean} status Ad status
 * @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
 *
-* @augments Swf
+* @requires Swf
 * @property {String} align Alignment of html content.
 * @property {Boolean} menu Control right click menu options (true, false).
 * @property {String} quality Control quality of loaded movie ('low', 'medium', 'high').
@@ -41,12 +41,13 @@
 	var EmbedAd = function(){
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
-	
 		
 		var __construct = (function(self){
 			self.create('EMBED');
 			self.element.src = self.src;
-			// Set id in the image or in the link wrapper
+			
+			self.setAttributes(new Swf());
+			
 			self.element.id = self.id;
 			return self.element;
 		})(this);

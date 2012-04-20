@@ -19,6 +19,7 @@ describe('EmbedAd', function(){
 			expect(ad.element.nodeName).to.be.equal('EMBED');
 			expect(ad.element.src).to.be.equal(ad.src);
 			expect(ad.element.id).to.be.equal(ad.id);
+			expect(ad.element.wmode).to.be.equal('transparent');
 		});
 	});
 });
