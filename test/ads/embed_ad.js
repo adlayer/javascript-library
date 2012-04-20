@@ -1,0 +1,22 @@
+var expect = expect || require('expect.js');
+if(!this.document){
+	var jsdom  = require("jsdom").jsdom,
+		context = jsdom(null),
+		window = context.createWindow(),
+		document = window.document;
+}
+
+var EmbedAd = require('../../src/ads/embed_ad').EmbedAd;
+describe('EmbedAd', function(){
+	describe('__construct', function(){
+		it('Should defined an element and set de source', function(){
+			var ad = new EmbedAd({
+				src: 'http://adlayer.com.br/img/logo.swf',
+				document:document,
+				link: 'http://adlayer.com.br'
+			});
+			expect(ad.element.nodeName).to.be.equal('EMBED');
+			expect(ad.element.src).to.be.equal(ad.src);
+		});
+	});
+});

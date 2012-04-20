@@ -15,6 +15,7 @@
 	var AdDom = function(){
 		// extends Ad
 		Ad.apply(this, arguments);
+		
 	};
 	// extends DomElement
 	AdDom.prototype = new DomElement();
