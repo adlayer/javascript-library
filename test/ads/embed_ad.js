@@ -1,7 +1,5 @@
 var expect = expect || require('expect.js');
-if(typeof this.document === 'undefined'){
-	var document = require('../document');
-}
+var document = document || require('../document');
 
 var EmbedAd = require('../../src/ads/embed_ad').EmbedAd;
 describe('EmbedAd', function(){

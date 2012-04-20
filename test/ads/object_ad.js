@@ -1,7 +1,5 @@
 var expect = expect || require('expect.js');
-if(typeof this.document === 'undefined'){
-	var document = require('../document');
-}
+var document = document || require('../document');
 
 var ObjectAd = require('../../src/ads/object_ad').ObjectAd;
 describe('ObjectAd', function(){
