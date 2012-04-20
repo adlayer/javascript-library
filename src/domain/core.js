@@ -3,21 +3,18 @@
 *
 * @class Core
 * @constructor
+* @requires merge
 */
 var Core = function(){
+	var merge = require('../utils/merge').merge;
+	
 	/*
 	* @method extend
 	* @privileged
 	* @returns {Object} return this to allow chain pattern
 	*/
 	this.extend = function(attributes){
-		// initiate here
-		for( var attribute in attributes ){
-			if( attributes.hasOwnProperty(attribute) ){
-				this[attribute] = attributes[attribute];
-			}
-		}
-		return this;
+		return merge(this, attributes);
 	};
 };
 exports.Core = Core;

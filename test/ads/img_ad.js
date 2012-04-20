@@ -24,7 +24,7 @@ describe('ImgAd', function(){
 				document:document
 			});
 			expect(ad.element.nodeName).to.be.equal('A');
-			expect(ad.element.href).to.be.equal(ad.link);
+			expect(ad.element.href).to.contain(ad.link);
 			expect(ad.element.firstChild.nodeName).to.be.equal('IMG');
 		});
 	});

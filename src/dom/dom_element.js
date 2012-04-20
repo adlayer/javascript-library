@@ -33,11 +33,23 @@ var DomElement = function(){
 	* @returns {Object} this - Chainable method
 	*/
 	DomElement.prototype.create = function(tagName, document){
-		//		file global || adlayer js module wrapper || passed document context
+		//	file global || adlayer js module wrapper || passed document context
 		document = this.document || global.document || document;
 		this.element = DomElement.create(tagName, document);
 		return this;
 	};
+	
+	/*
+	* @method setAttributes
+	* @param {Object} attributes
+	* @public
+	* @returns {Object} this - Chainable method
+	*/
+	DomElement.prototype.setAttributes = function(attributes){
+		var merge = require('../utils/merge').merge;
+		merge(this.element, attributes);
+	};
+	
 	/*
 	* @method append
 	* @param {Object} child

@@ -21,6 +21,19 @@ describe('DomElement', function(){
 			expect(	new DomElement().create('div', document).element.nodeName ).to.be.equal('DIV');
 		});
 	});
+	
+	describe('#setAttributes', function(){
+		it('Should set as attributes given hash', function(){
+			var element = new DomElement();
+			element.create('img', document);
+			element.setAttributes({
+				src: 'whatever',
+				id: '10',
+				rel: '10'
+			});
+			expect(	element.element.rel ).to.be.equal( '10' );
+		});
+	});
 	describe('#append', function(){
 		it('Should append a child', function(){
 			var div = new DomElement().create('div', document);

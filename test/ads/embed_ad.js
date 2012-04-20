@@ -11,12 +11,14 @@ describe('EmbedAd', function(){
 	describe('__construct', function(){
 		it('Should defined an element and set de source', function(){
 			var ad = new EmbedAd({
+				id: '10',
 				src: 'http://adlayer.com.br/img/logo.swf',
 				document:document,
 				link: 'http://adlayer.com.br'
 			});
 			expect(ad.element.nodeName).to.be.equal('EMBED');
 			expect(ad.element.src).to.be.equal(ad.src);
+			expect(ad.element.id).to.be.equal(ad.id);
 		});
 	});
 });

@@ -7,10 +7,11 @@
 	
 	
 	/*
-	* @class
-	* @requires DomElement
-	* @requires Ad
-	* @requires Event
+	* Base for any type of Dom ads.
+	*
+	* @class AdDom
+	* @augments Ad
+	* @augments DomElement
 	*/
 	var AdDom = function(){
 		// extends Ad
