@@ -15,18 +15,19 @@
 * @property {Boolean} status Ad status
 * @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
 *
-* @requires Swf
-* @property {String} align Alignment of html content.
-* @property {Boolean} menu Control right click menu options (true, false).
-* @property {String} quality Control quality of loaded movie ('low', 'medium', 'high').
-* @property {String} scale Flash canvas mode ('noscale').
-* @property {String} wmode Embed type relative to context.
-* @property {String} type Default alias for 'application/x-shockwave-flash'.
-* @property {String} type allowScriptAcess.
 */
 (function(){
+	/*
+	* @class Swf
+	* @property {String} align Alignment of html content.
+	* @property {Boolean} menu Control right click menu options (true, false).
+	* @property {String} quality Control quality of loaded movie ('low', 'medium', 'high').
+	* @property {String} scale Flash canvas mode ('noscale').
+	* @property {String} wmode Embed type relative to context.
+	* @property {String} type Default alias for 'application/x-shockwave-flash'.
+	* @property {String} type allowScriptAcess.
+	*/
 	var Swf = function(){
-		this.name = '';
 		this.align = "center";
 		this.menu = false;
 		this.quality = "high"; //low,autolow,autohigh,medium,high,best ;
