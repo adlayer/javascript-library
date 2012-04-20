@@ -21,17 +21,19 @@
 	var Swf = require('./swf').Swf;
 	
 	var ObjectAd = function(){
+		var superclass = this;
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
 	
 		var CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
 		var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
 		var PLUGINSPAGE = "http://www.macromedia.com/go/getflashplayer";
-
+		
 		/** @class Param
 		* <param name="wmode" value="tranparent" />
 		*/
 		var Param = function(name,value){
+			var document = superclass.document || document;
 			this.name = name;
 			this.value = value;
 			this.element = document.createElement("param");
