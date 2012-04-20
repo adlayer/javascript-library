@@ -1,14 +1,16 @@
 
 <ul>
-<li>@class
-<ul><li>@requires DomElement</li>
-<li>@requires Ad</li>
-<li>@requires Event</li></ul></li>
+<li>Base for any type of Dom ads.
+*
+<ul><li>@class AdDom</li>
+<li>@augments Ad</li>
+<li>@augments DomElement</li></ul></li>
 </ul>
 ```javascript
 var AdDom = function(){
 		// extends Ad
-		Ad.apply(this, arguments);	
+		Ad.apply(this, arguments);
+		
 	};
 	// extends DomElement
 	AdDom.prototype = new DomElement();

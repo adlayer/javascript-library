@@ -8,6 +8,10 @@
       {
         "type": "constructor",
         "string": ""
+      },
+      {
+        "type": "requires",
+        "string": "merge"
       }
     ],
     "description": {
@@ -17,7 +21,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "var Core = function(){",
+    "code": "var Core = function(){\n\tvar merge = require('../utils/merge').merge;",
     "ctx": {
       "type": "function",
       "name": "Core",
@@ -32,7 +36,7 @@
       "body": ""
     },
     "ignore": false,
-    "code": "this.extend = function(attributes){\n\t\t// initiate here\n\t\tfor( var attribute in attributes ){\n\t\t\tif( attributes.hasOwnProperty(attribute) ){\n\t\t\t\tthis[attribute] = attributes[attribute];\n\t\t\t}\n\t\t}\n\t\treturn this;\n\t};\n};\nexports.Core = Core;",
+    "code": "this.extend = function(attributes){\n\t\treturn merge(this, attributes);\n\t};\n};\nexports.Core = Core;",
     "ctx": {
       "type": "method",
       "receiver": "this",

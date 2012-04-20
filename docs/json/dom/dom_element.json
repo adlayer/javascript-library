@@ -82,12 +82,28 @@
       "body": ""
     },
     "ignore": false,
-    "code": "DomElement.prototype.create = function(tagName, document){\n\t\t//\t\tfile global || adlayer js module wrapper || passed document context\n\t\tdocument = this.document || global.document || document;\n\t\tthis.element = DomElement.create(tagName, document);\n\t\treturn this;\n\t};",
+    "code": "DomElement.prototype.create = function(tagName, document){\n\t\t//\tfile global || adlayer js module wrapper || passed document context\n\t\tdocument = this.document || global.document || document;\n\t\tthis.element = DomElement.create(tagName, document);\n\t\treturn this;\n\t};",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",
       "name": "create",
       "string": "DomElement.prototype.create()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method setAttributes\n<ul><li>@param {Object} attributes</li>\n<li>@public</li>\n<li>@returns {Object} this - Chainable method</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method setAttributes\n<ul><li>@param {Object} attributes</li>\n<li>@public</li>\n<li>@returns {Object} this - Chainable method</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "DomElement.prototype.setAttributes = function(attributes){\n\t\tvar merge = require('../utils/merge').merge;\n\t\tmerge(this.element, attributes);\n\t};",
+    "ctx": {
+      "type": "method",
+      "constructor": "DomElement",
+      "name": "setAttributes",
+      "string": "DomElement.prototype.setAttributes()"
     }
   },
   {

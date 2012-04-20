@@ -103,7 +103,8 @@ this.browser = '';
 ```javascript
 this.getFullDate = function(){
 		if( typeof date === 'object' ){
-			return date = date.toISOString();
+			date = date.toISOString();
+			return date;
 		}
 		return date;
 	};

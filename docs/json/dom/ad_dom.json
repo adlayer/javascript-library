@@ -2,12 +2,12 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>@class\n<ul><li>@requires DomElement</li>\n<li>@requires Ad</li>\n<li>@requires Event</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@class\n<ul><li>@requires DomElement</li>\n<li>@requires Ad</li>\n<li>@requires Event</li></ul></li>\n</ul>",
+      "full": "<ul>\n<li>Base for any type of Dom ads.\n*\n<ul><li>@class AdDom</li>\n<li>@augments Ad</li>\n<li>@augments DomElement</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>Base for any type of Dom ads.\n*\n<ul><li>@class AdDom</li>\n<li>@augments Ad</li>\n<li>@augments DomElement</li></ul></li>\n</ul>",
       "body": ""
     },
     "ignore": false,
-    "code": "var AdDom = function(){\n\t\t// extends Ad\n\t\tAd.apply(this, arguments);\t\n\t};\n\t// extends DomElement\n\tAdDom.prototype = new DomElement();",
+    "code": "var AdDom = function(){\n\t\t// extends Ad\n\t\tAd.apply(this, arguments);\n\t\t\n\t};\n\t// extends DomElement\n\tAdDom.prototype = new DomElement();",
     "ctx": {
       "type": "function",
       "name": "AdDom",

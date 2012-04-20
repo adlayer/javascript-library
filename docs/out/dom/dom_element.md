@@ -41,10 +41,22 @@ DomElement.create = function(tagName, document){
 </ul>
 ```javascript
 DomElement.prototype.create = function(tagName, document){
-		//		file global || adlayer js module wrapper || passed document context
+		//	file global || adlayer js module wrapper || passed document context
 		document = this.document || global.document || document;
 		this.element = DomElement.create(tagName, document);
 		return this;
+	};
+```
+<ul>
+<li>@method setAttributes
+<ul><li>@param {Object} attributes</li>
+<li>@public</li>
+<li>@returns {Object} this - Chainable method</li></ul></li>
+</ul>
+```javascript
+DomElement.prototype.setAttributes = function(attributes){
+		var merge = require('../utils/merge').merge;
+		merge(this.element, attributes);
 	};
 ```
 <ul>

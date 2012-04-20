@@ -243,7 +243,7 @@
       "body": ""
     },
     "ignore": false,
-    "code": "this.getFullDate = function(){\n\t\tif( typeof date === 'object' ){\n\t\t\treturn date = date.toISOString();\n\t\t}\n\t\treturn date;\n\t};",
+    "code": "this.getFullDate = function(){\n\t\tif( typeof date === 'object' ){\n\t\t\tdate = date.toISOString();\n\t\t\treturn date;\n\t\t}\n\t\treturn date;\n\t};",
     "ctx": {
       "type": "method",
       "receiver": "this",
