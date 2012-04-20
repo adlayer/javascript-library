@@ -1,5 +1,5 @@
 var expect = expect || require('expect.js');
-if(!this.document){
+if(typeof this.document === 'undefined'){
 	var jsdom  = require("jsdom").jsdom,
 		context = jsdom(null),
 		window = context.createWindow(),
