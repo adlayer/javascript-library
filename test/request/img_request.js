@@ -1,9 +1,6 @@
 var expect = expect || require('expect.js');
 if(typeof this.document === 'undefined'){
-	var jsdom  = require("jsdom").jsdom,
-		context = jsdom(null),
-		window = context.createWindow(),
-		document = window.document;
+	var document = require('../document');
 }
 
 var ImgRequest = require('../../src/request/img_request').ImgRequest;

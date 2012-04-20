@@ -1,10 +1,7 @@
 var expect = expect || require('expect.js');
 
 if(typeof this.document === 'undefined'){
-	var jsdom  = require("jsdom").jsdom,
-		context = jsdom(null),
-		window = context.createWindow(),
-		document = window.document;
+	var document = require('../document');
 }
 
 	
@@ -64,7 +61,7 @@ describe('DomElement', function(){
 			
 			(function simulateClick() {
 				var evt = document.createEvent("MouseEvents");
-				evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+				evt.initMouseEvent("click", true, true, {}, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 				anchor.element.dispatchEvent(evt);
 			})();
 			
