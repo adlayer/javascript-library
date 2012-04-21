@@ -6,7 +6,7 @@ var Hogan = require('hogan.js');
 var exec = require('child_process').exec;
 var path = require('path');
 
-Array.prototype.extends = function(base){
+Array.prototype.requires = function(base){
 	return base.concat(this);
 }
 
@@ -24,7 +24,7 @@ modules.dom = [
 	"./src/dom/dom_element.js", 
 	"./src/dom/ad_dom.js",
 	"./src/dom/space_dom.js"
-].extends(modules.domain);
+].requires(modules.domain);
 
 
 var config = {
