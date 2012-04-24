@@ -9,6 +9,3 @@
 
 {{{summary}}}
 {{/description}}
-```javascript
-{{{code}}}
-```
