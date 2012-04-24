@@ -1,0 +1,72 @@
+[
+  {
+    "tags": [
+      {
+        "type": "classDescription",
+        "string": "Implementation minimized of node event emitter"
+      }
+    ],
+    "description": {
+      "full": "<p>@class Event Emitter</p>",
+      "summary": "<p>@class Event Emitter</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var events = {};\nvar EventEmitter = function(){",
+    "ctx": {
+      "type": "declaration",
+      "name": "events",
+      "value": "{}",
+      "string": "events"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@private</p>",
+      "summary": "<p>@private</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var listeners = {\n\t\t\tload:[],\n\t\t\tclick:[],\n\t\t\treadyStateChange:[]\n\t};\n\t\n\tthis.listeners = function(event){\n\t\treturn listeners[event];\n\t};",
+    "ctx": {
+      "type": "declaration",
+      "name": "listeners",
+      "value": "{",
+      "string": "listeners"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.addListener = function(event,fn){\n\t\tif(!listeners[event]){\n\t\t\tlisteners[event] = [];\n\t\t}\n\t\tlisteners[event].push(fn);\n\t\treturn listeners[event];\n\t};\n\t\n\tthis.on = function(event, fn){\n\t\treturn this.addListener(event,fn);\n\t};",
+    "ctx": {
+      "type": "method",
+      "receiver": "this",
+      "name": "addListener",
+      "string": "this.addListener()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.emit = function(event){\n\t\tvar eventListeners = listeners[event];\n\t\tif(eventListeners.length > 0){\n\t\t\tvar i = 0;\n\t\t\tfor(i; i < eventListeners.length; i++){\n\t\t\t\teventListeners[i].call();\n\t\t\t}\n\t\t\treturn eventListeners;\n\t\t}\n\t};\n};\nevents.EventEmitter = EventEmitter;\nexports.events = events;",
+    "ctx": {
+      "type": "method",
+      "receiver": "this",
+      "name": "emit",
+      "string": "this.emit()"
+    }
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Util method for extend/merge objects</p>",
+      "summary": "<p>Util method for extend/merge objects</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var merge = function(destination,source) {\n    for (var property in source){\n\t\tif(source.hasOwnProperty(property)){\n\t\t\tdestination[property] = source[property];\n\t\t}\n\t}\n    return destination;\n};\nexports.merge = merge;",
+    "ctx": {
+      "type": "function",
+      "name": "merge",
+      "string": "merge()"
+    }
+  }
+]

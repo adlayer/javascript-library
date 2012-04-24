@@ -1,0 +1,151 @@
+[
+  {
+    "tags": [
+      {
+        "type": "class",
+        "string": "Page"
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "attributes",
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Abstract class for page</p>",
+      "summary": "<p>Abstract class for page</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Page = function( attributes ){\n\tvar Core = require('./core').Core;\n\tCore.apply(this, arguments);",
+    "ctx": {
+      "type": "function",
+      "name": "Page",
+      "string": "Page()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@property {String} id unique page id</li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} id unique page id</li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.id = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "id",
+      "value": "''",
+      "string": "this.id"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@property {String} name page name</li>\n</ul>",
+      "summary": "<ul>\n<li>@property {String} name page name</li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.name = '';",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "name",
+      "value": "''",
+      "string": "this.name"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@property {Array} spaces Collection of page spaces</li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Array} spaces Collection of page spaces</li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.spaces = [];",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "spaces",
+      "value": "[]",
+      "string": "this.spaces"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@property {Boolean} true for active and false for inactive</li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Boolean} true for active and false for inactive</li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "this.status = true;",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "status",
+      "value": "true",
+      "string": "this.status"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var __construct = function(self){\n\t\tself = self.extend(attributes);\n\t}(this);\n};",
+    "ctx": {
+      "type": "function",
+      "name": "__construct",
+      "string": "__construct()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method getActiveContent\n<ul><li>@public</li>\n<li>@returns {Object} new Page() - return the instance itself to improve chainability</li>\n<li>@requires Javascript 1.6</li>\n<li><strong>Warning:</strong> Don't use this in browser, because it can not work in old browsers</li>\n<li>@todo: should be readonly not modify the object just return filtered value</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method getActiveContent\n<ul><li>@public</li>\n<li>@returns {Object} new Page() - return the instance itself to improve chainability</li>\n<li>@requires Javascript 1.6</li>\n<li><strong>Warning:</strong> Don't use this in browser, because it can not work in old browsers</li>\n<li>@todo: should be readonly not modify the object just return filtered value</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Page.prototype.getActiveContent = function(){\n\t\tif( this.spaces && this.spaces.length >= 1 ){\n\t\t\t// Run over and redesign every space (removing ads with status false)\n\t\t\tthis.spaces = this.spaces.map(function(space){\n\t\t\t\tif( space.ads && space.ads.length >= 1 ){\n\t\t\t\t\tspace.ads = space.ads.filter(function(ad){\n\t\t\t\t\t\t// If ad has status equal to false will auto removed from array\n\t\t\t\t\t\treturn ad.status;\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t\t// re-assign modified space to spaces collection\n\t\t\t\treturn space;\n\t\t\t});\n\t\t}\n\t\treturn this;\n\t};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Page",
+      "name": "getActiveContent",
+      "string": "Page.prototype.getActiveContent()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@requires modules in browser\n<ul><li>@exports Page as Page</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@requires modules in browser\n<ul><li>@exports Page as Page</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "exports.Page = Page;",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "Page",
+      "value": "Page",
+      "string": "exports.Page"
+    }
+  }
+]

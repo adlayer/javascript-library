@@ -1,0 +1,44 @@
+[
+  {
+    "tags": [
+      {
+        "type": "public",
+        "string": ""
+      }
+    ],
+    "description": {
+      "full": "<p>QueryString module for handle params</p>",
+      "summary": "<p>QueryString module for handle params</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var queryString = {",
+    "ctx": {
+      "type": "declaration",
+      "name": "queryString",
+      "value": "{",
+      "string": "queryString"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "parse:function(qs){\n\t\tvar sep = \"&\";\n\t\tvar eq = \"=\";\n\t\tvar obj = {};\n\n\t\tqs = qs.split(sep);\n\t\tfor(var i = 0; i < qs.length; i++){\n\t\t\tvar prop = qs[i];\n\t\t\tprop = prop.split(eq);\n\t\t\tvar key = prop[0];\n\t\t\tvar value = prop[1];\n\t\t\t\n\t\t\t//is number\n\t\t\tif(!isNaN(value)){\n\t\t\t\tvalue = parseInt(value,10);\n\t\t\t}\n\t\t\t\n\t\t\tobj[key] = value;\n\t\t}\n\t\treturn obj;\n\t},"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@public</p>",
+      "summary": "<p>@public</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "stringify:function(obj){\n\t\tvar sep = \"&\";\n\t\tvar eq = \"=\";\n\t\tvar list =  [];\n\t\t\n\t\tfor( var param in obj ){\n\t\t\tif( obj[param] && typeof obj[param] !== 'function'){\n\t\t\t\tlist.push(param + eq + obj[param]);\n\t\t\t}\n\t\t}\n\t\treturn list.join(sep);\n\t}\n};\nexports.querystring = queryString;"
+  }
+]
