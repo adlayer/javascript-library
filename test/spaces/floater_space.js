@@ -29,7 +29,6 @@ describe('FloaterSpace', function(){
 			var header = document.createElement('HEADER');
 			header.appendChild(space.element);
 			space.close();
-			console.log(space.element);
 			expect(space.element.nodeName).to.be(undefined);
 		});
 	});
