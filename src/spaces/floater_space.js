@@ -3,38 +3,46 @@
 * @extends Space
 * @implements ISpace
 */
-var FloaterSpace = function(){
-	var ISpace = require('./ispace').ispace;
-	var Space = require('./space').space;
-	
-	ISpace.call(this);
-	Space.apply(this,arguments);
-	
-	var _self = this;
 
-	/**
-	* @public
-	*/
-	this.close = function(){
-		var space = _self.element;
-		space.parentNode.removeChild(space);
-	};
-	
-	/**
-	* @public
-	* @return {Object}
-	*/
-	this.render = function(){
-		this.setSizes();
-		this.element.style.position = "absolute";
+(function(){
+	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var FloaterSpace = function(){
+		SpaceDom.apply(this, arguments);
+		/**
+		* @public
+		*/
+		this.close = function(){
+			var space = this.element;
+			space.parentNode.removeChild(space);
+			delete this.element;
+		};
+
+		/**
+		* @public
+		* @return {Object}
+		*/
+		this.render = function(){
+			this.setSizes();
+			this.element.style.position = "absolute";
+
+			var bt = document.createElement("button");
+			bt.innerHTML = "fechar";
+			bt.onclick = this.close;
+			this.element.appendChild(bt);
+
+			this.insertRandomAd();
+			return this.element;
+		};
 		
-		var bt = document.createElement("button");
-		bt.innerHTML = "fechar";
-		bt.onclick = this.close;
-		this.element.appendChild(bt);
-		
-		this.insertRandomAd();
-		return this.element;
+		var __construct = (function(self){
+			self.create('DIV');
+			self.element.id = self.id;
+			self.element.height = self.height;
+			self.element.width = self.width;
+			self.element.style.position = 'absolute';
+			self.append(self.document.createElement('BUTTON'));
+		})(this);
 	};
-};
-exports.floater_space = FloaterSpace;
+	FloaterSpace.prototype = new SpaceDom();
+	exports.FloaterSpace = FloaterSpace;
+})();

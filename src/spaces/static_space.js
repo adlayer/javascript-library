@@ -1,23 +1,22 @@
 /**
 * @class represents the type Static
-* @extends Space
+* @extends SpaceDom
 * @implements ISpace
 */
-var StaticSpace = function(){
-	var ISpace = require('./ispace').ispace;
-	var Space = require('./space').space;
+(function(){
+	var SpaceDom = require('../dom/space_dom').SpaceDom;
 	
-	ISpace.call(this);
-	Space.apply(this,arguments);
-	
-	/**
-	* @public
-	* @return {Object}
-	*/
-	this.render = function(){
-		this.setSizes();
-		this.insertRandomAd();
-		return this.element;
+	var StaticSpace = function(){
+		SpaceDom.apply(this, arguments);
+		
+		var __construct = (function(self){
+			self.create('DIV');
+			self.element.height = self.height;
+			self.element.width = self.width;
+			self.element.id = self.id;
+		})(this);
 	};
-};
-exports.static_space = StaticSpace;
+	StaticSpace.prototype = new SpaceDom();
+	
+	exports.StaticSpace = StaticSpace;
+})();
