@@ -1,20 +1,38 @@
 /**
-* @class represents the type Expandable
+* @class represents the type Expander space
 * @extends Space
 * @implements ISpace
 */
-var ExpandableSpace = function(){
-	var ISpace = require('./ispace').ispace;
-	var Space = require('./space').space;
-	
-	ISpace.call(this);
-	Space.apply(this,arguments);
+
+(function(){
+	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var ExpandableSpace = function(){
+		SpaceDom.apply(this, arguments);
+		
+		
+		var __construct = (function(self){
+			self.create('DIV');
+			self.element.id = self.id;
+			self.element.height = self.height;
+			self.element.width = self.width;
+			
+			self.addDomEventListener(self.expandEvent, function(){
+				self.view = 'expanded';
+			});
+			
+			self.addDomEventListener(self.retreatEvent, function(){
+				self.view = 'retreated';
+			});
+			
+		})(this);
+	};
+	ExpandableSpace.prototype = new SpaceDom();
 	
 	/**
 	* @public
 	* @return {Object}
 	*/
-	this.clip = function(width, height){
+	ExpandableSpace.prototype.clip = function(width, height){
 		this.element.style.clip = "rect(0px " + width + " " + height + " 0px)";
 		return this;
 	};
@@ -23,7 +41,7 @@ var ExpandableSpace = function(){
 	* @public
 	* @return {Object}
 	*/
-	this.expand = function(){
+	ExpandableSpace.prototype.expand = function(){
 		var childAd = this.element.firstChild;
 		if(childAd){
 			this.clip(childAd.width, childAd.height);
@@ -35,30 +53,11 @@ var ExpandableSpace = function(){
 	* @public
 	* @return {Object}
 	*/
-	this.retract = function(){
+	ExpandableSpace.prototype.retract = function(){
 		this.clip(this.size.width, this.size.height);
 		return this;
 	};
 	
-	/**
-	* @public
-	* @return {Object}
-	*/
-	this.render = function(){
-		var _self = this;
-		this.element.style.position = "absolute";
-		this.setSizes();
-		this.clip(this.size.width, this.size.height);
-		this.insertRandomAd();
-		
-		this.element.onmouseover = function(){
-			_self.expand();
-		};
-		this.element.onmouseout = function(){
-			_self.retract();
-		};
-		
-		return this.element;
-	};
-};
-exports.expandable_space = ExpandableSpace;
+
+	exports.ExpandableSpace = ExpandableSpace;
+})();
