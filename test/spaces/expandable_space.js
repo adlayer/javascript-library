@@ -3,9 +3,11 @@ var document = document || require('../document');
 
 var ExpandableSpace = require('../../src/spaces/expandable_space').ExpandableSpace;
 describe('ExpandableSpace', function(){
+	var space;
+	
 	describe('__construct', function(){
 		it('Should render the space', function(){
-			var space = new ExpandableSpace({
+			space = new ExpandableSpace({
 				document: document,
 				expandEvent: 'mouseover',
 				retreatEvent: 'mouseout',
@@ -17,7 +19,12 @@ describe('ExpandableSpace', function(){
 			expect(space.element.width).to.be.equal(space.width);
 			expect(space.element.id).to.be.equal(space.id);
 			expect(space.element.ads).to.not.be.equal(space.ads);
-			
+		
+		});
+	});
+	
+	describe('#expand', function(){
+		it('Should expand the space', function(){
 			// Expanding
 			(function(){
 				var evt = document.createEvent("MouseEvents");
@@ -25,7 +32,11 @@ describe('ExpandableSpace', function(){
 				space.element.dispatchEvent(evt);
 			})();
 			expect(space.state).to.be.equal('expanded');
-			
+		});
+	});
+	
+	describe('#retreat', function(){
+		it('Should retreat the space', function(){
 			// Retreating
 			(function(){
 				var evt = document.createEvent("MouseEvents");
@@ -35,4 +46,5 @@ describe('ExpandableSpace', function(){
 			expect(space.state).to.be.equal('retreated');
 		});
 	});
+	
 });
