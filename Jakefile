@@ -1,5 +1,4 @@
 //var Biscuit = require('biscuit');
-var manifest  = require('./manifest');
 var smoosh = require('smoosh');
 var fs = require('fs');
 var Hogan = require('hogan.js');
@@ -52,7 +51,6 @@ var config = {
 
 desc('run default tasks');
 task('default', function(){
-	//new Biscuit(manifest);
 	smoosh.make(config);
 });
 
