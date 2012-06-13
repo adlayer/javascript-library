@@ -24,7 +24,7 @@ describe('ExpandableSpace', function(){
 				evt.initMouseEvent("mouseover", true, true, {}, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 				space.element.dispatchEvent(evt);
 			})();
-			expect(space.view).to.be.equal('expanded');
+			expect(space.state).to.be.equal('expanded');
 			
 			// Retreating
 			(function(){
@@ -32,7 +32,7 @@ describe('ExpandableSpace', function(){
 				evt.initMouseEvent("mouseout", true, true, {}, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 				space.element.dispatchEvent(evt);
 			})();
-			expect(space.view).to.be.equal('retreated');
+			expect(space.state).to.be.equal('retreated');
 		});
 	});
 });

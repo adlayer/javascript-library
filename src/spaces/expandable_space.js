@@ -17,11 +17,11 @@
 			self.element.width = self.width;
 			
 			self.addDomEventListener(self.expandEvent, function(){
-				self.view = 'expanded';
+				self.state = 'expanded';
 			});
 			
 			self.addDomEventListener(self.retreatEvent, function(){
-				self.view = 'retreated';
+				self.state = 'retreated';
 			});
 			
 		})(this);
