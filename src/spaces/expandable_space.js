@@ -17,10 +17,12 @@
 			self.element.width = self.width;
 			
 			self.addDomEventListener(self.expandEvent, function(){
+				self.expand();
 				self.state = 'expanded';
 			});
 			
 			self.addDomEventListener(self.retreatEvent, function(){
+//				self.retract();
 				self.state = 'retreated';
 			});
 			
@@ -54,7 +56,7 @@
 	* @return {Object}
 	*/
 	ExpandableSpace.prototype.retract = function(){
-		this.clip(this.size.width, this.size.height);
+		this.clip(this.width, this.height);
 		return this;
 	};
 	
