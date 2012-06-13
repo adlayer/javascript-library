@@ -51,7 +51,7 @@ describe('JsonpRequest', function(){
 			
 			var request = new JsonpRequest({
 				host: 'localhost',
-				path: '/',
+				path: '/'
 			}, function(err, response){
 				expect(err).to.be.ok();
 			});

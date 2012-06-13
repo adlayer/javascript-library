@@ -10,7 +10,7 @@ describe('ImgRequest', function(){
 			
 			var request = new ImgRequest({
 				host: 'localhost',
-				path: '/',
+				path: '/'
 			}, function(err, response){
 				run = true;
 			});

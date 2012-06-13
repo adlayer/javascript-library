@@ -9,7 +9,7 @@
 		var __construct = (function(self){
 			// Default create the image
 			self.create('img');
-			self.element.src = self.src
+			self.element.src = self.src;
 			
 			if(self.link){
 				var img = self.element;

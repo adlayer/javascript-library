@@ -24,13 +24,14 @@ describe('Page', function(){
 		it('should filter all content by status true', function(){
 			
 			var result = page.getActiveContent();
-			var adsInSpace1 = result.spaces[0]['ads'];
+			var spaceOne = result.spaces[0];
+			var adsInSpace1 = spaceOne.ads;
 			expect(adsInSpace1.length).to.be(1);
 			
 		});
 		it('should return a full space when there is no ads', function(){
 			var space = page.spaces[0];
-			delete space['ads'];
+			delete space.ads;
 			var result = page.getActiveContent();
 			expect(result.spaces[0]).to.be(space);
 		});

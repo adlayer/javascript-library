@@ -57,7 +57,7 @@ describe('Http', function(){
 			request.expose(root);
 			root.callback({ok:true});
 		});
-	})
+	});
 	
 	describe('#expose', function(){
 		it('Should expose the callback function to an provide object', function(){
