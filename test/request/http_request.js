@@ -29,7 +29,6 @@ describe('Http', function(){
 	
 	describe('wrap', function(){
 		it('Should get an error', function(){
-			var root = {};
 			var run = false;
 			
 			var request = new HttpRequest({
@@ -39,12 +38,10 @@ describe('Http', function(){
 				expect(err).to.be.ok();
 			});
 			
-			request.expose(root);
-			root.callback();
+			request.callback(true);
 
 		});
 		it('Should get a result', function(){
-			var root = {};
 			var run = false;
 			
 			var request = new HttpRequest({
@@ -54,31 +51,7 @@ describe('Http', function(){
 				expect(response).to.be.ok();
 			});
 			
-			request.expose(root);
-			root.callback({ok:true});
-		});
-	});
-	
-	describe('#expose', function(){
-		it('Should expose the callback function to an provide object', function(){
-			var root = {};
-			var run = false;
-			
-			var request = new HttpRequest({
-				host: 'localhost',
-				path: '/'
-			}, function(err, response){
-				run = true;
-			});
-			
-			request.expose(root);
-			// Should expose
-			expect(root.callback).to.be.ok();
-			// Should expose a function
-			expect(root.callback).to.be.a('function');
-			// Should be executable
-			root.callback({ok:true});
-			expect(run).to.be.ok();
+			request.callback(null, {ok:true});
 		});
 	});
 });

@@ -67,7 +67,17 @@ var JsonpRequest = function(){
 	* @example: JsonpRequest.make(options, callback).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback){
-		var instance = new JsonpRequest(options, callback);
+		function wrap(fn){
+			function wrapper(data){
+				if( data ) {
+					fn(null, data);
+				} else {
+					fn(new Error('No Response'), null);
+				}
+			}
+			return wrapper;
+		}
+		var instance = new JsonpRequest(options, wrap(callback));
 		instance.send();
 		return instance;
 	};
