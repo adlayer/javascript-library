@@ -3,6 +3,7 @@
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('../domain/page').Page;
 	var ads = require('../ads/ads').ads;
+	var spaces = require('../spaces/spaces').spaces;
 	
 	// Extend or define Adlayer
 	global.adlayer = global.adlayer || {};
