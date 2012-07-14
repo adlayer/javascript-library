@@ -2,7 +2,7 @@
 	var request = require('../request/request').request;
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('../domain/page').Page;
-	
+	var ads = require('../ads/ads').ads;
 	
 	// Extend or define Adlayer
 	global.adlayer = global.adlayer || {};
