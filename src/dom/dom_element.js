@@ -12,7 +12,7 @@ var DomElement = function(){
 	/**
 	* @property {Object} element Dom element itself
 	*/
-	this.element = {};
+	this.element = undefined;
 };
 
 	/*
@@ -36,7 +36,7 @@ var DomElement = function(){
 		//	file global || adlayer js module wrapper || passed document context
 		document = this.document || global.document || document;
 		this.element = DomElement.create(tagName, document);
-		return this;
+		return this.element;
 	};
 	
 	/*

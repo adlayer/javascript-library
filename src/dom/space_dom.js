@@ -21,7 +21,7 @@
 
 	/*
 	* @public
-	* @param {Object} DomElement to append in element
+	* @param {Object} DomElement, Ad to append in element
 	* @returns {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){

@@ -8,11 +8,10 @@
 	
 	var StaticSpace = function(){
 		SpaceDom.apply(this, arguments);
-		
 		var __construct = (function(self){
-			self.create('DIV');
-			self.element.height = self.height;
-			self.element.width = self.width;
+			self.element = self.element || self.create('DIV');
+			self.element.style.height = self.height;
+			self.element.style.width = self.width;
 			self.element.id = self.id;
 		})(this);
 	};

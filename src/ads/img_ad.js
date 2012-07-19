@@ -21,6 +21,11 @@
 			
 			// Set id in the image or in the link wrapper
 			self.element.id = self.id;
+			
+			self.addDomEventListener('load', function(){
+				self.emit('load');
+			});
+			
 			return self.element;
 		})(this);
 	};

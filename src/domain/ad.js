@@ -7,7 +7,10 @@
 */
 var Ad = function( attributes ){
 	var Core = require('./core').Core;
+	var EventEmitter = require('../node_modules/events').events.EventEmitter;
 	Core.apply(this, arguments);
+	EventEmitter.apply(this, arguments);
+	
 	/*
 	* @property {String} id Id of ad
 	* @public

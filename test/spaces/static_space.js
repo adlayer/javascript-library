@@ -11,8 +11,8 @@ describe('StaticSpace', function(){
 				height:'300px',
 				width: '300px'
 			});
-			expect(space.element.height).to.be.equal(space.height);
-			expect(space.element.width).to.be.equal(space.width);
+			expect(space.element.style.height).to.be.equal(space.height);
+			expect(space.element.style.width).to.be.equal(space.width);
 			expect(space.element.id).to.be.equal(space.id);
 			expect(space.element.ads).to.not.be.equal(space.ads);
 		});

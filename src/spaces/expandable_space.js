@@ -11,10 +11,10 @@
 		
 		
 		var __construct = (function(self){
-			self.create('DIV');
+			self.element = self.element || self.create('DIV');
 			self.element.id = self.id;
-			self.element.height = self.height;
-			self.element.width = self.width;
+			self.element.style.height = self.height;
+			self.element.style.width = self.width;
 			
 			self.addDomEventListener(self.expandEvent, function(){
 				self.expand();

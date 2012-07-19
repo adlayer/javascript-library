@@ -24,6 +24,16 @@ var Space = function( attributes ){
 	* @property {Array} ads Collection of ads linked to space
 	*/
 	this.ads = [];
+
+	/**
+	* @method getRandomAd
+	* @return {Object} Ad
+	*/
+	this.getRandomAd = function(){
+		var total = this.ads.length;
+		var index = Math.floor(Math.random() * total);
+		return this.ads[index];
+	};
 	
 	/*
 	* @method __construct
@@ -34,16 +44,6 @@ var Space = function( attributes ){
 		self = self.extend(attributes);
 	}(this);
 };
-
-	/**
-	* @method getRandomAd
-	* @return {Object} Ad
-	*/
-	Space.prototype.getRandomAd = function(){
-		var total = this.ads.length;
-		var index = Math.floor(Math.random() * total);
-		return this.ads[index];
-	};	
 
 	/**
 	* @requires modules in browser

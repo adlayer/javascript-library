@@ -18,10 +18,10 @@
 		};
 		
 		var __construct = (function(self){
-			self.create('DIV');
+			self.element = self.element || self.create('DIV');
 			self.element.id = self.id;
-			self.element.height = self.height;
-			self.element.width = self.width;
+			self.element.style.height = self.height;
+			self.element.style.width = self.width;
 			self.element.style.position = 'absolute';
 			var bt = self.document.createElement('BUTTON');
 			bt.innerHTML = 'x';

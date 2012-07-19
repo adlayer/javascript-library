@@ -15,7 +15,7 @@ describe('DomElement', function(){
 	});
 	describe('#create', function(){
 		it('Should create a dom Element and store at this.element', function(){
-			expect(	new DomElement().create('div', document).element.nodeName ).to.be.equal('DIV');
+			expect(	new DomElement().create('div', document)['nodeName'] ).to.be.equal('DIV');
 		});
 	});
 	
@@ -33,16 +33,23 @@ describe('DomElement', function(){
 	});
 	describe('#append', function(){
 		it('Should append a child', function(){
-			var div = new DomElement().create('div', document);
+			var div = new DomElement();
+			div.create('div', document);
 			div.append(document.createElement('a'));
 			expect(div.element.childNodes.length).to.be(1);
 		});
 	});
 	describe('#findParentTag', function(){
 		it('Should find a specified tag ad parent', function(){
-			var root = new DomElement().create('div', document),
-				midle = new DomElement().create('span', document),
-				access = new DomElement().create('a', document);
+			var root = new DomElement();
+			root.create('div', document);
+			
+			var	midle = new DomElement();
+			midle.create('span', document);
+			
+			var	access = new DomElement();
+			access.create('a', document);
+			
 			midle.append(access.element);
 			root.append(midle.element);
 			expect( access.findParentTag('DIV') === root.element ).to.be.ok();
