@@ -10,22 +10,21 @@
 			// Default create the image
 			self.create('img');
 			self.element.src = self.src;
+			var img = self.element;
+			
+			// Set id in the image or in the link wrapper
+			self.element.id = self.id;
+			self.addDomEventListener('load', function(){
+				self.emit('load');
+			});
 			
 			if(self.link){
-				var img = self.element;
 				// subscribe img with link
 				self.create('a');
 				self.element.href = self.link;
 				self.append(img);
 			}
-			
-			// Set id in the image or in the link wrapper
-			self.element.id = self.id;
-			
-			self.addDomEventListener('load', function(){
-				self.emit('load');
-			});
-			
+		
 			return self.element;
 		})(this);
 	};

@@ -19,13 +19,13 @@
 		F.prototype = obj;
 		return new F();
 	}
-	var test = copy(api.config);
 
 	// Connections
-	api.connections = {
+	var connections = {
 		adserver: new Connection(api.config.url.adserver),
 		tracker: new Connection(api.config.url.tracker)
 	};
+	api.connections = connections;
 
 	Page.prototype.getData = function(callback){
 		
@@ -67,7 +67,16 @@
 				if(!err){
 					space = spaces.create(space);
 					var ad = ads.create(space.getRandomAd());
-
+					
+					ad.on('load', function(){
+						var sign = connections.tracker.newId();
+						var opts = copy(api.config.url.tracker);
+						opts.host = opts.host;
+						opts.path = '/impressions/' + ad.id;
+						console.log(ad);
+						connections.tracker.requests[sign] = request().get(opts, callback);
+					});
+					
 					space.placeAd(ad);
 				}
 			});

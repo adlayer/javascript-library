@@ -7,6 +7,7 @@
 */
 var Core = function(){
 	var merge = require('../utils/merge').merge;
+	var queryString = require('../node_modules/querystring').querystring;
 	
 	/*
 	* @method extend
@@ -16,5 +17,10 @@ var Core = function(){
 	this.extend = function(attributes){
 		return merge(this, attributes);
 	};
+	
+	this.toQuery = function(){
+		return queryString.stringify(this);
+	};
+	
 };
 exports.Core = Core;

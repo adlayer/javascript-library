@@ -12,4 +12,13 @@ describe('Core', function(){
 			expect(site.id).to.be.ok();	
 		});
 	});
+	describe('#toQuery', function(){
+		var ad = new Core();
+		ad.page = 10;
+		ad.site = 11;
+		
+		it('Should convert object to query', function(){
+			expect(ad.toQuery()).to.be.equal('page=10&site=11');	
+		});
+	});
 });
