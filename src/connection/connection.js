@@ -48,6 +48,10 @@ Connection.prototype.newId = function(){
 	this._index++;
 	return this.id();
 };
+Connection.prototype.next = function(req){
+	var sign = this.newId();
+	this.requests[sign] = req;
+};
 
 Connection.prototype.getCallbackPath = function(){
 	return [this.name, 'requests', this.id(), 'callback'].join('.');
@@ -70,7 +74,7 @@ Connection.prototype.get = function(path, data, callback){
 	this.requests[this.id()] = {};
 	
 	// Make a get request
-	this.request().get(this, callback).expose(this.requests[this.id()]);
+	this.request().get(this, callback);
 	
 	// Increment id for the next
 	this.newId();

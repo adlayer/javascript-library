@@ -32,12 +32,11 @@ describe('AdDom', function(){
 
 	});
 	
-	describe('#getClickTag', function(){
-		
+	describe('#clicktag', function(){
 		it('Should build a clickTag url', function(){
 			var page_url = 'http://test.com';
 			var clickTag = ad.getClickTag('http://tracker.adlayerapp.com', '9292', '3030', page_url);
 			expect(clickTag).to.contain('click/10');
 		});
-	});
+	})
 });

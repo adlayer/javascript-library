@@ -1,5 +1,6 @@
 (function(global){
 	var request = require('../request/request').request;
+	var Event = require('../domai/core').Event;
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('./page').PageApi;
 	var ads = require('../ads/ads').ads;
@@ -59,6 +60,43 @@
 		}
 	};
 	
+	/**
+	* @constructor Tracker
+	*/
+	function Tracker(){
+		this.connection = {};
+	}
+	Tracker.prototype.track = function(type, ad){
+		
+		var event = new Event({
+			type: 'impression', // should be required just in tracker server
+			ad_id: ad.id,
+			browser: 'firefox',
+			campaign_id: 'skyelivre',
+			page_url: 'http://adlayer.com.br',
+			site_id: 'site123',
+			page_id: 'page124',
+			space_id: 'space123'
+		});
+	
+		var opts = copy(api.config.url.tracker);
+		opts.host = opts.host;
+		opts.path = '/' + type + '/' + ad.id;
+		
+		//  validate in client is necessary ? or is it just slow
+		if( event.validate() ){
+			opts.qs = event;
+			var req = request().get(opts, function(err, data){
+				console.log(data);
+			});
+			this.connection.next(req);
+		};
+	};
+	// Tracker instance
+	var tracker = new Tracker();
+	tracker.connection = connections.tracker;
+	
+	
 	// Page api	
 	api.page = new Page({id: 'f66458ae7be6306d7dd2ab99b002b5ef'});
 	api.page.getData(function(err, data){
@@ -69,14 +107,9 @@
 					var ad = ads.create(space.getRandomAd());
 					
 					ad.on('load', function(){
-						var sign = connections.tracker.newId();
-						var opts = copy(api.config.url.tracker);
-						opts.host = opts.host;
-						opts.path = '/impressions/' + ad.id;
-						console.log(ad);
-						connections.tracker.requests[sign] = request().get(opts, callback);
+						tracker.track('impression', ad);
 					});
-					
+
 					space.placeAd(ad);
 				}
 			});

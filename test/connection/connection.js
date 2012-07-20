@@ -28,6 +28,21 @@ describe('Connection', function(){
 		});
 	});
 	
+	describe('#next', function(){
+		it('Should append a new request', function(){
+			var tracker = new Connection({
+				name: 'adlayer.tracker',
+				host: 'tracker.adlayerapp.com'
+			});
+
+			tracker.next(tracker.get('/id/10', function(err, res){
+				expect(err).to.be.ok();
+			}));
+			
+			expect(tracker.requests.n0).to.be.ok();
+		});
+	});
+	
 	describe('#getCallbackPath', function(){
 		it('Should return the full callback namespace', function(){
 			var adserver = new Connection({
@@ -38,7 +53,7 @@ describe('Connection', function(){
 			
 		});
 	});
-
+	
 	describe('#get', function(){
 		it('Should make a default get request', function(){
 			var tracker = new Connection({

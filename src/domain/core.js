@@ -18,9 +18,5 @@ var Core = function(){
 		return merge(this, attributes);
 	};
 	
-	this.toQuery = function(){
-		return queryString.stringify(this);
-	};
-	
 };
 exports.Core = Core;
