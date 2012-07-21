@@ -1,18 +1,13 @@
 (function(global){
+	var copy = require('../utils/copy').copy;
 	var request = require('../request/request').request;
 	var Event = require('../domai/core').Event;
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('./page').PageApi;
+	var Tracker = require('./tracker').Tracker;
 	var ads = require('../ads/ads').ads;
 	var spaces = require('../spaces/spaces').spaces;
 	var config = require('../config/').config;
-	
-	// Prototype pattern Object.create() in old browsers
-	function copy(obj){
-		function F(){}
-		F.prototype = obj;
-		return new F();
-	}
 	
 	// Extend or define Adlayer
 	global.adlayer = global.adlayer || {};
@@ -27,42 +22,9 @@
 		tracker: new Connection(api.config.url.tracker)
 	};
 	
-	/**
-	* @constructor Tracker
-	*/
-	function Tracker(){
-		this.connection = {};
-	}
-	Tracker.prototype.track = function(type, ad){
-		
-		var event = new Event({
-			type: 'impression', // should be required just in tracker server
-			ad_id: ad.id,
-			browser: 'firefox',
-			campaign_id: 'skyelivre',
-			page_url: 'http://adlayer.com.br',
-			site_id: 'site123',
-			page_id: 'page124',
-			space_id: 'space123'
-		});
-	
-		var opts = copy(this.connection);
-		opts.host = opts.host;
-		opts.path = '/' + type + '/' + ad.id;
-		
-		//  validate in client is necessary ? or is it just slow
-		if( event.validate() ){
-			opts.qs = event;
-			var req = request().get(opts, function(err, data){
-				console.log(data);
-			});
-			this.connection.next(req);
-		};
-	};
 	// Tracker instance
 	var tracker = new Tracker();
 	tracker.connection = connections.tracker;
-
 
 	// Page data model
 	Page.prototype.getData = function(callback){
@@ -109,7 +71,16 @@
 						var ad = ads.create(space.getRandomAd());
 
 						ad.on('load', function(){
-							tracker.track('impression', ad);
+							tracker.track({
+								type: 'impression', // should be required just in tracker server
+								ad_id: ad.id,
+								browser: 'firefox',
+								campaign_id: 'skyelivre',
+								page_url: 'http://adlayer.com.br',
+								site_id: 'site123',
+								page_id: 'page124',
+								space_id: 'space123'
+							});
 						});
 
 						space.placeAd(ad);
