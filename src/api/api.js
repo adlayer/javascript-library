@@ -7,57 +7,24 @@
 	var spaces = require('../spaces/spaces').spaces;
 	var config = require('../config/').config;
 	
-	// Extend or define Adlayer
-	global.adlayer = global.adlayer || {};
-	var api = global.adlayer;
-	
-	// Configs
-	api.config = api.config || config;
-	
 	// Prototype pattern Object.create() in old browsers
 	function copy(obj){
 		function F(){}
 		F.prototype = obj;
 		return new F();
 	}
+	
+	// Extend or define Adlayer
+	global.adlayer = global.adlayer || {};
+	var api = global.adlayer;
+	
+	// Configs
+	api.config = api.config || config;
 
 	// Connections
 	var connections = {
 		adserver: new Connection(api.config.url.adserver),
 		tracker: new Connection(api.config.url.tracker)
-	};
-	api.connections = connections;
-
-	Page.prototype.getData = function(callback){
-		
-		var sign = api.connections.adserver.newId();
-		var opts = copy(api.config.url.adserver);
-		opts.host = opts.host;
-		opts.path = '/pages/' + this.id;
-		opts.qs = {
-			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback'
-		};
-		api.connections.adserver.requests[sign] = request().get(opts, callback);
-		
-	};
-	
-	// Spaces iterator
-	Page.prototype.scanSpaces = function(spaces, callback){
-		for( var i = 0; i < spaces.length; i++ ){
-			var space = spaces[i];
-			var divSpace = document.getElementById(space._id);
-			
-			if ( divSpace ){
-				space.element = divSpace;
-				callback(null, space);
-			} else {
-				var error = {
-					error: 'not found',
-					id: space._id
-				};
-				callback(error, null);
-			}
-		}
 	};
 	
 	/**
@@ -79,7 +46,7 @@
 			space_id: 'space123'
 		});
 	
-		var opts = copy(api.config.url.tracker);
+		var opts = copy(this.connection);
 		opts.host = opts.host;
 		opts.path = '/' + type + '/' + ad.id;
 		
@@ -95,26 +62,79 @@
 	// Tracker instance
 	var tracker = new Tracker();
 	tracker.connection = connections.tracker;
+
+
+	// Page data model
+	Page.prototype.getData = function(callback){
+
+		var sign = this.connection.id();
+		var opts = copy(config.url.adserver);
+		opts.host = opts.host;
+		opts.path = '/pages/' + this.id;
+		opts.qs = {
+			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback'
+		};
+		var req = request().get(opts, callback);
+		this.connection.requests[sign] = req;
+		
+	};
 	
+	// Page spaces iterator
+	Page.prototype.scanSpaces = function(spaces, callback){
+		for( var i = 0; i < spaces.length; i++ ){
+			var space = spaces[i];
+			var divSpace = document.getElementById(space._id);
+			
+			if ( divSpace ){
+				space.element = divSpace;
+				callback(null, space);
+			} else {
+				var error = {
+					error: 'not found',
+					id: space._id
+				};
+				callback(error, null);
+			}
+		}
+	};
+	
+	// Page init
+	Page.prototype.init = function(){
+		page.getData(function(err, data){
+			if(data && data.spaces){
+				api.page.scanSpaces(data.spaces, function(err, space){
+					if(!err){
+						var trackerUrl = tracker.connection.getUrl();
+						space = spaces.create(space);
+						var ad = ads.create(space.getRandomAd());
+
+						ad.on('load', function(){
+							tracker.track('impression', ad);
+						});
+
+						space.placeAd(ad);
+
+						// Needs to be called after ad placement to find the space.id
+						var clickTag = ad.getClickTag(trackerUrl, 'ok', 'ok', 'ok');
+						ad.element.href = clickTag;
+					}
+				});
+			}
+		});
+	}	
 	
 	// Page api	
-	api.page = new Page({id: 'f66458ae7be6306d7dd2ab99b002b5ef'});
-	api.page.getData(function(err, data){
-		if(data && data.spaces){
-			api.page.scanSpaces(data.spaces, function(err, space){
-				if(!err){
-					space = spaces.create(space);
-					var ad = ads.create(space.getRandomAd());
-					
-					ad.on('load', function(){
-						tracker.track('impression', ad);
-					});
-
-					space.placeAd(ad);
-				}
-			});
-		}
+	var page = new Page({
+		id: 'f66458ae7be6306d7dd2ab99b002b5ef',
+		connection: connections.adserver
 	});
+	page.init();
+	
+	// Page api
+	api.page = page;
+	
+	// Connections api
+	api.connections = connections;
 	
 	// Space api
 	api.space = {};
