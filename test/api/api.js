@@ -2,7 +2,7 @@ var expect = expect || require('expect.js');
 var document = document || require('../document');
 
 var api = require('../../src/api/api').adlayer;
-api = this.adlayer;
+api = this.adlayer || api;
 describe('Api', function(){
 	
 	describe('page', function(){
@@ -11,15 +11,15 @@ describe('Api', function(){
 		});
 	});
 	
-	describe('space', function(){
+	describe('spaces', function(){
 		it('Should be defined', function(){
-			expect(api.space).to.be.ok();
+			expect(api.spaces).to.be.ok();
 		});
 	});
 	
-	describe('ad', function(){
+	describe('ads', function(){
 		it('Should be defined', function(){
-			expect(api.ad).to.be.ok();
+			expect(api.ads).to.be.ok();
 		});
 	});
 	
