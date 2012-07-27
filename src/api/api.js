@@ -6,7 +6,6 @@
 	var config = require('../config/config').config;
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
-	var spaces = require('../spaces/spaces').spaces;
 	
 	// Extend or define Adlayer
 	global.adlayer = global.adlayer || {};
@@ -51,9 +50,8 @@
 				page.scanSpaces(data.spaces, function(err, space){
 					if(!err){
 						var trackerUrl = page.tracker.connection.getUrl();
-						space = spaces.create(space);
+						
 						var ad = ads.create(space.getAd());
-
 						ad.on('load', function(){
 							page.tracker.track({	
 								type: 'impression', // should be required just in tracker server
