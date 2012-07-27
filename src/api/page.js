@@ -35,7 +35,6 @@
 			space.document = this.document;
 			space = spaces.create(collection[i]);
 			space.element = space.getElement();
-			var divSpace = this.document.getElementById(space._id);
 			
 			if ( space.element ){
 				callback(null, space);
