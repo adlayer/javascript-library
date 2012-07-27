@@ -15,6 +15,8 @@
 	var SpaceDom = function(){
 		// extends Space
 		Space.apply(this, arguments);
+		
+		this.placements = {};
 	};
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
@@ -27,6 +29,14 @@
 	SpaceDom.prototype.placeAd = function(ad){
 		this.element.appendChild(ad.element);
 		return this;
+	};
+	
+	/*
+	* @public
+	* @returns {Object} return the DomElement
+	*/
+	SpaceDom.prototype.getElement = function(){
+		return this.document.getElementById(this.id);
 	};
 	
 	exports.SpaceDom = SpaceDom;
