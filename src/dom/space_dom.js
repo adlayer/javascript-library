@@ -28,6 +28,7 @@
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
 		this.element.appendChild(ad.element);
+		ad.emit('placement');
 		return this;
 	};
 	

@@ -24,7 +24,6 @@
 	var tracker = new Tracker();
 	tracker.connection = connections.tracker;
 	
-	
 	// Connections api
 	api.connections = connections;
 	
@@ -50,8 +49,9 @@
 				page.scanSpaces(data.spaces, function(err, space){
 					if(!err){
 						var trackerUrl = page.tracker.connection.getUrl();
-						
+						// Instance of ad using model provided
 						var ad = ads.create(space.getAd());
+						
 						ad.on('load', function(){
 							page.tracker.track({	
 								type: 'impression', // should be required just in tracker server
@@ -63,12 +63,16 @@
 								page_url: 'http://adlayer.com.br'
 							});
 						});
-
+						
+						ad.on('placement', function(){
+							// Setting click tag in ad element
+							var clickTag = ad.getClickTag(trackerUrl, 'ok', 'ok', 'ok');
+							ad.element.href = clickTag;
+						});
+						
+						// Placing ad in space
 						space.placeAd(ad);
 
-						// Needs to be called after ad placement to find the space.id
-						var clickTag = ad.getClickTag(trackerUrl, 'ok', 'ok', 'ok');
-						ad.element.href = clickTag;
 					}
 				});
 			}
