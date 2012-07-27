@@ -36,24 +36,29 @@
 	/**
 	* 
 	*/
-	Page.prototype.init = function(){
-		
-		// Save reference to use in closures
-		var page = this;
+	Page.init = function(){
+		// Page api	
+		var page = new Page({
+			id: 'f66458ae7be6306d7dd2ab99b002b5ef',
+			connection: connections.adserver,
+			document: document
+		});
 		
 		// Get all page data
-		this.getData(function(err, data){
+		page.getData(function(err, data){
 			// When we get spaces in this page
 			if(data && data.spaces){
 				// For each space found in document
 				page.scanSpaces(data.spaces, function(err, space){
 					if(!err){
-						var trackerUrl = page.tracker.connection.getUrl();
+						
 						// Instance of ad using model provided
 						var ad = ads.create(space.getAd());
-						
+						ad.tracker = tracker;
+
+						// Listener for 'LOAD' event
 						ad.on('load', function(){
-							page.tracker.track({	
+							ad.tracker.track({	
 								type: 'impression', // should be required just in tracker server
 								ad_id: ad.id,
 								campaign_id: ad.campaign_id,
@@ -63,10 +68,11 @@
 								page_url: 'http://adlayer.com.br'
 							});
 						});
-						
+
+						// Listener for 'PLACEMENT' event
 						ad.on('placement', function(){
 							// Setting click tag in ad element
-							var clickTag = ad.getClickTag(trackerUrl, 'ok', 'ok', 'ok');
+							var clickTag = ad.getClickTag('site_id', page.id, 'http://adlayer.com.br');
 							ad.element.href = clickTag;
 						});
 						
@@ -77,19 +83,10 @@
 				});
 			}
 		});
+		return page;
 	};
 	
-	// Page api	
-	var page = new Page({
-		id: 'f66458ae7be6306d7dd2ab99b002b5ef',
-		connection: connections.adserver,
-		tracker: tracker,
-		document: document
-	});
-	page.init();
-	
-	
 	// Page api
-	api.page = page;
+	api.page = Page.init();
 	
 })(this);
