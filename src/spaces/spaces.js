@@ -3,7 +3,7 @@
 	exports.spaces = (function(){
 		var Expandable = require('./expandable_space.js').ExpandableSpace,
 			Floater = require('./floater_space.js').FloaterSpace,
-			Static = require('./static_space.js').StaticSpace
+			Static = require('./static_space.js').StaticSpace;
 		
 		return {
 			create: function(data){
@@ -22,7 +22,7 @@
 						return new Static(data);
 				}
 			}
-		}
+		};
 	})();
 	
 })();

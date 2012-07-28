@@ -33,10 +33,9 @@
 		* <param name="wmode" value="tranparent" />
 		*/
 		var Param = function(name,value){
-			var document = superclass.document || document;
 			this.name = name;
 			this.value = value;
-			this.element = document.createElement("param");
+			this.element = superclass.create("param");
 			this.element.setAttribute("name", this.name);
 			this.element.setAttribute("value", this.value);
 			return this.element;

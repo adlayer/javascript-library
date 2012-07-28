@@ -35,7 +35,7 @@
 				console.log(data);
 			});
 			this.connection.next(req);
-		};
+		}
 	};
 	exports.Tracker = Tracker;
 })();

@@ -5,8 +5,7 @@
 (function(){
 	
 	exports.ads = (function(){
-		var Embed = require('./embed_ad.js').EmbedAd;
-		var ObjectAd = require('./object_ad.js').ObjectAd;
+		var FlashAd = require('./flash_ad.js').EmbedAd;
 		var Img = require('./img_ad.js').ImgAd;
 		
 		return {
@@ -18,15 +17,13 @@
 				delete data._id;
 				
 				switch(data.type){
-					case 'embed':
-						return new Embed(data);
-					case 'object':
-						return new ObjectAd(data);
+					case 'flash':
+						return new FlashAd(data);
 					case 'image':
 						return new Img(data);
 				}
 			}
-		}
+		};
 	})();
 	
 })();

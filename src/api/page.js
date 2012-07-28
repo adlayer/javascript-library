@@ -11,7 +11,7 @@
 		this.document;
 		this.tracker;
 		this.connection;
-	}
+	};
 	// Page data model
 	PageApi.prototype.getData = function(callback){
 

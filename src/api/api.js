@@ -58,7 +58,7 @@
 
 						// Listener for 'LOAD' event
 						ad.on('load', function(){
-							ad.tracker.track({	
+							ad.tracker.track({
 								type: 'impression', // should be required just in tracker server
 								ad_id: ad.id,
 								campaign_id: ad.campaign_id,
