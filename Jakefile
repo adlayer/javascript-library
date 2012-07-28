@@ -24,20 +24,19 @@ modules.domain = [
 	"./src/domain/space.js",
 	"./src/domain/page.js",
 	"./src/domain/site.js"
-].requires(modules.utils);
+];
 
 modules.dom = [
 	"./src/dom/dom_element.js", 
 	"./src/dom/ad_dom.js",
 	"./src/dom/space_dom.js"
-].requires(modules.domain);
+];
 
 modules.request = [
 	"./src/request/http.js", 
 	"./src/request/http_request.js",
 	"./src/request/img_request.js"
-].requires(modules.domain);
-
+];
 
 var config = {
 	"VERSION": "1.0.0",
