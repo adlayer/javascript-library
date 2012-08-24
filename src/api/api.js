@@ -1,50 +1,88 @@
 (function(global){
+	var queryString = require('../node_modules/querystring').querystring;
 	var copy = require('../utils/copy').copy;
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('./page').PageApi;
 	var Tracker = require('./tracker').Tracker;
-	var config = require('../config/config').config;
+	var defaultConfig = require('../config/config').config;
 	
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
 	
 	// Extend or define Adlayer
 	global.adlayer = global.adlayer || {};
+	// Api Shortcut
 	var api = global.adlayer;
 	
 	// Set config
-	api.config = api.config || config;
+	var config = api.config || defaultConfig;
 
 	// Creating connections
 	var connections = {
-		adserver: new Connection(api.config.url.adserver),
-		tracker: new Connection(api.config.url.tracker)
+		adserver: new Connection(config.url.adserver),
+		tracker: new Connection(config.url.tracker)
 	};
 	
 	// Tracker instance
 	var tracker = new Tracker();
 	tracker.connection = connections.tracker;
 	
-	// Connections api
-	api.connections = connections;
+	// Collections
+	var spacesCollection = {};
+	var adsCollection = {}
 	
-	// Space api
-	api.spaces = {};
+	/**
+	* @static init
+	*/
+	function adInit(space, ad){
+		// Exporting ad to api
+		adsCollection[ad.id] = ad;
+		
+		ad.tracker = tracker;
+
+		// Listener for 'LOAD' event
+		ad.on('load', function(){
+			ad.tracker.track({
+				type: 'impression',
+				
+				site_id: config.site_id,
+				domain: config.domain,
+				page_url: config.page_url,
+				page_id: config.page_id,
+				
+				ad_id: ad.id,
+				campaign_id: ad.campaign_id,
+				space_id: space.id
+			});
+		});
+
+		// Listener for 'PLACEMENT' event
+		ad.on('placement', function(){
+			// Setting click tag in ad element
+			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			ad.element.href = clickTag;
+		});
+		return ad;
+	}
 	
-	// Ad api
-	api.ads = {};
+	/**
+	* @static init
+	*/
+	function spaceInit(space){
+		spacesCollection[space.id] = space;
+		// create a instance of Ad using data model provided
+		var ad = ads.create(space.getAd());
+		ad = adInit(space, ad);
+		
+		// Placing ad in space
+		space.placeAd(ad);
+	}
+
 
 	/**
-	* 
+	* @static init
 	*/
 	Page.init = function(){
-
-		var config = {
-			site_id: '18659da646306bf5b35946a60600831f',
-			domain: 'localhost',
-			page_id: 'f66458ae7be6306d7dd2ab99b002b5ef',
-			page_url: 'localhost'
-		}
 		
 		var page = new Page({
 			id: config.page_id,
@@ -53,6 +91,7 @@
 			connection: connections.adserver,
 			document: document
 		});
+		
 
 		// Get all page data
 		page.getData(function(err, data){
@@ -62,36 +101,7 @@
 				page.scanSpaces(data.spaces, function(err, space){
 					// When find spaces
 					if(!err){
-						// create a instance of Ad using data model provided
-						var ad = ads.create(space.getAd());
-						ad.tracker = tracker;
-
-						// Listener for 'LOAD' event
-						ad.on('load', function(){
-							ad.tracker.track({
-								type: 'impression',
-								
-								site_id: config.site_id,
-								domain: config.domain,
-								page_url: config.page_url,
-								page_id: config.page_id,
-								
-								ad_id: ad.id,
-								campaign_id: ad.campaign_id,
-								space_id: space.id
-							});
-						});
-
-						// Listener for 'PLACEMENT' event
-						ad.on('placement', function(){
-							// Setting click tag in ad element
-							var clickTag = ad.getClickTag('site_id', page.id, 'http://adlayer.com.br');
-							ad.element.href = clickTag;
-						});
-						
-						// Placing ad in space
-						space.placeAd(ad);
-
+						spaceInit(space);
 					}
 				});
 			}
@@ -99,7 +109,27 @@
 		return page;
 	};
 	
-	// Page api
+	
+
+	var scriptTag = document.getElementById(config.page.scriptTagId);
+	var queries = scriptTag.src.split('?')[1];
+	var params = queryString.parse(queries);
+	
+	config.site_id = config.site_id || params.site;
+	config.domain = 'localhost';
+	config.page_id = config.page_id || params.page;
+	config.page_url = 'localhost';	
+	
+	
+	// Export page api
 	api.page = Page.init();
+	// Export config
+	api.config = config;
+	// Export connections
+	api.connections = connections;
+	// Export space api
+	api.spaces = spacesCollection;
+	// Export Ad api
+	api.ads = adsCollection;
 	
 })(this);

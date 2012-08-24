@@ -1,4 +1,12 @@
 exports.config = {
+	url: {
+		adserver: {
+			host: 'dev.jocasta.adlayerapp.com'
+		},
+		tracker: {
+			host: 'dev.tracker.adlayerapp.com'
+		}
+	},
 	spaces: {
 		standard: {
 			run: true,
@@ -13,14 +21,7 @@ exports.config = {
 		**/
 	},
 	page: {
-		run: true
-	},
-	url: {
-		adserver: {
-			host: 'dev.jocasta.adlayerapp.com'
-		},
-		tracker: {
-			host: 'dev.tracker.adlayerapp.com'
-		}
+		run: true,
+		scriptTagId: 'adlayerScript'
 	}
 };

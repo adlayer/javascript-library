@@ -14,7 +14,6 @@
 	};
 	// Page data model
 	PageApi.prototype.getData = function(callback){
-
 		var sign = this.connection.id();
 		var opts = copy(this.connection);
 		opts.host = opts.host;
