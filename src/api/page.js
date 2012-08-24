@@ -20,7 +20,9 @@
 		opts.host = opts.host;
 		opts.path = '/pages/' + this.id;
 		opts.qs = {
-			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback'
+			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback',
+			domain: this.domain,
+			site_id: this.site_id
 		};
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;

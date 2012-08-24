@@ -4,6 +4,7 @@
 	var Page = require('./page').PageApi;
 	var Tracker = require('./tracker').Tracker;
 	var config = require('../config/config').config;
+	
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
 	
@@ -11,10 +12,10 @@
 	global.adlayer = global.adlayer || {};
 	var api = global.adlayer;
 	
-	// Configs
+	// Set config
 	api.config = api.config || config;
 
-	// Connections
+	// Creating connections
 	var connections = {
 		adserver: new Connection(api.config.url.adserver),
 		tracker: new Connection(api.config.url.tracker)
@@ -37,35 +38,47 @@
 	* 
 	*/
 	Page.init = function(){
-		// Page api	
+
+		var config = {
+			site_id: '18659da646306bf5b35946a60600831f',
+			domain: 'localhost',
+			page_id: 'f66458ae7be6306d7dd2ab99b002b5ef',
+			page_url: 'localhost'
+		}
+		
 		var page = new Page({
-			id: 'f66458ae7be6306d7dd2ab99b002b5ef',
+			id: config.page_id,
+			site_id: config.site_id,
+			domain: config.domain,
 			connection: connections.adserver,
 			document: document
 		});
-		
+
 		// Get all page data
 		page.getData(function(err, data){
 			// When we get spaces in this page
 			if(data && data.spaces){
 				// For each space found in document
 				page.scanSpaces(data.spaces, function(err, space){
+					// When find spaces
 					if(!err){
-						
-						// Instance of ad using model provided
+						// create a instance of Ad using data model provided
 						var ad = ads.create(space.getAd());
 						ad.tracker = tracker;
 
 						// Listener for 'LOAD' event
 						ad.on('load', function(){
 							ad.tracker.track({
-								type: 'impression', // should be required just in tracker server
+								type: 'impression',
+								
+								site_id: config.site_id,
+								domain: config.domain,
+								page_url: config.page_url,
+								page_id: config.page_id,
+								
 								ad_id: ad.id,
 								campaign_id: ad.campaign_id,
-								space_id: space.id,
-								site_id: page.from_site,
-								page_id: page.id,
-								page_url: 'http://adlayer.com.br'
+								space_id: space.id
 							});
 						});
 

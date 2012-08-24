@@ -17,7 +17,7 @@ exports.config = {
 	},
 	url: {
 		adserver: {
-			host: 'couchdb'
+			host: 'dev.jocasta.adlayerapp.com'
 		},
 		tracker: {
 			host: 'dev.tracker.adlayerapp.com'
