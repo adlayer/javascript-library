@@ -61,7 +61,7 @@
       "body": ""
     },
     "ignore": false,
-    "code": "this.emit = function(event){\n\t\tvar eventListeners = listeners[event];\n\t\tif(eventListeners.length > 0){\n\t\t\tvar i = 0;\n\t\t\tfor(i; i < eventListeners.length; i++){\n\t\t\t\teventListeners[i].call();\n\t\t\t}\n\t\t\treturn eventListeners;\n\t\t}\n\t};\n};\nevents.EventEmitter = EventEmitter;\nexports.events = events;",
+    "code": "this.emit = function(event){\n\t\tvar eventListeners = listeners[event];\n\t\tif(eventListeners && (eventListeners.length > 0)){\n\t\t\tvar i = 0;\n\t\t\tfor(i; i < eventListeners.length; i++){\n\t\t\t\teventListeners[i].call();\n\t\t\t}\n\t\t\treturn eventListeners;\n\t\t}\n\t};\n};\nevents.EventEmitter = EventEmitter;\nexports.events = events;",
     "ctx": {
       "type": "method",
       "receiver": "this",

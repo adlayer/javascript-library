@@ -1,0 +1,12 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@class ImgAd</p>",
+      "summary": "<p>@class ImgAd</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "(function(){\n\tvar AdDom = require('../dom/ad_dom').AdDom;\n\tvar ImgAd = function(){\n\t\tAdDom.apply(this, arguments);\n\t\t\n\t\tvar __construct = (function(self){\n\t\t\t// Default create the image\n\t\t\tself.create('img');\n\t\t\tself.element.src = self.src;\n\t\t\tvar img = self.element;\n\t\t\t\n\t\t\t// Set id in the image or in the link wrapper\n\t\t\tself.element.id = self.id;\n\t\t\tself.addDomEventListener('load', function(){\n\t\t\t\tself.emit('load');\n\t\t\t});\n\t\t\t\n\t\t\tif(self.link){\n\t\t\t\t// subscribe img with link\n\t\t\t\tself.create('a');\n\t\t\t\tself.element.href = self.link;\n\t\t\t\tself.append(img);\n\t\t\t}\n\t\t\n\t\t\treturn self.element;\n\t\t})(this);\n\t};\n\tImgAd.prototype = new AdDom();\n\texports.ImgAd = ImgAd;\n})();"
+  }
+]

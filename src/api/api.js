@@ -26,10 +26,13 @@
 	// Tracker instance
 	var tracker = new Tracker();
 	tracker.connection = connections.tracker;
+
+	// Page instance
+	var page = {};
 	
 	// Collections
 	var spacesCollection = {};
-	var adsCollection = {}
+	var adsCollection = {};
 	
 	/**
 	* @static init
@@ -89,7 +92,7 @@
 			site_id: config.site_id,
 			domain: config.domain,
 			connection: connections.adserver,
-			document: document
+			document: global.document
 		});
 		
 
@@ -110,19 +113,23 @@
 	};
 	
 	
+	(function initialization(){
+		var scriptTag = global.document.getElementById(config.page.scriptTagId);
+		var queries = scriptTag.src.split('?')[1];
+		var params = queryString.parse(queries);
 
-	var scriptTag = document.getElementById(config.page.scriptTagId);
-	var queries = scriptTag.src.split('?')[1];
-	var params = queryString.parse(queries);
-	
-	config.site_id = config.site_id || params.site;
-	config.domain = 'localhost';
-	config.page_id = config.page_id || params.page;
-	config.page_url = 'localhost';	
+		config.site_id = config.site_id || params.site;
+		config.domain = config.domain || global.location.hostname;
+		config.page_id = config.page_id || params.page;
+		config.page_url = config.page_url || global.location.href;
+		
+		if(config.page.autoRun) page = Page.init();
+		
+	})();
 	
 	
 	// Export page api
-	api.page = Page.init();
+	api.page = page;
 	// Export config
 	api.config = config;
 	// Export connections

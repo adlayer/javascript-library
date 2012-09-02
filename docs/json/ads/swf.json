@@ -1,0 +1,47 @@
+[
+  {
+    "tags": [
+      {
+        "type": "property",
+        "string": "{String} align Alignment of html content."
+      },
+      {
+        "type": "property",
+        "string": "{Boolean} menu Control right click menu options (true, false)."
+      },
+      {
+        "type": "property",
+        "string": "{String} quality Control quality of loaded movie ('low', 'medium', 'high')."
+      },
+      {
+        "type": "property",
+        "string": "{String} scale Flash canvas mode ('noscale')."
+      },
+      {
+        "type": "property",
+        "string": "{String} wmode Embed type relative to context."
+      },
+      {
+        "type": "property",
+        "string": "{String} type Default alias for 'application/x-shockwave-flash'."
+      },
+      {
+        "type": "property",
+        "string": "{String} type allowScriptAcess."
+      }
+    ],
+    "description": {
+      "full": "<p>@class Swf</p>",
+      "summary": "<p>@class Swf</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Swf = function(){\n\tthis.align = \"center\";\n\tthis.menu = false;\n\tthis.quality = \"high\"; //low,autolow,autohigh,medium,high,best ;\n\tthis.scale = \"noscale\"; //default,noborder,exactfit,noscale\n\tthis.wmode = \"transparent\"; //window,opaque,transparent\n\tthis.type = \"application/x-shockwave-flash\";\n\tthis.allowScriptAccess = \"always\"; // \"always\", \"sameDomain\", and \"never\".\n\t//this.allowNetworking = \"all\";\n};\nexports.Swf = Swf;",
+    "ctx": {
+      "type": "function",
+      "name": "Swf",
+      "string": "Swf()"
+    }
+  }
+]

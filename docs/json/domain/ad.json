@@ -25,7 +25,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "var Ad = function( attributes ){\n\tvar Core = require('./core').Core;\n\tCore.apply(this, arguments);",
+    "code": "var Ad = function( attributes ){\n\tvar Core = require('./core').Core;\n\tvar EventEmitter = require('../node_modules/events').events.EventEmitter;\n\tCore.apply(this, arguments);\n\tEventEmitter.apply(this, arguments);",
     "ctx": {
       "type": "function",
       "name": "Ad",

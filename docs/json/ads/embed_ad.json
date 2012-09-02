@@ -1,0 +1,70 @@
+[
+  {
+    "tags": [
+      {
+        "type": "class",
+        "string": "EmbedAd"
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "attributes",
+        "description": ""
+      },
+      {
+        "type": "",
+        "string": ""
+      },
+      {
+        "type": "augments",
+        "otherClass": "AdDom"
+      },
+      {
+        "type": "property",
+        "string": "{String} id Id of ad"
+      },
+      {
+        "type": "property",
+        "string": "{String} name Name of ad creative"
+      },
+      {
+        "type": "property",
+        "string": "{String} campaign_id Id to campaign that belongs to"
+      },
+      {
+        "type": "property",
+        "string": "{String} type Ad type"
+      },
+      {
+        "type": "property",
+        "string": "{String} file Path to ad file"
+      },
+      {
+        "type": "property",
+        "string": "{String} link destiny link"
+      },
+      {
+        "type": "property",
+        "string": "{Boolean} status Ad status"
+      },
+      {
+        "type": "property",
+        "string": "{Object} alternative Alternative Ad is another instance of Ad with graceful degradation"
+      }
+    ],
+    "description": {
+      "full": "<p>Create embedable ads</p>",
+      "summary": "<p>Create embedable ads</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "(function(){\n\tvar AdDom = require('../dom/ad_dom').AdDom;\n\tvar Swf = require('./swf').Swf;\n\tvar EmbedAd = function(){\n\t\tAdDom.apply(this, arguments);\n\t\tSwf.apply(this, arguments);\n\t\t\n\t\tvar __construct = (function(self){\n\t\t\tself.create('EMBED');\n\t\t\tself.element.src = self.src;\n\t\t\t\n\t\t\tself.setAttributes(new Swf());\n\t\t\t\n\t\t\tself.element.id = self.id;\n\t\t\treturn self.element;\n\t\t})(this);\n\t};\n\tEmbedAd.prototype = new AdDom();\n\texports.EmbedAd = EmbedAd;\n})();"
+  }
+]

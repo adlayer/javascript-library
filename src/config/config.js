@@ -7,21 +7,8 @@ exports.config = {
 			host: 'dev.tracker.adlayerapp.com'
 		}
 	},
-	spaces: {
-		standard: {
-			run: true,
-			adsLimit: 1
-		}
-		/**
-		@example
-		hdshdsjsdhsjdhdsh: {
-			run: false,
-			adsLimit: 2
-		}
-		**/
-	},
 	page: {
-		run: true,
+		autoRun: true,
 		scriptTagId: 'adlayerScript'
 	}
 };

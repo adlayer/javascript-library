@@ -18,14 +18,16 @@
 		};
 		
 		var __construct = (function(self){
-			self.element = self.element || self.create('DIV');
+			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.id = self.id;
 			self.element.style.height = self.height;
 			self.element.style.width = self.width;
 			self.element.style.position = 'absolute';
+			
 			var bt = self.document.createElement('BUTTON');
 			bt.innerHTML = 'x';
 			self.append(bt);
+			
 		})(this);
 	};
 	FloaterSpace.prototype = new SpaceDom();

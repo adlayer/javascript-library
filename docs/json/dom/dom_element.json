@@ -49,12 +49,12 @@
       "body": ""
     },
     "ignore": false,
-    "code": "this.element = {};\n};",
+    "code": "this.element = undefined;\n};",
     "ctx": {
       "type": "property",
       "receiver": "this",
       "name": "element",
-      "value": "{}",
+      "value": "undefined",
       "string": "this.element"
     }
   },
@@ -82,7 +82,7 @@
       "body": ""
     },
     "ignore": false,
-    "code": "DomElement.prototype.create = function(tagName, document){\n\t\t//\tfile global || adlayer js module wrapper || passed document context\n\t\tdocument = this.document || global.document || document;\n\t\tthis.element = DomElement.create(tagName, document);\n\t\treturn this;\n\t};",
+    "code": "DomElement.prototype.create = function(tagName, document){\n\t\t//\tfile global || adlayer js module wrapper || passed document context\n\t\tdocument = this.document || global.document || document;\n\t\tthis.element = DomElement.create(tagName, document);\n\t\treturn this.element;\n\t};",
     "ctx": {
       "type": "method",
       "constructor": "DomElement",

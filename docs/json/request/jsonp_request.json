@@ -1,0 +1,128 @@
+[
+  {
+    "tags": [
+      {
+        "type": "class",
+        "string": "JsonpRequest"
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "Attributes",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "example",
+        "string": "new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')"
+      }
+    ],
+    "description": {
+      "full": "<p>Make an http request expeting for jsonp return</p>",
+      "summary": "<p>Make an http request expeting for jsonp return</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var JsonpRequest = function(){\n\tvar HttpRequest = require('./http_request').HttpRequest;\n\tHttpRequest.apply(this, arguments);\n};",
+    "ctx": {
+      "type": "function",
+      "name": "JsonpRequest",
+      "string": "JsonpRequest()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method queryCallback\n<ul><li>@public</li>\n<li>@param {String} string to call in jsonpresult</li>\n<li>@returns {Object} this to chain</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method queryCallback\n<ul><li>@public</li>\n<li>@param {String} string to call in jsonpresult</li>\n<li>@returns {Object} this to chain</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "JsonpRequest.prototype.queryCallback = function(str){\n\t\tthis.qs.callback = str;\n\t\treturn this;\n\t};",
+    "ctx": {
+      "type": "method",
+      "constructor": "JsonpRequest",
+      "name": "queryCallback",
+      "string": "JsonpRequest.prototype.queryCallback()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method validate\n<ul><li>@public</li>\n<li>@returns {Boolean}</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method validate\n<ul><li>@public</li>\n<li>@returns {Boolean}</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "JsonpRequest.prototype.validate = function(){\n\t\treturn this.qs.callback !== undefined;\n\t};",
+    "ctx": {
+      "type": "method",
+      "constructor": "JsonpRequest",
+      "name": "validate",
+      "string": "JsonpRequest.prototype.validate()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method send\n<ul><li>@public</li>\n<li>@param {Object} options</li>\n<li>@returns {Object} this to chain</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method send\n<ul><li>@public</li>\n<li>@param {Object} options</li>\n<li>@returns {Object} this to chain</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "JsonpRequest.prototype.send = function(data){\n\t\t//todo: use merge to data-> query\n\t\tif(data) this.qs = data;\n\t\t// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/\n\t\tfunction loadScript(url, document){\n\t\t\tvar script = document.createElement(\"script\");\n\t\t\tscript.type = \"text/javascript\";\n\t\t\tscript.src = url;\n\t\t\tdocument.getElementsByTagName(\"head\")[0].appendChild(script);\n\t\t\treturn script;\n\t\t}\n\t\tloadScript(this.getUrl(), JsonpRequest.document || document);\n\t\treturn this;\n\t};",
+    "ctx": {
+      "type": "method",
+      "constructor": "JsonpRequest",
+      "name": "send",
+      "string": "JsonpRequest.prototype.send()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@property {Object} DomObject\n<ul><li>@static</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@property {Object} DomObject\n<ul><li>@static</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "JsonpRequest.document = undefined;",
+    "ctx": {
+      "type": "property",
+      "receiver": "JsonpRequest",
+      "name": "document",
+      "value": "undefined",
+      "string": "JsonpRequest.document"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method make\n<ul><li>@static</li>\n<li>@param {Object} options   </li>\n<li>@param {Function} callback</li>\n<li>@returns {Object} this to chain</li>\n<li>@example: JsonpRequest.make(options, callback).expose(root)</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method make\n<ul><li>@static</li>\n<li>@param {Object} options   </li>\n<li>@param {Function} callback</li>\n<li>@returns {Object} this to chain</li>\n<li>@example: JsonpRequest.make(options, callback).expose(root)</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "JsonpRequest.make = function(options, callback){\n\t\tfunction wrap(fn){\n\t\t\tfunction wrapper(data){\n\t\t\t\tif( data ) {\n\t\t\t\t\tfn(null, data);\n\t\t\t\t} else {\n\t\t\t\t\tfn(new Error('No Response'), null);\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn wrapper;\n\t\t}\n\t\tvar instance = new JsonpRequest(options, wrap(callback));\n\t\tinstance.send();\n\t\treturn instance;\n\t};\n\t\n\texports.JsonpRequest = JsonpRequest;",
+    "ctx": {
+      "type": "method",
+      "receiver": "JsonpRequest",
+      "name": "make",
+      "string": "JsonpRequest.make()"
+    }
+  }
+]

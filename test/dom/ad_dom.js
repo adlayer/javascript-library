@@ -2,10 +2,16 @@ var expect = expect || require('expect.js');
 var document = document || require('../document');
 
 var AdDom = require('../../src/dom/ad_dom').AdDom;
+var Connection = require('../../src/connection/connection').Connection;
+var Tracker = require('../../src/api/tracker').Tracker;
+
 describe('AdDom', function(){
 	
 	var space = document.createElement('div');
 	space.id = 'uuid1293904';
+	
+	var tracker = new Tracker();
+	tracker.connection = new Connection();
 	
 	var ad = new AdDom({
 		id: '10',
@@ -13,7 +19,8 @@ describe('AdDom', function(){
 		link: 'http://www.adlayer.com.br',
 		element: document.createElement('img')
 	});
-
+	ad.tracker = tracker;
+	
 	describe('#getSpaceId', function(){
 
 		it('Should return the id of contextual space', function(){

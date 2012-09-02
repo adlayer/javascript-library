@@ -1,0 +1,41 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@class Connection</p>",
+      "summary": "<p>@class Connection</p>",
+      "body": ""
+    },
+    "ignore": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<h2>Using in node.js</h2>\n\n<pre><code>// hack request\nvar request = require('request');\nrequest.jsonp = request.get;\n\n// Hacking lib.connection\nvar connection = require('connection');\nconnection.prototype.request = request;\n\n// Your code goes here\n</code></pre>",
+      "summary": "<h2>Using in node.js</h2>\n\n<pre><code>// hack request\nvar request = require('request');\nrequest.jsonp = request.get;\n\n// Hacking lib.connection\nvar connection = require('connection');\nconnection.prototype.request = request;\n\n// Your code goes here\n</code></pre>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var Connection = function( attributes ){\n\tvar Http = require('../request/http').Http;\n\tHttp.apply(this, arguments);\n\t\n\tthis._index = 0;\n\t\n\tthis.name = '';\n\tthis.requests = {};",
+    "ctx": {
+      "type": "function",
+      "name": "Connection",
+      "string": "Connection()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "summary": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var __construct = function(self){\n\t\tif( typeof attributes === 'string' ){\n\t\t\tself.url = attributes;\n\t\t} else {\n\t\t\tself = self.extend(attributes);\n\t\t}\n\t}(this);\n};\n\nConnection.prototype.id = function(){\n\treturn 'n' + this._index;\n};\n\nConnection.prototype.newId = function(){\n\tthis._index++;\n\treturn this.id();\n};\nConnection.prototype.next = function(req){\n\tvar sign = this.newId();\n\tthis.requests[sign] = req;\n};\n\nConnection.prototype.getCallbackPath = function(){\n\treturn [this.name, 'requests', this.id(), 'callback'].join('.');\n};\n\nConnection.prototype.request = require('../request/request').request;\n\nConnection.prototype.get = function(path, data, callback){\n\tif(typeof data === 'function') {\n\t\tcallback = data;\n\t}\n\t\n\t// get callback path and asign as callcack querystring;\n\tdata.callback = this.getCallbackPath();\n\t\n\tthis.path = path;\n\tthis.qs = data;\n\t\n\t// Allocate request id namespace\n\tthis.requests[this.id()] = {};\n\t\n\t// Make a get request\n\tthis.request().get(this, callback);\n\t\n\t// Increment id for the next\n\tthis.newId();\n\t\n\treturn this;\n};\nexports.Connection = Connection;",
+    "ctx": {
+      "type": "function",
+      "name": "__construct",
+      "string": "__construct()"
+    }
+  }
+]

@@ -43,37 +43,6 @@
   {
     "tags": [],
     "description": {
-      "full": "<ul>\n<li>@method wrap\n<ul><li>@private</li>\n<li>@param {Function} fn</li>\n<li>@returns {Function} wrapper</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@method wrap\n<ul><li>@private</li>\n<li>@param {Function} fn</li>\n<li>@returns {Function} wrapper</li></ul></li>\n</ul>",
-      "body": ""
-    },
-    "ignore": false,
-    "code": "function wrap(fn){\n\t\tfunction wrapper(data){\n\t\t\tif( data ) {\n\t\t\t\tfn(null, data);\n\t\t\t} else {\n\t\t\t\tfn(new Error('No Response'), null);\n\t\t\t}\n\t\t}\n\t\treturn wrapper;\n\t}",
-    "ctx": {
-      "type": "function",
-      "name": "wrap",
-      "string": "wrap()"
-    }
-  },
-  {
-    "tags": [],
-    "description": {
-      "full": "<ul>\n<li>@method expose\n<ul><li>@privileged</li>\n<li>@param {Object} obj</li>\n<li>@returns {Function} wrapper</li></ul></li>\n</ul>",
-      "summary": "<ul>\n<li>@method expose\n<ul><li>@privileged</li>\n<li>@param {Object} obj</li>\n<li>@returns {Function} wrapper</li></ul></li>\n</ul>",
-      "body": ""
-    },
-    "ignore": false,
-    "code": "this.expose = function(obj){\n\t\tvar fn = this.callback;\n\t\tobj.callback = wrap(fn);\n\t};",
-    "ctx": {
-      "type": "method",
-      "receiver": "this",
-      "name": "expose",
-      "string": "this.expose()"
-    }
-  },
-  {
-    "tags": [],
-    "description": {
       "full": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
       "summary": "<ul>\n<li>@method __construct\n<ul><li>@private</li>\n<li>@returns {Object} return this to allow chain pattern</li></ul></li>\n</ul>",
       "body": ""

@@ -21,7 +21,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "var Core = function(){\n\tvar merge = require('../utils/merge').merge;",
+    "code": "var Core = function(){\n\tvar merge = require('../utils/merge').merge;\n\tvar queryString = require('../node_modules/querystring').querystring;",
     "ctx": {
       "type": "function",
       "name": "Core",
@@ -36,7 +36,7 @@
       "body": ""
     },
     "ignore": false,
-    "code": "this.extend = function(attributes){\n\t\treturn merge(this, attributes);\n\t};\n};\nexports.Core = Core;",
+    "code": "this.extend = function(attributes){\n\t\treturn merge(this, attributes);\n\t};\n\t\n};\nexports.Core = Core;",
     "ctx": {
       "type": "method",
       "receiver": "this",

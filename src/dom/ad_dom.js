@@ -16,6 +16,11 @@
 	var AdDom = function(){
 		// extends Ad
 		Ad.apply(this, arguments);
+		
+		/*
+		* @property {Tracke} tracker Instance of tracker
+		* @public
+		*/
 		this.tracker = {};
 	};
 	// extends DomElement
