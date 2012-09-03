@@ -5,7 +5,6 @@
   , "keywords": []
   , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
   , "dependencies": {
-	"biscuit":"x.x.x",
 	"jsdom":"x.x.x",
 	"mocha": "x.x.x",
 	"hogan.js": "x.x.x"

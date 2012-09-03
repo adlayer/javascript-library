@@ -1,4 +1,3 @@
-/**
 var expect = expect || require('expect.js');
 var document = document || require('../document');
 
@@ -25,4 +24,3 @@ describe('Api', function(){
 	});
 	
 });
-**/

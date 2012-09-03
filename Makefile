@@ -5,7 +5,7 @@ default:
 	# Build library
 	jake
 	# Make documentation
-	jake docs
+	# jake docs
 
 test:
 	./node_modules/mocha/bin/mocha test/**/*.js --reporter spec
