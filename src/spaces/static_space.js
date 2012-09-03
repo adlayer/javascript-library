@@ -1,11 +1,15 @@
 /**
-* @class represents the type Static
-* @extends SpaceDom
-* @implements ISpace
+* @module spaces
 */
+
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
-	
+	/**
+	* Represents the type Static
+	* 
+	* @class StaticSpace
+	* @extends SpaceDom
+	*/	
 	var StaticSpace = function(){
 		SpaceDom.apply(this, arguments);
 		var __construct = (function(self){

@@ -1,11 +1,16 @@
 /**
-* @class represents the type Expander space
-* @extends Space
-* @implements ISpace
+* @module spaces
 */
 
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	/**
+	* Represents the type Expander space
+	*
+	* @class ExpandableSpace
+	* @extends SpaceDom
+	* @implements ISpace
+	*/
 	var ExpandableSpace = function(){
 		SpaceDom.apply(this, arguments);
 		
@@ -31,6 +36,7 @@
 	ExpandableSpace.prototype = new SpaceDom();
 	
 	/**
+	* @method clip
 	* @public
 	* @return {Object}
 	*/
@@ -40,6 +46,7 @@
 	};
 	
 	/**
+	* @method expand
 	* @public
 	* @return {Object}
 	*/
@@ -52,6 +59,7 @@
 	};
 	
 	/**
+	* @method retract
 	* @public
 	* @return {Object}
 	*/

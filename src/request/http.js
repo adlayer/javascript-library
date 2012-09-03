@@ -9,14 +9,50 @@ var Http = function(){
 	var queryString = require('../node_modules/querystring').querystring;
 	Core.apply(this, arguments);
 	
+	/**
+	* @property host
+	* @type string
+	*/
 	this.host = '';
+	/**
+	* @property protocol
+	* @type string
+	* @default 'http'
+	*/
 	this.protocol = 'http';
+	/**
+	* @property port
+	* @type number
+	* @default 80
+	*/
 	this.port = 80;
+	/**
+	* @property path
+	* @type string
+	* @default '/'
+	*/
 	this.path = '/';
+	/**
+	* @property qs
+	* @type object
+	*/
 	this.qs = {};
+	/**
+	* @property query
+	* @type string
+	*/
 	this.query = '';
+	/**
+	* @type url
+	* @type string
+	*/
 	this.url = '';
 
+	/**
+	* @method isEmptyObject
+	* @param {Object} obj
+	* return {Boolean}
+	*/
 	function isEmptyObject(obj){
 		for(var prop in obj) {
 			if(obj.hasOwnProperty(prop)) return false;
@@ -24,9 +60,8 @@ var Http = function(){
 		return true;
 	}
 	
-	/*
+	/**
 	* @method getUrl
-	* @privileged
 	* @returns {String} full url
 	*/
 	this.getUrl = function(){

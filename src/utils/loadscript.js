@@ -1,5 +1,5 @@
 /**
- * Load an script on top of html
+ * @method loadScript
  * @param {string}
  * @return {element}
  */

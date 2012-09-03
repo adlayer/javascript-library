@@ -1,4 +1,8 @@
-/*
+/**
+* @module dom
+*/
+
+/**
 * Abstract class for dom/html elements 
 *
 * @class DomElement
@@ -6,16 +10,20 @@
 */
 var DomElement = function(){
 	/**
-	* @property {String} id Id attribute of object
+	* Id attribute of object
+	* @property id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {Object} element Dom element itself
+	* Dom element itself
+	* @property element
+	* @type object
 	*/
 	this.element = undefined;
 };
 
-	/*
+	/**
 	* @method create
 	* @param {String} tagName
 	* @param {Object} document
@@ -25,7 +33,7 @@ var DomElement = function(){
 	DomElement.create = function(tagName, document){
 		return document.createElement(tagName);
 	};
-	/*
+	/**
 	* @method create
 	* @param {String} tagName
 	* @param {Object} document
@@ -39,7 +47,7 @@ var DomElement = function(){
 		return this.element;
 	};
 	
-	/*
+	/**
 	* @method setAttributes
 	* @param {Object} attributes
 	* @public
@@ -50,7 +58,7 @@ var DomElement = function(){
 		merge(this.element, attributes);
 	};
 	
-	/*
+	/**
 	* @method append
 	* @param {Object} child
 	* @public
@@ -60,7 +68,7 @@ var DomElement = function(){
 		this.element.appendChild(child);
 		return this;
 	};
-	/*
+	/**
 	* @method findParentTag
 	* @param {String} tag UPPERCASE tag name
 	* @public
@@ -73,7 +81,7 @@ var DomElement = function(){
 		}
 		return parent;
 	};
-	/*
+	/**
 	* @method addDomEventListener
 	* @param {String} type Event name like 'click', 'load', 'mouseover'
 	* @param {Function} eventListener Callback for event trigger

@@ -1,4 +1,8 @@
 /**
+* @module core
+*/
+
+/**
 * Core class
 *
 * @class Core
@@ -9,11 +13,12 @@ var Core = function(){
 	var merge = require('../utils/merge').merge;
 	var queryString = require('../node_modules/querystring').querystring;
 	
-	/*
+	/**
 	* @method extend
-	* @privileged
-	* @returns {Object} return this to allow chain pattern
+	* @param {Object} attributes
+	* @return {Object} return this to allow chain pattern
 	*/
+	
 	this.extend = function(attributes){
 		return merge(this, attributes);
 	};

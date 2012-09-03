@@ -1,6 +1,5 @@
 /**
-* @todo: switch for IE use object tag
-* @todo: change write data different to avoid _id & file atribution
+* @module ads
 */
 (function(){
 	

@@ -1,4 +1,8 @@
 /**
+* @module request
+*/
+
+/**
 * Abstract class to make http requests
 *
 * @class HttpRequest
@@ -10,9 +14,13 @@ var HttpRequest = function( attributes, callback ){
 	var Http = require('./http').Http;
 	Http.apply(this, arguments);
 	
+	/**
+	* @property callback
+	* @type function
+	*/
 	this.callback = undefined;
 	
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern

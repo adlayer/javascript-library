@@ -5,11 +5,11 @@
 	var Space = require('../domain/space').Space;
 	
 	
-	/*
+	/**
 	* Space dom
 	*
 	* @class SpaceDom
-	* @requires DomElement
+	* @extends DomElement
 	* @requires Ad
 	*/
 	var SpaceDom = function(){
@@ -21,8 +21,8 @@
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
 
-	/*
-	* @public
+	/**
+	* @method placeAd
 	* @param {Object} DomElement, Ad to append in element
 	* @returns {Object} return this to chain methods
 	*/
@@ -32,8 +32,8 @@
 		return this;
 	};
 	
-	/*
-	* @public
+	/**
+	* @method getElement
 	* @returns {Object} return the DomElement
 	*/
 	SpaceDom.prototype.getElement = function(){

@@ -1,3 +1,6 @@
+/**
+* @module api
+*/
 (function(global){
 	var queryString = require('../node_modules/querystring').querystring;
 	var copy = require('../utils/copy').copy;
@@ -35,7 +38,8 @@
 	var adsCollection = {};
 	
 	/**
-	* @static init
+	* @method adInit
+	* @static 
 	*/
 	function adInit(space, ad){
 		// Exporting ad to api
@@ -69,7 +73,8 @@
 	}
 	
 	/**
-	* @static init
+	* @method spaceInit
+	* @static 
 	*/
 	function spaceInit(space){
 		spacesCollection[space.id] = space;
@@ -83,7 +88,8 @@
 
 
 	/**
-	* @static init
+	* @method init
+	* @static 
 	*/
 	Page.init = function(){
 		
@@ -126,7 +132,6 @@
 		if(config.page.autoRun) page = Page.init();
 		
 	})();
-	
 	
 	// Export page api
 	api.page = page;

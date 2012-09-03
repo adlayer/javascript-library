@@ -1,3 +1,6 @@
+/**
+* @module request
+*/
 function request(){
 	
 	var JsonpRequest = require('./jsonp_request').JsonpRequest;

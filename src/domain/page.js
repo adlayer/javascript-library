@@ -1,27 +1,40 @@
 /**
+* @module core
+*/
+
+/**
 * Abstract class for page
 *
 * @class Page
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Page = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id unique page id
+	* id unique page id
+	* @property  id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} name page name
+	* page name
+	* @property name
+	* @type string
 	*/
 	this.name = '';
 	/**
-	* @property {Array} spaces Collection of page spaces
+	* Collection of page spaces
+	* @property spaces
+	* @type array
 	*/
 	this.spaces = [];
 	/**
-	* @property {Boolean} true for active and false for inactive
+	* Collection of page spaces
+	* @property status
+	* @type boolean
 	*/
 	this.status = true;
 	
@@ -37,8 +50,8 @@ var Page = function( attributes ){
 	/**
 	* @method getActiveContent
 	* @public
-	* @returns {Object} new Page() - return the instance itself to improve chainability
-	* @requires Javascript 1.6
+	* @return {Page} the instance itself to improve chainability
+	* @require Javascript 1.6
 	* __Warning:__ Don't use this in browser, because it can not work in old browsers
 	* @todo: should be readonly not modify the object just return filtered value
 	*/
@@ -58,8 +71,4 @@ var Page = function( attributes ){
 		}
 		return this;
 	};
-	/**
-	* @requires modules in browser
-	* @exports Page as Page
-	*/
 	exports.Page = Page;

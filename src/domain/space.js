@@ -1,6 +1,11 @@
 /**
+* @module core
+*/
+
+/**
 * Interface for space behaviour
 *
+* @class ISpaceBehaviour
 * @interface ISpaceBehaviour
 * @constructor
 */
@@ -33,30 +38,41 @@ var RandomSpaceBehaviour = function(){
 *
 * @class Space
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Space = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id Unique space id
+	* Unique space id
+	* @property id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} type Type of space
+	* Type of space
+	* @property type
+	* @type string
 	*/
 	this.type = '';
 	/**
-	* @property {Boolean} status true for active and false for inactive
+	* true for active and false for inactive
+	* @property status
+	* @type boolean
 	*/
 	this.status = '';
 	/**
-	* @property {Array} ads Collection of ads linked to space
+	* Collection of ads linked to space
+	* @property ads
+	* @type array
 	*/
 	this.ads = [];
 	
 	/**
-	* @property {SpaceBehaviour} behaviour a part of strategy pattern
+	* behaviour a part of strategy pattern
+	* @property behaviour 
+	* @type SpaceBehaviour
 	*/
 	this.behaviour = {};
 
@@ -90,8 +106,4 @@ var Space = function( attributes ){
 	}(this);
 };
 
-	/**
-	* @requires modules in browser
-	* @exports Space as Space
-	*/
 	exports.Space = Space;

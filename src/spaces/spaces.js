@@ -1,5 +1,7 @@
-(function(){
-	
+/**
+* @module spaces
+*/
+(function(){	
 	exports.spaces = (function(){
 		var Expandable = require('./expandable_space.js').ExpandableSpace,
 			Floater = require('./floater_space.js').FloaterSpace,

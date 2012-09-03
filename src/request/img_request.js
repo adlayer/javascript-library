@@ -1,8 +1,13 @@
-/*
+/**
+* @module request
+*/
+
+/**
 * Loads an img
 *
 * @class ImgRequest
 * @constructor
+* @extends HttpRequest
 * @param {Object} Attributes
 * @param {Function} callback
 * @example new ImgRequest({document:document, url}, callback)
@@ -12,7 +17,7 @@ var ImgRequest = function(){
 	HttpRequest.apply(this, arguments);
 };
 
-	/*
+	/**
 	* @method send
 	* @public
 	* @param {Object} data
@@ -32,7 +37,7 @@ var ImgRequest = function(){
 		return this;
 	};
 	
-	/*
+	/**
 	* @method make
 	* @static
 	* @param {Object} options	

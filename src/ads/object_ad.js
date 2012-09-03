@@ -1,25 +1,24 @@
-/**
-* Create embedable ads
-*
-* @class EmbedAd
-* @constructor
-* @param {Object} attributes
-*
-* @augments AdDom
-* @property {String} id Id of ad
-* @property {String} name Name of ad creative
-* @property {String} campaign_id Id to campaign that belongs to
-* @property {String} type Ad type
-* @property {String} file Path to ad file
-* @property {String} link destiny link
-* @property {Boolean} status Ad status
-* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-*
-*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
 	
+	/**
+	* Create embedable ads
+	*
+	* @class ObjectAd
+	* @constructor
+	* @param {Object} attributes
+	*
+	* @augments AdDom
+	* @property {String} id Id of ad
+	* @property {String} name Name of ad creative
+	* @property {String} campaign_id Id to campaign that belongs to
+	* @property {String} type Ad type
+	* @property {String} file Path to ad file
+	* @property {String} link destiny link
+	* @property {Boolean} status Ad status
+	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
+	*/	
 	var ObjectAd = function(){
 		var superclass = this;
 		AdDom.apply(this, arguments);
@@ -29,8 +28,8 @@
 		var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
 		var PLUGINSPAGE = "http://www.macromedia.com/go/getflashplayer";
 		
-		/** @class Param
-		* <param name="wmode" value="tranparent" />
+		/** 
+		* @class Param
 		*/
 		var Param = function(name,value){
 			this.name = name;

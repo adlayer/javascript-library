@@ -1,31 +1,44 @@
-/*
+/**
+* @module core
+*/
+
+/**
 * Abstract class for site
 *
 * @class Site
 * @constructor
-* @param {Object} attributes
+* @extends Core
 */
 var Site = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id Unique site id
+	* Unique site id
+	* @property id 
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} name Name of site
+	* Name of site
+	* @property name
+	* @type string
 	*/
 	this.name = '';
 	/**
-	* @property {Boolean} status true for active and  false for inactive
+	* true for active and  false for inactive
+	* @property status
+	* @type boolean
+	* @default true
 	*/
 	this.status = true;
 	/**
-	* @property {Array} domains Collection of all allowed domains
+	* Collection of all allowed domains
+	* @property domains
+	* @type array
 	*/
 	this.domains = [];
 	
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -36,11 +49,12 @@ var Site = function( attributes ){
 };
 
 	/**
-	* @description Find for exact domain or subdomain
+	* Find for exact domain or subdomain
+	*
+	* @method hasDomain
 	* @public
 	* @param {String} entry - Domain string
 	* @returns {Boolean} - True when found a domain and false for not
-	* @todo: change to regex
 	*/
 	Site.prototype.hasDomain = function(entry){
 		var self = this;
@@ -68,8 +82,4 @@ var Site = function( attributes ){
 		return result;
 	};
 
-	/**
-	* @requires modules in browser
-	* @exports Event as Event
-	*/
 	exports.Site = Site;

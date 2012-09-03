@@ -1,9 +1,13 @@
 /**
+* @module core
+*/
+
+/**
 * Abstract class for ads
 *
 * @class Ad
 * @constructor
-* @param {Object} attributes
+* @extends Core
 */
 var Ad = function( attributes ){
 	var Core = require('./core').Core;
@@ -11,49 +15,57 @@ var Ad = function( attributes ){
 	Core.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
 	
-	/*
-	* @property {String} id Id of ad
-	* @public
+	/**
+	* Id of ad
+	* @property id 
+	* @type string
 	*/
 	this.id = '';
-	/*
-	* @property {String} name Name of ad creative
-	* @public
+	/**
+	* Name of ad creative
+	* @property name 
+	* @type string
 	*/
 	this.name = '';
-	/*
-	* @property {String} campaign_id Id to campaign that belongs to
-	* @public
+	/**
+	* Id to campaign that belongs to
+	* @property campaign_id 
+	* @type string
 	*/
 	this.campaign_id = '';
-	/*
-	* @property {String} type Ad type
-	* @public
+	/**
+	* Ad type
+	* @property type 
+	* @type string
 	*/
 	this.type = '';
-	/*
-	* @property {String} file Path to ad file
-	* @public
+	/**
+	* file Path to ad file
+	* @property file 
+	* @type string
 	*/
 	this.file = '';
-	/*
-	* @property {String} link destiny link
-	* @public
+	/**
+	* link destiny link
+	* @property link 
+	* @type string
 	*/
 	this.link = '';
-	/*
-	* @property {Boolean} status Ad status
-	* @public
+	/**
+	* status Ad status
+	* @property status 
+	* @type boolean
 	*/
 	this.status = true;
-	/*
-	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-	* @public
+	/**
+	* Alternative Ad is another instance of Ad with graceful degradation
+	* @property alternative 
+	* @type object
 	*/
 	this.alternative = {};
 	
 
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -63,8 +75,4 @@ var Ad = function( attributes ){
 	}(this);
 };
 
-/**
-* @requires modules in browser
-* @exports Ad as Ad
-*/
 exports.Ad = Ad;

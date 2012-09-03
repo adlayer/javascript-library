@@ -1,14 +1,18 @@
 /**
-* @class represents the type Floater
-* @extends Space
-* @implements ISpace
+* @module spaces
 */
 
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	/**
+	* Represents the type Floater
+	* @class FloaterSpace
+	* @extends SpaceDom
+	*/
 	var FloaterSpace = function(){
 		SpaceDom.apply(this, arguments);
 		/**
+		* @method close
 		* @public
 		*/
 		this.close = function(){

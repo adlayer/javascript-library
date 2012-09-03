@@ -1,3 +1,6 @@
+/**
+* @module dom
+*/
 (function(){
 	
 	// modules
@@ -6,19 +9,22 @@
 	var Event = require('../domain/event').Event;
 	
 	
-	/*
+	/**
 	* Base for any type of Dom ads.
 	*
 	* @class AdDom
-	* @augments Ad
-	* @augments DomElement
+	* @constructor
+	* @extends Ad
+	* @extends DomElement
 	*/
 	var AdDom = function(){
 		// extends Ad
 		Ad.apply(this, arguments);
 		
-		/*
-		* @property {Tracke} tracker Instance of tracker
+		/**
+		* Instance of tracker
+		* @property tracker
+		* type tracker
 		* @public
 		*/
 		this.tracker = {};
@@ -27,8 +33,8 @@
 	AdDom.prototype = new DomElement();
 	
 	
-	/*
-	* @public
+	/**
+	* @method getSpaceId
 	* @returns {String} return the id of the first parent div
 	*/
 	AdDom.prototype.getSpaceId = function(){
@@ -36,8 +42,8 @@
 		return node.id;
 	};
 	
-	/*
-	* @public
+	/**
+	* @method
 	* @param {String} site_id
 	* @param {String} page_id
 	* @param {String} page_url

@@ -1,8 +1,13 @@
-/*
+/**
+* @module request
+*/
+
+/**
 * Make an http request expeting for jsonp return
 *
 * @class JsonpRequest
 * @constructor
+* @extends HttpRequest
 * @param {Object} Attributes
 * @param {Function} callback
 * @example new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')
@@ -11,7 +16,7 @@ var JsonpRequest = function(){
 	var HttpRequest = require('./http_request').HttpRequest;
 	HttpRequest.apply(this, arguments);
 };
-	/*
+	/**
 	* @method queryCallback
 	* @public
 	* @param {String} string to call in jsonpresult
@@ -22,7 +27,7 @@ var JsonpRequest = function(){
 		return this;
 	};
 
-	/*
+	/**
 	* @method validate
 	* @public
 	* @returns {Boolean}
@@ -31,7 +36,7 @@ var JsonpRequest = function(){
 		return this.qs.callback !== undefined;
 	};
 
-	/*
+	/**
 	* @method send
 	* @public
 	* @param {Object} options
@@ -52,19 +57,20 @@ var JsonpRequest = function(){
 		return this;
 	};
 	
-	/*
-	* @property {Object} DomObject
+	/**
+	* @property document
+	* @type object
 	* @static
 	*/
 	JsonpRequest.document = undefined;
 	
-	/*
+	/**
 	* @method make
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
 	* @returns {Object} this to chain
-	* @example: JsonpRequest.make(options, callback).expose(root)
+	* @example JsonpRequest.make(options, callback).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback){
 		function wrap(fn){

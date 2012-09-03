@@ -1,5 +1,6 @@
 /**
  * Util method for extend/merge objects
+ * @method merge
  */
 var merge = function(destination,source) {
     for (var property in source){
