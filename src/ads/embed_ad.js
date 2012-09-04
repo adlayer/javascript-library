@@ -8,8 +8,8 @@
 	* @class EmbedAd
 	* @constructor
 	* @param {Object} attributes
-	*
-	* @augments AdDom
+	* @extends AdDom
+	* @extends Swf
 	* @property {String} id Id of ad
 	* @property {String} name Name of ad creative
 	* @property {String} campaign_id Id to campaign that belongs to

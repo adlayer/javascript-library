@@ -24,7 +24,7 @@
 		/**
 		* Instance of tracker
 		* @property tracker
-		* type tracker
+		* @type tracker
 		* @public
 		*/
 		this.tracker = {};
@@ -43,7 +43,7 @@
 	};
 	
 	/**
-	* @method
+	* @method getClickTag
 	* @param {String} site_id
 	* @param {String} page_id
 	* @param {String} page_url

@@ -1,4 +1,7 @@
-/*
+/**
+* @module ads
+*/
+/**
 * @class Swf
 * @property {String} align Alignment of html content.
 * @property {Boolean} menu Control right click menu options (true, false).

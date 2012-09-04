@@ -43,14 +43,14 @@ var Http = function(){
 	*/
 	this.query = '';
 	/**
-	* @type url
+	* @property url
 	* @type string
 	*/
 	this.url = '';
 
 	/**
 	* @method isEmptyObject
-	* @param {Object} obj
+	* @param {Object} obj Object to verify
 	* return {Boolean}
 	*/
 	function isEmptyObject(obj){
