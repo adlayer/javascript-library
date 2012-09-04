@@ -10,14 +10,6 @@
 	* @param {Object} attributes
 	* @extends AdDom
 	* @extends Swf
-	* @property {String} id Id of ad
-	* @property {String} name Name of ad creative
-	* @property {String} campaign_id Id to campaign that belongs to
-	* @property {String} type Ad type
-	* @property {String} file Path to ad file
-	* @property {String} link destiny link
-	* @property {Boolean} status Ad status
-	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
 	*/
 	var EmbedAd = function(){
 		AdDom.apply(this, arguments);

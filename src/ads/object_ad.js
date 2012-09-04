@@ -9,32 +9,60 @@
 	* @constructor
 	* @param {Object} attributes
 	*
-	* @augments AdDom
-	* @property {String} id Id of ad
-	* @property {String} name Name of ad creative
-	* @property {String} campaign_id Id to campaign that belongs to
-	* @property {String} type Ad type
-	* @property {String} file Path to ad file
-	* @property {String} link destiny link
-	* @property {Boolean} status Ad status
-	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
+	* @extends AdDom
+	* @extends Swf
 	*/	
 	var ObjectAd = function(){
 		var superclass = this;
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
 	
+		/**
+		* @property CLASSID
+		* @type string
+		* @final
+		* @private
+		*/
 		var CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
+		/**
+		* @property CODEBASE
+		* @type string
+		* @final
+		* @private
+		*/
 		var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
+		/**
+		* @property PLUGINSPAGE
+		* @type string
+		* @final
+		* @private
+		*/
 		var PLUGINSPAGE = "http://www.macromedia.com/go/getflashplayer";
 		
 		/** 
 		* @class Param
+		* @constructor
+		* @param {String} name
+		* @param {String} value
+		* @return HTMLElement
 		*/
-		var Param = function(name,value){
+		var Param = function(name, value){
+			/**
+			* @property name
+			* @type string
+			*/
 			this.name = name;
+			/**
+			* @property value
+			* @type string
+			*/
 			this.value = value;
+			/**
+			* @property element
+			* @type HTMLElement
+			*/
 			this.element = superclass.create("param");
+			
 			this.element.setAttribute("name", this.name);
 			this.element.setAttribute("value", this.value);
 			return this.element;

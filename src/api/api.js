@@ -1,5 +1,7 @@
 /**
+* Api wrapper
 * @module api
+* @main api
 */
 (function(global){
 	var queryString = require('../node_modules/querystring').querystring;
@@ -12,34 +14,74 @@
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
 	
-	// Extend or define Adlayer
+	/**
+ 	* Extend or define Adlayer
+	* @class api
+	*/
 	global.adlayer = global.adlayer || {};
-	// Api Shortcut
+	/**
+ 	* @property api
+	* @type object
+	* @private
+	*/
 	var api = global.adlayer;
 	
-	// Set config
+	/**
+ 	* @property config
+	* @type object
+	* @private
+	*/
 	var config = api.config || defaultConfig;
 
-	// Creating connections
+	/**
+ 	* @property connections
+	* @type object
+	* @private
+	*/
 	var connections = {
 		adserver: new Connection(config.url.adserver),
 		tracker: new Connection(config.url.tracker)
 	};
 	
-	// Tracker instance
+	/**
+ 	* @property tracker
+	* @type object
+	* @private
+	*/
 	var tracker = new Tracker();
 	tracker.connection = connections.tracker;
 
-	// Page instance
+	/**
+ 	* @property page
+	* @type object
+	* @private
+	*/
 	var page = {};
 	
-	// Collections
+	/**
+	* Collections of rendered spaces
+	*
+ 	* @property spacesCollection
+	* @type object
+	* @private
+	*/
 	var spacesCollection = {};
-	var adsCollection = {};
 	
 	/**
+	* Collections of placed ads
+	*
+ 	* @property adsCollection
+	* @type object
+	* @private
+	*/
+	var adsCollection = {};
+
+	/**
 	* @method adInit
-	* @static 
+	* @param {Space} space
+	* @param {Ad} ad
+	* @return {Ad}
+	* @private
 	*/
 	function adInit(space, ad){
 		// Exporting ad to api
@@ -74,7 +116,8 @@
 	
 	/**
 	* @method spaceInit
-	* @static 
+	* @param {Space} space
+	* @private
 	*/
 	function spaceInit(space){
 		spacesCollection[space.id] = space;
@@ -118,7 +161,10 @@
 		return page;
 	};
 	
-	
+	/**
+	* @method initialization
+	* @private
+	*/
 	(function initialization(){
 		var scriptTag = global.document.getElementById(config.page.scriptTagId);
 		var queries = scriptTag.src.split('?')[1];
@@ -133,15 +179,40 @@
 		
 	})();
 	
-	// Export page api
+	/**
+	* Exports page api
+	*
+ 	* @property page
+	* @type object
+	*/
 	api.page = page;
-	// Export config
+	/**
+	* Exports configuration
+	*
+ 	* @property config
+	* @type object
+	*/
 	api.config = config;
-	// Export connections
+	/**
+	* Exports connections
+	*
+ 	* @property connections
+	* @type object
+	*/
 	api.connections = connections;
-	// Export space api
+	/**
+	* Exports spaces
+	*
+ 	* @property spaces
+	* @type object
+	*/
 	api.spaces = spacesCollection;
-	// Export Ad api
+	/**
+	* Exports ads
+	*
+ 	* @property ads
+	* @type object
+	*/
 	api.ads = adsCollection;
 	
 })(this);
