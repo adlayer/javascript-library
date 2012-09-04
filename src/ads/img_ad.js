@@ -1,6 +1,7 @@
 /**
- * @class ImgAd
- */
+* @class ImgAd
+* @extends AdDom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var ImgAd = function(){

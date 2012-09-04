@@ -3,21 +3,44 @@
 */
 /**
 * @class Swf
-* @property {String} align Alignment of html content.
-* @property {Boolean} menu Control right click menu options (true, false).
-* @property {String} quality Control quality of loaded movie ('low', 'medium', 'high').
-* @property {String} scale Flash canvas mode ('noscale').
-* @property {String} wmode Embed type relative to context.
-* @property {String} type Default alias for 'application/x-shockwave-flash'.
-* @property {String} type allowScriptAcess.
 */
 var Swf = function(){
+	/**
+	* Alignment of html content.
+	* @property align
+	* @type string
+	*/
 	this.align = "center";
+	/**
+	* Control right click menu options (true, false).
+	* @property menu
+	* @type boolean
+	*/
 	this.menu = false;
+	/**
+	* @property quality
+	* @type string
+	*/
 	this.quality = "high"; //low,autolow,autohigh,medium,high,best ;
+	/**
+	* @property scale
+	* @type string
+	*/
 	this.scale = "noscale"; //default,noborder,exactfit,noscale
+	/**
+	* @property wmode
+	* @type string
+	*/
 	this.wmode = "transparent"; //window,opaque,transparent
+	/**
+	* @property type
+	* @type string
+	*/
 	this.type = "application/x-shockwave-flash";
+	/**
+	* @property allowScriptAccess
+	* @type string
+	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
 };

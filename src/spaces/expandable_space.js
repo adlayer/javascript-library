@@ -37,7 +37,8 @@
 	
 	/**
 	* @method clip
-	* @public
+	* @param {Number} width
+	* @param {Number} height
 	* @return {Object}
 	*/
 	ExpandableSpace.prototype.clip = function(width, height){

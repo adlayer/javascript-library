@@ -1,9 +1,18 @@
+/**
+* @module api
+*/
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
 	var Page = require('../domain/page').Page;
 	var request = require('../request/request').request;
 	var spaces = require('../spaces/spaces').spaces;
-			
+	
+	/**
+	* @class PageApi
+	* @constructor
+	* @extends Page
+	* @extends EventEmitter
+	*/			
 	var PageApi = function(){
 		Page.apply(this, arguments);
 		EventEmitter.apply(this, arguments);
@@ -13,7 +22,10 @@
 		this.connection;
 	};
 	
-	// Page data model
+	/**
+	* @method getData
+	* @param {Function} callback
+	*/
 	PageApi.prototype.getData = function(callback){
 		var sign = this.connection.id();
 		var opts = copy(this.connection);
@@ -29,7 +41,11 @@
 		
 	};
 	
-	// Page spaces iterator
+	/**
+	* @method scanSpaces
+	* @param {Function} collection
+	* @param {Function} callback
+	*/
 	PageApi.prototype.scanSpaces = function(collection, callback){
 
 		for( var i = 0; i < collection.length; i++ ){
