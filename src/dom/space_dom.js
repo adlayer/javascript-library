@@ -4,7 +4,6 @@
 	var DomElement = require('./dom_element').DomElement;
 	var Space = require('../domain/space').Space;
 	
-	
 	/**
 	* Space dom
 	*

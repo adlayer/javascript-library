@@ -10,150 +10,58 @@
 	var Page = require('./page').PageApi;
 	var Tracker = require('./tracker').Tracker;
 	var defaultConfig = require('../config/config').config;
-	
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
 	
-	/**
- 	* Extend or define Adlayer
-	* @class api
-	*/
-	global.adlayer = global.adlayer || {};
-	/**
- 	* @property api
-	* @type object
-	* @private
-	*/
-	var api = global.adlayer;
-	
-	/**
- 	* @property config
-	* @type object
-	* @private
-	*/
-	var config = api.config || defaultConfig;
-
-	/**
- 	* @property connections
-	* @type object
-	* @private
-	*/
-	var connections = {
-		adserver: new Connection(config.url.adserver),
-		tracker: new Connection(config.url.tracker)
-	};
-	
-	/**
- 	* @property tracker
-	* @type object
-	* @private
-	*/
-	var tracker = new Tracker();
-	tracker.connection = connections.tracker;
-
-	/**
- 	* @property page
-	* @type object
-	* @private
-	*/
-	var page = {};
-	
-	/**
-	* Collections of rendered spaces
-	*
- 	* @property spacesCollection
-	* @type object
-	* @private
-	*/
-	var spacesCollection = {};
-	
-	/**
-	* Collections of placed ads
-	*
- 	* @property adsCollection
-	* @type object
-	* @private
-	*/
-	var adsCollection = {};
-
-	/**
-	* @method adInit
-	* @param {Space} space
-	* @param {Ad} ad
-	* @return {Ad}
-	* @private
-	*/
-	function adInit(space, ad){
-		// Exporting ad to api
-		adsCollection[ad.id] = ad;
 		
-		ad.tracker = tracker;
-
-		// Listener for 'LOAD' event
-		ad.on('load', function(){
-			ad.tracker.track({
-				type: 'impression',
-				
-				site_id: config.site_id,
-				domain: config.domain,
-				page_url: config.page_url,
-				page_id: config.page_id,
-				
-				ad_id: ad.id,
-				campaign_id: ad.campaign_id,
-				space_id: space.id
-			});
-		});
-
-		// Listener for 'PLACEMENT' event
-		ad.on('placement', function(){
-			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
-			ad.element.href = clickTag;
-		});
-		return ad;
-	}
+	var spacesCollection = {};
+	var adsCollection = {};
+	
 	
 	/**
-	* @method spaceInit
-	* @param {Space} space
-	* @private
+	* @for PageApi
+	* @method renderSpace
+	* @static
 	*/
-	function spaceInit(space){
-		spacesCollection[space.id] = space;
+	Page.renderSpace = function (space, config, tracker){
 		// create a instance of Ad using data model provided
 		var ad = ads.create(space.getAd());
-		ad = adInit(space, ad);
+		ad.tracker = tracker;
+		ad = ad.init(space, config);
 		
 		// Placing ad in space
 		space.placeAd(ad);
+		
+		// Exporting ad to api
+		adsCollection[ad.id] = ad;
 	}
 
-
 	/**
+	* @for PageApi
 	* @method init
-	* @static 
+	* @public 
 	*/
-	Page.init = function(){
+	Page.prototype.init = function(){
 		
-		var page = new Page({
-			id: config.page_id,
-			site_id: config.site_id,
-			domain: config.domain,
-			connection: connections.adserver,
-			document: global.document
-		});
-		
+		var page = this;
 
 		// Get all page data
-		page.getData(function(err, data){
+		this.getData(function(err, data){
 			// When we get spaces in this page
 			if(data && data.spaces){
 				// For each space found in document
 				page.scanSpaces(data.spaces, function(err, space){
 					// When find spaces
 					if(!err){
-						spaceInit(space);
+						var config = {
+							domain: page.domain,
+							page_url: page.url,
+							page_id: page.id,
+							site_id: page.site_id
+						}
+						Page.renderSpace(space, config, tracker);
+						// exporting space to api
+						spacesCollection[space.id] = space;
 					}
 				});
 			}
@@ -161,58 +69,98 @@
 		return page;
 	};
 	
-	/**
-	* @method initialization
-	* @private
-	*/
-	(function initialization(){
-		var scriptTag = global.document.getElementById(config.page.scriptTagId);
-		var queries = scriptTag.src.split('?')[1];
-		var params = queryString.parse(queries);
+	
 
-		config.site_id = config.site_id || params.site;
-		config.domain = config.domain || global.location.hostname;
-		config.page_id = config.page_id || params.page;
-		config.page_url = config.page_url || global.location.href;
-		
-		if(config.page.autoRun) page = Page.init();
-		
-	})();
+	
+	/**
+	* @class Api
+	*/
+	global.adlayer = global.adlayer || {};
+
+	var api = global.adlayer;
+	
+	var config = api.config || defaultConfig;
+
+	var connections = {
+		adserver: new Connection(config.url.adserver),
+		tracker: new Connection(config.url.tracker)
+	};
+	
+	var tracker = new Tracker();
+	tracker.connection = connections.tracker;
 	
 	/**
 	* Exports page api
 	*
- 	* @property page
+	* @property page
 	* @type object
 	*/
-	api.page = page;
+	api.page = {};
 	/**
 	* Exports configuration
 	*
- 	* @property config
+	* @property config
 	* @type object
 	*/
 	api.config = config;
 	/**
 	* Exports connections
 	*
- 	* @property connections
+	* @property connections
 	* @type object
 	*/
 	api.connections = connections;
 	/**
 	* Exports spaces
 	*
- 	* @property spaces
+	* @property spaces
 	* @type object
+	* @example 
+		var space = adlayer.spaces['0202kjj44949999992j8'];
+		space.close();
 	*/
 	api.spaces = spacesCollection;
 	/**
 	* Exports ads
 	*
- 	* @property ads
+	* @property ads
 	* @type object
+	* @example 
+		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
+		ad.emit('load');
 	*/
 	api.ads = adsCollection;
+	
+	/**
+	* @method initialization
+	* @private
+	*/
+	(function initialization(){
+		var document = global.document;
+		
+		if(config.page.autoRun && document) {
+			
+			var scriptTag = document.getElementById(config.page.scriptTagId);
+			var queries = scriptTag.src.split('?')[1];
+			var params = queryString.parse(queries);
+
+			config.site_id = config.site_id || params.site;
+			config.domain = config.domain || global.location.hostname;
+			config.page_id = config.page_id || params.page;
+			config.page_url = config.page_url || global.location.href;
+			
+			api.page = new Page({
+				tracker: tracker,
+				id: config.page_id,
+				url: config.page_url,
+				site_id: config.site_id,
+				domain: config.domain,
+				connection: connections.adserver,
+				document: document
+			});
+			api.page.init();
+		}
+	})();
+	
 	
 })(this);

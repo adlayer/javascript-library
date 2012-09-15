@@ -71,6 +71,36 @@
 		}
 		return false;
 	};
+	
+	AdDom.prototype.init = function(space, config){
+		var ad = this;
+		// Listener for 'LOAD' event
+		ad.on('load', function(){
+			ad.tracker.track({
+				type: 'impression',
+				
+				site_id: config.site_id,
+				domain: config.domain,
+				page_url: config.page_url,
+				page_id: config.page_id,
+				
+				ad_id: ad.id,
+				campaign_id: ad.campaign_id,
+				space_id: space.id
+			});
+		});
+
+		// Listener for 'PLACEMENT' event
+		ad.on('placement', function(){
+			// Setting click tag in ad element
+			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			ad.element.href = clickTag;
+		});
+		return ad;
+	};
+	
 	exports.AdDom = AdDom;
+	
+	
 	
 })();
