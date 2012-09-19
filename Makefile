@@ -6,7 +6,8 @@ default:
 	jake
 	# Make documentation
 docs:
-	yuidoc --server src
+	#yuidoc --server src
+	yuidoc
 test:
 	./node_modules/mocha/bin/mocha test/**/*.js --reporter spec
 cov:

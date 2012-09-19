@@ -1,0 +1,15 @@
+{
+  "name": "Adlayer Javascript Library",
+  "description": "A library to deal with Adlayer Domain object and comunicate with adserver and tracker api",
+  "version": "1.0.0",
+  "url": "http://adlayerjavascriptsdk.com",
+  "logo": "http://adlayer.com.br/img/logo.png",
+  "options": {
+    "linkNatives": "true",
+    "attributesEmit": "true",
+    "paths": [
+      "./src"
+    ],
+    "outdir": "./docs"
+  }
+}
