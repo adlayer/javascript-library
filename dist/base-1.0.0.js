@@ -1,19 +1,10 @@
-/**
- * @private
- * Implementation of common.js
- */
+// Implementation of common.js
 var node_modules = {};
 var module = {};
 
 module.exports = {};
 var exports = module.exports;
 
-/**
- * @example
- * EventEmitter = require('events').EventEmitter;
- * No mattter what you pass parameter, this will always find for var 'exports' , bacause in this implementation
- * Everything are in the same structure
- */
 var require = function(path){
 	return exports;	
 };
@@ -26,6 +17,7 @@ function copy(obj){
 exports.copy = copy;
 /**
  * Util method for extend/merge objects
+ * @method merge
  */
 var merge = function(destination,source) {
     for (var property in source){
@@ -37,7 +29,7 @@ var merge = function(destination,source) {
 };
 exports.merge = merge;
 /**
- * Load an script on top of html
+ * @method loadScript
  * @param {string}
  * @return {element}
  */
@@ -56,23 +48,45 @@ function loadScript(url, sucess, error){
 }
 exports.loadscript = loadScript;
 /**
- * @class Event Emitter
- * @classDescription Implementation minimized of node event emitter
- */
+* @module events
+*/
 var events = {};
+
+/**
+* Implementation minimized of node event emitter
+*
+* @class EventEmitter
+* @constructor
+*/
 var EventEmitter = function(){
-	/* @private */
+	/**
+	* Storage of events
+	*
+	* @attribute listeners
+	* @type object
+	* @private
+	*/
 	var listeners = {
-			load:[],
-			click:[],
-			readyStateChange:[]
+		load:[],
+		click:[],
+		readyStateChange:[]
 	};
 	
+	/**
+	* @method listeners
+	* @param {String} event Name of event
+	* @return {Array}
+	*/
 	this.listeners = function(event){
 		return listeners[event];
 	};
 	
-	/* @public */
+	/**
+	* @method addListener
+	* @param {String} event Name of event
+	* @param {Function} fn Eventhandler
+	* @return {Array}
+	*/
 	this.addListener = function(event,fn){
 		if(!listeners[event]){
 			listeners[event] = [];
@@ -81,11 +95,25 @@ var EventEmitter = function(){
 		return listeners[event];
 	};
 	
+	/**
+	* Shortcut for addListener
+	*
+	* @method on
+	* @param {String} event Name of event
+	* @param {Function} fn Eventhandler
+	* @return {Array}
+	*/
 	this.on = function(event, fn){
 		return this.addListener(event,fn);
 	};
 	
-	/* @public */
+	/**
+	* Trigger the event
+	*
+	* @method emit
+	* @param {String} event Name of event
+	* @return {Array}
+	*/
 	this.emit = function(event){
 		var eventListeners = listeners[event];
 		if(eventListeners && (eventListeners.length > 0)){
@@ -101,10 +129,14 @@ events.EventEmitter = EventEmitter;
 exports.events = events;
 /**
 * QueryString module for handle params
+* @module queryString
 * @public
 */
 var queryString = {
-	/* @public */ 
+	/**
+	* @method parse
+	* @public 
+	*/
 	parse:function(qs){
 		var sep = "&";
 		var eq = "=";
@@ -126,7 +158,10 @@ var queryString = {
 		}
 		return obj;
 	},
-	/* @public */
+	/**
+	* @method stringify
+	* @public 
+	*/
 	stringify:function(obj){
 		var sep = "&";
 		var eq = "=";
@@ -156,6 +191,10 @@ exports.config = {
 	}
 };
 /**
+* @module core
+*/
+
+/**
 * Core class
 *
 * @class Core
@@ -166,11 +205,12 @@ var Core = function(){
 	var merge = require('../utils/merge').merge;
 	var queryString = require('../node_modules/querystring').querystring;
 	
-	/*
+	/**
 	* @method extend
-	* @privileged
-	* @returns {Object} return this to allow chain pattern
+	* @param {Object} attributes
+	* @return {Object} return this to allow chain pattern
 	*/
+	
 	this.extend = function(attributes){
 		return merge(this, attributes);
 	};
@@ -178,67 +218,74 @@ var Core = function(){
 };
 exports.Core = Core;
 /**
+* @module core
+*/
+
+/**
 * Create any event
 *
 * @class Event
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Event = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	
-	/*
-	* @property {Object} __date__ Instance of current date
+	/**
+	* Instance of current date
+	* @property date
+	* @type date
 	* @private
 	*/
 	var date = new Date();
 	
-	/*
-	* @property {String} type Event type
-	* @public
+	/**
+	* Event type
+	* @property type
+	* @type string
 	*/
 	this.type = '';
-	
-	
-	/*
-	* @property {String} campaign_id Campaign Id
-	* @public
+	/**
+	* Campaign Id
+	* @property campaign_id
+	* @type string
 	*/
 	this.campaign_id = '';
-	/*
-	* @property {String} ad_id Ad id
-	* @public
+	/**
+	* @property ad_id
+	* @type string
 	*/
 	this.ad_id = '';
-	/*
-	* @property {String} space_id Space id
-	* @public
+	/**
+	* @property space_id
+	* @type string
 	*/
 	this.space_id = '';
-	/*
+	/**
 	* @property {String} site_id Site id
 	* @public
 	*/
 	this.site_id = '';
-	/*
+	/**
 	* @property {String} page_url Url of the current page
 	* @public
 	*/
 	this.page_url = '';
 	
 	
-	/*
+	/**
 	* @property {String} date Date ISO 8601 format
 	* @public
 	*/
 	this.date = '';
-	/*
+	/**
 	* @property {String} time Time of event
 	* @public
 	*/
 	this.time = '';
-	/*
+	/**
 	* @property {String} hour
 	* @description First part of a time iso
 	* @public
@@ -246,12 +293,12 @@ var Event = function( attributes ){
 	this.hour = '';
 	
 	
-	/*
+	/**
 	* @property {String} ip Visitor ip
 	* @public
 	*/
 	this.ip = '';
-	/*
+	/**
 	* @property {String} browser User agent or browser
 	* @public
 	*/
@@ -259,7 +306,6 @@ var Event = function( attributes ){
 	
 	/**
 	* @method getFullDate
-	* @privileged
 	* @returns {String} Even if date is not converted to string return ISOString
 	*/
 	this.getFullDate = function(){
@@ -280,8 +326,11 @@ var Event = function( attributes ){
 	}(this);
 };
 
-	/*
-	* @property {Array} required List of all required attributes
+	/**
+	* Required List of all required attributes
+	* 
+	* @property required
+	* @type {Array}
 	* @static
 	*/
 	Event.required = [
@@ -291,7 +340,7 @@ var Event = function( attributes ){
 		'page_url',
 		'page_id'
 	];
-	/*
+	/**
 	* @method track
 	* @static
 	* @returns {Object} return the result of method save
@@ -300,7 +349,7 @@ var Event = function( attributes ){
 		return new Event(attributes).save();
 	};
 
-	/*
+	/**
 	* @method getDate
 	* @public
 	* @returns {String} The second part of a fulldate splited in T character
@@ -310,7 +359,7 @@ var Event = function( attributes ){
 	};
 
 
-	/*
+	/**
 	* @method getTime
 	* @public
 	* @returns {String} he second part of a fulldate splited in T character
@@ -319,7 +368,7 @@ var Event = function( attributes ){
 		return this.getFullDate().split('T')[1];
 	};
 
-	/*
+	/**
 	* @method getHour
 	* @public
 	* @returns {String || Boolean} String of hour or false
@@ -330,7 +379,7 @@ var Event = function( attributes ){
 		}
 		return false;
 	};
-	/*
+	/**
 	* @method validate
 	* @public
 	* @returns {Boolean} true for all attributes and false if any is missing
@@ -345,7 +394,7 @@ var Event = function( attributes ){
 		// default
 		return true;
 	};
-	/*
+	/**
 	* @method toQuery
 	* @public
 	* @returns {String} convert object to network string
@@ -354,7 +403,7 @@ var Event = function( attributes ){
 		var querystring = require('../node_modules/querystring').querystring;
 		return querystring.stringify(this);
 	};
-	/*
+	/**
 	* @method save
 	* @public
 	* @returns {Error} convert object to network string
@@ -362,17 +411,18 @@ var Event = function( attributes ){
 	Event.prototype.save = function(){
 		throw new Error('You should override this');
 	};
-	/**
-	* @requires modules in browser
-	* @exports Event as Event
-	*/
+
 	exports.Event = Event;
+/**
+* @module core
+*/
+
 /**
 * Abstract class for ads
 *
 * @class Ad
 * @constructor
-* @param {Object} attributes
+* @extends Core
 */
 var Ad = function( attributes ){
 	var Core = require('./core').Core;
@@ -380,49 +430,57 @@ var Ad = function( attributes ){
 	Core.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
 	
-	/*
-	* @property {String} id Id of ad
-	* @public
+	/**
+	* Id of ad
+	* @property id 
+	* @type string
 	*/
 	this.id = '';
-	/*
-	* @property {String} name Name of ad creative
-	* @public
+	/**
+	* Name of ad creative
+	* @property name 
+	* @type string
 	*/
 	this.name = '';
-	/*
-	* @property {String} campaign_id Id to campaign that belongs to
-	* @public
+	/**
+	* Id to campaign that belongs to
+	* @property campaign_id 
+	* @type string
 	*/
 	this.campaign_id = '';
-	/*
-	* @property {String} type Ad type
-	* @public
+	/**
+	* Ad type
+	* @property type 
+	* @type string
 	*/
 	this.type = '';
-	/*
-	* @property {String} file Path to ad file
-	* @public
+	/**
+	* file Path to ad file
+	* @property file 
+	* @type string
 	*/
 	this.file = '';
-	/*
-	* @property {String} link destiny link
-	* @public
+	/**
+	* link destiny link
+	* @property link 
+	* @type string
 	*/
 	this.link = '';
-	/*
-	* @property {Boolean} status Ad status
-	* @public
+	/**
+	* status Ad status
+	* @property status 
+	* @type boolean
 	*/
 	this.status = true;
-	/*
-	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-	* @public
+	/**
+	* Alternative Ad is another instance of Ad with graceful degradation
+	* @property alternative 
+	* @type object
 	*/
 	this.alternative = {};
 	
 
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -432,14 +490,15 @@ var Ad = function( attributes ){
 	}(this);
 };
 
-/**
-* @requires modules in browser
-* @exports Ad as Ad
-*/
 exports.Ad = Ad;
+/**
+* @module core
+*/
+
 /**
 * Interface for space behaviour
 *
+* @class ISpaceBehaviour
 * @interface ISpaceBehaviour
 * @constructor
 */
@@ -472,30 +531,41 @@ var RandomSpaceBehaviour = function(){
 *
 * @class Space
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Space = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id Unique space id
+	* Unique space id
+	* @property id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} type Type of space
+	* Type of space
+	* @property type
+	* @type string
 	*/
 	this.type = '';
 	/**
-	* @property {Boolean} status true for active and false for inactive
+	* true for active and false for inactive
+	* @property status
+	* @type boolean
 	*/
 	this.status = '';
 	/**
-	* @property {Array} ads Collection of ads linked to space
+	* Collection of ads linked to space
+	* @property ads
+	* @type array
 	*/
 	this.ads = [];
 	
 	/**
-	* @property {SpaceBehaviour} behaviour a part of strategy pattern
+	* behaviour a part of strategy pattern
+	* @property behaviour 
+	* @type SpaceBehaviour
 	*/
 	this.behaviour = {};
 
@@ -529,35 +599,44 @@ var Space = function( attributes ){
 	}(this);
 };
 
-	/**
-	* @requires modules in browser
-	* @exports Space as Space
-	*/
 	exports.Space = Space;
+/**
+* @module core
+*/
+
 /**
 * Abstract class for page
 *
 * @class Page
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Page = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id unique page id
+	* id unique page id
+	* @property  id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} name page name
+	* page name
+	* @property name
+	* @type string
 	*/
 	this.name = '';
 	/**
-	* @property {Array} spaces Collection of page spaces
+	* Collection of page spaces
+	* @property spaces
+	* @type array
 	*/
 	this.spaces = [];
 	/**
-	* @property {Boolean} true for active and false for inactive
+	* Collection of page spaces
+	* @property status
+	* @type boolean
 	*/
 	this.status = true;
 	
@@ -573,8 +652,8 @@ var Page = function( attributes ){
 	/**
 	* @method getActiveContent
 	* @public
-	* @returns {Object} new Page() - return the instance itself to improve chainability
-	* @requires Javascript 1.6
+	* @return {Page} the instance itself to improve chainability
+	* @require Javascript 1.6
 	* __Warning:__ Don't use this in browser, because it can not work in old browsers
 	* @todo: should be readonly not modify the object just return filtered value
 	*/
@@ -594,39 +673,48 @@ var Page = function( attributes ){
 		}
 		return this;
 	};
-	/**
-	* @requires modules in browser
-	* @exports Page as Page
-	*/
 	exports.Page = Page;
-/*
+/**
+* @module core
+*/
+
+/**
 * Abstract class for site
 *
 * @class Site
 * @constructor
-* @param {Object} attributes
+* @extends Core
 */
 var Site = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id Unique site id
+	* Unique site id
+	* @property id 
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} name Name of site
+	* Name of site
+	* @property name
+	* @type string
 	*/
 	this.name = '';
 	/**
-	* @property {Boolean} status true for active and  false for inactive
+	* true for active and  false for inactive
+	* @property status
+	* @type boolean
+	* @default true
 	*/
 	this.status = true;
 	/**
-	* @property {Array} domains Collection of all allowed domains
+	* Collection of all allowed domains
+	* @property domains
+	* @type array
 	*/
 	this.domains = [];
 	
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -637,11 +725,12 @@ var Site = function( attributes ){
 };
 
 	/**
-	* @description Find for exact domain or subdomain
+	* Find for exact domain or subdomain
+	*
+	* @method hasDomain
 	* @public
 	* @param {String} entry - Domain string
 	* @returns {Boolean} - True when found a domain and false for not
-	* @todo: change to regex
 	*/
 	Site.prototype.hasDomain = function(entry){
 		var self = this;
@@ -669,12 +758,12 @@ var Site = function( attributes ){
 		return result;
 	};
 
-	/**
-	* @requires modules in browser
-	* @exports Event as Event
-	*/
 	exports.Site = Site;
-/*
+/**
+* @module dom
+*/
+
+/**
 * Abstract class for dom/html elements 
 *
 * @class DomElement
@@ -682,16 +771,20 @@ var Site = function( attributes ){
 */
 var DomElement = function(){
 	/**
-	* @property {String} id Id attribute of object
+	* Id attribute of object
+	* @property id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {Object} element Dom element itself
+	* Dom element itself
+	* @property element
+	* @type object
 	*/
 	this.element = undefined;
 };
 
-	/*
+	/**
 	* @method create
 	* @param {String} tagName
 	* @param {Object} document
@@ -701,7 +794,7 @@ var DomElement = function(){
 	DomElement.create = function(tagName, document){
 		return document.createElement(tagName);
 	};
-	/*
+	/**
 	* @method create
 	* @param {String} tagName
 	* @param {Object} document
@@ -715,7 +808,7 @@ var DomElement = function(){
 		return this.element;
 	};
 	
-	/*
+	/**
 	* @method setAttributes
 	* @param {Object} attributes
 	* @public
@@ -726,7 +819,7 @@ var DomElement = function(){
 		merge(this.element, attributes);
 	};
 	
-	/*
+	/**
 	* @method append
 	* @param {Object} child
 	* @public
@@ -736,7 +829,7 @@ var DomElement = function(){
 		this.element.appendChild(child);
 		return this;
 	};
-	/*
+	/**
 	* @method findParentTag
 	* @param {String} tag UPPERCASE tag name
 	* @public
@@ -749,7 +842,7 @@ var DomElement = function(){
 		}
 		return parent;
 	};
-	/*
+	/**
 	* @method addDomEventListener
 	* @param {String} type Event name like 'click', 'load', 'mouseover'
 	* @param {Function} eventListener Callback for event trigger
@@ -769,6 +862,9 @@ var DomElement = function(){
 
 
 	exports.DomElement = DomElement;
+/**
+* @module dom
+*/
 (function(){
 	
 	// modules
@@ -777,19 +873,22 @@ var DomElement = function(){
 	var Event = require('../domain/event').Event;
 	
 	
-	/*
+	/**
 	* Base for any type of Dom ads.
 	*
 	* @class AdDom
-	* @augments Ad
-	* @augments DomElement
+	* @constructor
+	* @extends Ad
+	* @extends DomElement
 	*/
 	var AdDom = function(){
 		// extends Ad
 		Ad.apply(this, arguments);
 		
-		/*
-		* @property {Tracke} tracker Instance of tracker
+		/**
+		* Instance of tracker
+		* @property tracker
+		* @type tracker
 		* @public
 		*/
 		this.tracker = {};
@@ -798,8 +897,8 @@ var DomElement = function(){
 	AdDom.prototype = new DomElement();
 	
 	
-	/*
-	* @public
+	/**
+	* @method getSpaceId
 	* @returns {String} return the id of the first parent div
 	*/
 	AdDom.prototype.getSpaceId = function(){
@@ -807,8 +906,8 @@ var DomElement = function(){
 		return node.id;
 	};
 	
-	/*
-	* @public
+	/**
+	* @method getClickTag
 	* @param {String} site_id
 	* @param {String} page_id
 	* @param {String} page_url
@@ -836,7 +935,37 @@ var DomElement = function(){
 		}
 		return false;
 	};
+	
+	AdDom.prototype.init = function(space, config){
+		var ad = this;
+		// Listener for 'LOAD' event
+		ad.on('load', function(){
+			ad.tracker.track({
+				type: 'impression',
+				
+				site_id: config.site_id,
+				domain: config.domain,
+				page_url: config.page_url,
+				page_id: config.page_id,
+				
+				ad_id: ad.id,
+				campaign_id: ad.campaign_id,
+				space_id: space.id
+			});
+		});
+
+		// Listener for 'PLACEMENT' event
+		ad.on('placement', function(){
+			// Setting click tag in ad element
+			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			ad.element.href = clickTag;
+		});
+		return ad;
+	};
+	
 	exports.AdDom = AdDom;
+	
+	
 	
 })();
 (function(){
@@ -845,12 +974,11 @@ var DomElement = function(){
 	var DomElement = require('./dom_element').DomElement;
 	var Space = require('../domain/space').Space;
 	
-	
-	/*
+	/**
 	* Space dom
 	*
 	* @class SpaceDom
-	* @requires DomElement
+	* @extends DomElement
 	* @requires Ad
 	*/
 	var SpaceDom = function(){
@@ -862,9 +990,9 @@ var DomElement = function(){
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
 
-	/*
-	* @public
-	* @param {Object} DomElement, Ad to append in element
+	/**
+	* @method placeAd
+	* @param {Object} DomElement Ad to append in element
 	* @returns {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
@@ -873,8 +1001,8 @@ var DomElement = function(){
 		return this;
 	};
 	
-	/*
-	* @public
+	/**
+	* @method getElement
 	* @returns {Object} return the DomElement
 	*/
 	SpaceDom.prototype.getElement = function(){
@@ -895,14 +1023,50 @@ var Http = function(){
 	var queryString = require('../node_modules/querystring').querystring;
 	Core.apply(this, arguments);
 	
+	/**
+	* @property host
+	* @type string
+	*/
 	this.host = '';
+	/**
+	* @property protocol
+	* @type string
+	* @default 'http'
+	*/
 	this.protocol = 'http';
+	/**
+	* @property port
+	* @type number
+	* @default 80
+	*/
 	this.port = 80;
+	/**
+	* @property path
+	* @type string
+	* @default '/'
+	*/
 	this.path = '/';
+	/**
+	* @property qs
+	* @type object
+	*/
 	this.qs = {};
+	/**
+	* @property query
+	* @type string
+	*/
 	this.query = '';
+	/**
+	* @property url
+	* @type string
+	*/
 	this.url = '';
 
+	/**
+	* @method isEmptyObject
+	* @param {Object} obj Object to verify
+	* return {Boolean}
+	*/
 	function isEmptyObject(obj){
 		for(var prop in obj) {
 			if(obj.hasOwnProperty(prop)) return false;
@@ -910,9 +1074,8 @@ var Http = function(){
 		return true;
 	}
 	
-	/*
+	/**
 	* @method getUrl
-	* @privileged
 	* @returns {String} full url
 	*/
 	this.getUrl = function(){
@@ -935,6 +1098,10 @@ var Http = function(){
 };
 exports.Http = Http;
 /**
+* @module request
+*/
+
+/**
 * Abstract class to make http requests
 *
 * @class HttpRequest
@@ -946,9 +1113,13 @@ var HttpRequest = function( attributes, callback ){
 	var Http = require('./http').Http;
 	Http.apply(this, arguments);
 	
+	/**
+	* @property callback
+	* @type function
+	*/
 	this.callback = undefined;
 	
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -964,11 +1135,16 @@ var HttpRequest = function( attributes, callback ){
 	}(this);
 };
 exports.HttpRequest = HttpRequest;
-/*
+/**
+* @module request
+*/
+
+/**
 * Loads an img
 *
 * @class ImgRequest
 * @constructor
+* @extends HttpRequest
 * @param {Object} Attributes
 * @param {Function} callback
 * @example new ImgRequest({document:document, url}, callback)
@@ -978,7 +1154,7 @@ var ImgRequest = function(){
 	HttpRequest.apply(this, arguments);
 };
 
-	/*
+	/**
 	* @method send
 	* @public
 	* @param {Object} data
@@ -998,7 +1174,7 @@ var ImgRequest = function(){
 		return this;
 	};
 	
-	/*
+	/**
 	* @method make
 	* @static
 	* @param {Object} options	
@@ -1015,11 +1191,16 @@ var ImgRequest = function(){
 	};
 	
 	exports.ImgRequest = ImgRequest;
-/*
+/**
+* @module request
+*/
+
+/**
 * Make an http request expeting for jsonp return
 *
 * @class JsonpRequest
 * @constructor
+* @extends HttpRequest
 * @param {Object} Attributes
 * @param {Function} callback
 * @example new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')
@@ -1028,7 +1209,7 @@ var JsonpRequest = function(){
 	var HttpRequest = require('./http_request').HttpRequest;
 	HttpRequest.apply(this, arguments);
 };
-	/*
+	/**
 	* @method queryCallback
 	* @public
 	* @param {String} string to call in jsonpresult
@@ -1039,7 +1220,7 @@ var JsonpRequest = function(){
 		return this;
 	};
 
-	/*
+	/**
 	* @method validate
 	* @public
 	* @returns {Boolean}
@@ -1048,7 +1229,7 @@ var JsonpRequest = function(){
 		return this.qs.callback !== undefined;
 	};
 
-	/*
+	/**
 	* @method send
 	* @public
 	* @param {Object} options
@@ -1069,19 +1250,20 @@ var JsonpRequest = function(){
 		return this;
 	};
 	
-	/*
-	* @property {Object} DomObject
+	/**
+	* @property document
+	* @type object
 	* @static
 	*/
 	JsonpRequest.document = undefined;
 	
-	/*
+	/**
 	* @method make
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
 	* @returns {Object} this to chain
-	* @example: JsonpRequest.make(options, callback).expose(root)
+	* @example JsonpRequest.make(options, callback).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback){
 		function wrap(fn){
@@ -1100,6 +1282,9 @@ var JsonpRequest = function(){
 	};
 	
 	exports.JsonpRequest = JsonpRequest;
+/**
+* @module request
+*/
 function request(){
 	
 	var JsonpRequest = require('./jsonp_request').JsonpRequest;
@@ -1113,31 +1298,36 @@ function request(){
 }
 exports.request = request;
 /**
-* @class Connection
+* @module Connection
 */
 
 /**
-	## Using in node.js
-	
-	// hack request
-	var request = require('request');
-	request.jsonp = request.get;
-	
-	// Hacking lib.connection
-	var connection = require('connection');
-	connection.prototype.request = request;
-	
-	// Your code goes here	
-
-**/
-
+* @class Connection
+* @constructor
+* @extends Http
+*/
 var Connection = function( attributes ){
 	var Http = require('../request/http').Http;
 	Http.apply(this, arguments);
 	
+	/**
+	* Index of requests
+	* @property _index
+	* @type number
+	* @protected
+	*/
 	this._index = 0;
-	
+	/**
+	* Connection name
+	* @property name
+	* @type string
+	*/
 	this.name = '';
+	/**
+	* Requests storage
+	* @property requests
+	* @type object
+	*/
 	this.requests = {};
 	
 	/*
@@ -1154,25 +1344,53 @@ var Connection = function( attributes ){
 	}(this);
 };
 
+/**
+* @method id
+* @public
+* @returns {String} return current uuid
+*/
 Connection.prototype.id = function(){
 	return 'n' + this._index;
 };
 
+/**
+* @method newId
+* @public
+* @returns {String} Increment the index and return a new id
+*/
 Connection.prototype.newId = function(){
 	this._index++;
 	return this.id();
 };
+
+/**
+* @method next
+* @public
+* @param {Object} req A Request instance
+*/
 Connection.prototype.next = function(req){
 	var sign = this.newId();
 	this.requests[sign] = req;
 };
-
+/**
+* @method getCallbackPath
+* @public
+* @returns {String} path of callback
+*/
 Connection.prototype.getCallbackPath = function(){
 	return [this.name, 'requests', this.id(), 'callback'].join('.');
 };
-
+/**
+* @method request
+* @public
+* @returns {Object}
+*/
 Connection.prototype.request = require('../request/request').request;
-
+/**
+* @method get
+* @public
+* @returns {Object}
+*/
 Connection.prototype.get = function(path, data, callback){
 	if(typeof data === 'function') {
 		callback = data;
@@ -1196,48 +1414,66 @@ Connection.prototype.get = function(path, data, callback){
 	return this;
 };
 exports.Connection = Connection;
-/*
+/**
+* @module ads
+*/
+/**
 * @class Swf
-* @property {String} align Alignment of html content.
-* @property {Boolean} menu Control right click menu options (true, false).
-* @property {String} quality Control quality of loaded movie ('low', 'medium', 'high').
-* @property {String} scale Flash canvas mode ('noscale').
-* @property {String} wmode Embed type relative to context.
-* @property {String} type Default alias for 'application/x-shockwave-flash'.
-* @property {String} type allowScriptAcess.
 */
 var Swf = function(){
+	/**
+	* Alignment of html content.
+	* @property align
+	* @type string
+	*/
 	this.align = "center";
+	/**
+	* Control right click menu options (true, false).
+	* @property menu
+	* @type boolean
+	*/
 	this.menu = false;
+	/**
+	* @property quality
+	* @type string
+	*/
 	this.quality = "high"; //low,autolow,autohigh,medium,high,best ;
+	/**
+	* @property scale
+	* @type string
+	*/
 	this.scale = "noscale"; //default,noborder,exactfit,noscale
+	/**
+	* @property wmode
+	* @type string
+	*/
 	this.wmode = "transparent"; //window,opaque,transparent
+	/**
+	* @property type
+	* @type string
+	*/
 	this.type = "application/x-shockwave-flash";
+	/**
+	* @property allowScriptAccess
+	* @type string
+	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
 };
 exports.Swf = Swf;
-/**
-* Create embedable ads
-*
-* @class EmbedAd
-* @constructor
-* @param {Object} attributes
-*
-* @augments AdDom
-* @property {String} id Id of ad
-* @property {String} name Name of ad creative
-* @property {String} campaign_id Id to campaign that belongs to
-* @property {String} type Ad type
-* @property {String} file Path to ad file
-* @property {String} link destiny link
-* @property {Boolean} status Ad status
-* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-*
-*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
+	
+	/**
+	* Create embedable ads
+	*
+	* @class EmbedAd
+	* @constructor
+	* @param {Object} attributes
+	* @extends AdDom
+	* @extends Swf
+	*/
 	var EmbedAd = function(){
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
@@ -1255,44 +1491,71 @@ exports.Swf = Swf;
 	EmbedAd.prototype = new AdDom();
 	exports.EmbedAd = EmbedAd;
 })();
-/**
-* Create embedable ads
-*
-* @class EmbedAd
-* @constructor
-* @param {Object} attributes
-*
-* @augments AdDom
-* @property {String} id Id of ad
-* @property {String} name Name of ad creative
-* @property {String} campaign_id Id to campaign that belongs to
-* @property {String} type Ad type
-* @property {String} file Path to ad file
-* @property {String} link destiny link
-* @property {Boolean} status Ad status
-* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-*
-*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
 	
+	/**
+	* Create embedable ads
+	*
+	* @class ObjectAd
+	* @constructor
+	* @param {Object} attributes
+	*
+	* @extends AdDom
+	* @extends Swf
+	*/	
 	var ObjectAd = function(){
 		var superclass = this;
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
 	
+		/**
+		* @property CLASSID
+		* @type string
+		* @final
+		* @private
+		*/
 		var CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
+		/**
+		* @property CODEBASE
+		* @type string
+		* @final
+		* @private
+		*/
 		var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
+		/**
+		* @property PLUGINSPAGE
+		* @type string
+		* @final
+		* @private
+		*/
 		var PLUGINSPAGE = "http://www.macromedia.com/go/getflashplayer";
 		
-		/** @class Param
-		* <param name="wmode" value="tranparent" />
+		/** 
+		* @class Param
+		* @constructor
+		* @param {String} name
+		* @param {String} value
+		* @return HTMLElement
 		*/
-		var Param = function(name,value){
+		var Param = function(name, value){
+			/**
+			* @property name
+			* @type string
+			*/
 			this.name = name;
+			/**
+			* @property value
+			* @type string
+			*/
 			this.value = value;
+			/**
+			* @property element
+			* @type HTMLElement
+			*/
 			this.element = superclass.create("param");
+			
 			this.element.setAttribute("name", this.name);
 			this.element.setAttribute("value", this.value);
 			return this.element;
@@ -1328,8 +1591,9 @@ exports.Swf = Swf;
 	exports.ObjectAd = ObjectAd;
 })();
 /**
- * @class ImgAd
- */
+* @class ImgAd
+* @extends AdDom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var ImgAd = function(){
@@ -1360,10 +1624,6 @@ exports.Swf = Swf;
 	ImgAd.prototype = new AdDom();
 	exports.ImgAd = ImgAd;
 })();
-/**
-* @todo: switch for IE use object tag
-* @todo: change write data different to avoid _id & file atribution
-*/
 (function(){
 	var Embed = require('./embed_ad.js').EmbedAd;
 	var ObjectAd = require('./object_ad.js').ObjectAd;
@@ -1381,8 +1641,7 @@ exports.Swf = Swf;
 	exports.FlashAd = FlashAd;
 })();
 /**
-* @todo: switch for IE use object tag
-* @todo: change write data different to avoid _id & file atribution
+* @module ads
 */
 (function(){
 	
@@ -1410,13 +1669,18 @@ exports.Swf = Swf;
 	
 })();
 /**
-* @class represents the type Expander space
-* @extends Space
-* @implements ISpace
+* @module spaces
 */
 
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	/**
+	* Represents the type Expander space
+	*
+	* @class ExpandableSpace
+	* @extends SpaceDom
+	* @implements ISpace
+	*/
 	var ExpandableSpace = function(){
 		SpaceDom.apply(this, arguments);
 		
@@ -1442,7 +1706,9 @@ exports.Swf = Swf;
 	ExpandableSpace.prototype = new SpaceDom();
 	
 	/**
-	* @public
+	* @method clip
+	* @param {Number} width
+	* @param {Number} height
 	* @return {Object}
 	*/
 	ExpandableSpace.prototype.clip = function(width, height){
@@ -1451,6 +1717,7 @@ exports.Swf = Swf;
 	};
 	
 	/**
+	* @method expand
 	* @public
 	* @return {Object}
 	*/
@@ -1463,6 +1730,7 @@ exports.Swf = Swf;
 	};
 	
 	/**
+	* @method retract
 	* @public
 	* @return {Object}
 	*/
@@ -1475,16 +1743,20 @@ exports.Swf = Swf;
 	exports.ExpandableSpace = ExpandableSpace;
 })();
 /**
-* @class represents the type Floater
-* @extends Space
-* @implements ISpace
+* @module spaces
 */
 
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	/**
+	* Represents the type Floater
+	* @class FloaterSpace
+	* @extends SpaceDom
+	*/
 	var FloaterSpace = function(){
 		SpaceDom.apply(this, arguments);
 		/**
+		* @method close
 		* @public
 		*/
 		this.close = function(){
@@ -1510,13 +1782,17 @@ exports.Swf = Swf;
 	exports.FloaterSpace = FloaterSpace;
 })();
 /**
-* @class represents the type Static
-* @extends SpaceDom
-* @implements ISpace
+* @module spaces
 */
+
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
-	
+	/**
+	* Represents the type Static
+	* 
+	* @class StaticSpace
+	* @extends SpaceDom
+	*/	
 	var StaticSpace = function(){
 		SpaceDom.apply(this, arguments);
 		var __construct = (function(self){
@@ -1530,8 +1806,10 @@ exports.Swf = Swf;
 	
 	exports.StaticSpace = StaticSpace;
 })();
-(function(){
-	
+/**
+* @module spaces
+*/
+(function(){	
 	exports.spaces = (function(){
 		var Expandable = require('./expandable_space.js').ExpandableSpace,
 			Floater = require('./floater_space.js').FloaterSpace,
@@ -1599,12 +1877,21 @@ exports.Swf = Swf;
 	};
 	exports.Tracker = Tracker;
 })();
+/**
+* @module api
+*/
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
 	var Page = require('../domain/page').Page;
 	var request = require('../request/request').request;
 	var spaces = require('../spaces/spaces').spaces;
-			
+	
+	/**
+	* @class PageApi
+	* @constructor
+	* @extends Page
+	* @extends EventEmitter
+	*/			
 	var PageApi = function(){
 		Page.apply(this, arguments);
 		EventEmitter.apply(this, arguments);
@@ -1614,7 +1901,10 @@ exports.Swf = Swf;
 		this.connection;
 	};
 	
-	// Page data model
+	/**
+	* @method getData
+	* @param {Function} callback
+	*/
 	PageApi.prototype.getData = function(callback){
 		var sign = this.connection.id();
 		var opts = copy(this.connection);
@@ -1630,7 +1920,11 @@ exports.Swf = Swf;
 		
 	};
 	
-	// Page spaces iterator
+	/**
+	* @method scanSpaces
+	* @param {Function} collection
+	* @param {Function} callback
+	*/
 	PageApi.prototype.scanSpaces = function(collection, callback){
 
 		for( var i = 0; i < collection.length; i++ ){
@@ -1653,6 +1947,11 @@ exports.Swf = Swf;
 	
 	exports.PageApi = PageApi;
 })();
+/**
+* Api wrapper
+* @module api
+* @main api
+*/
 (function(global){
 	var queryString = require('../node_modules/querystring').querystring;
 	var copy = require('../utils/copy').copy;
@@ -1660,106 +1959,58 @@ exports.Swf = Swf;
 	var Page = require('./page').PageApi;
 	var Tracker = require('./tracker').Tracker;
 	var defaultConfig = require('../config/config').config;
-	
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
 	
-	// Extend or define Adlayer
-	global.adlayer = global.adlayer || {};
-	// Api Shortcut
-	var api = global.adlayer;
-	
-	// Set config
-	var config = api.config || defaultConfig;
-
-	// Creating connections
-	var connections = {
-		adserver: new Connection(config.url.adserver),
-		tracker: new Connection(config.url.tracker)
-	};
-	
-	// Tracker instance
-	var tracker = new Tracker();
-	tracker.connection = connections.tracker;
-
-	// Page instance
-	var page = {};
-	
-	// Collections
+		
 	var spacesCollection = {};
 	var adsCollection = {};
 	
-	/**
-	* @static init
-	*/
-	function adInit(space, ad){
-		// Exporting ad to api
-		adsCollection[ad.id] = ad;
-		
-		ad.tracker = tracker;
-
-		// Listener for 'LOAD' event
-		ad.on('load', function(){
-			ad.tracker.track({
-				type: 'impression',
-				
-				site_id: config.site_id,
-				domain: config.domain,
-				page_url: config.page_url,
-				page_id: config.page_id,
-				
-				ad_id: ad.id,
-				campaign_id: ad.campaign_id,
-				space_id: space.id
-			});
-		});
-
-		// Listener for 'PLACEMENT' event
-		ad.on('placement', function(){
-			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
-			ad.element.href = clickTag;
-		});
-		return ad;
-	}
 	
 	/**
-	* @static init
+	* @for PageApi
+	* @method renderSpace
+	* @static
 	*/
-	function spaceInit(space){
-		spacesCollection[space.id] = space;
+	Page.renderSpace = function (space, config, tracker){
 		// create a instance of Ad using data model provided
 		var ad = ads.create(space.getAd());
-		ad = adInit(space, ad);
+		ad.tracker = tracker;
+		ad = ad.init(space, config);
 		
 		// Placing ad in space
 		space.placeAd(ad);
-	}
-
+		
+		// Exporting ad to api
+		adsCollection[ad.id] = ad;
+	};
 
 	/**
-	* @static init
+	* @for PageApi
+	* @method init
+	* @public 
 	*/
-	Page.init = function(){
+	Page.prototype.init = function(){
 		
-		var page = new Page({
-			id: config.page_id,
-			site_id: config.site_id,
-			domain: config.domain,
-			connection: connections.adserver,
-			document: global.document
-		});
-		
+		var page = this;
 
 		// Get all page data
-		page.getData(function(err, data){
+		this.getData(function(err, data){
 			// When we get spaces in this page
 			if(data && data.spaces){
 				// For each space found in document
 				page.scanSpaces(data.spaces, function(err, space){
 					// When find spaces
 					if(!err){
-						spaceInit(space);
+						var config = {
+							domain: page.domain,
+							page_url: page.url,
+							page_id: page.id,
+							site_id: page.site_id
+						};
+						Page.renderSpace(space, config, tracker);
+						// exporting space to api
+						spacesCollection[space.id] = space;
 					}
 				});
 			}
@@ -1768,30 +2019,97 @@ exports.Swf = Swf;
 	};
 	
 	
-	(function initialization(){
-		var scriptTag = global.document.getElementById(config.page.scriptTagId);
-		var queries = scriptTag.src.split('?')[1];
-		var params = queryString.parse(queries);
 
-		config.site_id = config.site_id || params.site;
-		config.domain = config.domain || global.location.hostname;
-		config.page_id = config.page_id || params.page;
-		config.page_url = config.page_url || global.location.href;
+	
+	/**
+	* @class Api
+	*/
+	global.adlayer = global.adlayer || {};
+
+	var api = global.adlayer;
+	
+	var config = api.config || defaultConfig;
+
+	var connections = {
+		adserver: new Connection(config.url.adserver),
+		tracker: new Connection(config.url.tracker)
+	};
+	
+	var tracker = new Tracker();
+	tracker.connection = connections.tracker;
+	
+	/**
+	* Exports page api
+	*
+	* @property page
+	* @type object
+	*/
+	api.page = {};
+	/**
+	* Exports configuration
+	*
+	* @property config
+	* @type object
+	*/
+	api.config = config;
+	/**
+	* Exports connections
+	*
+	* @property connections
+	* @type object
+	*/
+	api.connections = connections;
+	/**
+	* Exports spaces
+	*
+	* @property spaces
+	* @type object
+	* @example 
+		var space = adlayer.spaces['0202kjj44949999992j8'];
+		space.close();
+	*/
+	api.spaces = spacesCollection;
+	/**
+	* Exports ads
+	*
+	* @property ads
+	* @type object
+	* @example 
+		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
+		ad.emit('load');
+	*/
+	api.ads = adsCollection;
+	
+	/**
+	* @method initialization
+	* @private
+	*/
+	(function initialization(){
+		var document = global.document;
 		
-		if(config.page.autoRun) page = Page.init();
-		
+		if(config.page.autoRun && document) {
+			
+			var scriptTag = document.getElementById(config.page.scriptTagId);
+			var queries = scriptTag.src.split('?')[1];
+			var params = queryString.parse(queries);
+
+			config.site_id = config.site_id || params.site;
+			config.domain = config.domain || global.location.hostname;
+			config.page_id = config.page_id || params.page;
+			config.page_url = config.page_url || global.location.href;
+			
+			api.page = new Page({
+				tracker: tracker,
+				id: config.page_id,
+				url: config.page_url,
+				site_id: config.site_id,
+				domain: config.domain,
+				connection: connections.adserver,
+				document: document
+			});
+			api.page.init();
+		}
 	})();
 	
-	
-	// Export page api
-	api.page = page;
-	// Export config
-	api.config = config;
-	// Export connections
-	api.connections = connections;
-	// Export space api
-	api.spaces = spacesCollection;
-	// Export Ad api
-	api.ads = adsCollection;
 	
 })(this);

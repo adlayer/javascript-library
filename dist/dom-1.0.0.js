@@ -1,4 +1,8 @@
-/*
+/**
+* @module dom
+*/
+
+/**
 * Abstract class for dom/html elements 
 *
 * @class DomElement
@@ -6,16 +10,20 @@
 */
 var DomElement = function(){
 	/**
-	* @property {String} id Id attribute of object
+	* Id attribute of object
+	* @property id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {Object} element Dom element itself
+	* Dom element itself
+	* @property element
+	* @type object
 	*/
 	this.element = undefined;
 };
 
-	/*
+	/**
 	* @method create
 	* @param {String} tagName
 	* @param {Object} document
@@ -25,7 +33,7 @@ var DomElement = function(){
 	DomElement.create = function(tagName, document){
 		return document.createElement(tagName);
 	};
-	/*
+	/**
 	* @method create
 	* @param {String} tagName
 	* @param {Object} document
@@ -39,7 +47,7 @@ var DomElement = function(){
 		return this.element;
 	};
 	
-	/*
+	/**
 	* @method setAttributes
 	* @param {Object} attributes
 	* @public
@@ -50,7 +58,7 @@ var DomElement = function(){
 		merge(this.element, attributes);
 	};
 	
-	/*
+	/**
 	* @method append
 	* @param {Object} child
 	* @public
@@ -60,7 +68,7 @@ var DomElement = function(){
 		this.element.appendChild(child);
 		return this;
 	};
-	/*
+	/**
 	* @method findParentTag
 	* @param {String} tag UPPERCASE tag name
 	* @public
@@ -73,7 +81,7 @@ var DomElement = function(){
 		}
 		return parent;
 	};
-	/*
+	/**
 	* @method addDomEventListener
 	* @param {String} type Event name like 'click', 'load', 'mouseover'
 	* @param {Function} eventListener Callback for event trigger
@@ -93,6 +101,9 @@ var DomElement = function(){
 
 
 	exports.DomElement = DomElement;
+/**
+* @module dom
+*/
 (function(){
 	
 	// modules
@@ -101,19 +112,22 @@ var DomElement = function(){
 	var Event = require('../domain/event').Event;
 	
 	
-	/*
+	/**
 	* Base for any type of Dom ads.
 	*
 	* @class AdDom
-	* @augments Ad
-	* @augments DomElement
+	* @constructor
+	* @extends Ad
+	* @extends DomElement
 	*/
 	var AdDom = function(){
 		// extends Ad
 		Ad.apply(this, arguments);
 		
-		/*
-		* @property {Tracke} tracker Instance of tracker
+		/**
+		* Instance of tracker
+		* @property tracker
+		* @type tracker
 		* @public
 		*/
 		this.tracker = {};
@@ -122,8 +136,8 @@ var DomElement = function(){
 	AdDom.prototype = new DomElement();
 	
 	
-	/*
-	* @public
+	/**
+	* @method getSpaceId
 	* @returns {String} return the id of the first parent div
 	*/
 	AdDom.prototype.getSpaceId = function(){
@@ -131,8 +145,8 @@ var DomElement = function(){
 		return node.id;
 	};
 	
-	/*
-	* @public
+	/**
+	* @method getClickTag
 	* @param {String} site_id
 	* @param {String} page_id
 	* @param {String} page_url
@@ -160,7 +174,37 @@ var DomElement = function(){
 		}
 		return false;
 	};
+	
+	AdDom.prototype.init = function(space, config){
+		var ad = this;
+		// Listener for 'LOAD' event
+		ad.on('load', function(){
+			ad.tracker.track({
+				type: 'impression',
+				
+				site_id: config.site_id,
+				domain: config.domain,
+				page_url: config.page_url,
+				page_id: config.page_id,
+				
+				ad_id: ad.id,
+				campaign_id: ad.campaign_id,
+				space_id: space.id
+			});
+		});
+
+		// Listener for 'PLACEMENT' event
+		ad.on('placement', function(){
+			// Setting click tag in ad element
+			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			ad.element.href = clickTag;
+		});
+		return ad;
+	};
+	
 	exports.AdDom = AdDom;
+	
+	
 	
 })();
 (function(){
@@ -169,12 +213,11 @@ var DomElement = function(){
 	var DomElement = require('./dom_element').DomElement;
 	var Space = require('../domain/space').Space;
 	
-	
-	/*
+	/**
 	* Space dom
 	*
 	* @class SpaceDom
-	* @requires DomElement
+	* @extends DomElement
 	* @requires Ad
 	*/
 	var SpaceDom = function(){
@@ -186,9 +229,9 @@ var DomElement = function(){
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
 
-	/*
-	* @public
-	* @param {Object} DomElement, Ad to append in element
+	/**
+	* @method placeAd
+	* @param {Object} DomElement Ad to append in element
 	* @returns {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
@@ -197,8 +240,8 @@ var DomElement = function(){
 		return this;
 	};
 	
-	/*
-	* @public
+	/**
+	* @method getElement
 	* @returns {Object} return the DomElement
 	*/
 	SpaceDom.prototype.getElement = function(){

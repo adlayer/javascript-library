@@ -5,6 +5,7 @@ default:
 	# Build library
 	jake
 	# Make documentation
+	make docs
 docs:
 	#yuidoc --server src
 	yuidoc
@@ -13,4 +14,4 @@ test:
 cov:
 	./node_modules/mocha/bin/mocha test/**/*.js --reporter html-cov > cov.html
 
-.PHONY: test
+.PHONY: test docs

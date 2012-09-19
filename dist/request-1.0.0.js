@@ -9,14 +9,50 @@ var Http = function(){
 	var queryString = require('../node_modules/querystring').querystring;
 	Core.apply(this, arguments);
 	
+	/**
+	* @property host
+	* @type string
+	*/
 	this.host = '';
+	/**
+	* @property protocol
+	* @type string
+	* @default 'http'
+	*/
 	this.protocol = 'http';
+	/**
+	* @property port
+	* @type number
+	* @default 80
+	*/
 	this.port = 80;
+	/**
+	* @property path
+	* @type string
+	* @default '/'
+	*/
 	this.path = '/';
+	/**
+	* @property qs
+	* @type object
+	*/
 	this.qs = {};
+	/**
+	* @property query
+	* @type string
+	*/
 	this.query = '';
+	/**
+	* @property url
+	* @type string
+	*/
 	this.url = '';
 
+	/**
+	* @method isEmptyObject
+	* @param {Object} obj Object to verify
+	* return {Boolean}
+	*/
 	function isEmptyObject(obj){
 		for(var prop in obj) {
 			if(obj.hasOwnProperty(prop)) return false;
@@ -24,9 +60,8 @@ var Http = function(){
 		return true;
 	}
 	
-	/*
+	/**
 	* @method getUrl
-	* @privileged
 	* @returns {String} full url
 	*/
 	this.getUrl = function(){
@@ -49,6 +84,10 @@ var Http = function(){
 };
 exports.Http = Http;
 /**
+* @module request
+*/
+
+/**
 * Abstract class to make http requests
 *
 * @class HttpRequest
@@ -60,9 +99,13 @@ var HttpRequest = function( attributes, callback ){
 	var Http = require('./http').Http;
 	Http.apply(this, arguments);
 	
+	/**
+	* @property callback
+	* @type function
+	*/
 	this.callback = undefined;
 	
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -78,11 +121,16 @@ var HttpRequest = function( attributes, callback ){
 	}(this);
 };
 exports.HttpRequest = HttpRequest;
-/*
+/**
+* @module request
+*/
+
+/**
 * Loads an img
 *
 * @class ImgRequest
 * @constructor
+* @extends HttpRequest
 * @param {Object} Attributes
 * @param {Function} callback
 * @example new ImgRequest({document:document, url}, callback)
@@ -92,7 +140,7 @@ var ImgRequest = function(){
 	HttpRequest.apply(this, arguments);
 };
 
-	/*
+	/**
 	* @method send
 	* @public
 	* @param {Object} data
@@ -112,7 +160,7 @@ var ImgRequest = function(){
 		return this;
 	};
 	
-	/*
+	/**
 	* @method make
 	* @static
 	* @param {Object} options	
@@ -129,11 +177,16 @@ var ImgRequest = function(){
 	};
 	
 	exports.ImgRequest = ImgRequest;
-/*
+/**
+* @module request
+*/
+
+/**
 * Make an http request expeting for jsonp return
 *
 * @class JsonpRequest
 * @constructor
+* @extends HttpRequest
 * @param {Object} Attributes
 * @param {Function} callback
 * @example new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')
@@ -142,7 +195,7 @@ var JsonpRequest = function(){
 	var HttpRequest = require('./http_request').HttpRequest;
 	HttpRequest.apply(this, arguments);
 };
-	/*
+	/**
 	* @method queryCallback
 	* @public
 	* @param {String} string to call in jsonpresult
@@ -153,7 +206,7 @@ var JsonpRequest = function(){
 		return this;
 	};
 
-	/*
+	/**
 	* @method validate
 	* @public
 	* @returns {Boolean}
@@ -162,7 +215,7 @@ var JsonpRequest = function(){
 		return this.qs.callback !== undefined;
 	};
 
-	/*
+	/**
 	* @method send
 	* @public
 	* @param {Object} options
@@ -183,19 +236,20 @@ var JsonpRequest = function(){
 		return this;
 	};
 	
-	/*
-	* @property {Object} DomObject
+	/**
+	* @property document
+	* @type object
 	* @static
 	*/
 	JsonpRequest.document = undefined;
 	
-	/*
+	/**
 	* @method make
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
 	* @returns {Object} this to chain
-	* @example: JsonpRequest.make(options, callback).expose(root)
+	* @example JsonpRequest.make(options, callback).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback){
 		function wrap(fn){
@@ -214,6 +268,9 @@ var JsonpRequest = function(){
 	};
 	
 	exports.JsonpRequest = JsonpRequest;
+/**
+* @module request
+*/
 function request(){
 	
 	var JsonpRequest = require('./jsonp_request').JsonpRequest;

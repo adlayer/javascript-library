@@ -1,19 +1,10 @@
-/**
- * @private
- * Implementation of common.js
- */
+// Implementation of common.js
 var node_modules = {};
 var module = {};
 
 module.exports = {};
 var exports = module.exports;
 
-/**
- * @example
- * EventEmitter = require('events').EventEmitter;
- * No mattter what you pass parameter, this will always find for var 'exports' , bacause in this implementation
- * Everything are in the same structure
- */
 var require = function(path){
 	return exports;	
 };
@@ -26,6 +17,7 @@ function copy(obj){
 exports.copy = copy;
 /**
  * Util method for extend/merge objects
+ * @method merge
  */
 var merge = function(destination,source) {
     for (var property in source){
@@ -37,7 +29,7 @@ var merge = function(destination,source) {
 };
 exports.merge = merge;
 /**
- * Load an script on top of html
+ * @method loadScript
  * @param {string}
  * @return {element}
  */
@@ -56,23 +48,45 @@ function loadScript(url, sucess, error){
 }
 exports.loadscript = loadScript;
 /**
- * @class Event Emitter
- * @classDescription Implementation minimized of node event emitter
- */
+* @module events
+*/
 var events = {};
+
+/**
+* Implementation minimized of node event emitter
+*
+* @class EventEmitter
+* @constructor
+*/
 var EventEmitter = function(){
-	/* @private */
+	/**
+	* Storage of events
+	*
+	* @attribute listeners
+	* @type object
+	* @private
+	*/
 	var listeners = {
-			load:[],
-			click:[],
-			readyStateChange:[]
+		load:[],
+		click:[],
+		readyStateChange:[]
 	};
 	
+	/**
+	* @method listeners
+	* @param {String} event Name of event
+	* @return {Array}
+	*/
 	this.listeners = function(event){
 		return listeners[event];
 	};
 	
-	/* @public */
+	/**
+	* @method addListener
+	* @param {String} event Name of event
+	* @param {Function} fn Eventhandler
+	* @return {Array}
+	*/
 	this.addListener = function(event,fn){
 		if(!listeners[event]){
 			listeners[event] = [];
@@ -81,11 +95,25 @@ var EventEmitter = function(){
 		return listeners[event];
 	};
 	
+	/**
+	* Shortcut for addListener
+	*
+	* @method on
+	* @param {String} event Name of event
+	* @param {Function} fn Eventhandler
+	* @return {Array}
+	*/
 	this.on = function(event, fn){
 		return this.addListener(event,fn);
 	};
 	
-	/* @public */
+	/**
+	* Trigger the event
+	*
+	* @method emit
+	* @param {String} event Name of event
+	* @return {Array}
+	*/
 	this.emit = function(event){
 		var eventListeners = listeners[event];
 		if(eventListeners && (eventListeners.length > 0)){
@@ -101,10 +129,14 @@ events.EventEmitter = EventEmitter;
 exports.events = events;
 /**
 * QueryString module for handle params
+* @module queryString
 * @public
 */
 var queryString = {
-	/* @public */ 
+	/**
+	* @method parse
+	* @public 
+	*/
 	parse:function(qs){
 		var sep = "&";
 		var eq = "=";
@@ -126,7 +158,10 @@ var queryString = {
 		}
 		return obj;
 	},
-	/* @public */
+	/**
+	* @method stringify
+	* @public 
+	*/
 	stringify:function(obj){
 		var sep = "&";
 		var eq = "=";

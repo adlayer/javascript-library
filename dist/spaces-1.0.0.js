@@ -1,11 +1,16 @@
 /**
-* @class represents the type Expander space
-* @extends Space
-* @implements ISpace
+* @module spaces
 */
 
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	/**
+	* Represents the type Expander space
+	*
+	* @class ExpandableSpace
+	* @extends SpaceDom
+	* @implements ISpace
+	*/
 	var ExpandableSpace = function(){
 		SpaceDom.apply(this, arguments);
 		
@@ -31,7 +36,9 @@
 	ExpandableSpace.prototype = new SpaceDom();
 	
 	/**
-	* @public
+	* @method clip
+	* @param {Number} width
+	* @param {Number} height
 	* @return {Object}
 	*/
 	ExpandableSpace.prototype.clip = function(width, height){
@@ -40,6 +47,7 @@
 	};
 	
 	/**
+	* @method expand
 	* @public
 	* @return {Object}
 	*/
@@ -52,6 +60,7 @@
 	};
 	
 	/**
+	* @method retract
 	* @public
 	* @return {Object}
 	*/
@@ -64,16 +73,20 @@
 	exports.ExpandableSpace = ExpandableSpace;
 })();
 /**
-* @class represents the type Floater
-* @extends Space
-* @implements ISpace
+* @module spaces
 */
 
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	/**
+	* Represents the type Floater
+	* @class FloaterSpace
+	* @extends SpaceDom
+	*/
 	var FloaterSpace = function(){
 		SpaceDom.apply(this, arguments);
 		/**
+		* @method close
 		* @public
 		*/
 		this.close = function(){
@@ -99,13 +112,17 @@
 	exports.FloaterSpace = FloaterSpace;
 })();
 /**
-* @class represents the type Static
-* @extends SpaceDom
-* @implements ISpace
+* @module spaces
 */
+
 (function(){
 	var SpaceDom = require('../dom/space_dom').SpaceDom;
-	
+	/**
+	* Represents the type Static
+	* 
+	* @class StaticSpace
+	* @extends SpaceDom
+	*/	
 	var StaticSpace = function(){
 		SpaceDom.apply(this, arguments);
 		var __construct = (function(self){
@@ -119,8 +136,10 @@
 	
 	exports.StaticSpace = StaticSpace;
 })();
-(function(){
-	
+/**
+* @module spaces
+*/
+(function(){	
 	exports.spaces = (function(){
 		var Expandable = require('./expandable_space.js').ExpandableSpace,
 			Floater = require('./floater_space.js').FloaterSpace,

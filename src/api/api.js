@@ -34,7 +34,7 @@
 		
 		// Exporting ad to api
 		adsCollection[ad.id] = ad;
-	}
+	};
 
 	/**
 	* @for PageApi
@@ -58,7 +58,7 @@
 							page_url: page.url,
 							page_id: page.id,
 							site_id: page.site_id
-						}
+						};
 						Page.renderSpace(space, config, tracker);
 						// exporting space to api
 						spacesCollection[space.id] = space;

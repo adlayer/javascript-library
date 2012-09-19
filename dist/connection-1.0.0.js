@@ -1,29 +1,34 @@
 /**
-* @class Connection
+* @module Connection
 */
 
 /**
-	## Using in node.js
-	
-	// hack request
-	var request = require('request');
-	request.jsonp = request.get;
-	
-	// Hacking lib.connection
-	var connection = require('connection');
-	connection.prototype.request = request;
-	
-	// Your code goes here	
-
-**/
-
+* @class Connection
+* @constructor
+* @extends Http
+*/
 var Connection = function( attributes ){
 	var Http = require('../request/http').Http;
 	Http.apply(this, arguments);
 	
+	/**
+	* Index of requests
+	* @property _index
+	* @type number
+	* @protected
+	*/
 	this._index = 0;
-	
+	/**
+	* Connection name
+	* @property name
+	* @type string
+	*/
 	this.name = '';
+	/**
+	* Requests storage
+	* @property requests
+	* @type object
+	*/
 	this.requests = {};
 	
 	/*
@@ -40,25 +45,53 @@ var Connection = function( attributes ){
 	}(this);
 };
 
+/**
+* @method id
+* @public
+* @returns {String} return current uuid
+*/
 Connection.prototype.id = function(){
 	return 'n' + this._index;
 };
 
+/**
+* @method newId
+* @public
+* @returns {String} Increment the index and return a new id
+*/
 Connection.prototype.newId = function(){
 	this._index++;
 	return this.id();
 };
+
+/**
+* @method next
+* @public
+* @param {Object} req A Request instance
+*/
 Connection.prototype.next = function(req){
 	var sign = this.newId();
 	this.requests[sign] = req;
 };
-
+/**
+* @method getCallbackPath
+* @public
+* @returns {String} path of callback
+*/
 Connection.prototype.getCallbackPath = function(){
 	return [this.name, 'requests', this.id(), 'callback'].join('.');
 };
-
+/**
+* @method request
+* @public
+* @returns {Object}
+*/
 Connection.prototype.request = require('../request/request').request;
-
+/**
+* @method get
+* @public
+* @returns {Object}
+*/
 Connection.prototype.get = function(path, data, callback){
 	if(typeof data === 'function') {
 		callback = data;

@@ -1,4 +1,8 @@
 /**
+* @module core
+*/
+
+/**
 * Core class
 *
 * @class Core
@@ -9,11 +13,12 @@ var Core = function(){
 	var merge = require('../utils/merge').merge;
 	var queryString = require('../node_modules/querystring').querystring;
 	
-	/*
+	/**
 	* @method extend
-	* @privileged
-	* @returns {Object} return this to allow chain pattern
+	* @param {Object} attributes
+	* @return {Object} return this to allow chain pattern
 	*/
+	
 	this.extend = function(attributes){
 		return merge(this, attributes);
 	};
@@ -21,67 +26,74 @@ var Core = function(){
 };
 exports.Core = Core;
 /**
+* @module core
+*/
+
+/**
 * Create any event
 *
 * @class Event
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Event = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	
-	/*
-	* @property {Object} __date__ Instance of current date
+	/**
+	* Instance of current date
+	* @property date
+	* @type date
 	* @private
 	*/
 	var date = new Date();
 	
-	/*
-	* @property {String} type Event type
-	* @public
+	/**
+	* Event type
+	* @property type
+	* @type string
 	*/
 	this.type = '';
-	
-	
-	/*
-	* @property {String} campaign_id Campaign Id
-	* @public
+	/**
+	* Campaign Id
+	* @property campaign_id
+	* @type string
 	*/
 	this.campaign_id = '';
-	/*
-	* @property {String} ad_id Ad id
-	* @public
+	/**
+	* @property ad_id
+	* @type string
 	*/
 	this.ad_id = '';
-	/*
-	* @property {String} space_id Space id
-	* @public
+	/**
+	* @property space_id
+	* @type string
 	*/
 	this.space_id = '';
-	/*
+	/**
 	* @property {String} site_id Site id
 	* @public
 	*/
 	this.site_id = '';
-	/*
+	/**
 	* @property {String} page_url Url of the current page
 	* @public
 	*/
 	this.page_url = '';
 	
 	
-	/*
+	/**
 	* @property {String} date Date ISO 8601 format
 	* @public
 	*/
 	this.date = '';
-	/*
+	/**
 	* @property {String} time Time of event
 	* @public
 	*/
 	this.time = '';
-	/*
+	/**
 	* @property {String} hour
 	* @description First part of a time iso
 	* @public
@@ -89,12 +101,12 @@ var Event = function( attributes ){
 	this.hour = '';
 	
 	
-	/*
+	/**
 	* @property {String} ip Visitor ip
 	* @public
 	*/
 	this.ip = '';
-	/*
+	/**
 	* @property {String} browser User agent or browser
 	* @public
 	*/
@@ -102,7 +114,6 @@ var Event = function( attributes ){
 	
 	/**
 	* @method getFullDate
-	* @privileged
 	* @returns {String} Even if date is not converted to string return ISOString
 	*/
 	this.getFullDate = function(){
@@ -123,8 +134,11 @@ var Event = function( attributes ){
 	}(this);
 };
 
-	/*
-	* @property {Array} required List of all required attributes
+	/**
+	* Required List of all required attributes
+	* 
+	* @property required
+	* @type {Array}
 	* @static
 	*/
 	Event.required = [
@@ -134,7 +148,7 @@ var Event = function( attributes ){
 		'page_url',
 		'page_id'
 	];
-	/*
+	/**
 	* @method track
 	* @static
 	* @returns {Object} return the result of method save
@@ -143,7 +157,7 @@ var Event = function( attributes ){
 		return new Event(attributes).save();
 	};
 
-	/*
+	/**
 	* @method getDate
 	* @public
 	* @returns {String} The second part of a fulldate splited in T character
@@ -153,7 +167,7 @@ var Event = function( attributes ){
 	};
 
 
-	/*
+	/**
 	* @method getTime
 	* @public
 	* @returns {String} he second part of a fulldate splited in T character
@@ -162,7 +176,7 @@ var Event = function( attributes ){
 		return this.getFullDate().split('T')[1];
 	};
 
-	/*
+	/**
 	* @method getHour
 	* @public
 	* @returns {String || Boolean} String of hour or false
@@ -173,7 +187,7 @@ var Event = function( attributes ){
 		}
 		return false;
 	};
-	/*
+	/**
 	* @method validate
 	* @public
 	* @returns {Boolean} true for all attributes and false if any is missing
@@ -188,7 +202,7 @@ var Event = function( attributes ){
 		// default
 		return true;
 	};
-	/*
+	/**
 	* @method toQuery
 	* @public
 	* @returns {String} convert object to network string
@@ -197,7 +211,7 @@ var Event = function( attributes ){
 		var querystring = require('../node_modules/querystring').querystring;
 		return querystring.stringify(this);
 	};
-	/*
+	/**
 	* @method save
 	* @public
 	* @returns {Error} convert object to network string
@@ -205,17 +219,18 @@ var Event = function( attributes ){
 	Event.prototype.save = function(){
 		throw new Error('You should override this');
 	};
-	/**
-	* @requires modules in browser
-	* @exports Event as Event
-	*/
+
 	exports.Event = Event;
+/**
+* @module core
+*/
+
 /**
 * Abstract class for ads
 *
 * @class Ad
 * @constructor
-* @param {Object} attributes
+* @extends Core
 */
 var Ad = function( attributes ){
 	var Core = require('./core').Core;
@@ -223,49 +238,57 @@ var Ad = function( attributes ){
 	Core.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
 	
-	/*
-	* @property {String} id Id of ad
-	* @public
+	/**
+	* Id of ad
+	* @property id 
+	* @type string
 	*/
 	this.id = '';
-	/*
-	* @property {String} name Name of ad creative
-	* @public
+	/**
+	* Name of ad creative
+	* @property name 
+	* @type string
 	*/
 	this.name = '';
-	/*
-	* @property {String} campaign_id Id to campaign that belongs to
-	* @public
+	/**
+	* Id to campaign that belongs to
+	* @property campaign_id 
+	* @type string
 	*/
 	this.campaign_id = '';
-	/*
-	* @property {String} type Ad type
-	* @public
+	/**
+	* Ad type
+	* @property type 
+	* @type string
 	*/
 	this.type = '';
-	/*
-	* @property {String} file Path to ad file
-	* @public
+	/**
+	* file Path to ad file
+	* @property file 
+	* @type string
 	*/
 	this.file = '';
-	/*
-	* @property {String} link destiny link
-	* @public
+	/**
+	* link destiny link
+	* @property link 
+	* @type string
 	*/
 	this.link = '';
-	/*
-	* @property {Boolean} status Ad status
-	* @public
+	/**
+	* status Ad status
+	* @property status 
+	* @type boolean
 	*/
 	this.status = true;
-	/*
-	* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-	* @public
+	/**
+	* Alternative Ad is another instance of Ad with graceful degradation
+	* @property alternative 
+	* @type object
 	*/
 	this.alternative = {};
 	
 
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -275,14 +298,15 @@ var Ad = function( attributes ){
 	}(this);
 };
 
-/**
-* @requires modules in browser
-* @exports Ad as Ad
-*/
 exports.Ad = Ad;
+/**
+* @module core
+*/
+
 /**
 * Interface for space behaviour
 *
+* @class ISpaceBehaviour
 * @interface ISpaceBehaviour
 * @constructor
 */
@@ -315,30 +339,41 @@ var RandomSpaceBehaviour = function(){
 *
 * @class Space
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Space = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id Unique space id
+	* Unique space id
+	* @property id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} type Type of space
+	* Type of space
+	* @property type
+	* @type string
 	*/
 	this.type = '';
 	/**
-	* @property {Boolean} status true for active and false for inactive
+	* true for active and false for inactive
+	* @property status
+	* @type boolean
 	*/
 	this.status = '';
 	/**
-	* @property {Array} ads Collection of ads linked to space
+	* Collection of ads linked to space
+	* @property ads
+	* @type array
 	*/
 	this.ads = [];
 	
 	/**
-	* @property {SpaceBehaviour} behaviour a part of strategy pattern
+	* behaviour a part of strategy pattern
+	* @property behaviour 
+	* @type SpaceBehaviour
 	*/
 	this.behaviour = {};
 
@@ -372,35 +407,44 @@ var Space = function( attributes ){
 	}(this);
 };
 
-	/**
-	* @requires modules in browser
-	* @exports Space as Space
-	*/
 	exports.Space = Space;
+/**
+* @module core
+*/
+
 /**
 * Abstract class for page
 *
 * @class Page
 * @constructor
+* @extends Core
 * @param {Object} attributes
 */
 var Page = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id unique page id
+	* id unique page id
+	* @property  id
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} name page name
+	* page name
+	* @property name
+	* @type string
 	*/
 	this.name = '';
 	/**
-	* @property {Array} spaces Collection of page spaces
+	* Collection of page spaces
+	* @property spaces
+	* @type array
 	*/
 	this.spaces = [];
 	/**
-	* @property {Boolean} true for active and false for inactive
+	* Collection of page spaces
+	* @property status
+	* @type boolean
 	*/
 	this.status = true;
 	
@@ -416,8 +460,8 @@ var Page = function( attributes ){
 	/**
 	* @method getActiveContent
 	* @public
-	* @returns {Object} new Page() - return the instance itself to improve chainability
-	* @requires Javascript 1.6
+	* @return {Page} the instance itself to improve chainability
+	* @require Javascript 1.6
 	* __Warning:__ Don't use this in browser, because it can not work in old browsers
 	* @todo: should be readonly not modify the object just return filtered value
 	*/
@@ -437,39 +481,48 @@ var Page = function( attributes ){
 		}
 		return this;
 	};
-	/**
-	* @requires modules in browser
-	* @exports Page as Page
-	*/
 	exports.Page = Page;
-/*
+/**
+* @module core
+*/
+
+/**
 * Abstract class for site
 *
 * @class Site
 * @constructor
-* @param {Object} attributes
+* @extends Core
 */
 var Site = function( attributes ){
 	var Core = require('./core').Core;
 	Core.apply(this, arguments);
 	/**
-	* @property {String} id Unique site id
+	* Unique site id
+	* @property id 
+	* @type string
 	*/
 	this.id = '';
 	/**
-	* @property {String} name Name of site
+	* Name of site
+	* @property name
+	* @type string
 	*/
 	this.name = '';
 	/**
-	* @property {Boolean} status true for active and  false for inactive
+	* true for active and  false for inactive
+	* @property status
+	* @type boolean
+	* @default true
 	*/
 	this.status = true;
 	/**
-	* @property {Array} domains Collection of all allowed domains
+	* Collection of all allowed domains
+	* @property domains
+	* @type array
 	*/
 	this.domains = [];
 	
-	/*
+	/**
 	* @method __construct
 	* @private
 	* @returns {Object} return this to allow chain pattern
@@ -480,11 +533,12 @@ var Site = function( attributes ){
 };
 
 	/**
-	* @description Find for exact domain or subdomain
+	* Find for exact domain or subdomain
+	*
+	* @method hasDomain
 	* @public
 	* @param {String} entry - Domain string
 	* @returns {Boolean} - True when found a domain and false for not
-	* @todo: change to regex
 	*/
 	Site.prototype.hasDomain = function(entry){
 		var self = this;
@@ -512,8 +566,4 @@ var Site = function( attributes ){
 		return result;
 	};
 
-	/**
-	* @requires modules in browser
-	* @exports Event as Event
-	*/
 	exports.Site = Site;

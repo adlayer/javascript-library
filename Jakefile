@@ -1,4 +1,3 @@
-//var Biscuit = require('biscuit');
 var smoosh = require('smoosh');
 var fs = require('fs');
 var Hogan = require('hogan.js');

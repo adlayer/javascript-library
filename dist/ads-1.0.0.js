@@ -1,45 +1,63 @@
-/*
+/**
+* @module ads
+*/
+/**
 * @class Swf
-* @property {String} align Alignment of html content.
-* @property {Boolean} menu Control right click menu options (true, false).
-* @property {String} quality Control quality of loaded movie ('low', 'medium', 'high').
-* @property {String} scale Flash canvas mode ('noscale').
-* @property {String} wmode Embed type relative to context.
-* @property {String} type Default alias for 'application/x-shockwave-flash'.
-* @property {String} type allowScriptAcess.
 */
 var Swf = function(){
+	/**
+	* Alignment of html content.
+	* @property align
+	* @type string
+	*/
 	this.align = "center";
+	/**
+	* Control right click menu options (true, false).
+	* @property menu
+	* @type boolean
+	*/
 	this.menu = false;
+	/**
+	* @property quality
+	* @type string
+	*/
 	this.quality = "high"; //low,autolow,autohigh,medium,high,best ;
+	/**
+	* @property scale
+	* @type string
+	*/
 	this.scale = "noscale"; //default,noborder,exactfit,noscale
+	/**
+	* @property wmode
+	* @type string
+	*/
 	this.wmode = "transparent"; //window,opaque,transparent
+	/**
+	* @property type
+	* @type string
+	*/
 	this.type = "application/x-shockwave-flash";
+	/**
+	* @property allowScriptAccess
+	* @type string
+	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
 };
 exports.Swf = Swf;
-/**
-* Create embedable ads
-*
-* @class EmbedAd
-* @constructor
-* @param {Object} attributes
-*
-* @augments AdDom
-* @property {String} id Id of ad
-* @property {String} name Name of ad creative
-* @property {String} campaign_id Id to campaign that belongs to
-* @property {String} type Ad type
-* @property {String} file Path to ad file
-* @property {String} link destiny link
-* @property {Boolean} status Ad status
-* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-*
-*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
+	
+	/**
+	* Create embedable ads
+	*
+	* @class EmbedAd
+	* @constructor
+	* @param {Object} attributes
+	* @extends AdDom
+	* @extends Swf
+	*/
 	var EmbedAd = function(){
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
@@ -57,44 +75,71 @@ exports.Swf = Swf;
 	EmbedAd.prototype = new AdDom();
 	exports.EmbedAd = EmbedAd;
 })();
-/**
-* Create embedable ads
-*
-* @class EmbedAd
-* @constructor
-* @param {Object} attributes
-*
-* @augments AdDom
-* @property {String} id Id of ad
-* @property {String} name Name of ad creative
-* @property {String} campaign_id Id to campaign that belongs to
-* @property {String} type Ad type
-* @property {String} file Path to ad file
-* @property {String} link destiny link
-* @property {Boolean} status Ad status
-* @property {Object} alternative Alternative Ad is another instance of Ad with graceful degradation
-*
-*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
 	
+	/**
+	* Create embedable ads
+	*
+	* @class ObjectAd
+	* @constructor
+	* @param {Object} attributes
+	*
+	* @extends AdDom
+	* @extends Swf
+	*/	
 	var ObjectAd = function(){
 		var superclass = this;
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
 	
+		/**
+		* @property CLASSID
+		* @type string
+		* @final
+		* @private
+		*/
 		var CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
+		/**
+		* @property CODEBASE
+		* @type string
+		* @final
+		* @private
+		*/
 		var CODEBASE = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0";
+		/**
+		* @property PLUGINSPAGE
+		* @type string
+		* @final
+		* @private
+		*/
 		var PLUGINSPAGE = "http://www.macromedia.com/go/getflashplayer";
 		
-		/** @class Param
-		* <param name="wmode" value="tranparent" />
+		/** 
+		* @class Param
+		* @constructor
+		* @param {String} name
+		* @param {String} value
+		* @return HTMLElement
 		*/
-		var Param = function(name,value){
+		var Param = function(name, value){
+			/**
+			* @property name
+			* @type string
+			*/
 			this.name = name;
+			/**
+			* @property value
+			* @type string
+			*/
 			this.value = value;
+			/**
+			* @property element
+			* @type HTMLElement
+			*/
 			this.element = superclass.create("param");
+			
 			this.element.setAttribute("name", this.name);
 			this.element.setAttribute("value", this.value);
 			return this.element;
@@ -130,8 +175,9 @@ exports.Swf = Swf;
 	exports.ObjectAd = ObjectAd;
 })();
 /**
- * @class ImgAd
- */
+* @class ImgAd
+* @extends AdDom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var ImgAd = function(){
@@ -162,10 +208,6 @@ exports.Swf = Swf;
 	ImgAd.prototype = new AdDom();
 	exports.ImgAd = ImgAd;
 })();
-/**
-* @todo: switch for IE use object tag
-* @todo: change write data different to avoid _id & file atribution
-*/
 (function(){
 	var Embed = require('./embed_ad.js').EmbedAd;
 	var ObjectAd = require('./object_ad.js').ObjectAd;
@@ -183,8 +225,7 @@ exports.Swf = Swf;
 	exports.FlashAd = FlashAd;
 })();
 /**
-* @todo: switch for IE use object tag
-* @todo: change write data different to avoid _id & file atribution
+* @module ads
 */
 (function(){
 	
