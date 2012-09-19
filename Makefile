@@ -1,5 +1,7 @@
 REPORTER = spec
 default:
+	# Statics
+	stats src --totals
 	# Runing unit tests
 	make test
 	# Build library
