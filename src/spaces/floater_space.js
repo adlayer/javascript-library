@@ -30,6 +30,9 @@
 			
 			var bt = self.document.createElement('BUTTON');
 			bt.innerHTML = 'x';
+			bt.onclick = function(){
+				self.close();
+			};
 			self.append(bt);
 			
 		})(this);
