@@ -18,7 +18,8 @@
 		var __construct = (function(self){
 			self.create('EMBED');
 			self.element.src = self.src;
-			
+			self.element.setAttribute('height', self.height);
+			self.element.setAttribute('width', self.width);
 			self.setAttributes(new Swf());
 			
 			self.element.id = self.id;

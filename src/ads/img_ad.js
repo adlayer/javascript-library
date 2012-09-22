@@ -10,6 +10,8 @@
 		var __construct = (function(self){
 			// Default create the image
 			self.create('img');
+			self.element.setAttribute('height', self.height);
+			self.element.setAttribute('width', self.width);
 			self.element.src = self.src;
 			var img = self.element;
 			
