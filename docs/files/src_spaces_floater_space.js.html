@@ -190,6 +190,9 @@
 			
 			var bt = self.document.createElement(&#x27;BUTTON&#x27;);
 			bt.innerHTML = &#x27;x&#x27;;
+			bt.onclick = function(){
+				self.close();
+			};
 			self.append(bt);
 			
 		})(this);

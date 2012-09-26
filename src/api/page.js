@@ -34,7 +34,8 @@
 		opts.qs = {
 			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback',
 			domain: this.domain,
-			site_id: this.site_id
+			site_id: this.site_id,
+			ads_per_space: this.adsPerSpace
 		};
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;

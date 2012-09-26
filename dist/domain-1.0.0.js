@@ -328,9 +328,12 @@ var RandomSpaceBehaviour = function(){
 	* @return {Object} Ad
 	*/
 	this.getAd = function(context){ 
-		var total = context.ads.length;
+		var ads = context.ads;
+		var total = ads.length;
 		var index = Math.floor(Math.random() * total);
-		return context.ads[index];
+		var ad = ads[index];
+		ads.splice(index, 1);
+		return ad;
 	};
 };
 

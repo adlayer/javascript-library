@@ -7,6 +7,7 @@ exports.config = {
 			host: 'dev.tracker.adlayerapp.com'
 		}
 	},
+	adsPerSpace: 1,
 	page: {
 		autoRun: true,
 		scriptTagId: 'adlayerScript'

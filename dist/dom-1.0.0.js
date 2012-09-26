@@ -175,6 +175,12 @@ var DomElement = function(){
 		return false;
 	};
 	
+	/**
+	* @method init
+	* @param {Object} space
+	* @param {Object} config
+	* @param {String} page_url
+	*/
 	AdDom.prototype.init = function(space, config){
 		var ad = this;
 		// Listener for 'LOAD' event

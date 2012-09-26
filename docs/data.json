@@ -376,7 +376,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/domain/space.js",
-            "line": 36
+            "line": 39
         },
         "events": {
             "name": "events",
@@ -563,7 +563,7 @@
             "module": "api",
             "namespace": "",
             "file": "src/api/api.js",
-            "line": 75
+            "line": 78
         },
         "Tracker": {
             "name": "Tracker",
@@ -782,7 +782,7 @@
             "module": "core",
             "namespace": "",
             "file": "src/domain/space.js",
-            "line": 36,
+            "line": 39,
             "description": "Abstract class for spaces",
             "is_constructor": 1,
             "extends": "Core",
@@ -1094,13 +1094,30 @@
             "line": 21,
             "itemtype": "method",
             "name": "renderSpace",
+            "params": [
+                {
+                    "name": "space",
+                    "description": "Instance of Space Class to find and render in DOM",
+                    "type": "Object"
+                },
+                {
+                    "name": "data",
+                    "description": "Data of current view to track events",
+                    "type": "Object"
+                },
+                {
+                    "name": "tracker",
+                    "description": "Instance of tracker class",
+                    "type": "Object"
+                }
+            ],
             "static": 1,
             "class": "PageApi",
             "module": "api"
         },
         {
             "file": "src/api/api.js",
-            "line": 39,
+            "line": 42,
             "itemtype": "method",
             "name": "init",
             "access": "public",
@@ -1110,7 +1127,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 92,
+            "line": 95,
             "description": "Exports page api",
             "itemtype": "property",
             "name": "page",
@@ -1120,7 +1137,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 99,
+            "line": 102,
             "description": "Exports configuration",
             "itemtype": "property",
             "name": "config",
@@ -1130,7 +1147,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 106,
+            "line": 109,
             "description": "Exports connections",
             "itemtype": "property",
             "name": "connections",
@@ -1140,7 +1157,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 113,
+            "line": 116,
             "description": "Exports spaces",
             "itemtype": "property",
             "name": "spaces",
@@ -1153,7 +1170,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 123,
+            "line": 126,
             "description": "Exports ads",
             "itemtype": "property",
             "name": "ads",
@@ -1166,7 +1183,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 134,
+            "line": 137,
             "itemtype": "method",
             "name": "initialization",
             "access": "private",
@@ -1191,7 +1208,7 @@
         },
         {
             "file": "src/api/page.js",
-            "line": 44,
+            "line": 45,
             "itemtype": "method",
             "name": "scanSpaces",
             "params": [
@@ -1380,6 +1397,31 @@
             },
             "example": [
                 " http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br"
+            ],
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "src/dom/ad_dom.js",
+            "line": 75,
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "space",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "config",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "page_url",
+                    "description": "",
+                    "type": "String"
+                }
             ],
             "class": "AdDom",
             "module": "dom"
@@ -2092,7 +2134,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 47,
+            "line": 50,
             "description": "Unique space id",
             "itemtype": "property",
             "name": "id",
@@ -2102,7 +2144,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 53,
+            "line": 56,
             "description": "Type of space",
             "itemtype": "property",
             "name": "type",
@@ -2112,7 +2154,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 59,
+            "line": 62,
             "description": "true for active and false for inactive",
             "itemtype": "property",
             "name": "status",
@@ -2122,7 +2164,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 65,
+            "line": 68,
             "description": "Collection of ads linked to space",
             "itemtype": "property",
             "name": "ads",
@@ -2132,7 +2174,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 72,
+            "line": 75,
             "description": "behaviour a part of strategy pattern",
             "itemtype": "property",
             "name": "behaviour",
@@ -2142,7 +2184,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 79,
+            "line": 82,
             "itemtype": "method",
             "name": "setBehaviour",
             "params": [
@@ -2161,7 +2203,7 @@
         },
         {
             "file": "src/domain/space.js",
-            "line": 90,
+            "line": 93,
             "itemtype": "method",
             "name": "getAd",
             "return": {

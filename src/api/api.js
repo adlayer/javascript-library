@@ -21,13 +21,16 @@
 	/**
 	* @for PageApi
 	* @method renderSpace
+	* @param {Object} space Instance of Space Class to find and render in DOM
+	* @param {Object} data Data of current view to track events
+	* @param {Object} tracker Instance of tracker class
 	* @static
 	*/
-	Page.renderSpace = function (space, config, tracker){
+	Page.renderSpace = function (space, data, tracker){
 		// create a instance of Ad using data model provided
 		var ad = ads.create(space.getAd());
 		ad.tracker = tracker;
-		ad = ad.init(space, config);
+		ad = ad.init(space, data);
 		
 		// Placing ad in space
 		space.placeAd(ad);
@@ -156,7 +159,8 @@
 				site_id: config.site_id,
 				domain: config.domain,
 				connection: connections.adserver,
-				document: document
+				document: document,
+				adsPerSpace: config.adsPerSpace
 			});
 			api.page.init();
 		}

@@ -185,6 +185,7 @@ exports.config = {
 			host: 'dev.tracker.adlayerapp.com'
 		}
 	},
+	adsPerSpace: 1,
 	page: {
 		autoRun: true,
 		scriptTagId: 'adlayerScript'
@@ -520,9 +521,12 @@ var RandomSpaceBehaviour = function(){
 	* @return {Object} Ad
 	*/
 	this.getAd = function(context){ 
-		var total = context.ads.length;
+		var ads = context.ads;
+		var total = ads.length;
 		var index = Math.floor(Math.random() * total);
-		return context.ads[index];
+		var ad = ads[index];
+		ads.splice(index, 1);
+		return ad;
 	};
 };
 
@@ -936,6 +940,12 @@ var DomElement = function(){
 		return false;
 	};
 	
+	/**
+	* @method init
+	* @param {Object} space
+	* @param {Object} config
+	* @param {String} page_url
+	*/
 	AdDom.prototype.init = function(space, config){
 		var ad = this;
 		// Listener for 'LOAD' event
@@ -1481,7 +1491,8 @@ exports.Swf = Swf;
 		var __construct = (function(self){
 			self.create('EMBED');
 			self.element.src = self.src;
-			
+			self.element.setAttribute('height', self.height);
+			self.element.setAttribute('width', self.width);
 			self.setAttributes(new Swf());
 			
 			self.element.id = self.id;
@@ -1602,6 +1613,8 @@ exports.Swf = Swf;
 		var __construct = (function(self){
 			// Default create the image
 			self.create('img');
+			self.element.setAttribute('height', self.height);
+			self.element.setAttribute('width', self.width);
 			self.element.src = self.src;
 			var img = self.element;
 			
@@ -1774,6 +1787,9 @@ exports.Swf = Swf;
 			
 			var bt = self.document.createElement('BUTTON');
 			bt.innerHTML = 'x';
+			bt.onclick = function(){
+				self.close();
+			};
 			self.append(bt);
 			
 		})(this);
@@ -1913,7 +1929,8 @@ exports.Swf = Swf;
 		opts.qs = {
 			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback',
 			domain: this.domain,
-			site_id: this.site_id
+			site_id: this.site_id,
+			ads_per_space: this.adsPerSpace
 		};
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;
@@ -1970,13 +1987,16 @@ exports.Swf = Swf;
 	/**
 	* @for PageApi
 	* @method renderSpace
+	* @param {Object} space Instance of Space Class to find and render in DOM
+	* @param {Object} data Data of current view to track events
+	* @param {Object} tracker Instance of tracker class
 	* @static
 	*/
-	Page.renderSpace = function (space, config, tracker){
+	Page.renderSpace = function (space, data, tracker){
 		// create a instance of Ad using data model provided
 		var ad = ads.create(space.getAd());
 		ad.tracker = tracker;
-		ad = ad.init(space, config);
+		ad = ad.init(space, data);
 		
 		// Placing ad in space
 		space.placeAd(ad);
@@ -2105,7 +2125,8 @@ exports.Swf = Swf;
 				site_id: config.site_id,
 				domain: config.domain,
 				connection: connections.adserver,
-				document: document
+				document: document,
+				adsPerSpace: config.adsPerSpace
 			});
 			api.page.init();
 		}
