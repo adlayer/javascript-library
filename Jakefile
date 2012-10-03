@@ -4,10 +4,6 @@ var Hogan = require('hogan.js');
 var exec = require('child_process').exec;
 var path = require('path');
 
-Array.prototype.requires = function(base){
-	return base.concat(this);
-}
-
 var modules = {};
 
 modules.utils = [
