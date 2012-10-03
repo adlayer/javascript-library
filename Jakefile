@@ -1,6 +1,5 @@
 var smoosh = require('smoosh');
 var fs = require('fs');
-var Hogan = require('hogan.js');
 var exec = require('child_process').exec;
 var path = require('path');
 
