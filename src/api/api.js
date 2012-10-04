@@ -82,7 +82,20 @@
 
 	var api = global.adlayer;
 	
-	var config = api.config || defaultConfig;
+	// Merge config options
+	var config = {};
+	config.url = api.config.url || defaultConfig.url;
+	config.adsPerSpace = api.config.adsPerSpace || defaultConfig.adsPerSpace;
+	config.page = api.config.page || defaultConfig.page;
+	
+	/**
+	* Exports config
+	*
+	* @property config
+	* @type object
+	*/
+	api.config = config;
+
 
 	var connections = {
 		adserver: new Connection(config.url.adserver),

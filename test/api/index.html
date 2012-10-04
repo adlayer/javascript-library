@@ -8,6 +8,20 @@
   <script src="https://raw.github.com/visionmedia/mocha/master/mocha.js"></script>
   <script src="../setup.js"></script>
 
+  <script type="text/javascript">
+	var adlayer = adlayer || {};
+	adlayer.config = {
+		url: {
+			adserver: {
+				host: 'dev.jocasta.adlayerapp.com'
+			},
+			tracker: {
+				host: 'dev.tracker.adlayerapp.com'
+			}
+		}
+	}
+  </script>
+
   <script src="../../src/module.js"></script>
   <script src="../../src/node_modules/events.js"></script>
   <script src="../../src/node_modules/querystring.js"></script>
