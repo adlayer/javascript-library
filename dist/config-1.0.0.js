@@ -1,10 +1,10 @@
 exports.config = {
 	url: {
 		adserver: {
-			host: 'dev.jocasta.adlayerapp.com'
+			host: 'jocasta.adlayerapp.com'
 		},
 		tracker: {
-			host: 'dev.tracker.adlayerapp.com'
+			host: 'tracker.adlayerapp.com'
 		}
 	},
 	adsPerSpace: 1,

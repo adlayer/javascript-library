@@ -67,7 +67,7 @@ modules.api = [
 	"./src/api/api.js"
 ];
 
-modules.base = [].concat(modules.utils, modules.config, modules.domain, modules.dom, modules.request, modules.connection, modules.ads, modules.spaces, modules.api);
+modules.api = [].concat(modules.utils, modules.config, modules.domain, modules.dom, modules.request, modules.connection, modules.ads, modules.spaces, modules.api);
 
 
 var config = {
