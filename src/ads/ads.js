@@ -17,6 +17,8 @@
 				
 				switch(data.type){
 					case 'flash':
+						data.preloader = 'http://localhost:3000/xframe/as3.swf';
+						data.callback = 'adlayer.markAdAsLoaded';
 						return new FlashAd(data);
 					case 'image':
 						return new Img(data);

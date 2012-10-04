@@ -5,6 +5,7 @@
 * @class Swf
 */
 var Swf = function(){
+	var queryString = require('../node_modules/querystring').querystring;
 	/**
 	* Alignment of html content.
 	* @property align
@@ -43,5 +44,23 @@ var Swf = function(){
 	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
+	
+	/**
+	* @method getSrc
+	* @return {String} src Will return the preloder url if defined
+	*/
+	this.getSrc = function(){
+		if(!this.preloader){
+			return this.src;
+		}
+		
+		var url = this.preloader + '?' + queryString.stringify({
+			src: this.src, 
+			callback: this.callback, 
+			value: this.id
+		});
+		
+		return url;
+	};
 };
 exports.Swf = Swf;

@@ -148,6 +148,17 @@
 	api.ads = adsCollection;
 	
 	/**
+	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+	*
+	* @method markAdAsLoaded
+	* @param {String} id
+	* @public
+	*/
+	api.markAdAsLoaded = function(id){	
+		api.ads[id].emit('load');
+	};
+	
+	/**
 	* @method initialization
 	* @private
 	*/
