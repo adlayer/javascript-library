@@ -1431,6 +1431,7 @@ exports.Connection = Connection;
 * @class Swf
 */
 var Swf = function(){
+	var queryString = require('../node_modules/querystring').querystring;
 	/**
 	* Alignment of html content.
 	* @property align
@@ -1469,6 +1470,24 @@ var Swf = function(){
 	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
 	//this.allowNetworking = "all";
+	
+	/**
+	* @method getSrc
+	* @return {String} src Will return the preloder url if defined
+	*/
+	this.getSrc = function(){
+		if(!this.preloader){
+			return this.src;
+		}
+		
+		var url = this.preloader + '?' + queryString.stringify({
+			src: this.src, 
+			callback: this.callback, 
+			value: this.id
+		});
+		
+		return url;
+	};
 };
 exports.Swf = Swf;
 (function(){
@@ -1490,7 +1509,7 @@ exports.Swf = Swf;
 		
 		var __construct = (function(self){
 			self.create('EMBED');
-			self.element.src = self.src;
+			self.element.src = self.getSrc();
 			self.element.setAttribute('height', self.height);
 			self.element.setAttribute('width', self.width);
 			self.setAttributes(new Swf());
@@ -1583,7 +1602,7 @@ exports.Swf = Swf;
 			// http://stackoverflow.com/questions/1168494/how-do-i-programmatically-set-all-objects-to-have-the-wmode-set-to-opaque
 			var clone = self.element.cloneNode(true);
 
-			clone.appendChild(new Param("movie", self.src));
+			clone.appendChild(new Param("movie", self.getSrc()));
 			clone.appendChild(new Param("quality", self.quality));		
 			clone.appendChild(new Param("src", self.src));
 			clone.appendChild(new Param("menu", self.menu));
@@ -1672,6 +1691,8 @@ exports.Swf = Swf;
 				
 				switch(data.type){
 					case 'flash':
+						data.preloader = 'http://localhost:3000/xframe/as3.swf';
+						data.callback = 'adlayer.markAdAsLoaded';
 						return new FlashAd(data);
 					case 'image':
 						return new Img(data);
@@ -2050,7 +2071,7 @@ exports.Swf = Swf;
 	
 	// Merge config options
 	var config = {};
-	config.url = api.config.url || defaultConfig.url;
+	config.url = (api.config.url || defaultConfig.url);
 	config.adsPerSpace = api.config.adsPerSpace || defaultConfig.adsPerSpace;
 	config.page = api.config.page || defaultConfig.page;
 	
@@ -2112,6 +2133,17 @@ exports.Swf = Swf;
 		ad.emit('load');
 	*/
 	api.ads = adsCollection;
+	
+	/**
+	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+	*
+	* @method markAdAsLoaded
+	* @param {String} id
+	* @public
+	*/
+	api.markAdAsLoaded = function(id){	
+		api.ads[id].emit('load');
+	};
 	
 	/**
 	* @method initialization
