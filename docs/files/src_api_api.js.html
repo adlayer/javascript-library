@@ -188,15 +188,17 @@
 	*&#x2F;
 	Page.renderSpace = function (space, data, tracker){
 		&#x2F;&#x2F; create a instance of Ad using data model provided
-		var ad = ads.create(space.getAd());
-		ad.tracker = tracker;
-		ad = ad.init(space, data);
-		
-		&#x2F;&#x2F; Placing ad in space
-		space.placeAd(ad);
-		
-		&#x2F;&#x2F; Exporting ad to api
-		adsCollection[ad.id] = ad;
+		if(space.ads &amp;&amp; space.ads.length &gt; 0){
+			var ad = ads.create(space.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(space, data);
+
+			&#x2F;&#x2F; Placing ad in space
+			space.placeAd(ad);
+
+			&#x2F;&#x2F; Exporting ad to api
+			adsCollection[ad.id] = ad;	
+		}
 	};
 
 	&#x2F;**
@@ -238,11 +240,24 @@
 	&#x2F;**
 	* @class Api
 	*&#x2F;
-	global.adlayer = global.adlayer || {};
+	var api = global.adlayer || {};
 
-	var api = global.adlayer;
+	&#x2F;&#x2F; Defining configs
+	var config = api.config || {};
 	
-	var config = api.config || defaultConfig;
+	&#x2F;&#x2F; Merging config options
+	config.url = config.url || defaultConfig.url;
+	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
+	config.page = config.page || defaultConfig.page;
+	
+	&#x2F;**
+	* Exports config
+	*
+	* @property config
+	* @type object
+	*&#x2F;
+	api.config = config;
+
 
 	var connections = {
 		adserver: new Connection(config.url.adserver),
@@ -293,6 +308,17 @@
 		ad.emit(&#x27;load&#x27;);
 	*&#x2F;
 	api.ads = adsCollection;
+	
+	&#x2F;**
+	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+	*
+	* @method markAdAsLoaded
+	* @param {String} id
+	* @public
+	*&#x2F;
+	api.markAdAsLoaded = function(id){	
+		api.ads[id].emit(&#x27;load&#x27;);
+	};
 	
 	&#x2F;**
 	* @method initialization

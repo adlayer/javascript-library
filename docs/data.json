@@ -563,7 +563,7 @@
             "module": "api",
             "namespace": "",
             "file": "src/api/api.js",
-            "line": 78
+            "line": 80
         },
         "Tracker": {
             "name": "Tracker",
@@ -1026,7 +1026,7 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 8,
+            "line": 9,
             "description": "Alignment of html content.",
             "itemtype": "property",
             "name": "align",
@@ -1036,7 +1036,7 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 14,
+            "line": 15,
             "description": "Control right click menu options (true, false).",
             "itemtype": "property",
             "name": "menu",
@@ -1046,7 +1046,7 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 20,
+            "line": 21,
             "itemtype": "property",
             "name": "quality",
             "type": "string",
@@ -1055,7 +1055,7 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 25,
+            "line": 26,
             "itemtype": "property",
             "name": "scale",
             "type": "string",
@@ -1064,7 +1064,7 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 30,
+            "line": 31,
             "itemtype": "property",
             "name": "wmode",
             "type": "string",
@@ -1073,7 +1073,7 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 35,
+            "line": 36,
             "itemtype": "property",
             "name": "type",
             "type": "string",
@@ -1082,10 +1082,22 @@
         },
         {
             "file": "src/ads/swf.js",
-            "line": 40,
+            "line": 41,
             "itemtype": "property",
             "name": "allowScriptAccess",
             "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "src/ads/swf.js",
+            "line": 48,
+            "itemtype": "method",
+            "name": "getSrc",
+            "return": {
+                "description": "src Will return the preloder url if defined",
+                "type": "String"
+            },
             "class": "Swf",
             "module": "ads"
         },
@@ -1117,7 +1129,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 42,
+            "line": 44,
             "itemtype": "method",
             "name": "init",
             "access": "public",
@@ -1127,7 +1139,17 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 95,
+            "line": 93,
+            "description": "Exports config",
+            "itemtype": "property",
+            "name": "config",
+            "type": "object",
+            "class": "Api",
+            "module": "api"
+        },
+        {
+            "file": "src/api/api.js",
+            "line": 110,
             "description": "Exports page api",
             "itemtype": "property",
             "name": "page",
@@ -1137,7 +1159,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 102,
+            "line": 117,
             "description": "Exports configuration",
             "itemtype": "property",
             "name": "config",
@@ -1147,7 +1169,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 109,
+            "line": 124,
             "description": "Exports connections",
             "itemtype": "property",
             "name": "connections",
@@ -1157,7 +1179,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 116,
+            "line": 131,
             "description": "Exports spaces",
             "itemtype": "property",
             "name": "spaces",
@@ -1170,7 +1192,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 126,
+            "line": 141,
             "description": "Exports ads",
             "itemtype": "property",
             "name": "ads",
@@ -1183,7 +1205,25 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 137,
+            "line": 152,
+            "description": "Shortcut for adlayer.ads[id].emit, used by flash preloaders",
+            "itemtype": "method",
+            "name": "markAdAsLoaded",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Api",
+            "module": "api"
+        },
+        {
+            "file": "src/api/api.js",
+            "line": 163,
             "itemtype": "method",
             "name": "initialization",
             "access": "private",

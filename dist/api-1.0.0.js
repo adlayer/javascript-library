@@ -1055,7 +1055,7 @@ var Http = function(){
 	* @type string
 	* @default '/'
 	*/
-	this.path = '/';
+	this.path = '';
 	/**
 	* @property qs
 	* @type object
@@ -2015,15 +2015,17 @@ exports.Swf = Swf;
 	*/
 	Page.renderSpace = function (space, data, tracker){
 		// create a instance of Ad using data model provided
-		var ad = ads.create(space.getAd());
-		ad.tracker = tracker;
-		ad = ad.init(space, data);
-		
-		// Placing ad in space
-		space.placeAd(ad);
-		
-		// Exporting ad to api
-		adsCollection[ad.id] = ad;
+		if(space.ads && space.ads.length > 0){
+			var ad = ads.create(space.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(space, data);
+
+			// Placing ad in space
+			space.placeAd(ad);
+
+			// Exporting ad to api
+			adsCollection[ad.id] = ad;	
+		}
 	};
 
 	/**
@@ -2065,15 +2067,15 @@ exports.Swf = Swf;
 	/**
 	* @class Api
 	*/
-	global.adlayer = global.adlayer || {};
+	var api = global.adlayer || {};
 
-	var api = global.adlayer;
+	// Defining configs
+	var config = api.config || {};
 	
-	// Merge config options
-	var config = {};
-	config.url = (api.config.url || defaultConfig.url);
-	config.adsPerSpace = api.config.adsPerSpace || defaultConfig.adsPerSpace;
-	config.page = api.config.page || defaultConfig.page;
+	// Merging config options
+	config.url = config.url || defaultConfig.url;
+	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
+	config.page = config.page || defaultConfig.page;
 	
 	/**
 	* Exports config

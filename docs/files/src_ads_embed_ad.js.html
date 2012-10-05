@@ -177,7 +177,7 @@
 		
 		var __construct = (function(self){
 			self.create(&#x27;EMBED&#x27;);
-			self.element.src = self.src;
+			self.element.src = self.getSrc();
 			self.element.setAttribute(&#x27;height&#x27;, self.height);
 			self.element.setAttribute(&#x27;width&#x27;, self.width);
 			self.setAttributes(new Swf());

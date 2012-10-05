@@ -239,7 +239,7 @@
 			&#x2F;&#x2F; http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;1168494&#x2F;how-do-i-programmatically-set-all-objects-to-have-the-wmode-set-to-opaque
 			var clone = self.element.cloneNode(true);
 
-			clone.appendChild(new Param(&quot;movie&quot;, self.src));
+			clone.appendChild(new Param(&quot;movie&quot;, self.getSrc()));
 			clone.appendChild(new Param(&quot;quality&quot;, self.quality));		
 			clone.appendChild(new Param(&quot;src&quot;, self.src));
 			clone.appendChild(new Param(&quot;menu&quot;, self.menu));

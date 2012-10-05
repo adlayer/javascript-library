@@ -80,15 +80,15 @@
 	/**
 	* @class Api
 	*/
-	global.adlayer = global.adlayer || {};
+	var api = global.adlayer || {};
 
-	var api = global.adlayer;
+	// Defining configs
+	var config = api.config || {};
 	
-	// Merge config options
-	var config = {};
-	config.url = (api.config.url || defaultConfig.url);
-	config.adsPerSpace = api.config.adsPerSpace || defaultConfig.adsPerSpace;
-	config.page = api.config.page || defaultConfig.page;
+	// Merging config options
+	config.url = config.url || defaultConfig.url;
+	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
+	config.page = config.page || defaultConfig.page;
 	
 	/**
 	* Exports config

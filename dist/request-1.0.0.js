@@ -31,7 +31,7 @@ var Http = function(){
 	* @type string
 	* @default '/'
 	*/
-	this.path = '/';
+	this.path = '';
 	/**
 	* @property qs
 	* @type object

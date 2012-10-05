@@ -177,6 +177,8 @@
 				
 				switch(data.type){
 					case &#x27;flash&#x27;:
+						data.preloader = &#x27;http:&#x2F;&#x2F;localhost:3000&#x2F;xframe&#x2F;as3.swf&#x27;;
+						data.callback = &#x27;adlayer.markAdAsLoaded&#x27;;
 						return new FlashAd(data);
 					case &#x27;image&#x27;:
 						return new Img(data);

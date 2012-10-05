@@ -165,6 +165,7 @@
 * @class Swf
 *&#x2F;
 var Swf = function(){
+	var queryString = require(&#x27;..&#x2F;node_modules&#x2F;querystring&#x27;).querystring;
 	&#x2F;**
 	* Alignment of html content.
 	* @property align
@@ -203,6 +204,24 @@ var Swf = function(){
 	*&#x2F;
 	this.allowScriptAccess = &quot;always&quot;; &#x2F;&#x2F; &quot;always&quot;, &quot;sameDomain&quot;, and &quot;never&quot;.
 	&#x2F;&#x2F;this.allowNetworking = &quot;all&quot;;
+	
+	&#x2F;**
+	* @method getSrc
+	* @return {String} src Will return the preloder url if defined
+	*&#x2F;
+	this.getSrc = function(){
+		if(!this.preloader){
+			return this.src;
+		}
+		
+		var url = this.preloader + &#x27;?&#x27; + queryString.stringify({
+			src: this.src, 
+			callback: this.callback, 
+			value: this.id
+		});
+		
+		return url;
+	};
 };
 exports.Swf = Swf;
     </pre>
