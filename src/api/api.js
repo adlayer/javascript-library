@@ -28,15 +28,17 @@
 	*/
 	Page.renderSpace = function (space, data, tracker){
 		// create a instance of Ad using data model provided
-		var ad = ads.create(space.getAd());
-		ad.tracker = tracker;
-		ad = ad.init(space, data);
-		
-		// Placing ad in space
-		space.placeAd(ad);
-		
-		// Exporting ad to api
-		adsCollection[ad.id] = ad;
+		if(space.ads && space.ads.length > 0){
+			var ad = ads.create(space.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(space, data);
+
+			// Placing ad in space
+			space.placeAd(ad);
+
+			// Exporting ad to api
+			adsCollection[ad.id] = ad;	
+		}
 	};
 
 	/**
@@ -84,7 +86,7 @@
 	
 	// Merge config options
 	var config = {};
-	config.url = api.config.url || defaultConfig.url;
+	config.url = (api.config.url || defaultConfig.url);
 	config.adsPerSpace = api.config.adsPerSpace || defaultConfig.adsPerSpace;
 	config.page = api.config.page || defaultConfig.page;
 	
