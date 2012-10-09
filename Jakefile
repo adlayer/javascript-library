@@ -5,7 +5,7 @@ var path = require('path');
 
 var modules = {};
 
-modules.utils = [
+utils = [
 	"./src/module.js",
 	"./src/utils/copy.js",
 	"./src/utils/merge.js",
@@ -14,11 +14,11 @@ modules.utils = [
 	"./src/node_modules/querystring.js"
 ];
 
-modules.config = [
+config = [
 	"./src/config/config.js"
 ];
 
-modules.domain = [
+domain = [
 	"./src/domain/core.js",
 	"./src/domain/event.js", 
 	"./src/domain/ad.js",
@@ -27,13 +27,13 @@ modules.domain = [
 	"./src/domain/site.js"
 ];
 
-modules.dom = [
+dom = [
 	"./src/dom/dom_element.js", 
 	"./src/dom/ad_dom.js",
 	"./src/dom/space_dom.js"
 ];
 
-modules.request = [
+request = [
 	"./src/request/http.js", 
 	"./src/request/http_request.js",
 	"./src/request/img_request.js",
@@ -41,11 +41,11 @@ modules.request = [
 	"./src/request/request.js"
 ];
 
-modules.connection = [
+connection = [
 	"./src/connection/connection.js"
 ];
 
-modules.ads = [
+ads = [
 	"./src/ads/swf.js",
 	"./src/ads/embed_ad.js",
 	"./src/ads/object_ad.js",
@@ -54,7 +54,7 @@ modules.ads = [
 	"./src/ads/ads.js"
 ];
 
-modules.spaces = [
+spaces = [
 	"./src/spaces/expandable_space.js",
 	"./src/spaces/floater_space.js",
 	"./src/spaces/static_space.js",
@@ -62,14 +62,13 @@ modules.spaces = [
 ];
 
 
-modules.api = [
+api = [
 	"./src/api/tracker.js",
 	"./src/api/page.js",
 	"./src/api/api.js"
 ];
 
-modules.api = [].concat(modules.utils, modules.config, modules.domain, modules.dom, modules.request, modules.connection, modules.ads, modules.spaces, modules.api);
-
+modules.api = [].concat(utils, config, domain, dom, request, connection, ads, spaces, api);
 
 var config = {
 	"VERSION": "1.0.0",
