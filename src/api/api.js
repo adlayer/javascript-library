@@ -5,13 +5,10 @@
 */
 (function(global){
 	var queryString = require('../node_modules/querystring').querystring;
-	var copy = require('../utils/copy').copy;
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('./page').PageApi;
 	var Tracker = require('../tracker/tracker').Tracker;
 	var defaultConfig = require('../config/config').config;
-	// Required by Page.init
-	var ads = require('../ads/ads').ads;
 
 		
 	/**
