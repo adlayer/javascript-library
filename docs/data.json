@@ -61,9 +61,7 @@
             "classes": {
                 "Api": 1
             },
-            "fors": {
-                "PageApi": 1
-            },
+            "fors": {},
             "namespaces": {}
         },
         "src/api/page.js": {
@@ -71,15 +69,6 @@
             "modules": {},
             "classes": {
                 "PageApi": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src/api/tracker.js": {
-            "name": "src/api/tracker.js",
-            "modules": {},
-            "classes": {
-                "Tracker": 1
             },
             "fors": {},
             "namespaces": {}
@@ -283,6 +272,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/tracker/tracker.js": {
+            "name": "src/tracker/tracker.js",
+            "modules": {},
+            "classes": {
+                "Tracker": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src/utils/loadscript.js": {
             "name": "src/utils/loadscript.js",
             "modules": {},
@@ -319,17 +317,14 @@
             "name": "api",
             "submodules": {},
             "classes": {
-                "PageApi": 1,
                 "Api": 1,
-                "Tracker": 1
-            },
-            "fors": {
                 "PageApi": 1
             },
+            "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "src/api/tracker.js",
-            "line": 4,
+            "file": "src/api/page.js",
+            "line": 10,
             "description": "Api wrapper",
             "itemtype": "main"
         },
@@ -357,7 +352,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/dom/space_dom.js",
-            "line": 7
+            "line": 8
         },
         "core": {
             "name": "core",
@@ -425,13 +420,14 @@
             "classes": {
                 "ExpandableSpace": 1,
                 "FloaterSpace": 1,
-                "StaticSpace": 1
+                "StaticSpace": 1,
+                "Tracker": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/spaces/static_space.js",
-            "line": 7
+            "file": "src/tracker/tracker.js",
+            "line": 4
         }
     },
     "classes": {
@@ -537,6 +533,19 @@
             "file": "src/ads/swf.js",
             "line": 4
         },
+        "Api": {
+            "name": "Api",
+            "shortname": "Api",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "api",
+            "namespace": "",
+            "file": "src/api/api.js",
+            "line": 17
+        },
         "PageApi": {
             "name": "PageApi",
             "shortname": "PageApi",
@@ -551,34 +560,6 @@
             "line": 10,
             "is_constructor": 1,
             "extends": "EventEmitter"
-        },
-        "Api": {
-            "name": "Api",
-            "shortname": "Api",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "api",
-            "namespace": "",
-            "file": "src/api/api.js",
-            "line": 80
-        },
-        "Tracker": {
-            "name": "Tracker",
-            "shortname": "Tracker",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "api",
-            "namespace": "",
-            "file": "src/api/tracker.js",
-            "line": 4,
-            "description": "Responsible for make connections to tracker server",
-            "is_constructor": 1
         },
         "Connection": {
             "name": "Connection",
@@ -637,7 +618,7 @@
             "module": "dom",
             "namespace": "",
             "file": "src/dom/space_dom.js",
-            "line": 7,
+            "line": 8,
             "description": "Space dom",
             "extends": "DomElement",
             "requires": [
@@ -958,6 +939,21 @@
             "line": 7,
             "description": "Represents the type Static",
             "extends": "SpaceDom"
+        },
+        "Tracker": {
+            "name": "Tracker",
+            "shortname": "Tracker",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "spaces",
+            "namespace": "",
+            "file": "src/tracker/tracker.js",
+            "line": 4,
+            "description": "Responsible for make connections to tracker server",
+            "is_constructor": 1
         }
     },
     "classitems": [
@@ -1103,43 +1099,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 21,
-            "itemtype": "method",
-            "name": "renderSpace",
-            "params": [
-                {
-                    "name": "space",
-                    "description": "Instance of Space Class to find and render in DOM",
-                    "type": "Object"
-                },
-                {
-                    "name": "data",
-                    "description": "Data of current view to track events",
-                    "type": "Object"
-                },
-                {
-                    "name": "tracker",
-                    "description": "Instance of tracker class",
-                    "type": "Object"
-                }
-            ],
-            "static": 1,
-            "class": "PageApi",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 44,
-            "itemtype": "method",
-            "name": "init",
-            "access": "public",
-            "tagname": "",
-            "class": "PageApi",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 93,
+            "line": 30,
             "description": "Exports config",
             "itemtype": "property",
             "name": "config",
@@ -1149,7 +1109,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 110,
+            "line": 47,
             "description": "Exports page api",
             "itemtype": "property",
             "name": "page",
@@ -1159,7 +1119,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 117,
+            "line": 54,
             "description": "Exports configuration",
             "itemtype": "property",
             "name": "config",
@@ -1169,7 +1129,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 124,
+            "line": 61,
             "description": "Exports connections",
             "itemtype": "property",
             "name": "connections",
@@ -1179,7 +1139,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 131,
+            "line": 68,
             "description": "Exports spaces",
             "itemtype": "property",
             "name": "spaces",
@@ -1192,7 +1152,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 141,
+            "line": 78,
             "description": "Exports ads",
             "itemtype": "property",
             "name": "ads",
@@ -1205,7 +1165,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 152,
+            "line": 89,
             "description": "Shortcut for adlayer.ads[id].emit, used by flash preloaders",
             "itemtype": "method",
             "name": "markAdAsLoaded",
@@ -1223,7 +1183,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 163,
+            "line": 100,
             "itemtype": "method",
             "name": "initialization",
             "access": "private",
@@ -1233,7 +1193,7 @@
         },
         {
             "file": "src/api/page.js",
-            "line": 25,
+            "line": 27,
             "itemtype": "method",
             "name": "getData",
             "params": [
@@ -1248,7 +1208,7 @@
         },
         {
             "file": "src/api/page.js",
-            "line": 45,
+            "line": 47,
             "itemtype": "method",
             "name": "scanSpaces",
             "params": [
@@ -1263,6 +1223,38 @@
                     "type": "Function"
                 }
             ],
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "src/api/page.js",
+            "line": 72,
+            "itemtype": "method",
+            "name": "renderSpace",
+            "params": [
+                {
+                    "name": "space",
+                    "description": "Instance of Space Class to find and render in DOM",
+                    "type": "Object"
+                },
+                {
+                    "name": "data",
+                    "description": "Data of current view to track events",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "src/api/page.js",
+            "line": 84,
+            "itemtype": "method",
+            "name": "init",
+            "access": "public",
+            "tagname": "",
             "class": "PageApi",
             "module": "api"
         },
@@ -1628,7 +1620,31 @@
         },
         {
             "file": "src/dom/space_dom.js",
-            "line": 23,
+            "line": 26,
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "tracker",
+                    "description": "For ads",
+                    "type": "Object"
+                },
+                {
+                    "name": "configs",
+                    "description": "for ads",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "return this to chain methods",
+                "type": "Object"
+            },
+            "class": "SpaceDom",
+            "module": "dom"
+        },
+        {
+            "file": "src/dom/space_dom.js",
+            "line": 44,
             "itemtype": "method",
             "name": "placeAd",
             "params": [
@@ -1647,7 +1663,7 @@
         },
         {
             "file": "src/dom/space_dom.js",
-            "line": 34,
+            "line": 56,
             "itemtype": "method",
             "name": "getElement",
             "return": {

@@ -12,61 +12,8 @@
 	var defaultConfig = require('../config/config').config;
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
-	
+
 		
-	var spacesCollection = {};
-	var adsCollection = {};
-	
-	
-	/**
-	* @for PageApi
-	* @method renderSpace
-	* @param {Object} space Instance of Space Class to find and render in DOM
-	* @param {Object} data Data of current view to track events
-	* @static
-	*/
-	Page.prototype.renderSpace = function (space, data){
-		var result = space.init(this.tracker, data);
-		var ad = result.ad;
-		adsCollection[ad.id] = ad;
-	};
-
-	/**
-	* @for PageApi
-	* @method init
-	* @public 
-	*/
-	Page.prototype.init = function(){
-		
-		var page = this;
-
-		// Get all page data
-		this.getData(function(err, data){
-			// When we get spaces in this page
-			if(data && data.spaces){
-				// For each space found in document
-				page.scanSpaces(data.spaces, function(err, space){
-					// When find spaces
-					if(!err){
-						var config = {
-							domain: page.domain,
-							page_url: page.url,
-							page_id: page.id,
-							site_id: page.site_id
-						};
-						page.renderSpace(space, config, tracker);
-						// exporting space to api
-						spacesCollection[space.id] = space;
-					}
-				});
-			}
-		});
-		return page;
-	};
-	
-	
-
-	
 	/**
 	* @class Api
 	*/
@@ -127,7 +74,7 @@
 		var space = adlayer.spaces['0202kjj44949999992j8'];
 		space.close();
 	*/
-	api.spaces = spacesCollection;
+	api.spaces = {};
 	/**
 	* Exports ads
 	*
@@ -137,7 +84,7 @@
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 		ad.emit('load');
 	*/
-	api.ads = adsCollection;
+	api.ads = {};
 	
 	/**
 	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
@@ -168,7 +115,7 @@
 			config.page_id = config.page_id || params.page;
 			config.page_url = config.page_url || global.location.href;
 			
-			api.page = new Page({
+			var page = new Page({
 				tracker: tracker,
 				id: config.page_id,
 				url: config.page_url,
@@ -178,7 +125,10 @@
 				document: document,
 				adsPerSpace: config.adsPerSpace
 			});
-			api.page.init();
+
+			api.page = page.init();
+			api.spaces = page.spacesCollection;
+			api.ads = page.adsCollection;
 		}
 	})();
 	

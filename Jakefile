@@ -61,14 +61,14 @@ spaces = [
 	"./src/spaces/spaces.js"
 ];
 
+var tracker = ["./src/tracker/tracker.js"];
 
 api = [
-	"./src/api/tracker.js",
 	"./src/api/page.js",
 	"./src/api/api.js"
 ];
 
-modules.api = [].concat(utils, config, domain, dom, request, connection, ads, spaces, api);
+modules.api = [].concat(utils, config, domain, dom, request, connection, tracker, ads, spaces, api);
 
 var config = {
 	"VERSION": "1.0.0",

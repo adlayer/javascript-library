@@ -983,7 +983,8 @@ var DomElement = function(){
 	// modules
 	var DomElement = require('./dom_element').DomElement;
 	var Space = require('../domain/space').Space;
-	
+	var ads = require('../ads/ads').ads;
+
 	/**
 	* Space dom
 	*
@@ -996,10 +997,30 @@ var DomElement = function(){
 		Space.apply(this, arguments);
 		
 		this.placements = {};
+		// Current ad
+		this.ad = {};
 	};
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
 
+	/**
+	* @method init
+	* @param {Object} tracker For ads
+		* @param {Object} configs for ads
+	* @returns {Object} return this to chain methods
+	*/
+	SpaceDom.prototype.init = function(tracker, config){
+		if(this.ads && this.ads.length > 0){
+			var ad = ads.create(this.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(this, config);
+
+			// Placing ad in space
+			this.placeAd(ad);
+			return this;
+		}
+	};
+	
 	/**
 	* @method placeAd
 	* @param {Object} DomElement Ad to append in element
@@ -1008,6 +1029,7 @@ var DomElement = function(){
 	SpaceDom.prototype.placeAd = function(ad){
 		this.element.appendChild(ad.element);
 		ad.emit('placement');
+		this.ad = ad;
 		return this;
 	};
 	
@@ -1424,6 +1446,47 @@ Connection.prototype.get = function(path, data, callback){
 	return this;
 };
 exports.Connection = Connection;
+(function(){
+	var copy = require('../utils/copy').copy;
+	var Event = require('../domain/core').Event;
+	/**
+	* Responsible for make connections to tracker server
+	*
+	* @class Tracker
+	* @constructor
+	*/
+	function Tracker(){
+		/*
+		* @property {Connection} connection instance
+		* @public
+		*/
+		this.connection = {};
+	}
+	/*
+	* @method track
+	* @param {Object} data All data to track in an event
+	* @public
+	* @returns {undefined}
+	*/
+	Tracker.prototype.track = function(data){
+
+		var event = new Event(data);
+
+		var opts = copy(this.connection);
+		opts.host = opts.host;
+		opts.path = '/' + event.type + '/' + event.ad_id;
+
+		//  validate in client is necessary ? or is it just slow
+		if( event.validate() ){
+			opts.qs = event;
+			var req = request().get(opts, function(err, data){
+				console.log(data);
+			});
+			this.connection.next(req);
+		}
+	};
+	exports.Tracker = Tracker;
+})();
 /**
 * @module ads
 */
@@ -1873,47 +1936,6 @@ exports.Swf = Swf;
 	})();
 	
 })();
-(function(){
-	var copy = require('../utils/copy').copy;
-	var Event = require('../domain/core').Event;
-	/**
-	* Responsible for make connections to tracker server
-	*
-	* @class Tracker
-	* @constructor
-	*/
-	function Tracker(){
-		/*
-		* @property {Connection} connection instance
-		* @public
-		*/
-		this.connection = {};
-	}
-	/*
-	* @method track
-	* @param {Object} data All data to track in an event
-	* @public
-	* @returns {undefined}
-	*/
-	Tracker.prototype.track = function(data){
-
-		var event = new Event(data);
-
-		var opts = copy(this.connection);
-		opts.host = opts.host;
-		opts.path = '/' + event.type + '/' + event.ad_id;
-
-		//  validate in client is necessary ? or is it just slow
-		if( event.validate() ){
-			opts.qs = event;
-			var req = request().get(opts, function(err, data){
-				console.log(data);
-			});
-			this.connection.next(req);
-		}
-	};
-	exports.Tracker = Tracker;
-})();
 /**
 * @module api
 */
@@ -1936,6 +1958,8 @@ exports.Swf = Swf;
 		this.document;
 		this.tracker;
 		this.connection;
+		this.spacesCollection = {};
+		this.adsCollection = {};
 	};
 	
 	/**
@@ -1983,57 +2007,23 @@ exports.Swf = Swf;
 		}
 	};
 	
-	exports.PageApi = PageApi;
-})();
-/**
-* Api wrapper
-* @module api
-* @main api
-*/
-(function(global){
-	var queryString = require('../node_modules/querystring').querystring;
-	var copy = require('../utils/copy').copy;
-	var Connection = require('../connection/connection').Connection;
-	var Page = require('./page').PageApi;
-	var Tracker = require('./tracker').Tracker;
-	var defaultConfig = require('../config/config').config;
-	// Required by Page.init
-	var ads = require('../ads/ads').ads;
-	
-		
-	var spacesCollection = {};
-	var adsCollection = {};
-	
-	
 	/**
-	* @for PageApi
 	* @method renderSpace
 	* @param {Object} space Instance of Space Class to find and render in DOM
 	* @param {Object} data Data of current view to track events
-	* @param {Object} tracker Instance of tracker class
-	* @static
+	* @public
 	*/
-	Page.renderSpace = function (space, data, tracker){
-		// create a instance of Ad using data model provided
-		if(space.ads && space.ads.length > 0){
-			var ad = ads.create(space.getAd());
-			ad.tracker = tracker;
-			ad = ad.init(space, data);
-
-			// Placing ad in space
-			space.placeAd(ad);
-
-			// Exporting ad to api
-			adsCollection[ad.id] = ad;	
-		}
+	PageApi.prototype.renderSpace = function (space, data){
+		var result = space.init(this.tracker, data);
+		var ad = result.ad;
+		this.adsCollection[ad.id] = ad;
 	};
 
 	/**
-	* @for PageApi
 	* @method init
 	* @public 
 	*/
-	Page.prototype.init = function(){
+	PageApi.prototype.init = function(){
 		
 		var page = this;
 
@@ -2051,9 +2041,9 @@ exports.Swf = Swf;
 							page_id: page.id,
 							site_id: page.site_id
 						};
-						Page.renderSpace(space, config, tracker);
+						page.renderSpace(space, config);
 						// exporting space to api
-						spacesCollection[space.id] = space;
+						page.spacesCollection[space.id] = space;
 					}
 				});
 			}
@@ -2061,9 +2051,24 @@ exports.Swf = Swf;
 		return page;
 	};
 	
-	
+	exports.PageApi = PageApi;
+})();
+/**
+* Api wrapper
+* @module api
+* @main api
+*/
+(function(global){
+	var queryString = require('../node_modules/querystring').querystring;
+	var copy = require('../utils/copy').copy;
+	var Connection = require('../connection/connection').Connection;
+	var Page = require('./page').PageApi;
+	var Tracker = require('../tracker/tracker').Tracker;
+	var defaultConfig = require('../config/config').config;
+	// Required by Page.init
+	var ads = require('../ads/ads').ads;
 
-	
+		
 	/**
 	* @class Api
 	*/
@@ -2124,7 +2129,7 @@ exports.Swf = Swf;
 		var space = adlayer.spaces['0202kjj44949999992j8'];
 		space.close();
 	*/
-	api.spaces = spacesCollection;
+	api.spaces = {};
 	/**
 	* Exports ads
 	*
@@ -2134,7 +2139,7 @@ exports.Swf = Swf;
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 		ad.emit('load');
 	*/
-	api.ads = adsCollection;
+	api.ads = {};
 	
 	/**
 	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
@@ -2165,7 +2170,7 @@ exports.Swf = Swf;
 			config.page_id = config.page_id || params.page;
 			config.page_url = config.page_url || global.location.href;
 			
-			api.page = new Page({
+			var page = new Page({
 				tracker: tracker,
 				id: config.page_id,
 				url: config.page_url,
@@ -2175,7 +2180,10 @@ exports.Swf = Swf;
 				document: document,
 				adsPerSpace: config.adsPerSpace
 			});
-			api.page.init();
+
+			api.page = page.init();
+			api.spaces = page.spacesCollection;
+			api.ads = page.adsCollection;
 		}
 	})();
 	

@@ -163,7 +163,8 @@
 	&#x2F;&#x2F; modules
 	var DomElement = require(&#x27;.&#x2F;dom_element&#x27;).DomElement;
 	var Space = require(&#x27;..&#x2F;domain&#x2F;space&#x27;).Space;
-	
+	var ads = require(&#x27;..&#x2F;ads&#x2F;ads&#x27;).ads;
+
 	&#x2F;**
 	* Space dom
 	*
@@ -176,10 +177,30 @@
 		Space.apply(this, arguments);
 		
 		this.placements = {};
+		&#x2F;&#x2F; Current ad
+		this.ad = {};
 	};
 	&#x2F;&#x2F; extends DomElement
 	SpaceDom.prototype = new DomElement();
 
+	&#x2F;**
+	* @method init
+	* @param {Object} tracker For ads
+		* @param {Object} configs for ads
+	* @returns {Object} return this to chain methods
+	*&#x2F;
+	SpaceDom.prototype.init = function(tracker, config){
+		if(this.ads &amp;&amp; this.ads.length &gt; 0){
+			var ad = ads.create(this.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(this, config);
+
+			&#x2F;&#x2F; Placing ad in space
+			this.placeAd(ad);
+			return this;
+		}
+	};
+	
 	&#x2F;**
 	* @method placeAd
 	* @param {Object} DomElement Ad to append in element
@@ -188,6 +209,7 @@
 	SpaceDom.prototype.placeAd = function(ad){
 		this.element.appendChild(ad.element);
 		ad.emit(&#x27;placement&#x27;);
+		this.ad = ad;
 		return this;
 	};
 	
