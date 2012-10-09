@@ -8,7 +8,7 @@
 	var copy = require('../utils/copy').copy;
 	var Connection = require('../connection/connection').Connection;
 	var Page = require('./page').PageApi;
-	var Tracker = require('./tracker').Tracker;
+	var Tracker = require('../tracker/tracker').Tracker;
 	var defaultConfig = require('../config/config').config;
 	// Required by Page.init
 	var ads = require('../ads/ads').ads;
@@ -23,22 +23,12 @@
 	* @method renderSpace
 	* @param {Object} space Instance of Space Class to find and render in DOM
 	* @param {Object} data Data of current view to track events
-	* @param {Object} tracker Instance of tracker class
 	* @static
 	*/
-	Page.renderSpace = function (space, data, tracker){
-		// create a instance of Ad using data model provided
-		if(space.ads && space.ads.length > 0){
-			var ad = ads.create(space.getAd());
-			ad.tracker = tracker;
-			ad = ad.init(space, data);
-
-			// Placing ad in space
-			space.placeAd(ad);
-
-			// Exporting ad to api
-			adsCollection[ad.id] = ad;	
-		}
+	Page.prototype.renderSpace = function (space, data){
+		var result = space.init(this.tracker, data);
+		var ad = result.ad;
+		adsCollection[ad.id] = ad;
 	};
 
 	/**
@@ -64,7 +54,7 @@
 							page_id: page.id,
 							site_id: page.site_id
 						};
-						Page.renderSpace(space, config, tracker);
+						page.renderSpace(space, config, tracker);
 						// exporting space to api
 						spacesCollection[space.id] = space;
 					}

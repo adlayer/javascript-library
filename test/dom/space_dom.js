@@ -41,7 +41,8 @@ describe('SpaceDom', function(){
 			var ad = new AdDom();
 			ad.element = document.createElement('a');
 			space.placeAd(ad);
-			
+
+			expect(space.ad.id).to.be.equal(ad.id);
 			expect(space.element.childNodes.length).to.be(1);
 		});
 	});

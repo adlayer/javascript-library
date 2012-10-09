@@ -3,7 +3,7 @@ var document = document || require('../document');
 
 var AdDom = require('../../src/dom/ad_dom').AdDom;
 var Connection = require('../../src/connection/connection').Connection;
-var Tracker = require('../../src/api/tracker').Tracker;
+var Tracker = require('../../src/tracker/tracker').Tracker;
 
 describe('AdDom', function(){
 	
