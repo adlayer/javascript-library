@@ -1275,7 +1275,7 @@
         },
         {
             "file": "src/api/page.js",
-            "line": 84,
+            "line": 85,
             "itemtype": "method",
             "name": "init",
             "access": "public",
@@ -2648,7 +2648,7 @@
         },
         {
             "file": "src/spaces/expandable_space.js",
-            "line": 38,
+            "line": 41,
             "itemtype": "method",
             "name": "clip",
             "params": [
@@ -2672,7 +2672,7 @@
         },
         {
             "file": "src/spaces/expandable_space.js",
-            "line": 49,
+            "line": 52,
             "itemtype": "method",
             "name": "expand",
             "access": "public",
@@ -2686,7 +2686,7 @@
         },
         {
             "file": "src/spaces/expandable_space.js",
-            "line": 62,
+            "line": 65,
             "itemtype": "method",
             "name": "retract",
             "access": "public",

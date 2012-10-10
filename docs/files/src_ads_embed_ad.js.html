@@ -182,7 +182,15 @@
 			self.element.src = self.getSrc();
 			self.element.setAttribute(&#x27;height&#x27;, self.height);
 			self.element.setAttribute(&#x27;width&#x27;, self.width);
-			self.setAttributes(new Swf());
+			self.element.setAttribute(&#x27;type&#x27;, self.type);
+			self.element.setAttribute(&#x27;allowScriptAccess&#x27;, self.allowScriptAccess);
+			self.element.setAttribute(&#x27;allowNetworking&#x27;, self.allowNetworking);
+			self.element.setAttribute(&#x27;menu&#x27;, self.menu);
+			self.element.setAttribute(&#x27;wmode&#x27;, self.wmode);
+			self.element.setAttribute(&#x27;scale&#x27;, self.scale);
+			self.element.setAttribute(&#x27;quality&#x27;, self.quality);
+			
+&#x2F;&#x2F;			self.setAttributes(self);
 			
 			self.element.id = self.id;
 			return self.element;

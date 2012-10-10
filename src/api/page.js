@@ -77,8 +77,9 @@
 	*/
 	PageApi.prototype.renderSpace = function (space, data){
 		var result = space.init(this.tracker, data);
-		var ad = result.ad;
-		this.adsCollection[ad.id] = ad;
+		if(result.ad){
+			this.adsCollection[result.ad.id] = result.ad;
+		}
 	};
 
 	/**

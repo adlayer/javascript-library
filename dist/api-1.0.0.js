@@ -1500,7 +1500,7 @@ var Swf = function(){
 	* @type string
 	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
-	//this.allowNetworking = "all";
+	this.allowNetworking = "all";
 	
 	/**
 	* @method getSrc
@@ -1543,7 +1543,15 @@ exports.Swf = Swf;
 			self.element.src = self.getSrc();
 			self.element.setAttribute('height', self.height);
 			self.element.setAttribute('width', self.width);
-			self.setAttributes(new Swf());
+			self.element.setAttribute('type', self.type);
+			self.element.setAttribute('allowScriptAccess', self.allowScriptAccess);
+			self.element.setAttribute('allowNetworking', self.allowNetworking);
+			self.element.setAttribute('menu', self.menu);
+			self.element.setAttribute('wmode', self.wmode);
+			self.element.setAttribute('scale', self.scale);
+			self.element.setAttribute('quality', self.quality);
+			
+//			self.setAttributes(self);
 			
 			self.element.id = self.id;
 			return self.element;
@@ -1722,7 +1730,7 @@ exports.Swf = Swf;
 				
 				switch(data.type){
 					case 'flash':
-						data.preloader = 'http://localhost:3000/xframe/as3.swf';
+						data.preloader = 'http://xframe.adlayerjavascriptsdk.com.s3.amazonaws.com/as3.swf';
 						data.callback = 'adlayer.markAdAsLoaded';
 						return new FlashAd(data);
 					case 'image':
@@ -1764,8 +1772,8 @@ exports.Swf = Swf;
 
 			// Placing ad in space
 			this.placeAd(ad);
-			return this;
 		}
+		return this;
 	};
 	
 	exports.BasicSpace = BasicSpace;
@@ -1786,12 +1794,15 @@ exports.Swf = Swf;
 	var ExpandableSpace = function(){
 		BasicSpace.apply(this, arguments);
 		
+		this.expandEvent = 'mouseover';
+		this.retreatEvent = 'mouseout';
 		
 		var __construct = (function(self){
 			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.id = self.id;
 			self.element.style.height = self.height;
 			self.element.style.width = self.width;
+			self.element.style.position = "absolute";
 			
 			self.addDomEventListener(self.expandEvent, function(){
 				self.expand();
@@ -1799,10 +1810,10 @@ exports.Swf = Swf;
 			});
 			
 			self.addDomEventListener(self.retreatEvent, function(){
-//				self.retract();
+				self.retract();
 				self.state = 'retreated';
 			});
-			
+			self.retract();
 		})(this);
 	};
 	ExpandableSpace.prototype = new BasicSpace();
@@ -1826,7 +1837,7 @@ exports.Swf = Swf;
 	ExpandableSpace.prototype.expand = function(){
 		var childAd = this.element.firstChild;
 		if(childAd){
-			this.clip(childAd.width, childAd.height);
+			this.clip(childAd.width + 'px', childAd.height + 'px');
 			return this;
 		}
 	};
@@ -2035,8 +2046,9 @@ exports.config = {
 	*/
 	PageApi.prototype.renderSpace = function (space, data){
 		var result = space.init(this.tracker, data);
-		var ad = result.ad;
-		this.adsCollection[ad.id] = ad;
+		if(result.ad){
+			this.adsCollection[result.ad.id] = result.ad;
+		}
 	};
 
 	/**

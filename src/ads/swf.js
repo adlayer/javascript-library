@@ -43,7 +43,7 @@ var Swf = function(){
 	* @type string
 	*/
 	this.allowScriptAccess = "always"; // "always", "sameDomain", and "never".
-	//this.allowNetworking = "all";
+	this.allowNetworking = "all";
 	
 	/**
 	* @method getSrc

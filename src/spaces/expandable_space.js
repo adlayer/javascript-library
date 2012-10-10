@@ -14,12 +14,16 @@
 	var ExpandableSpace = function(){
 		BasicSpace.apply(this, arguments);
 		
+		this.expandEvent = 'mouseover';
+		this.retreatEvent = 'mouseout';
 		
 		var __construct = (function(self){
 			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.id = self.id;
 			self.element.style.height = self.height;
 			self.element.style.width = self.width;
+			// http://blog.vamapaull.com/using-externalinterface-and-js-to-make-an-expandable-flash-banner/
+			self.element.style.position = "absolute";
 			
 			self.addDomEventListener(self.expandEvent, function(){
 				self.expand();
@@ -27,10 +31,10 @@
 			});
 			
 			self.addDomEventListener(self.retreatEvent, function(){
-//				self.retract();
+				self.retract();
 				self.state = 'retreated';
 			});
-			
+			self.retract();
 		})(this);
 	};
 	ExpandableSpace.prototype = new BasicSpace();
@@ -54,7 +58,7 @@
 	ExpandableSpace.prototype.expand = function(){
 		var childAd = this.element.firstChild;
 		if(childAd){
-			this.clip(childAd.width, childAd.height);
+			this.clip(childAd.width + 'px', childAd.height + 'px');
 			return this;
 		}
 	};

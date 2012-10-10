@@ -29,8 +29,8 @@
 
 			// Placing ad in space
 			this.placeAd(ad);
-			return this;
 		}
+		return this;
 	};
 	
 	exports.BasicSpace = BasicSpace;
