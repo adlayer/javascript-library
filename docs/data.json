@@ -236,6 +236,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/spaces/basic_space.js": {
+            "name": "src/spaces/basic_space.js",
+            "modules": {},
+            "classes": {
+                "BasicSpace": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src/spaces/expandable_space.js": {
             "name": "src/spaces/expandable_space.js",
             "modules": {
@@ -352,7 +361,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/dom/space_dom.js",
-            "line": 8
+            "line": 7
         },
         "core": {
             "name": "core",
@@ -406,13 +415,14 @@
             "classes": {
                 "HttpRequest": 1,
                 "ImgRequest": 1,
-                "JsonpRequest": 1
+                "JsonpRequest": 1,
+                "BasicSpace": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/request/jsonp_request.js",
-            "line": 5
+            "file": "src/spaces/basic_space.js",
+            "line": 7
         },
         "spaces": {
             "name": "spaces",
@@ -544,7 +554,7 @@
             "module": "api",
             "namespace": "",
             "file": "src/api/api.js",
-            "line": 17
+            "line": 16
         },
         "PageApi": {
             "name": "PageApi",
@@ -618,7 +628,7 @@
             "module": "dom",
             "namespace": "",
             "file": "src/dom/space_dom.js",
-            "line": 8,
+            "line": 7,
             "description": "Space dom",
             "extends": "DomElement",
             "requires": [
@@ -894,6 +904,21 @@
                 " new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')"
             ]
         },
+        "BasicSpace": {
+            "name": "BasicSpace",
+            "shortname": "BasicSpace",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "request",
+            "namespace": "",
+            "file": "src/spaces/basic_space.js",
+            "line": 7,
+            "description": "Basic Space",
+            "extends": "DomElement"
+        },
         "ExpandableSpace": {
             "name": "ExpandableSpace",
             "shortname": "ExpandableSpace",
@@ -1109,7 +1134,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 47,
+            "line": 48,
             "description": "Exports page api",
             "itemtype": "property",
             "name": "page",
@@ -1119,7 +1144,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 54,
+            "line": 55,
             "description": "Exports configuration",
             "itemtype": "property",
             "name": "config",
@@ -1129,7 +1154,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 61,
+            "line": 62,
             "description": "Exports connections",
             "itemtype": "property",
             "name": "connections",
@@ -1139,33 +1164,33 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 68,
+            "line": 69,
             "description": "Exports spaces",
             "itemtype": "property",
             "name": "spaces",
             "type": "object",
             "example": [
-                " \n\t\tvar space = adlayer.spaces['0202kjj44949999992j8'];\n\t\tspace.close();"
+                " \n\tvar space = adlayer.spaces['0202kjj44949999992j8'];\n\tspace.close();"
             ],
             "class": "Api",
             "module": "api"
         },
         {
             "file": "src/api/api.js",
-            "line": 78,
+            "line": 79,
             "description": "Exports ads",
             "itemtype": "property",
             "name": "ads",
             "type": "object",
             "example": [
-                " \n\t\tvar ad = adlayer.ads['mfkvfmvkdfvdf84848484'];\n\t\tad.emit('load');"
+                " \n\tvar ad = adlayer.ads['mfkvfmvkdfvdf84848484'];\n\tad.emit('load');"
             ],
             "class": "Api",
             "module": "api"
         },
         {
             "file": "src/api/api.js",
-            "line": 89,
+            "line": 90,
             "description": "Shortcut for adlayer.ads[id].emit, used by flash preloaders",
             "itemtype": "method",
             "name": "markAdAsLoaded",
@@ -1183,7 +1208,7 @@
         },
         {
             "file": "src/api/api.js",
-            "line": 100,
+            "line": 101,
             "itemtype": "method",
             "name": "initialization",
             "access": "private",
@@ -1620,31 +1645,7 @@
         },
         {
             "file": "src/dom/space_dom.js",
-            "line": 26,
-            "itemtype": "method",
-            "name": "init",
-            "params": [
-                {
-                    "name": "tracker",
-                    "description": "For ads",
-                    "type": "Object"
-                },
-                {
-                    "name": "configs",
-                    "description": "for ads",
-                    "type": "Object"
-                }
-            ],
-            "return": {
-                "description": "return this to chain methods",
-                "type": "Object"
-            },
-            "class": "SpaceDom",
-            "module": "dom"
-        },
-        {
-            "file": "src/dom/space_dom.js",
-            "line": 44,
+            "line": 25,
             "itemtype": "method",
             "name": "placeAd",
             "params": [
@@ -1663,7 +1664,7 @@
         },
         {
             "file": "src/dom/space_dom.js",
-            "line": 56,
+            "line": 37,
             "itemtype": "method",
             "name": "getElement",
             "return": {

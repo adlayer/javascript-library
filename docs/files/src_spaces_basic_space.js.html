@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src&#x2F;ads&#x2F;swf.js - Adlayer Javascript Library</title>
+    <title>src&#x2F;spaces&#x2F;basic_space.js - Adlayer Javascript Library</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -156,76 +156,47 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src&#x2F;ads&#x2F;swf.js</h1>
+                        <h1 class="file-heading">File: src&#x2F;spaces&#x2F;basic_space.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-&#x2F;**
-* @module ads
-*&#x2F;
-&#x2F;**
-* @class Swf
-*&#x2F;
-var Swf = function(){
-	var queryString = require(&#x27;..&#x2F;node_modules&#x2F;querystring&#x27;).querystring;
-	&#x2F;**
-	* Alignment of html content.
-	* @property align
-	* @type string
-	*&#x2F;
-	this.align = &quot;center&quot;;
-	&#x2F;**
-	* Control right click menu options (true, false).
-	* @property menu
-	* @type boolean
-	*&#x2F;
-	this.menu = false;
-	&#x2F;**
-	* @property quality
-	* @type string
-	*&#x2F;
-	this.quality = &quot;high&quot;; &#x2F;&#x2F;low,autolow,autohigh,medium,high,best ;
-	&#x2F;**
-	* @property scale
-	* @type string
-	*&#x2F;
-	this.scale = &quot;noscale&quot;; &#x2F;&#x2F;default,noborder,exactfit,noscale
-	&#x2F;**
-	* @property wmode
-	* @type string
-	*&#x2F;
-	this.wmode = &quot;transparent&quot;; &#x2F;&#x2F;window,opaque,transparent
-	&#x2F;**
-	* @property type
-	* @type string
-	*&#x2F;
-	this.type = &quot;application&#x2F;x-shockwave-flash&quot;;
-	&#x2F;**
-	* @property allowScriptAccess
-	* @type string
-	*&#x2F;
-	this.allowScriptAccess = &quot;always&quot;; &#x2F;&#x2F; &quot;always&quot;, &quot;sameDomain&quot;, and &quot;never&quot;.
-	&#x2F;&#x2F;this.allowNetworking = &quot;all&quot;;
+(function(){
 	
+	&#x2F;&#x2F; modules
+	var SpaceDom = require(&#x27;..&#x2F;dom&#x2F;space_dom&#x27;).SpaceDom;
+	var ads = require(&#x27;..&#x2F;ads&#x2F;ads&#x27;).ads;
+
 	&#x2F;**
-	* @method getSrc
-	* @return {String} src Will return the preloder url if defined
+	* Basic Space
+	*
+	* @class BasicSpace
+	* @extends DomElement
 	*&#x2F;
-	this.getSrc = function(){
-		if(!this.preloader){
-			return this.src;
-		}
+	var BasicSpace = function(){
+		&#x2F;&#x2F; extends Space
+		SpaceDom.apply(this, arguments);
 		
-		var url = this.preloader + &#x27;?&#x27; + queryString.stringify({
-			src: this.src, 
-			callback: this.callback, 
-			value: this.id
-		});
-		
-		return url;
+		this.placements = {};
+		&#x2F;&#x2F; Current ad
+		this.ad = {};
 	};
-};
-exports.Swf = Swf;
+	&#x2F;&#x2F; extends DomElement
+	BasicSpace.prototype = new SpaceDom();
+
+	BasicSpace.prototype.init = function(tracker, config){
+		if(this.ads &amp;&amp; this.ads.length &gt; 0){
+			var ad = ads.create(this.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(this, config);
+
+			&#x2F;&#x2F; Placing ad in space
+			this.placeAd(ad);
+			return this;
+		}
+	};
+	
+	exports.BasicSpace = BasicSpace;
+})();
     </pre>
 </div>
 

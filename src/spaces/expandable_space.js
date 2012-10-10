@@ -3,7 +3,7 @@
 */
 
 (function(){
-	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var BasicSpace = require('./basic_space').BasicSpace;
 	/**
 	* Represents the type Expander space
 	*
@@ -12,7 +12,7 @@
 	* @implements ISpace
 	*/
 	var ExpandableSpace = function(){
-		SpaceDom.apply(this, arguments);
+		BasicSpace.apply(this, arguments);
 		
 		
 		var __construct = (function(self){
@@ -33,7 +33,7 @@
 			
 		})(this);
 	};
-	ExpandableSpace.prototype = new SpaceDom();
+	ExpandableSpace.prototype = new BasicSpace();
 	
 	/**
 	* @method clip

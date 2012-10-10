@@ -5,7 +5,9 @@ var path = require('path');
 
 var modules = {};
 
-utils = [
+var head = ["./template/head.js"];
+
+var utils = [
 	"./src/module.js",
 	"./src/utils/copy.js",
 	"./src/utils/merge.js",
@@ -14,11 +16,7 @@ utils = [
 	"./src/node_modules/querystring.js"
 ];
 
-config = [
-	"./src/config/config.js"
-];
-
-domain = [
+var domain = [
 	"./src/domain/core.js",
 	"./src/domain/event.js", 
 	"./src/domain/ad.js",
@@ -27,13 +25,7 @@ domain = [
 	"./src/domain/site.js"
 ];
 
-dom = [
-	"./src/dom/dom_element.js", 
-	"./src/dom/ad_dom.js",
-	"./src/dom/space_dom.js"
-];
-
-request = [
+var request = [
 	"./src/request/http.js", 
 	"./src/request/http_request.js",
 	"./src/request/img_request.js",
@@ -41,11 +33,19 @@ request = [
 	"./src/request/request.js"
 ];
 
-connection = [
+var connection = [
 	"./src/connection/connection.js"
 ];
 
-ads = [
+var tracker = ["./src/tracker/tracker.js"];
+
+var dom = [
+	"./src/dom/dom_element.js", 
+	"./src/dom/ad_dom.js",
+	"./src/dom/space_dom.js"
+];
+
+var ads = [
 	"./src/ads/swf.js",
 	"./src/ads/embed_ad.js",
 	"./src/ads/object_ad.js",
@@ -54,21 +54,27 @@ ads = [
 	"./src/ads/ads.js"
 ];
 
-spaces = [
+var spaces = [
+	"./src/spaces/basic_space.js",
 	"./src/spaces/expandable_space.js",
 	"./src/spaces/floater_space.js",
 	"./src/spaces/static_space.js",
 	"./src/spaces/spaces.js"
 ];
 
-var tracker = ["./src/tracker/tracker.js"];
 
-api = [
+var config = [
+	"./src/config/config.js"
+];
+
+var api = [
 	"./src/api/page.js",
 	"./src/api/api.js"
 ];
 
-modules.api = [].concat(utils, config, domain, dom, request, connection, tracker, ads, spaces, api);
+var footer = ["./template/footer.js"];
+
+modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, api, footer);
 
 var config = {
 	"VERSION": "1.0.0",

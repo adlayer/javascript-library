@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Ad - Adlayer Javascript Library</title>
+    <title>BasicSpace - Adlayer Javascript Library</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -156,25 +156,25 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Ad Class</h1>
+                        <h1>BasicSpace Class</h1>
 <div class="box meta">
     
 
     
         <div class="extends">
-            Extends <a href="../classes/Core.html" class="crosslink">Core</a>
+            Extends <a href="../classes/DomElement.html" class="crosslink">DomElement</a>
         </div>
     
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l5"><code>src&#x2F;domain&#x2F;ad.js:5</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_spaces_basic_space.js.html#l7"><code>src&#x2F;spaces&#x2F;basic_space.js:7</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/core.html">core</a>
+            Module: <a href="../modules/request.html">request</a>
         
     
 
@@ -184,66 +184,9 @@
 
 
 <div class="box intro">
-    <p>Abstract class for ads</p>
+    <p>Basic Space</p>
 </div>
 
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-        <div id="method_Ad" class="method item">
-    <h3 class="name"><code>Ad</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l5"><code>src&#x2F;domain&#x2F;ad.js:5</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-    </div>
 
 
 <div id="classdocs" class="tabview">
@@ -270,15 +213,36 @@
 
                     <ul class="index-list methods extends">
                         
-                            <li class="index-item method private">
-                                <a href="#method___construct">__construct</a>
+                            <li class="index-item method public inherited">
+                                <a href="#method_addDomEventListener">addDomEventListener</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method inherited">
-                                <a href="#method_extend">extend</a>
+                            <li class="index-item method public inherited">
+                                <a href="#method_append">append</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public inherited">
+                                <a href="#method_create">create</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public inherited">
+                                <a href="#method_findParentTag">findParentTag</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public inherited">
+                                <a href="#method_setAttributes">setAttributes</a>
 
                                 
                                 
@@ -294,57 +258,15 @@
 
                     <ul class="index-list properties extends">
                         
-                            <li class="index-item property">
-                                <a href="#property_alternative">alternative</a>
+                            <li class="index-item property inherited">
+                                <a href="#property_element">element</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item property">
-                                <a href="#property_campaign_id">campaign_id</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_file">file</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
+                            <li class="index-item property inherited">
                                 <a href="#property_id">id</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_link">link</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_name">name</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_status">status</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_type">type</a>
 
                                 
                                 
@@ -364,11 +286,27 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method___construct" class="method item private">
-    <h3 class="name"><code>__construct</code></h3>
+                    <div id="method_addDomEventListener" class="method item public inherited">
+    <h3 class="name"><code>addDomEventListener</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>type</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>eventListener</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -380,7 +318,7 @@
     
 
     
-        <span class="flag private">private</span>
+        <span class="flag public">public</span>
     
 
     
@@ -394,15 +332,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..&#x2F;classes&#x2F;DomElement.html#method_addDomEventListener">DomElement</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l68"><code>src&#x2F;domain&#x2F;ad.js:68</code></a>
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l84"><code>src&#x2F;dom&#x2F;dom_element.js:84</code></a>
         
         </p>
 
@@ -417,6 +352,44 @@
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">type</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Event name like 'click', 'load', 'mouseover'</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventListener</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback for event trigger</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
         <div class="returns">
@@ -427,7 +400,7 @@
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
-                    return this to allow chain pattern
+                    return this to allow chainability
                 
             </div>
         </div>
@@ -437,8 +410,338 @@
 </div>
 
                 
-                    <div id="method_extend" class="method item inherited">
-    <h3 class="name"><code>extend</code></h3>
+                    <div id="method_append" class="method item public inherited">
+    <h3 class="name"><code>append</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>child</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..&#x2F;classes&#x2F;DomElement.html#method_append">DomElement</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l61"><code>src&#x2F;dom&#x2F;dom_element.js:61</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">child</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    this - Chainable method
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_create" class="method item public inherited">
+    <h3 class="name"><code>create</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tagName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>document</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..&#x2F;classes&#x2F;DomElement.html#method_create">DomElement</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l36"><code>src&#x2F;dom&#x2F;dom_element.js:36</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tagName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">document</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    this - Chainable method
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_findParentTag" class="method item public inherited">
+    <h3 class="name"><code>findParentTag</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tag</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..&#x2F;classes&#x2F;DomElement.html#method_findParentTag">DomElement</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l71"><code>src&#x2F;dom&#x2F;dom_element.js:71</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tag</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>UPPERCASE tag name</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    parentElement
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setAttributes" class="method item public inherited">
+    <h3 class="name"><code>setAttributes</code></h3>
 
     
         <div class="args">
@@ -463,6 +766,8 @@
     
 
     
+        <span class="flag public">public</span>
+    
 
     
 
@@ -476,11 +781,11 @@
         
             
                 <p>Inherited from
-                <a href="..&#x2F;classes&#x2F;Core.html#method_extend">Core</a>:
+                <a href="..&#x2F;classes&#x2F;DomElement.html#method_setAttributes">DomElement</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_domain_core.js.html#l16"><code>src&#x2F;domain&#x2F;core.js:16</code></a>
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l50"><code>src&#x2F;dom&#x2F;dom_element.js:50</code></a>
         
         </p>
 
@@ -528,7 +833,7 @@
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
-                    return this to allow chain pattern
+                    this - Chainable method
                 
             </div>
         </div>
@@ -546,8 +851,8 @@
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property_alternative" class="property item">
-    <h3 class="name"><code>alternative</code></h3>
+                    <div id="property_element" class="property item inherited">
+    <h3 class="name"><code>element</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
 
     
@@ -561,15 +866,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..&#x2F;classes&#x2F;DomElement.html#property_element">DomElement</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l60"><code>src&#x2F;domain&#x2F;ad.js:60</code></a>
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l18"><code>src&#x2F;dom&#x2F;dom_element.js:18</code></a>
         
         </p>
 
@@ -579,7 +881,7 @@
     </div>
 
     <div class="description">
-        <p>Alternative Ad is another instance of Ad with graceful degradation</p>
+        <p>Dom element itself</p>
     </div>
 
     
@@ -590,95 +892,7 @@
 </div>
 
                 
-                    <div id="property_campaign_id" class="property item">
-    <h3 class="name"><code>campaign_id</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l30"><code>src&#x2F;domain&#x2F;ad.js:30</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Id to campaign that belongs to</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_file" class="property item">
-    <h3 class="name"><code>file</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l42"><code>src&#x2F;domain&#x2F;ad.js:42</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>file Path to ad file</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_id" class="property item">
+                    <div id="property_id" class="property item inherited">
     <h3 class="name"><code>id</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
@@ -693,15 +907,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="..&#x2F;classes&#x2F;DomElement.html#property_id">DomElement</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l18"><code>src&#x2F;domain&#x2F;ad.js:18</code></a>
+        <a href="..&#x2F;files&#x2F;src_dom_dom_element.js.html#l12"><code>src&#x2F;dom&#x2F;dom_element.js:12</code></a>
         
         </p>
 
@@ -711,183 +922,7 @@
     </div>
 
     <div class="description">
-        <p>Id of ad</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_link" class="property item">
-    <h3 class="name"><code>link</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l48"><code>src&#x2F;domain&#x2F;ad.js:48</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>link destiny link</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_name" class="property item">
-    <h3 class="name"><code>name</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l24"><code>src&#x2F;domain&#x2F;ad.js:24</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Name of ad creative</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_status" class="property item">
-    <h3 class="name"><code>status</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l54"><code>src&#x2F;domain&#x2F;ad.js:54</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>status Ad status</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_type" class="property item">
-    <h3 class="name"><code>type</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_domain_ad.js.html#l36"><code>src&#x2F;domain&#x2F;ad.js:36</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Ad type</p>
+        <p>Id attribute of object</p>
     </div>
 
     

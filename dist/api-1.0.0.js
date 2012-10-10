@@ -1,3 +1,5 @@
+(function(global){
+
 // Implementation of common.js
 var node_modules = {};
 var module = {};
@@ -176,21 +178,6 @@ var queryString = {
 	}
 };
 exports.querystring = queryString;
-exports.config = {
-	url: {
-		adserver: {
-			host: 'jocasta.adlayerapp.com'
-		},
-		tracker: {
-			host: 'tracker.adlayerapp.com'
-		}
-	},
-	adsPerSpace: 1,
-	page: {
-		autoRun: true,
-		scriptTagId: 'adlayerScript'
-	}
-};
 /**
 * @module core
 */
@@ -764,287 +751,6 @@ var Site = function( attributes ){
 
 	exports.Site = Site;
 /**
-* @module dom
-*/
-
-/**
-* Abstract class for dom/html elements 
-*
-* @class DomElement
-* @link https://developer.mozilla.org/en/DOM/element
-*/
-var DomElement = function(){
-	/**
-	* Id attribute of object
-	* @property id
-	* @type string
-	*/
-	this.id = '';
-	/**
-	* Dom element itself
-	* @property element
-	* @type object
-	*/
-	this.element = undefined;
-};
-
-	/**
-	* @method create
-	* @param {String} tagName
-	* @param {Object} document
-	* @static
-	* @returns {Object} element
-	*/
-	DomElement.create = function(tagName, document){
-		return document.createElement(tagName);
-	};
-	/**
-	* @method create
-	* @param {String} tagName
-	* @param {Object} document
-	* @public
-	* @returns {Object} this - Chainable method
-	*/
-	DomElement.prototype.create = function(tagName, document){
-		//	file global || adlayer js module wrapper || passed document context
-		document = this.document || global.document || document;
-		this.element = DomElement.create(tagName, document);
-		return this.element;
-	};
-	
-	/**
-	* @method setAttributes
-	* @param {Object} attributes
-	* @public
-	* @returns {Object} this - Chainable method
-	*/
-	DomElement.prototype.setAttributes = function(attributes){
-		var merge = require('../utils/merge').merge;
-		merge(this.element, attributes);
-	};
-	
-	/**
-	* @method append
-	* @param {Object} child
-	* @public
-	* @returns {Object} this - Chainable method
-	*/
-	DomElement.prototype.append = function(child){
-		this.element.appendChild(child);
-		return this;
-	};
-	/**
-	* @method findParentTag
-	* @param {String} tag UPPERCASE tag name
-	* @public
-	* @returns {Object} parentElement
-	*/
-	DomElement.prototype.findParentTag = function(tag){
-		var parent = this.element.parentNode;
-		while(parent.nodeName != tag){
-			parent = parent.parentNode;
-		}
-		return parent;
-	};
-	/**
-	* @method addDomEventListener
-	* @param {String} type Event name like 'click', 'load', 'mouseover'
-	* @param {Function} eventListener Callback for event trigger
-	* @public
-	* @returns {Object} return this to allow chainability
-	*/
-	DomElement.prototype.addDomEventListener = function(type, eventListener){
-		if(typeof addEventListener === 'function'){
-			this.element.addEventListener(type, eventListener, false);
-		} else if(typeof attachEvent === 'function'){
-			this.element.attachEvent('on' + type, eventListener);
-		} else {
-			this.element['on' + type] = eventListener;
-		}
-		return this;
-	};
-
-
-	exports.DomElement = DomElement;
-/**
-* @module dom
-*/
-(function(){
-	
-	// modules
-	var DomElement = require('./dom_element').DomElement;
-	var Ad = require('../domain/ad').Ad;
-	var Event = require('../domain/event').Event;
-	
-	
-	/**
-	* Base for any type of Dom ads.
-	*
-	* @class AdDom
-	* @constructor
-	* @extends Ad
-	* @extends DomElement
-	*/
-	var AdDom = function(){
-		// extends Ad
-		Ad.apply(this, arguments);
-		
-		/**
-		* Instance of tracker
-		* @property tracker
-		* @type tracker
-		* @public
-		*/
-		this.tracker = {};
-	};
-	// extends DomElement
-	AdDom.prototype = new DomElement();
-	
-	
-	/**
-	* @method getSpaceId
-	* @returns {String} return the id of the first parent div
-	*/
-	AdDom.prototype.getSpaceId = function(){
-		var node = this.findParentTag('DIV');
-		return node.id;
-	};
-	
-	/**
-	* @method getClickTag
-	* @param {String} site_id
-	* @param {String} page_id
-	* @param {String} page_url
-	* @returns {String} the full url to track this link
-	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
-	*/
-	AdDom.prototype.getClickTag = function(site_id, page_id, page_url ){
-		// Tracker url
-		var trackerUrl = this.tracker.connection.getUrl();
-
-		var event = new Event({
-			type: 'click',
-			campaign_id: this.campaign_id,
-			space_id: this.getSpaceId(),
-			site_id: site_id,
-			page_id: page_id,
-			page_url: page_url,
-			link: this.link
-		});
-
-		if( event.validate() && this.link ){
-			var url = [trackerUrl, 'click', this.id].join('/');
-			url = url + '?' + event.toQuery();
-			return url;
-		}
-		return false;
-	};
-	
-	/**
-	* @method init
-	* @param {Object} space
-	* @param {Object} config
-	* @param {String} page_url
-	*/
-	AdDom.prototype.init = function(space, config){
-		var ad = this;
-		// Listener for 'LOAD' event
-		ad.on('load', function(){
-			ad.tracker.track({
-				type: 'impression',
-				
-				site_id: config.site_id,
-				domain: config.domain,
-				page_url: config.page_url,
-				page_id: config.page_id,
-				
-				ad_id: ad.id,
-				campaign_id: ad.campaign_id,
-				space_id: space.id
-			});
-		});
-
-		// Listener for 'PLACEMENT' event
-		ad.on('placement', function(){
-			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
-			ad.element.href = clickTag;
-		});
-		return ad;
-	};
-	
-	exports.AdDom = AdDom;
-	
-	
-	
-})();
-(function(){
-	
-	// modules
-	var DomElement = require('./dom_element').DomElement;
-	var Space = require('../domain/space').Space;
-	var ads = require('../ads/ads').ads;
-
-	/**
-	* Space dom
-	*
-	* @class SpaceDom
-	* @extends DomElement
-	* @requires Ad
-	*/
-	var SpaceDom = function(){
-		// extends Space
-		Space.apply(this, arguments);
-		
-		this.placements = {};
-		// Current ad
-		this.ad = {};
-	};
-	// extends DomElement
-	SpaceDom.prototype = new DomElement();
-
-	/**
-	* @method init
-	* @param {Object} tracker For ads
-		* @param {Object} configs for ads
-	* @returns {Object} return this to chain methods
-	*/
-	SpaceDom.prototype.init = function(tracker, config){
-		if(this.ads && this.ads.length > 0){
-			var ad = ads.create(this.getAd());
-			ad.tracker = tracker;
-			ad = ad.init(this, config);
-
-			// Placing ad in space
-			this.placeAd(ad);
-			return this;
-		}
-	};
-	
-	/**
-	* @method placeAd
-	* @param {Object} DomElement Ad to append in element
-	* @returns {Object} return this to chain methods
-	*/
-	SpaceDom.prototype.placeAd = function(ad){
-		this.element.appendChild(ad.element);
-		ad.emit('placement');
-		this.ad = ad;
-		return this;
-	};
-	
-	/**
-	* @method getElement
-	* @returns {Object} return the DomElement
-	*/
-	SpaceDom.prototype.getElement = function(){
-		return this.document.getElementById(this.id);
-	};
-	
-	exports.SpaceDom = SpaceDom;
-})();
-
-/**
 * Abstract class to http requests, connections and responses
 *
 * @class Http
@@ -1488,6 +1194,268 @@ exports.Connection = Connection;
 	exports.Tracker = Tracker;
 })();
 /**
+* @module dom
+*/
+
+/**
+* Abstract class for dom/html elements 
+*
+* @class DomElement
+* @link https://developer.mozilla.org/en/DOM/element
+*/
+var DomElement = function(){
+	/**
+	* Id attribute of object
+	* @property id
+	* @type string
+	*/
+	this.id = '';
+	/**
+	* Dom element itself
+	* @property element
+	* @type object
+	*/
+	this.element = undefined;
+};
+
+	/**
+	* @method create
+	* @param {String} tagName
+	* @param {Object} document
+	* @static
+	* @returns {Object} element
+	*/
+	DomElement.create = function(tagName, document){
+		return document.createElement(tagName);
+	};
+	/**
+	* @method create
+	* @param {String} tagName
+	* @param {Object} document
+	* @public
+	* @returns {Object} this - Chainable method
+	*/
+	DomElement.prototype.create = function(tagName, document){
+		//	file global || adlayer js module wrapper || passed document context
+		document = this.document || global.document || document;
+		this.element = DomElement.create(tagName, document);
+		return this.element;
+	};
+	
+	/**
+	* @method setAttributes
+	* @param {Object} attributes
+	* @public
+	* @returns {Object} this - Chainable method
+	*/
+	DomElement.prototype.setAttributes = function(attributes){
+		var merge = require('../utils/merge').merge;
+		merge(this.element, attributes);
+	};
+	
+	/**
+	* @method append
+	* @param {Object} child
+	* @public
+	* @returns {Object} this - Chainable method
+	*/
+	DomElement.prototype.append = function(child){
+		this.element.appendChild(child);
+		return this;
+	};
+	/**
+	* @method findParentTag
+	* @param {String} tag UPPERCASE tag name
+	* @public
+	* @returns {Object} parentElement
+	*/
+	DomElement.prototype.findParentTag = function(tag){
+		var parent = this.element.parentNode;
+		while(parent.nodeName != tag){
+			parent = parent.parentNode;
+		}
+		return parent;
+	};
+	/**
+	* @method addDomEventListener
+	* @param {String} type Event name like 'click', 'load', 'mouseover'
+	* @param {Function} eventListener Callback for event trigger
+	* @public
+	* @returns {Object} return this to allow chainability
+	*/
+	DomElement.prototype.addDomEventListener = function(type, eventListener){
+		if(typeof addEventListener === 'function'){
+			this.element.addEventListener(type, eventListener, false);
+		} else if(typeof attachEvent === 'function'){
+			this.element.attachEvent('on' + type, eventListener);
+		} else {
+			this.element['on' + type] = eventListener;
+		}
+		return this;
+	};
+
+
+	exports.DomElement = DomElement;
+/**
+* @module dom
+*/
+(function(){
+	
+	// modules
+	var DomElement = require('./dom_element').DomElement;
+	var Ad = require('../domain/ad').Ad;
+	var Event = require('../domain/event').Event;
+	
+	
+	/**
+	* Base for any type of Dom ads.
+	*
+	* @class AdDom
+	* @constructor
+	* @extends Ad
+	* @extends DomElement
+	*/
+	var AdDom = function(){
+		// extends Ad
+		Ad.apply(this, arguments);
+		
+		/**
+		* Instance of tracker
+		* @property tracker
+		* @type tracker
+		* @public
+		*/
+		this.tracker = {};
+	};
+	// extends DomElement
+	AdDom.prototype = new DomElement();
+	
+	
+	/**
+	* @method getSpaceId
+	* @returns {String} return the id of the first parent div
+	*/
+	AdDom.prototype.getSpaceId = function(){
+		var node = this.findParentTag('DIV');
+		return node.id;
+	};
+	
+	/**
+	* @method getClickTag
+	* @param {String} site_id
+	* @param {String} page_id
+	* @param {String} page_url
+	* @returns {String} the full url to track this link
+	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
+	*/
+	AdDom.prototype.getClickTag = function(site_id, page_id, page_url ){
+		// Tracker url
+		var trackerUrl = this.tracker.connection.getUrl();
+
+		var event = new Event({
+			type: 'click',
+			campaign_id: this.campaign_id,
+			space_id: this.getSpaceId(),
+			site_id: site_id,
+			page_id: page_id,
+			page_url: page_url,
+			link: this.link
+		});
+
+		if( event.validate() && this.link ){
+			var url = [trackerUrl, 'click', this.id].join('/');
+			url = url + '?' + event.toQuery();
+			return url;
+		}
+		return false;
+	};
+	
+	/**
+	* @method init
+	* @param {Object} space
+	* @param {Object} config
+	* @param {String} page_url
+	*/
+	AdDom.prototype.init = function(space, config){
+		var ad = this;
+		// Listener for 'LOAD' event
+		ad.on('load', function(){
+			ad.tracker.track({
+				type: 'impression',
+				
+				site_id: config.site_id,
+				domain: config.domain,
+				page_url: config.page_url,
+				page_id: config.page_id,
+				
+				ad_id: ad.id,
+				campaign_id: ad.campaign_id,
+				space_id: space.id
+			});
+		});
+
+		// Listener for 'PLACEMENT' event
+		ad.on('placement', function(){
+			// Setting click tag in ad element
+			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			ad.element.href = clickTag;
+		});
+		return ad;
+	};
+	
+	exports.AdDom = AdDom;
+	
+	
+	
+})();
+(function(){
+	
+	// modules
+	var DomElement = require('./dom_element').DomElement;
+	var Space = require('../domain/space').Space;
+
+	/**
+	* Space dom
+	*
+	* @class SpaceDom
+	* @extends DomElement
+	* @requires Ad
+	*/
+	var SpaceDom = function(){
+		// extends Space
+		Space.apply(this, arguments);
+		
+		this.placements = {};
+		// Current ad
+		this.ad = {};
+	};
+	// extends DomElement
+	SpaceDom.prototype = new DomElement();
+	
+	/**
+	* @method placeAd
+	* @param {Object} DomElement Ad to append in element
+	* @returns {Object} return this to chain methods
+	*/
+	SpaceDom.prototype.placeAd = function(ad){
+		this.element.appendChild(ad.element);
+		ad.emit('placement');
+		this.ad = ad;
+		return this;
+	};
+	
+	/**
+	* @method getElement
+	* @returns {Object} return the DomElement
+	*/
+	SpaceDom.prototype.getElement = function(){
+		return this.document.getElementById(this.id);
+	};
+	
+	exports.SpaceDom = SpaceDom;
+})();
+
+/**
 * @module ads
 */
 /**
@@ -1765,12 +1733,49 @@ exports.Swf = Swf;
 	})();
 	
 })();
+(function(){
+	
+	// modules
+	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var ads = require('../ads/ads').ads;
+
+	/**
+	* Basic Space
+	*
+	* @class BasicSpace
+	* @extends DomElement
+	*/
+	var BasicSpace = function(){
+		// extends Space
+		SpaceDom.apply(this, arguments);
+		
+		this.placements = {};
+		// Current ad
+		this.ad = {};
+	};
+	// extends DomElement
+	BasicSpace.prototype = new SpaceDom();
+
+	BasicSpace.prototype.init = function(tracker, config){
+		if(this.ads && this.ads.length > 0){
+			var ad = ads.create(this.getAd());
+			ad.tracker = tracker;
+			ad = ad.init(this, config);
+
+			// Placing ad in space
+			this.placeAd(ad);
+			return this;
+		}
+	};
+	
+	exports.BasicSpace = BasicSpace;
+})();
 /**
 * @module spaces
 */
 
 (function(){
-	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var BasicSpace = require('./basic_space').BasicSpace;
 	/**
 	* Represents the type Expander space
 	*
@@ -1779,7 +1784,7 @@ exports.Swf = Swf;
 	* @implements ISpace
 	*/
 	var ExpandableSpace = function(){
-		SpaceDom.apply(this, arguments);
+		BasicSpace.apply(this, arguments);
 		
 		
 		var __construct = (function(self){
@@ -1800,7 +1805,7 @@ exports.Swf = Swf;
 			
 		})(this);
 	};
-	ExpandableSpace.prototype = new SpaceDom();
+	ExpandableSpace.prototype = new BasicSpace();
 	
 	/**
 	* @method clip
@@ -1844,14 +1849,14 @@ exports.Swf = Swf;
 */
 
 (function(){
-	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var BasicSpace = require('./basic_space').BasicSpace;
 	/**
 	* Represents the type Floater
 	* @class FloaterSpace
 	* @extends SpaceDom
 	*/
 	var FloaterSpace = function(){
-		SpaceDom.apply(this, arguments);
+		BasicSpace.apply(this, arguments);
 		/**
 		* @method close
 		* @public
@@ -1878,7 +1883,7 @@ exports.Swf = Swf;
 			
 		})(this);
 	};
-	FloaterSpace.prototype = new SpaceDom();
+	FloaterSpace.prototype = new BasicSpace();
 	exports.FloaterSpace = FloaterSpace;
 })();
 /**
@@ -1886,7 +1891,7 @@ exports.Swf = Swf;
 */
 
 (function(){
-	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var BasicSpace = require('./basic_space').BasicSpace;
 	/**
 	* Represents the type Static
 	* 
@@ -1894,7 +1899,7 @@ exports.Swf = Swf;
 	* @extends SpaceDom
 	*/	
 	var StaticSpace = function(){
-		SpaceDom.apply(this, arguments);
+		BasicSpace.apply(this, arguments);
 		var __construct = (function(self){
 			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.style.height = self.height;
@@ -1902,7 +1907,7 @@ exports.Swf = Swf;
 			self.element.id = self.id;
 		})(this);
 	};
-	StaticSpace.prototype = new SpaceDom();
+	StaticSpace.prototype = new BasicSpace();
 	
 	exports.StaticSpace = StaticSpace;
 })();
@@ -1936,6 +1941,21 @@ exports.Swf = Swf;
 	})();
 	
 })();
+exports.config = {
+	url: {
+		adserver: {
+			host: 'jocasta.adlayerapp.com'
+		},
+		tracker: {
+			host: 'tracker.adlayerapp.com'
+		}
+	},
+	adsPerSpace: 1,
+	page: {
+		autoRun: true,
+		scriptTagId: 'adlayerScript'
+	}
+};
 /**
 * @module api
 */
@@ -2053,139 +2073,139 @@ exports.Swf = Swf;
 	
 	exports.PageApi = PageApi;
 })();
+(function(window){
+	
 /**
 * Api wrapper
 * @module api
 * @main api
 */
-(function(global){
-	var queryString = require('../node_modules/querystring').querystring;
-	var copy = require('../utils/copy').copy;
-	var Connection = require('../connection/connection').Connection;
-	var Page = require('./page').PageApi;
-	var Tracker = require('../tracker/tracker').Tracker;
-	var defaultConfig = require('../config/config').config;
-	// Required by Page.init
-	var ads = require('../ads/ads').ads;
 
+var queryString = require('../node_modules/querystring').querystring;
+var Connection = require('../connection/connection').Connection;
+var Page = require('./page').PageApi;
+var Tracker = require('../tracker/tracker').Tracker;
+var defaultConfig = require('../config/config').config;
+
+	
+/**
+* @class Api
+*/
+var global = global || window;
+var api = global.adlayer || {};
+
+// Defining configs
+var config = api.config || {};
+
+// Merging config options
+config.url = config.url || defaultConfig.url;
+config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
+config.page = config.page || defaultConfig.page;
+
+/**
+* Exports config
+*
+* @property config
+* @type object
+*/
+api.config = config;
+
+// Defining connections
+var connections = {
+	adserver: new Connection(config.url.adserver),
+	tracker: new Connection(config.url.tracker)
+};
+
+// Defining tracker	
+var tracker = new Tracker();
+tracker.connection = connections.tracker;
+
+/**
+* Exports page api
+*
+* @property page
+* @type object
+*/
+api.page = {};
+/**
+* Exports configuration
+*
+* @property config
+* @type object
+*/
+api.config = config;
+/**
+* Exports connections
+*
+* @property connections
+* @type object
+*/
+api.connections = connections;
+/**
+* Exports spaces
+*
+* @property spaces
+* @type object
+* @example 
+	var space = adlayer.spaces['0202kjj44949999992j8'];
+	space.close();
+*/
+api.spaces = {};
+/**
+* Exports ads
+*
+* @property ads
+* @type object
+* @example 
+	var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
+	ad.emit('load');
+*/
+api.ads = {};
+
+/**
+* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+*
+* @method markAdAsLoaded
+* @param {String} id
+* @public
+*/
+api.markAdAsLoaded = function(id){	
+	api.ads[id].emit('load');
+};
+
+/**
+* @method initialization
+* @private
+*/
+(function initialization(){
+	var document = global.document;
+	
+	if(config.page.autoRun && document) {
 		
-	/**
-	* @class Api
-	*/
-	var api = global.adlayer || {};
+		var scriptTag = document.getElementById(config.page.scriptTagId);
+		var queries = scriptTag.src.split('?')[1];
+		var params = queryString.parse(queries);
 
-	// Defining configs
-	var config = api.config || {};
-	
-	// Merging config options
-	config.url = config.url || defaultConfig.url;
-	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
-	config.page = config.page || defaultConfig.page;
-	
-	/**
-	* Exports config
-	*
-	* @property config
-	* @type object
-	*/
-	api.config = config;
-
-
-	var connections = {
-		adserver: new Connection(config.url.adserver),
-		tracker: new Connection(config.url.tracker)
-	};
-	
-	var tracker = new Tracker();
-	tracker.connection = connections.tracker;
-	
-	/**
-	* Exports page api
-	*
-	* @property page
-	* @type object
-	*/
-	api.page = {};
-	/**
-	* Exports configuration
-	*
-	* @property config
-	* @type object
-	*/
-	api.config = config;
-	/**
-	* Exports connections
-	*
-	* @property connections
-	* @type object
-	*/
-	api.connections = connections;
-	/**
-	* Exports spaces
-	*
-	* @property spaces
-	* @type object
-	* @example 
-		var space = adlayer.spaces['0202kjj44949999992j8'];
-		space.close();
-	*/
-	api.spaces = {};
-	/**
-	* Exports ads
-	*
-	* @property ads
-	* @type object
-	* @example 
-		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
-		ad.emit('load');
-	*/
-	api.ads = {};
-	
-	/**
-	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
-	*
-	* @method markAdAsLoaded
-	* @param {String} id
-	* @public
-	*/
-	api.markAdAsLoaded = function(id){	
-		api.ads[id].emit('load');
-	};
-	
-	/**
-	* @method initialization
-	* @private
-	*/
-	(function initialization(){
-		var document = global.document;
+		config.site_id = config.site_id || params.site;
+		config.domain = config.domain || global.location.hostname;
+		config.page_id = config.page_id || params.page;
+		config.page_url = config.page_url || global.location.href;
 		
-		if(config.page.autoRun && document) {
-			
-			var scriptTag = document.getElementById(config.page.scriptTagId);
-			var queries = scriptTag.src.split('?')[1];
-			var params = queryString.parse(queries);
+		var page = new Page({
+			tracker: tracker,
+			id: config.page_id,
+			url: config.page_url,
+			site_id: config.site_id,
+			domain: config.domain,
+			connection: connections.adserver,
+			document: document,
+			adsPerSpace: config.adsPerSpace
+		});
 
-			config.site_id = config.site_id || params.site;
-			config.domain = config.domain || global.location.hostname;
-			config.page_id = config.page_id || params.page;
-			config.page_url = config.page_url || global.location.href;
-			
-			var page = new Page({
-				tracker: tracker,
-				id: config.page_id,
-				url: config.page_url,
-				site_id: config.site_id,
-				domain: config.domain,
-				connection: connections.adserver,
-				document: document,
-				adsPerSpace: config.adsPerSpace
-			});
-
-			api.page = page.init();
-			api.spaces = page.spacesCollection;
-			api.ads = page.adsCollection;
-		}
-	})();
-	
-	
+		api.page = page.init();
+		api.spaces = page.spacesCollection;
+		api.ads = page.adsCollection;
+	}
+})();
+})(this);
 })(this);

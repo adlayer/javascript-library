@@ -3,7 +3,7 @@
 */
 
 (function(){
-	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var BasicSpace = require('./basic_space').BasicSpace;
 	/**
 	* Represents the type Static
 	* 
@@ -11,7 +11,7 @@
 	* @extends SpaceDom
 	*/	
 	var StaticSpace = function(){
-		SpaceDom.apply(this, arguments);
+		BasicSpace.apply(this, arguments);
 		var __construct = (function(self){
 			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.style.height = self.height;
@@ -19,7 +19,7 @@
 			self.element.id = self.id;
 		})(this);
 	};
-	StaticSpace.prototype = new SpaceDom();
+	StaticSpace.prototype = new BasicSpace();
 	
 	exports.StaticSpace = StaticSpace;
 })();

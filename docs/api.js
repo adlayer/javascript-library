@@ -4,6 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Ad",
         "AdDom",
         "Api",
+        "BasicSpace",
         "Connection",
         "Core",
         "DomElement",

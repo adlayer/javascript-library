@@ -47,6 +47,8 @@
             
                 <li><a href="..&#x2F;classes/Api.html">Api</a></li>
             
+                <li><a href="..&#x2F;classes/BasicSpace.html">BasicSpace</a></li>
+            
                 <li><a href="..&#x2F;classes/Connection.html">Connection</a></li>
             
                 <li><a href="..&#x2F;classes/Core.html">Core</a></li>
@@ -158,141 +160,140 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
+(function(window){
+	
 &#x2F;**
 * Api wrapper
 * @module api
 * @main api
 *&#x2F;
-(function(global){
-	var queryString = require(&#x27;..&#x2F;node_modules&#x2F;querystring&#x27;).querystring;
-	var copy = require(&#x27;..&#x2F;utils&#x2F;copy&#x27;).copy;
-	var Connection = require(&#x27;..&#x2F;connection&#x2F;connection&#x27;).Connection;
-	var Page = require(&#x27;.&#x2F;page&#x27;).PageApi;
-	var Tracker = require(&#x27;..&#x2F;tracker&#x2F;tracker&#x27;).Tracker;
-	var defaultConfig = require(&#x27;..&#x2F;config&#x2F;config&#x27;).config;
-	&#x2F;&#x2F; Required by Page.init
-	var ads = require(&#x27;..&#x2F;ads&#x2F;ads&#x27;).ads;
 
+var queryString = require(&#x27;..&#x2F;node_modules&#x2F;querystring&#x27;).querystring;
+var Connection = require(&#x27;..&#x2F;connection&#x2F;connection&#x27;).Connection;
+var Page = require(&#x27;.&#x2F;page&#x27;).PageApi;
+var Tracker = require(&#x27;..&#x2F;tracker&#x2F;tracker&#x27;).Tracker;
+var defaultConfig = require(&#x27;..&#x2F;config&#x2F;config&#x27;).config;
+
+	
+&#x2F;**
+* @class Api
+*&#x2F;
+var global = global || window;
+var api = global.adlayer || {};
+
+&#x2F;&#x2F; Defining configs
+var config = api.config || {};
+
+&#x2F;&#x2F; Merging config options
+config.url = config.url || defaultConfig.url;
+config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
+config.page = config.page || defaultConfig.page;
+
+&#x2F;**
+* Exports config
+*
+* @property config
+* @type object
+*&#x2F;
+api.config = config;
+
+&#x2F;&#x2F; Defining connections
+var connections = {
+	adserver: new Connection(config.url.adserver),
+	tracker: new Connection(config.url.tracker)
+};
+
+&#x2F;&#x2F; Defining tracker	
+var tracker = new Tracker();
+tracker.connection = connections.tracker;
+
+&#x2F;**
+* Exports page api
+*
+* @property page
+* @type object
+*&#x2F;
+api.page = {};
+&#x2F;**
+* Exports configuration
+*
+* @property config
+* @type object
+*&#x2F;
+api.config = config;
+&#x2F;**
+* Exports connections
+*
+* @property connections
+* @type object
+*&#x2F;
+api.connections = connections;
+&#x2F;**
+* Exports spaces
+*
+* @property spaces
+* @type object
+* @example 
+	var space = adlayer.spaces[&#x27;0202kjj44949999992j8&#x27;];
+	space.close();
+*&#x2F;
+api.spaces = {};
+&#x2F;**
+* Exports ads
+*
+* @property ads
+* @type object
+* @example 
+	var ad = adlayer.ads[&#x27;mfkvfmvkdfvdf84848484&#x27;];
+	ad.emit(&#x27;load&#x27;);
+*&#x2F;
+api.ads = {};
+
+&#x2F;**
+* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+*
+* @method markAdAsLoaded
+* @param {String} id
+* @public
+*&#x2F;
+api.markAdAsLoaded = function(id){	
+	api.ads[id].emit(&#x27;load&#x27;);
+};
+
+&#x2F;**
+* @method initialization
+* @private
+*&#x2F;
+(function initialization(){
+	var document = global.document;
+	
+	if(config.page.autoRun &amp;&amp; document) {
 		
-	&#x2F;**
-	* @class Api
-	*&#x2F;
-	var api = global.adlayer || {};
+		var scriptTag = document.getElementById(config.page.scriptTagId);
+		var queries = scriptTag.src.split(&#x27;?&#x27;)[1];
+		var params = queryString.parse(queries);
 
-	&#x2F;&#x2F; Defining configs
-	var config = api.config || {};
-	
-	&#x2F;&#x2F; Merging config options
-	config.url = config.url || defaultConfig.url;
-	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
-	config.page = config.page || defaultConfig.page;
-	
-	&#x2F;**
-	* Exports config
-	*
-	* @property config
-	* @type object
-	*&#x2F;
-	api.config = config;
-
-
-	var connections = {
-		adserver: new Connection(config.url.adserver),
-		tracker: new Connection(config.url.tracker)
-	};
-	
-	var tracker = new Tracker();
-	tracker.connection = connections.tracker;
-	
-	&#x2F;**
-	* Exports page api
-	*
-	* @property page
-	* @type object
-	*&#x2F;
-	api.page = {};
-	&#x2F;**
-	* Exports configuration
-	*
-	* @property config
-	* @type object
-	*&#x2F;
-	api.config = config;
-	&#x2F;**
-	* Exports connections
-	*
-	* @property connections
-	* @type object
-	*&#x2F;
-	api.connections = connections;
-	&#x2F;**
-	* Exports spaces
-	*
-	* @property spaces
-	* @type object
-	* @example 
-		var space = adlayer.spaces[&#x27;0202kjj44949999992j8&#x27;];
-		space.close();
-	*&#x2F;
-	api.spaces = {};
-	&#x2F;**
-	* Exports ads
-	*
-	* @property ads
-	* @type object
-	* @example 
-		var ad = adlayer.ads[&#x27;mfkvfmvkdfvdf84848484&#x27;];
-		ad.emit(&#x27;load&#x27;);
-	*&#x2F;
-	api.ads = {};
-	
-	&#x2F;**
-	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
-	*
-	* @method markAdAsLoaded
-	* @param {String} id
-	* @public
-	*&#x2F;
-	api.markAdAsLoaded = function(id){	
-		api.ads[id].emit(&#x27;load&#x27;);
-	};
-	
-	&#x2F;**
-	* @method initialization
-	* @private
-	*&#x2F;
-	(function initialization(){
-		var document = global.document;
+		config.site_id = config.site_id || params.site;
+		config.domain = config.domain || global.location.hostname;
+		config.page_id = config.page_id || params.page;
+		config.page_url = config.page_url || global.location.href;
 		
-		if(config.page.autoRun &amp;&amp; document) {
-			
-			var scriptTag = document.getElementById(config.page.scriptTagId);
-			var queries = scriptTag.src.split(&#x27;?&#x27;)[1];
-			var params = queryString.parse(queries);
+		var page = new Page({
+			tracker: tracker,
+			id: config.page_id,
+			url: config.page_url,
+			site_id: config.site_id,
+			domain: config.domain,
+			connection: connections.adserver,
+			document: document,
+			adsPerSpace: config.adsPerSpace
+		});
 
-			config.site_id = config.site_id || params.site;
-			config.domain = config.domain || global.location.hostname;
-			config.page_id = config.page_id || params.page;
-			config.page_url = config.page_url || global.location.href;
-			
-			var page = new Page({
-				tracker: tracker,
-				id: config.page_id,
-				url: config.page_url,
-				site_id: config.site_id,
-				domain: config.domain,
-				connection: connections.adserver,
-				document: document,
-				adsPerSpace: config.adsPerSpace
-			});
-
-			api.page = page.init();
-			api.spaces = page.spacesCollection;
-			api.ads = page.adsCollection;
-		}
-	})();
-	
-	
+		api.page = page.init();
+		api.spaces = page.spacesCollection;
+		api.ads = page.adsCollection;
+	}
+})();
 })(this);
     </pre>
 </div>

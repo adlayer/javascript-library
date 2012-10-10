@@ -3,14 +3,14 @@
 */
 
 (function(){
-	var SpaceDom = require('../dom/space_dom').SpaceDom;
+	var BasicSpace = require('./basic_space').BasicSpace;
 	/**
 	* Represents the type Floater
 	* @class FloaterSpace
 	* @extends SpaceDom
 	*/
 	var FloaterSpace = function(){
-		SpaceDom.apply(this, arguments);
+		BasicSpace.apply(this, arguments);
 		/**
 		* @method close
 		* @public
@@ -37,6 +37,6 @@
 			
 		})(this);
 	};
-	FloaterSpace.prototype = new SpaceDom();
+	FloaterSpace.prototype = new BasicSpace();
 	exports.FloaterSpace = FloaterSpace;
 })();

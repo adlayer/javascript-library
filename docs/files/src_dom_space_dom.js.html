@@ -47,6 +47,8 @@
             
                 <li><a href="..&#x2F;classes/Api.html">Api</a></li>
             
+                <li><a href="..&#x2F;classes/BasicSpace.html">BasicSpace</a></li>
+            
                 <li><a href="..&#x2F;classes/Connection.html">Connection</a></li>
             
                 <li><a href="..&#x2F;classes/Core.html">Core</a></li>
@@ -163,7 +165,6 @@
 	&#x2F;&#x2F; modules
 	var DomElement = require(&#x27;.&#x2F;dom_element&#x27;).DomElement;
 	var Space = require(&#x27;..&#x2F;domain&#x2F;space&#x27;).Space;
-	var ads = require(&#x27;..&#x2F;ads&#x2F;ads&#x27;).ads;
 
 	&#x2F;**
 	* Space dom
@@ -182,24 +183,6 @@
 	};
 	&#x2F;&#x2F; extends DomElement
 	SpaceDom.prototype = new DomElement();
-
-	&#x2F;**
-	* @method init
-	* @param {Object} tracker For ads
-		* @param {Object} configs for ads
-	* @returns {Object} return this to chain methods
-	*&#x2F;
-	SpaceDom.prototype.init = function(tracker, config){
-		if(this.ads &amp;&amp; this.ads.length &gt; 0){
-			var ad = ads.create(this.getAd());
-			ad.tracker = tracker;
-			ad = ad.init(this, config);
-
-			&#x2F;&#x2F; Placing ad in space
-			this.placeAd(ad);
-			return this;
-		}
-	};
 	
 	&#x2F;**
 	* @method placeAd
