@@ -98,6 +98,7 @@
 				page.scanSpaces(data.spaces, function(err, space){
 					// When find spaces
 					if(!err){
+
 						var config = {
 							domain: page.domain,
 							page_url: page.url,

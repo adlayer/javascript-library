@@ -82,6 +82,7 @@
 		var ad = this;
 		// Listener for 'LOAD' event
 		ad.on('load', function(){
+
 			ad.tracker.track({
 				type: 'impression',
 				

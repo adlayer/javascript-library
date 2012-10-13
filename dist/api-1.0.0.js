@@ -1380,6 +1380,7 @@ var DomElement = function(){
 		var ad = this;
 		// Listener for 'LOAD' event
 		ad.on('load', function(){
+
 			ad.tracker.track({
 				type: 'impression',
 				
@@ -1802,6 +1803,7 @@ exports.Swf = Swf;
 			self.element.id = self.id;
 			self.element.style.height = self.height;
 			self.element.style.width = self.width;
+			// http://blog.vamapaull.com/using-externalinterface-and-js-to-make-an-expandable-flash-banner/
 			self.element.style.position = "absolute";
 			
 			self.addDomEventListener(self.expandEvent, function(){
@@ -2067,6 +2069,7 @@ exports.config = {
 				page.scanSpaces(data.spaces, function(err, space){
 					// When find spaces
 					if(!err){
+
 						var config = {
 							domain: page.domain,
 							page_url: page.url,
@@ -2202,7 +2205,7 @@ api.markAdAsLoaded = function(id){
 		config.domain = config.domain || global.location.hostname;
 		config.page_id = config.page_id || params.page;
 		config.page_url = config.page_url || global.location.href;
-		
+
 		var page = new Page({
 			tracker: tracker,
 			id: config.page_id,
