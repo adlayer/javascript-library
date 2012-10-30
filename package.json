@@ -6,8 +6,7 @@
   , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
   , "dependencies": {
 	"jsdom":"x.x.x",
-	"mocha": "x.x.x",
-	"knox": "0.3.1"
+	"mocha": "x.x.x"
   }
   , "main": "index"
   , "engines": { "node": "0.6.x" }

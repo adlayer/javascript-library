@@ -4,8 +4,6 @@ default:
 	stats src --totals
 	# Runing unit tests
 	make test
-	# Build library
-	jake
 	# Make documentation
 	make docs
 docs:
