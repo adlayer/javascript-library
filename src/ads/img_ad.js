@@ -26,6 +26,8 @@
 				self.append(img);
 			}
 			
+			self.element.style.height = self.height + 'px';
+			self.element.style.width = self.width + 'px';
 			self.element.setAttribute('height', self.height);
 			self.element.setAttribute('width', self.width);
 			

@@ -58,7 +58,7 @@
 	ExpandableSpace.prototype.expand = function(){
 		var childAd = this.element.firstChild;
 		if(childAd){
-			this.clip(childAd.width + 'px', childAd.height + 'px');
+			this.clip(childAd.style.width, childAd.style.height);
 			return this;
 		}
 	};
