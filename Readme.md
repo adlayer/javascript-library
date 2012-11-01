@@ -37,7 +37,7 @@ Todos os módulos podem ser importados em ambientes que suportam common.js 1.0 c
 Usar o Adlayer js lib no node.js é bem simples basta clonar este repositório dentro de seu projeto e incluir o modulo desejado:
 EX:
 ```javascript
-	var AdDom = require('./javascript-library/src/dom/ad_dom').AdDom;
+var AdDom = require('./javascript-library/src/dom/ad_dom').AdDom;
 ```
 
 ### Browser
@@ -54,9 +54,9 @@ Depois do module.js ter sido incluido você poderá adicionar os modulos que pre
 
 E para para usar um modulo carregado:
 ```javascript
-	var FloaterSpace = require('../../src/spaces/floater_space').FloaterSpace;
-	var floater = new Floater();
-	floater.close();
+var FloaterSpace = require('../../src/spaces/floater_space').FloaterSpace;
+var floater = new Floater();
+floater.close();
 ```
 
 ## Casos de uso
