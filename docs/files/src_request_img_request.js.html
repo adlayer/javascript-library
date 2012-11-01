@@ -190,7 +190,7 @@ var ImgRequest = function(){
 		if(data) this.qs = data;
 		
 		&#x2F;&#x2F; http:&#x2F;&#x2F;www.nczonline.net&#x2F;blog&#x2F;2009&#x2F;07&#x2F;28&#x2F;the-best-way-to-load-external-javascript&#x2F;
-		var document = this.document || document;
+		var document = ImgRequest.document || document; 
 		var img = document.createElement(&#x27;img&#x27;);
 		img.src = this.getUrl();
 		if( this.callback ){
@@ -198,6 +198,13 @@ var ImgRequest = function(){
 		}
 		return this;
 	};
+	
+	&#x2F;**
+	* @property document
+	* @type object
+	* @static
+	*&#x2F;
+	ImgRequest.document = undefined;
 	
 	&#x2F;**
 	* @method make

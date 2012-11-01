@@ -2530,6 +2530,16 @@
         {
             "file": "src/request/img_request.js",
             "line": 40,
+            "itemtype": "property",
+            "name": "document",
+            "type": "object",
+            "static": 1,
+            "class": "ImgRequest",
+            "module": "request"
+        },
+        {
+            "file": "src/request/img_request.js",
+            "line": 47,
             "itemtype": "method",
             "name": "make",
             "static": 1,
@@ -2686,7 +2696,7 @@
         },
         {
             "file": "src/spaces/expandable_space.js",
-            "line": 66,
+            "line": 68,
             "itemtype": "method",
             "name": "retract",
             "access": "public",

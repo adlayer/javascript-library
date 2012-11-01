@@ -193,8 +193,10 @@
 		&#x2F;&#x2F;  validate in client is necessary ? or is it just slow
 		if( event.validate() ){
 			opts.qs = event;
-			var req = request().get(opts, function(err, data){
-				console.log(data);
+			var req = request().img(opts, function(err, data){
+				if(err){
+					throw new Error({&#x27;message&#x27;: &#x27;impossible to track&#x27;});
+				}
 			});
 			this.connection.next(req);
 		}

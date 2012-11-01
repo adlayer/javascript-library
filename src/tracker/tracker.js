@@ -31,7 +31,7 @@
 		//  validate in client is necessary ? or is it just slow
 		if( event.validate() ){
 			opts.qs = event;
-			var req = request().get(opts, function(err, data){
+			var req = request().img(opts, function(err, data){
 				if(err){
 					throw new Error({'message': 'impossible to track'});
 				}

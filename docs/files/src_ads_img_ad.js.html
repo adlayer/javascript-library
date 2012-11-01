@@ -172,8 +172,6 @@
 		var __construct = (function(self){
 			&#x2F;&#x2F; Default create the image
 			self.create(&#x27;img&#x27;);
-			self.element.setAttribute(&#x27;height&#x27;, self.height);
-			self.element.setAttribute(&#x27;width&#x27;, self.width);
 			self.element.src = self.src;
 			var img = self.element;
 			
@@ -189,7 +187,12 @@
 				self.element.href = self.link;
 				self.append(img);
 			}
-		
+			
+			self.element.style.height = self.height + &#x27;px&#x27;;
+			self.element.style.width = self.width + &#x27;px&#x27;;
+			self.element.setAttribute(&#x27;height&#x27;, self.height);
+			self.element.setAttribute(&#x27;width&#x27;, self.width);
+			
 			return self.element;
 		})(this);
 	};

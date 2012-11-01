@@ -7,7 +7,7 @@ describe('ImgRequest', function(){
 	describe('#send', function(){
 		it('Should send a request', function(){
 			var run = false;
-			
+			ImgRequest.document = document;
 			var request = new ImgRequest({
 				host: 'localhost',
 				path: '/'
