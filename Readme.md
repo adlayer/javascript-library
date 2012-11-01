@@ -61,11 +61,11 @@ floater.close();
 
 ## Casos de uso
 
-Grande parte do código usado em nossa api javascript oficial é extraído dessa biblioteca.
+Grande parte do código usado em nossa [api javascript oficial](https://github.com/adlayer/javascript-api) é extraído dessa biblioteca.
 
 ## Testes
 
-Todos os módulos possuem teste unitários escritos usando Mocha e expect.js
+Todos os módulos possuem teste unitários escritos usando [Mocha](https://github.com/visionmedia/mocha) e [expect.js](https://github.com/LearnBoost/expect.js)
  
 ## The open source license will be attached soon
 
