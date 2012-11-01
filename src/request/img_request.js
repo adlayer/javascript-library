@@ -28,8 +28,9 @@ var ImgRequest = function(){
 		if(data) this.qs = data;
 		
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
-		var document = ImgRequest.document || document; 
-		var img = document.createElement('img');
+		var doc = ImgRequest.document || document;
+		
+		var img = doc.createElement('img');
 		img.src = this.getUrl();
 		if( this.callback ){
 			img.onload = this.callback.apply({ok:true});
