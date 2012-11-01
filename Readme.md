@@ -41,10 +41,10 @@ Para usar os módulos da Adlayer JS Lib em um navegador web inclua antes de qual
 
 Depois do module.js ter sido incluido você poderá adicionar os modulos que precisará:
 ```html
-	<script src="../../src/module.js"></script>
-	<script src="../../src/domain/ad.js"></script>
-  <script src="../../src/domain/space.js"></script>
-  <script src="../../src/domain/page.js"></script>
+<script src="../../src/module.js"></script>
+<script src="../../src/domain/ad.js"></script>
+<script src="../../src/domain/space.js"></script>
+<script src="../../src/domain/page.js"></script>
 ```
 
 E para para usar um modulo carregado:
