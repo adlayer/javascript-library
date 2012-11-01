@@ -69,9 +69,17 @@ Grande parte do código usado em nossa [api javascript oficial](https://github.c
 
 Outro caso de uso obvio é utilizar parte da biblioteca para criar wrapper para a api REST da Adlayer (em breve).
 
+## Documentação
+Você poderá ver a documentação na pasta docs e em breve online.
+
 ## Testes
 
 Todos os módulos possuem teste unitários escritos usando [Mocha](https://github.com/visionmedia/mocha) e [expect.js](https://github.com/LearnBoost/expect.js)
+
+Para rodar os teste unitários faça:
+```
+make test
+```
  
 ## The open source license will be attached soon
 
