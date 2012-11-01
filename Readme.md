@@ -11,13 +11,18 @@ A missão principal da Adlayer Javascript Library é evitar a replicação de c�
 
 O Adlayer JS Lib inclui classes de estruturas básicos como paginas, sites, espaços, peças e de responsabilidade mais avançadas como comunicação com o Adlayer Ad Server (jocasta) e o Adlayer Tracker.
 
-## Casos de uso
-
-Grande parte do código usado em nossa api javascript oficial é extraído dessa biblioteca.
-
-## Testes
-
-Todos os módulos possuem teste unitários escritos usando Mocha e expect.js
+Atualmente a biblioteca inclui os seguintes modulos:
+* Ads
+* Api
+* Config
+* Connection
+* DOM
+* Domain
+* Node_modules
+* Request
+* Spaces
+* Tracker
+* Utils
 
 ## Cross Plataforma
 
@@ -54,6 +59,13 @@ E para para usar um modulo carregado:
 	floater.close();
 ```
 
+## Casos de uso
+
+Grande parte do código usado em nossa api javascript oficial é extraído dessa biblioteca.
+
+## Testes
+
+Todos os módulos possuem teste unitários escritos usando Mocha e expect.js
  
 ## The open source license will be attached soon
 
