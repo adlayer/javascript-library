@@ -55,6 +55,7 @@
 		var trackerUrl = this.tracker.connection.getUrl();
 
 		var event = new Event({
+			ad_id: this.id,
 			type: 'click',
 			campaign_id: this.campaign_id,
 			space_id: this.getSpaceId(),
@@ -82,8 +83,8 @@
 		var ad = this;
 		// Listener for 'LOAD' event
 		ad.on('load', function(){
-
-			ad.tracker.track({
+			/**
+			{
 				type: 'impression',
 				
 				site_id: config.site_id,
@@ -94,7 +95,14 @@
 				ad_id: ad.id,
 				campaign_id: ad.campaign_id,
 				space_id: space.id
-			});
+			}
+			**/
+			config.type = 'impression';
+			config.ad_id = ad.id;
+			config.space_id = space.id;
+			config.campaign_id = ad.campaign_id;
+			
+			ad.tracker.track(config);
 		});
 
 		// Listener for 'PLACEMENT' event

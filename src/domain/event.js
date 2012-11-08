@@ -116,10 +116,8 @@ var Event = function( attributes ){
 	*/
 	Event.required = [
 		'type',
-		'campaign_id',
-		'space_id',
-		'page_url',
-		'page_id'
+		'ad_id',
+		'campaign_id'
 	];
 	/**
 	* @method track
