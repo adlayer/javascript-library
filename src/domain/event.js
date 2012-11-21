@@ -27,63 +27,63 @@ var Event = function( attributes ){
 	* @property type
 	* @type string
 	*/
-	this.type = '';
+	this.type = undefined;
 	/**
 	* Campaign Id
 	* @property campaign_id
 	* @type string
 	*/
-	this.campaign_id = '';
+	this.campaign_id = undefined;
 	/**
 	* @property ad_id
 	* @type string
 	*/
-	this.ad_id = '';
+	this.ad_id = undefined;
 	/**
 	* @property space_id
 	* @type string
 	*/
-	this.space_id = '';
+	this.space_id = undefined;
 	/**
 	* @property {String} site_id Site id
 	* @public
 	*/
-	this.site_id = '';
+	this.site_id = undefined;
 	/**
 	* @property {String} page_url Url of the current page
 	* @public
 	*/
-	this.page_url = '';
+	this.page_url = undefined;
 	
 	
 	/**
 	* @property {String} date Date ISO 8601 format
 	* @public
 	*/
-	this.date = '';
+	this.date = undefined;
 	/**
 	* @property {String} time Time of event
 	* @public
 	*/
-	this.time = '';
+	this.time = undefined;
 	/**
 	* @property {String} hour
 	* @description First part of a time iso
 	* @public
 	*/
-	this.hour = '';
+	this.hour = undefined;
 	
 	
 	/**
 	* @property {String} ip Visitor ip
 	* @public
 	*/
-	this.ip = '';
+	this.ip = undefined;
 	/**
 	* @property {String} browser User agent or browser
 	* @public
 	*/
-	this.browser = '';
+	this.browser = undefined;
 	
 	/**
 	* @method getFullDate
