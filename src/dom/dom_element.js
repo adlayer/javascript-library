@@ -76,10 +76,13 @@ var DomElement = function(){
 	*/
 	DomElement.prototype.findParentTag = function(tag){
 		var parent = this.element.parentNode;
-		while(parent.nodeName != tag){
-			parent = parent.parentNode;
+		if(parent){
+			while(parent.nodeName != tag){
+				parent = parent.parentNode;
+			}
+			return parent;
 		}
-		return parent;
+		return false;
 	};
 	/**
 	* @method addDomEventListener

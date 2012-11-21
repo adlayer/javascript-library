@@ -44,13 +44,11 @@
 	
 	/**
 	* @method getClickTag
-	* @param {String} site_id
-	* @param {String} page_id
-	* @param {String} page_url
+	* @param {Object} config
 	* @returns {String} the full url to track this link
 	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
 	*/
-	AdDom.prototype.getClickTag = function(site_id, page_id, page_url ){
+	AdDom.prototype.getClickTag = function(config){
 		// Tracker url
 		var trackerUrl = this.tracker.connection.getUrl();
 
@@ -59,9 +57,9 @@
 			type: 'click',
 			campaign_id: this.campaign_id,
 			space_id: this.getSpaceId(),
-			site_id: site_id,
-			page_id: page_id,
-			page_url: page_url,
+			site_id: config.site_id,
+			page_id: config.page_id,
+			page_url: config.page_url,
 			link: this.link
 		});
 
@@ -77,38 +75,43 @@
 	* @method init
 	* @param {Object} space
 	* @param {Object} config
-	* @param {String} page_url
 	*/
 	AdDom.prototype.init = function(space, config){
 		var ad = this;
+		
+		/**
+		{
+			type: 'impression',
+			
+			site_id: config.site_id,
+			domain: config.domain,
+			page_url: config.page_url,
+			page_id: config.page_id,
+			
+			ad_id: ad.id,
+			campaign_id: ad.campaign_id,
+			space_id: space.id
+		}
+		**/
+		config.ad_id = ad.id;
+		
+		config.space_id = space.id;
+		config.space_id || delete config.space_id;
+		
+		config.campaign_id = ad.campaign_id;
+		
 		// Listener for 'LOAD' event
 		ad.on('load', function(){
-			/**
-			{
-				type: 'impression',
-				
-				site_id: config.site_id,
-				domain: config.domain,
-				page_url: config.page_url,
-				page_id: config.page_id,
-				
-				ad_id: ad.id,
-				campaign_id: ad.campaign_id,
-				space_id: space.id
-			}
-			**/
+
 			config.type = 'impression';
-			config.ad_id = ad.id;
-			config.space_id = space.id;
-			config.campaign_id = ad.campaign_id;
-			
 			ad.tracker.track(config);
+			
 		});
 
 		// Listener for 'PLACEMENT' event
 		ad.on('placement', function(){
 			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			var clickTag = ad.getClickTag(config);
 			ad.element.href = clickTag;
 		});
 		return ad;
