@@ -3,7 +3,6 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "Ad",
         "AdDom",
-        "Api",
         "BasicSpace",
         "Connection",
         "Core",
@@ -20,7 +19,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "JsonpRequest",
         "ObjectAd",
         "Page",
-        "PageApi",
         "Param",
         "RandomBehaviour",
         "Site",
@@ -33,7 +31,6 @@ YUI.add("yuidoc-meta", function(Y) {
     "modules": [
         "Connection",
         "ads",
-        "api",
         "core",
         "dom",
         "request",
@@ -43,11 +40,6 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "ads",
             "name": "ads"
-        },
-        {
-            "displayName": "api",
-            "name": "api",
-            "description": "Api wrapper"
         },
         {
             "displayName": "Connection",

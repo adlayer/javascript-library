@@ -16,8 +16,6 @@ O Adlayer JS Lib inclui classes de estruturas básicos como paginas, sites, espa
 Atualmente a biblioteca inclui os seguintes módulos:
 
 * Ads
-* Api
-* Config
 * Connection
 * DOM
 * Domain

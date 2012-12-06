@@ -53,26 +53,6 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/api/api.js": {
-            "name": "src/api/api.js",
-            "modules": {
-                "api": 1
-            },
-            "classes": {
-                "Api": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src/api/page.js": {
-            "name": "src/api/page.js",
-            "modules": {},
-            "classes": {
-                "PageApi": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "src/connection/connection.js": {
             "name": "src/connection/connection.js",
             "modules": {
@@ -302,21 +282,6 @@
             "file": "src/ads/swf.js",
             "line": 4
         },
-        "api": {
-            "name": "api",
-            "submodules": {},
-            "classes": {
-                "Api": 1,
-                "PageApi": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "main",
-            "file": "src/api/page.js",
-            "line": 10,
-            "description": "Api wrapper",
-            "itemtype": "main"
-        },
         "Connection": {
             "name": "Connection",
             "submodules": {},
@@ -496,34 +461,6 @@
             "namespace": "",
             "file": "src/ads/swf.js",
             "line": 4
-        },
-        "Api": {
-            "name": "Api",
-            "shortname": "Api",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "api",
-            "namespace": "",
-            "file": "src/api/api.js",
-            "line": 16
-        },
-        "PageApi": {
-            "name": "PageApi",
-            "shortname": "PageApi",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "api",
-            "namespace": "",
-            "file": "src/api/page.js",
-            "line": 10,
-            "is_constructor": 1,
-            "extends": "EventEmitter"
         },
         "Connection": {
             "name": "Connection",
@@ -1060,167 +997,6 @@
             },
             "class": "Swf",
             "module": "ads"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 30,
-            "description": "Exports config",
-            "itemtype": "property",
-            "name": "config",
-            "type": "object",
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 48,
-            "description": "Exports page api",
-            "itemtype": "property",
-            "name": "page",
-            "type": "object",
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 55,
-            "description": "Exports configuration",
-            "itemtype": "property",
-            "name": "config",
-            "type": "object",
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 62,
-            "description": "Exports connections",
-            "itemtype": "property",
-            "name": "connections",
-            "type": "object",
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 69,
-            "description": "Exports spaces",
-            "itemtype": "property",
-            "name": "spaces",
-            "type": "object",
-            "example": [
-                " \n\tvar space = adlayer.spaces['0202kjj44949999992j8'];\n\tspace.close();"
-            ],
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 79,
-            "description": "Exports ads",
-            "itemtype": "property",
-            "name": "ads",
-            "type": "object",
-            "example": [
-                " \n\tvar ad = adlayer.ads['mfkvfmvkdfvdf84848484'];\n\tad.emit('load');"
-            ],
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 90,
-            "description": "Shortcut for adlayer.ads[id].emit, used by flash preloaders",
-            "itemtype": "method",
-            "name": "markAdAsLoaded",
-            "params": [
-                {
-                    "name": "id",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "access": "public",
-            "tagname": "",
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/api.js",
-            "line": 101,
-            "itemtype": "method",
-            "name": "initialization",
-            "access": "private",
-            "tagname": "",
-            "class": "Api",
-            "module": "api"
-        },
-        {
-            "file": "src/api/page.js",
-            "line": 27,
-            "itemtype": "method",
-            "name": "getData",
-            "params": [
-                {
-                    "name": "callback",
-                    "description": "",
-                    "type": "Function"
-                }
-            ],
-            "class": "PageApi",
-            "module": "api"
-        },
-        {
-            "file": "src/api/page.js",
-            "line": 47,
-            "itemtype": "method",
-            "name": "scanSpaces",
-            "params": [
-                {
-                    "name": "collection",
-                    "description": "",
-                    "type": "Function"
-                },
-                {
-                    "name": "callback",
-                    "description": "",
-                    "type": "Function"
-                }
-            ],
-            "class": "PageApi",
-            "module": "api"
-        },
-        {
-            "file": "src/api/page.js",
-            "line": 72,
-            "itemtype": "method",
-            "name": "renderSpace",
-            "params": [
-                {
-                    "name": "space",
-                    "description": "Instance of Space Class to find and render in DOM",
-                    "type": "Object"
-                },
-                {
-                    "name": "data",
-                    "description": "Data of current view to track events",
-                    "type": "Object"
-                }
-            ],
-            "access": "public",
-            "tagname": "",
-            "class": "PageApi",
-            "module": "api"
-        },
-        {
-            "file": "src/api/page.js",
-            "line": 85,
-            "itemtype": "method",
-            "name": "init",
-            "access": "public",
-            "tagname": "",
-            "class": "PageApi",
-            "module": "api"
         },
         {
             "file": "src/connection/connection.js",
