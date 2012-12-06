@@ -10,7 +10,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "DomElement",
         "EmbedAd",
         "Event",
-        "EventEmitter",
         "ExpandableSpace",
         "FloaterSpace",
         "Http",
@@ -37,8 +36,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "api",
         "core",
         "dom",
-        "events",
-        "queryString",
         "request",
         "spaces"
     ],
@@ -63,15 +60,6 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "dom",
             "name": "dom"
-        },
-        {
-            "displayName": "events",
-            "name": "events"
-        },
-        {
-            "displayName": "queryString",
-            "name": "queryString",
-            "description": "QueryString module for handle params"
         },
         {
             "displayName": "request",

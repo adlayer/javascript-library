@@ -1,13 +1,13 @@
 {
-    "name": "adlayer-js-library"
-  , "version": "0.0.2"
-  , "description": "Adlayer javascript domain library"
+    "name": "adlayer-library"
+  , "version": "1.0.0"
+  , "description": "Adlayer javascript core library"
   , "keywords": []
-  , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
+  , "author": "Adlayer <adlayer@adlayer.org>"
   , "dependencies": {
 	"jsdom":"x.x.x",
 	"mocha": "x.x.x"
   }
   , "main": "index"
-  , "engines": { "node": "0.6.x" }
+  , "engines": { "node": ">=0.6.x" }
 }

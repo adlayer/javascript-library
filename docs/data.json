@@ -171,26 +171,6 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/node_modules/events.js": {
-            "name": "src/node_modules/events.js",
-            "modules": {
-                "events": 1
-            },
-            "classes": {
-                "EventEmitter": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src/node_modules/querystring.js": {
-            "name": "src/node_modules/querystring.js",
-            "modules": {
-                "queryString": 1
-            },
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
         "src/request/http.js": {
             "name": "src/request/http.js",
             "modules": {},
@@ -374,40 +354,14 @@
                 "Site": 1,
                 "ISpaceBehaviour": 1,
                 "RandomBehaviour": 1,
-                "Space": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "src/domain/space.js",
-            "line": 39
-        },
-        "events": {
-            "name": "events",
-            "submodules": {},
-            "classes": {
-                "EventEmitter": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "src/node_modules/events.js",
-            "line": 6
-        },
-        "queryString": {
-            "name": "queryString",
-            "submodules": {},
-            "classes": {
+                "Space": 1,
                 "Http": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
             "file": "src/request/http.js",
-            "line": 1,
-            "description": "QueryString module for handle params",
-            "access": "public",
-            "tagname": ""
+            "line": 1
         },
         "request": {
             "name": "request",
@@ -785,21 +739,6 @@
                 }
             ]
         },
-        "EventEmitter": {
-            "name": "EventEmitter",
-            "shortname": "EventEmitter",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "events",
-            "namespace": "",
-            "file": "src/node_modules/events.js",
-            "line": 6,
-            "description": "Implementation minimized of node event emitter",
-            "is_constructor": 1
-        },
         "Http": {
             "name": "Http",
             "shortname": "Http",
@@ -808,7 +747,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "queryString",
+            "module": "core",
             "namespace": "",
             "file": "src/request/http.js",
             "line": 1,
@@ -1433,19 +1372,9 @@
             "name": "getClickTag",
             "params": [
                 {
-                    "name": "site_id",
+                    "name": "config",
                     "description": "",
-                    "type": "String"
-                },
-                {
-                    "name": "page_id",
-                    "description": "",
-                    "type": "String"
-                },
-                {
-                    "name": "page_url",
-                    "description": "",
-                    "type": "String"
+                    "type": "Object"
                 }
             ],
             "return": {
@@ -1460,7 +1389,7 @@
         },
         {
             "file": "src/dom/ad_dom.js",
-            "line": 75,
+            "line": 74,
             "itemtype": "method",
             "name": "init",
             "params": [
@@ -1473,13 +1402,15 @@
                     "name": "config",
                     "description": "",
                     "type": "Object"
-                },
-                {
-                    "name": "page_url",
-                    "description": "",
-                    "type": "String"
                 }
             ],
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "src/dom/ad_dom.js",
+            "line": 82,
+            "description": "{\n\ttype: 'impression',\n\t\n\tsite_id: config.site_id,\n\tdomain: config.domain,\n\tpage_url: config.page_url,\n\tpage_id: config.page_id,\n\t\n\tad_id: ad.id,\n\tcampaign_id: ad.campaign_id,\n\tspace_id: space.id\n}",
             "class": "AdDom",
             "module": "dom"
         },
@@ -1619,7 +1550,7 @@
         },
         {
             "file": "src/dom/dom_element.js",
-            "line": 84,
+            "line": 87,
             "itemtype": "method",
             "name": "addDomEventListener",
             "params": [
@@ -1940,7 +1871,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 124,
+            "line": 122,
             "itemtype": "method",
             "name": "track",
             "static": 1,
@@ -1953,7 +1884,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 133,
+            "line": 131,
             "itemtype": "method",
             "name": "getDate",
             "access": "public",
@@ -1967,7 +1898,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 143,
+            "line": 141,
             "itemtype": "method",
             "name": "getTime",
             "access": "public",
@@ -1981,7 +1912,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 152,
+            "line": 150,
             "itemtype": "method",
             "name": "getHour",
             "access": "public",
@@ -1995,7 +1926,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 163,
+            "line": 161,
             "itemtype": "method",
             "name": "validate",
             "access": "public",
@@ -2009,7 +1940,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 178,
+            "line": 176,
             "itemtype": "method",
             "name": "toQuery",
             "access": "public",
@@ -2023,7 +1954,7 @@
         },
         {
             "file": "src/domain/event.js",
-            "line": 187,
+            "line": 185,
             "itemtype": "method",
             "name": "save",
             "access": "public",
@@ -2271,133 +2202,13 @@
             "module": "core"
         },
         {
-            "file": "src/node_modules/events.js",
-            "line": 13,
-            "description": "Storage of events",
-            "itemtype": "attribute",
-            "name": "listeners",
-            "type": "object",
-            "access": "private",
-            "tagname": "",
-            "class": "EventEmitter",
-            "module": "events"
-        },
-        {
-            "file": "src/node_modules/events.js",
-            "line": 26,
-            "itemtype": "method",
-            "name": "listeners",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "Name of event",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Array"
-            },
-            "class": "EventEmitter",
-            "module": "events"
-        },
-        {
-            "file": "src/node_modules/events.js",
-            "line": 35,
-            "itemtype": "method",
-            "name": "addListener",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "Name of event",
-                    "type": "String"
-                },
-                {
-                    "name": "fn",
-                    "description": "Eventhandler",
-                    "type": "Function"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Array"
-            },
-            "class": "EventEmitter",
-            "module": "events"
-        },
-        {
-            "file": "src/node_modules/events.js",
-            "line": 49,
-            "description": "Shortcut for addListener",
-            "itemtype": "method",
-            "name": "on",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "Name of event",
-                    "type": "String"
-                },
-                {
-                    "name": "fn",
-                    "description": "Eventhandler",
-                    "type": "Function"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Array"
-            },
-            "class": "EventEmitter",
-            "module": "events"
-        },
-        {
-            "file": "src/node_modules/events.js",
-            "line": 61,
-            "description": "Trigger the event",
-            "itemtype": "method",
-            "name": "emit",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "Name of event",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Array"
-            },
-            "class": "EventEmitter",
-            "module": "events"
-        },
-        {
-            "file": "src/node_modules/querystring.js",
-            "line": 7,
-            "itemtype": "method",
-            "name": "parse",
-            "access": "public",
-            "tagname": "",
-            "class": "Http",
-            "module": "queryString"
-        },
-        {
-            "file": "src/node_modules/querystring.js",
-            "line": 32,
-            "itemtype": "method",
-            "name": "stringify",
-            "access": "public",
-            "tagname": "",
-            "class": "Http",
-            "module": "queryString"
-        },
-        {
             "file": "src/request/http.js",
             "line": 12,
             "itemtype": "property",
             "name": "host",
             "type": "string",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2407,7 +2218,7 @@
             "type": "string",
             "default": "'http'",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2417,7 +2228,7 @@
             "type": "number",
             "default": "80",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2427,7 +2238,7 @@
             "type": "string",
             "default": "'/'",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2436,7 +2247,7 @@
             "name": "qs",
             "type": "object",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2445,7 +2256,7 @@
             "name": "query",
             "type": "string",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2454,7 +2265,7 @@
             "name": "url",
             "type": "string",
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2469,7 +2280,7 @@
                 }
             ],
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http.js",
@@ -2481,7 +2292,7 @@
                 "type": "String"
             },
             "class": "Http",
-            "module": "queryString"
+            "module": "core"
         },
         {
             "file": "src/request/http_request.js",
@@ -2745,6 +2556,168 @@
             "name": "merge",
             "class": "",
             "module": "spaces"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/connection/connection.js:48"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/connection/connection.js:57"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/connection/connection.js:76"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/connection/connection.js:84"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/connection/connection.js:90"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/ad_dom.js:36"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/ad_dom.js:45"
+        },
+        {
+            "message": "unknown tag: link",
+            "line": " src/dom/dom_element.js:5"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/dom_element.js:26"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/dom_element.js:36"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/dom_element.js:50"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/dom_element.js:61"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/dom_element.js:71"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/dom_element.js:87"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/space_dom.js:25"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/dom/space_dom.js:37"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/ad.js:68"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:88"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:122"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:131"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:141"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:150"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:161"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:176"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/event.js:185"
+        },
+        {
+            "message": "unknown tag: require",
+            "line": " src/domain/page.js:50"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/site.js:41"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/domain/site.js:51"
+        },
+        {
+            "message": "unknown tag: interface",
+            "line": " src/domain/space.js:5"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/http.js:63"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/http_request.js:23"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/img_request.js:20"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/img_request.js:48"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/jsonp_request.js:19"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/jsonp_request.js:30"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/jsonp_request.js:39"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/request/jsonp_request.js:67"
+        },
+        {
+            "message": "unknown tag: implements",
+            "line": " src/spaces/expandable_space.js:7"
+        },
+        {
+            "message": "param name missing: {string}",
+            "line": " src/utils/loadscript.js:1"
+        },
+        {
+            "message": "Missing item type\n{\n\ttype: 'impression',\n\t\n\tsite_id: config.site_id,\n\tdomain: config.domain,\n\tpage_url: config.page_url,\n\tpage_id: config.page_id,\n\t\n\tad_id: ad.id,\n\tcampaign_id: ad.campaign_id,\n\tspace_id: space.id\n}",
+            "line": " src/dom/ad_dom.js:82"
         }
     ]
 }

@@ -72,6 +72,11 @@ Outro caso de uso obvio é utilizar parte da biblioteca para criar wrapper para 
 ## Documentação
 Você poderá ver a documentação na pasta docs e em breve online.
 
+## Desenvolvimento
+sudo npm install stats -g
+sudo npm install yuidocjs -g
+make
+
 ## Testes
 
 Todos os módulos possuem teste unitários escritos usando [Mocha](https://github.com/visionmedia/mocha) e [expect.js](https://github.com/LearnBoost/expect.js)
