@@ -68,7 +68,7 @@ var Ad = function( attributes ){
 	/**
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		self = self.extend(attributes);

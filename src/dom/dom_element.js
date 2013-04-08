@@ -28,7 +28,7 @@ var DomElement = function(){
 	* @param {String} tagName
 	* @param {Object} document
 	* @static
-	* @returns {Object} element
+	* @return {Object} element
 	*/
 	DomElement.create = function(tagName, document){
 		return document.createElement(tagName);
@@ -38,7 +38,7 @@ var DomElement = function(){
 	* @param {String} tagName
 	* @param {Object} document
 	* @public
-	* @returns {Object} this - Chainable method
+	* @return {Object} this - Chainable method
 	*/
 	DomElement.prototype.create = function(tagName, document){
 		//	file global || adlayer js module wrapper || passed document context
@@ -51,7 +51,7 @@ var DomElement = function(){
 	* @method setAttributes
 	* @param {Object} attributes
 	* @public
-	* @returns {Object} this - Chainable method
+	* @return {Object} this - Chainable method
 	*/
 	DomElement.prototype.setAttributes = function(attributes){
 		var merge = require('../utils/merge').merge;
@@ -62,7 +62,7 @@ var DomElement = function(){
 	* @method append
 	* @param {Object} child
 	* @public
-	* @returns {Object} this - Chainable method
+	* @return {Object} this - Chainable method
 	*/
 	DomElement.prototype.append = function(child){
 		this.element.appendChild(child);
@@ -72,7 +72,7 @@ var DomElement = function(){
 	* @method findParentTag
 	* @param {String} tag UPPERCASE tag name
 	* @public
-	* @returns {Object} parentElement
+	* @return {Object} parentElement
 	*/
 	DomElement.prototype.findParentTag = function(tag){
 		var parent = this.element.parentNode;
@@ -89,7 +89,7 @@ var DomElement = function(){
 	* @param {String} type Event name like 'click', 'load', 'mouseover'
 	* @param {Function} eventListener Callback for event trigger
 	* @public
-	* @returns {Object} return this to allow chainability
+	* @return {Object} return this to allow chainability
 	*/
 	DomElement.prototype.addDomEventListener = function(type, eventListener){
 		if(typeof addEventListener === 'function'){

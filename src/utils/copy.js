@@ -1,3 +1,6 @@
+/**
+* @module utils
+*/
 // Prototype pattern Object.create() in old browsers
 function copy(obj){
 	function F(){}

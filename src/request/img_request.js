@@ -21,7 +21,7 @@ var ImgRequest = function(){
 	* @method send
 	* @public
 	* @param {Object} data
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	*/
 	ImgRequest.prototype.send = function(data){
 		//todo: use merge to data-> query
@@ -50,7 +50,7 @@ var ImgRequest = function(){
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
-	* @returns {DOMObject} document
+	* @return {DOMObject} document
 	*/
 	ImgRequest.make = function(options, callback, document){
 		var instance = new ImgRequest(options, callback);

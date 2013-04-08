@@ -1,4 +1,8 @@
 /**
+* @module utils
+*/
+
+/**
  * @method loadScript
  * @param {string}
  * @return {element}

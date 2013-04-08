@@ -87,7 +87,7 @@ var Event = function( attributes ){
 	
 	/**
 	* @method getFullDate
-	* @returns {String} Even if date is not converted to string return ISOString
+	* @return {String} Even if date is not converted to string return ISOString
 	*/
 	this.getFullDate = function(){
 		if( typeof date === 'object' ){
@@ -100,7 +100,7 @@ var Event = function( attributes ){
 	/*
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		self = self.extend(attributes);
@@ -122,7 +122,7 @@ var Event = function( attributes ){
 	/**
 	* @method track
 	* @static
-	* @returns {Object} return the result of method save
+	* @return {Object} return the result of method save
 	*/
 	Event.track = function(attributes){
 		return new Event(attributes).save();
@@ -131,7 +131,7 @@ var Event = function( attributes ){
 	/**
 	* @method getDate
 	* @public
-	* @returns {String} The second part of a fulldate splited in T character
+	* @return {String} The second part of a fulldate splited in T character
 	*/
 	Event.prototype.getDate = function(){
 		return this.getFullDate().split('T')[0];
@@ -141,7 +141,7 @@ var Event = function( attributes ){
 	/**
 	* @method getTime
 	* @public
-	* @returns {String} he second part of a fulldate splited in T character
+	* @return {String} he second part of a fulldate splited in T character
 	*/
 	Event.prototype.getTime = function(){
 		return this.getFullDate().split('T')[1];
@@ -150,7 +150,7 @@ var Event = function( attributes ){
 	/**
 	* @method getHour
 	* @public
-	* @returns {String || Boolean} String of hour or false
+	* @return {String || Boolean} String of hour or false
 	*/
 	Event.prototype.getHour = function(){
 		if( this.time ){
@@ -161,7 +161,7 @@ var Event = function( attributes ){
 	/**
 	* @method validate
 	* @public
-	* @returns {Boolean} true for all attributes and false if any is missing
+	* @return {Boolean} true for all attributes and false if any is missing
 	*/
 	Event.prototype.validate = function(){
 		for( var i = 0; i < Event.required.length; i++ ){
@@ -176,7 +176,7 @@ var Event = function( attributes ){
 	/**
 	* @method toQuery
 	* @public
-	* @returns {String} convert object to network string
+	* @return {String} convert object to network string
 	*/
 	Event.prototype.toQuery = function(){
 		var querystring = require('../node_modules/querystring').querystring;
@@ -185,7 +185,7 @@ var Event = function( attributes ){
 	/**
 	* @method save
 	* @public
-	* @returns {Error} convert object to network string
+	* @return {Error} convert object to network string
 	*/
 	Event.prototype.save = function(){
 		throw new Error('You should override this');

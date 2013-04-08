@@ -1,5 +1,5 @@
 /**
-* @module Connection
+* @module connection
 */
 
 /**
@@ -48,7 +48,7 @@ var Connection = function( attributes ){
 /**
 * @method id
 * @public
-* @returns {String} return current uuid
+* @return {String} return current uuid
 */
 Connection.prototype.id = function(){
 	return 'n' + this._index;
@@ -57,7 +57,7 @@ Connection.prototype.id = function(){
 /**
 * @method newId
 * @public
-* @returns {String} Increment the index and return a new id
+* @return {String} Increment the index and return a new id
 */
 Connection.prototype.newId = function(){
 	this._index++;
@@ -76,7 +76,7 @@ Connection.prototype.next = function(req){
 /**
 * @method getCallbackPath
 * @public
-* @returns {String} path of callback
+* @return {String} path of callback
 */
 Connection.prototype.getCallbackPath = function(){
 	return [this.name, 'requests', this.id(), 'callback'].join('.');
@@ -84,13 +84,13 @@ Connection.prototype.getCallbackPath = function(){
 /**
 * @method request
 * @public
-* @returns {Object}
+* @return {Object}
 */
 Connection.prototype.request = require('../request/request').request;
 /**
 * @method get
 * @public
-* @returns {Object}
+* @return {Object}
 */
 Connection.prototype.get = function(path, data, callback){
 	if(typeof data === 'function') {

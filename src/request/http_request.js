@@ -23,7 +23,7 @@ var HttpRequest = function( attributes, callback ){
 	/**
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		if( typeof attributes === 'string' ){

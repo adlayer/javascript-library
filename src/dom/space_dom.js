@@ -25,7 +25,7 @@
 	/**
 	* @method placeAd
 	* @param {Object} DomElement Ad to append in element
-	* @returns {Object} return this to chain methods
+	* @return {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
 		this.element.appendChild(ad.element);
@@ -36,7 +36,7 @@
 	
 	/**
 	* @method getElement
-	* @returns {Object} return the DomElement
+	* @return {Object} return the DomElement
 	*/
 	SpaceDom.prototype.getElement = function(){
 		return this.document.getElementById(this.id);

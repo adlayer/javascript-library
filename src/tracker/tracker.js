@@ -1,20 +1,24 @@
+/**
+* @module api
+*/
 (function(){
 	var copy = require('../utils/copy').copy;
 	var Event = require('../domain/core').Event;
 	/**
-	* Responsible for make connections to tracker server
+	* High level API to handle with Adlayer Tracker server
 	*
 	* @class Tracker
 	* @constructor
 	*/
 	function Tracker(){
-		/*
-		* @property {Connection} connection instance
+		/**
+		* @property connection
+		* @type Object
 		* @public
 		*/
 		this.connection = {};
 	}
-	/*
+	/**
 	* @method track
 	* @param {Object} data All data to track in an event
 	* @public

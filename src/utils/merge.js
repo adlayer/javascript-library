@@ -1,4 +1,8 @@
 /**
+* @module utils
+*/
+
+/**
  * Util method for extend/merge objects
  * @method merge
  */

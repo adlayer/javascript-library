@@ -41,7 +41,7 @@ var Site = function( attributes ){
 	/**
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		self = self.extend(attributes);
@@ -54,7 +54,7 @@ var Site = function( attributes ){
 	* @method hasDomain
 	* @public
 	* @param {String} entry - Domain string
-	* @returns {Boolean} - True when found a domain and false for not
+	* @return {Boolean} - True when found a domain and false for not
 	*/
 	Site.prototype.hasDomain = function(entry){
 		var self = this;

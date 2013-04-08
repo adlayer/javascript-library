@@ -1,5 +1,6 @@
 /**
 * @module dom
+* @requires core, events
 */
 (function(){
 	
@@ -35,7 +36,7 @@
 	
 	/**
 	* @method getSpaceId
-	* @returns {String} return the id of the first parent div
+	* @return {String} return the id of the first parent div
 	*/
 	AdDom.prototype.getSpaceId = function(){
 		var node = this.findParentTag('DIV');
@@ -45,7 +46,7 @@
 	/**
 	* @method getClickTag
 	* @param {Object} config
-	* @returns {String} the full url to track this link
+	* @return {String} the full url to track this link
 	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
 	*/
 	AdDom.prototype.getClickTag = function(config){
@@ -75,12 +76,8 @@
 	* @method init
 	* @param {Object} space
 	* @param {Object} config
-	*/
-	AdDom.prototype.init = function(space, config){
-		var ad = this;
-		
-		/**
-		{
+	* @example
+		var space = {
 			type: 'impression',
 			
 			site_id: config.site_id,
@@ -92,7 +89,11 @@
 			campaign_id: ad.campaign_id,
 			space_id: space.id
 		}
-		**/
+		new AdDom({}, space)
+	*/
+	AdDom.prototype.init = function(space, config){
+		var ad = this;
+		
 		config.ad_id = ad.id;
 		
 		config.space_id = space.id;

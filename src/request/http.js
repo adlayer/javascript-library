@@ -62,7 +62,7 @@ var Http = function(){
 	
 	/**
 	* @method getUrl
-	* @returns {String} full url
+	* @return {String} full url
 	*/
 	this.getUrl = function(){
 		if( !this.url ){

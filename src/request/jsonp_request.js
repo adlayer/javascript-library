@@ -20,7 +20,7 @@ var JsonpRequest = function(){
 	* @method queryCallback
 	* @public
 	* @param {String} string to call in jsonpresult
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	*/
 	JsonpRequest.prototype.queryCallback = function(str){
 		this.qs.callback = str;
@@ -30,7 +30,7 @@ var JsonpRequest = function(){
 	/**
 	* @method validate
 	* @public
-	* @returns {Boolean}
+	* @return {Boolean}
 	*/
 	JsonpRequest.prototype.validate = function(){
 		return this.qs.callback !== undefined;
@@ -40,7 +40,7 @@ var JsonpRequest = function(){
 	* @method send
 	* @public
 	* @param {Object} options
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	*/
 	JsonpRequest.prototype.send = function(data){
 		//todo: use merge to data-> query
@@ -69,7 +69,7 @@ var JsonpRequest = function(){
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	* @example JsonpRequest.make(options, callback).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback){
