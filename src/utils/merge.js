@@ -1,5 +1,7 @@
 /**
 * @module utils
+* @class Utils
+* @static
 */
 
 /**

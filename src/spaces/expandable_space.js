@@ -8,15 +8,35 @@
 	* Represents the type Expander space
 	*
 	* @class ExpandableSpace
-	* @extends SpaceDom
-	* @implements ISpace
+	* @extends BasicSpace
 	*/
 	var ExpandableSpace = function(){
 		BasicSpace.apply(this, arguments);
 		
+		/**
+		* @event expandEvent
+		* @example 
+			var space = new ExpandableSpace();
+			space.addDomEventListener(space.exapandEvent)
+		*/
 		this.expandEvent = 'mouseover';
+		
+		/**
+		* @event retreatEvent
+		* @example 
+			var space = new ExpandableSpace();
+			space.addDomEventListener(space.retreatEvent)
+		*/
 		this.retreatEvent = 'mouseout';
 		
+		/**
+		* Get or create the element
+		* Set the element id and sizes
+		*
+		* @method __construct
+		* @param {Object} self
+		* @private
+		*/
 		var __construct = (function(self){
 			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.id = self.id;

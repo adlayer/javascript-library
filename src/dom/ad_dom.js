@@ -15,24 +15,31 @@
 	*
 	* @class AdDom
 	* @constructor
-	* @extends Ad
 	* @extends DomElement
+	* @uses Ad
 	*/
 	var AdDom = function(){
-		// extends Ad
 		Ad.apply(this, arguments);
-		
+
 		/**
-		* Instance of tracker
-		* @property tracker
-		* @type tracker
+		* Url base of tracker
+		* @property trackerUrl
+		* @type string
 		* @public
 		*/
-		this.tracker = {};
+		this.trackerUrl = null;
+		
+		/**
+		* Information about the ad impression
+		* @property impression
+		* @type string
+		* @public
+		*/
+		this.impression = {};
+
 	};
 	// extends DomElement
 	AdDom.prototype = new DomElement();
-	
 	
 	/**
 	* @method getSpaceId
@@ -44,6 +51,37 @@
 	};
 	
 	/**
+	* @method setImpression
+	* @param {Object} space
+	* @param {Object} config
+	* @example
+		var config = {
+			type: 'impression',
+			
+			site_id: config.site_id,
+			domain: config.domain,
+			page_url: config.page_url,
+			page_id: config.page_id,
+			
+			ad_id: ad.id,
+			campaign_id: ad.campaign_id,
+			space_id: space.id
+		}
+		new AdDom(space, config);
+	*/
+	AdDom.prototype.setImpression = function(space, config){
+		config.type = 'impression';
+		config.ad_id = this.id;
+		
+		config.space_id = space.id;
+		config.space_id || delete config.space_id;
+		
+		config.campaign_id = this.campaign_id;
+		this.impression = config;
+		return this.impression;
+	};
+	
+	/**
 	* @method getClickTag
 	* @param {Object} config
 	* @return {String} the full url to track this link
@@ -51,8 +89,8 @@
 	*/
 	AdDom.prototype.getClickTag = function(config){
 		// Tracker url
-		var trackerUrl = this.tracker.connection.getUrl();
-
+		var trackerUrl = this.trackerUrl;
+		
 		var event = new Event({
 			ad_id: this.id,
 			type: 'click',
@@ -70,52 +108,6 @@
 			return url;
 		}
 		return false;
-	};
-	
-	/**
-	* @method init
-	* @param {Object} space
-	* @param {Object} config
-	* @example
-		var space = {
-			type: 'impression',
-			
-			site_id: config.site_id,
-			domain: config.domain,
-			page_url: config.page_url,
-			page_id: config.page_id,
-			
-			ad_id: ad.id,
-			campaign_id: ad.campaign_id,
-			space_id: space.id
-		}
-		new AdDom({}, space)
-	*/
-	AdDom.prototype.init = function(space, config){
-		var ad = this;
-		
-		config.ad_id = ad.id;
-		
-		config.space_id = space.id;
-		config.space_id || delete config.space_id;
-		
-		config.campaign_id = ad.campaign_id;
-		
-		// Listener for 'LOAD' event
-		ad.on('load', function(){
-
-			config.type = 'impression';
-			ad.tracker.track(config);
-			
-		});
-
-		// Listener for 'PLACEMENT' event
-		ad.on('placement', function(){
-			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config);
-			ad.element.href = clickTag;
-		});
-		return ad;
 	};
 	
 	exports.AdDom = AdDom;

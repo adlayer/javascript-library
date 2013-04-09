@@ -1,3 +1,7 @@
+/**
+* @module dom
+* @requires spaces
+*/
 (function(){
 	
 	// modules
@@ -8,21 +12,33 @@
 	* Space dom
 	*
 	* @class SpaceDom
-	* @extends DomElement
-	* @requires Ad
+	* @extends Space
+	* @uses Spaces
 	*/
 	var SpaceDom = function(){
 		// extends Space
 		Space.apply(this, arguments);
 		
+		/**
+		* Hash of all placements during this pageview on this space
+		* @property placements
+		* @type object
+		*/
 		this.placements = {};
-		// Current ad
+		
+		/**
+		* The current rendered ad
+		* @property ad
+		* @type object
+		*/
 		this.ad = {};
 	};
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
 	
 	/**
+	* Append the ad.element as a child and emit the ad event 'placement'
+	*
 	* @method placeAd
 	* @param {Object} DomElement Ad to append in element
 	* @return {Object} return this to chain methods

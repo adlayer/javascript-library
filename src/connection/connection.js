@@ -1,5 +1,6 @@
 /**
-* @module connection
+* @module connections
+* @requires request
 */
 
 /**

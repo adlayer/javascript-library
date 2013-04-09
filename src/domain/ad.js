@@ -1,5 +1,6 @@
 /**
 * @module core
+* @requires events
 */
 
 /**
@@ -8,12 +9,22 @@
 * @class Ad
 * @constructor
 * @extends Core
+* @uses EventEmiiter
 */
 var Ad = function( attributes ){
 	var Core = require('./core').Core;
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
 	Core.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
+	/**
+	* @event load
+	*/
+	var loaded = null;
+	/**
+	* @event placement
+	*/
+	var placed = null;
+	
 	
 	/**
 	* Id of ad

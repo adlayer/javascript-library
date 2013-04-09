@@ -1,9 +1,13 @@
 /**
-* @class ImgAd
-* @extends AdDom
+* @module ads
 */
+
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
+	/**
+	* @class ImgAd
+	* @extends AdDom
+	*/
 	var ImgAd = function(){
 		AdDom.apply(this, arguments);
 		
@@ -23,6 +27,13 @@
 				// subscribe img with link
 				self.create('a');
 				self.element.href = self.link;
+				
+				self.on('placement', function(){
+					// Setting click tag in ad element
+					var clickTag = self.getClickTag(self.impression);
+					self.element.href = clickTag;
+				});
+				
 				self.append(img);
 			}
 			

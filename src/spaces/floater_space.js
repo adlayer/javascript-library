@@ -7,7 +7,7 @@
 	/**
 	* Represents the type Floater
 	* @class FloaterSpace
-	* @extends SpaceDom
+	* @extends BasicSpace
 	*/
 	var FloaterSpace = function(){
 		BasicSpace.apply(this, arguments);

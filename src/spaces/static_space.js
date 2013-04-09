@@ -8,7 +8,7 @@
 	* Represents the type Static
 	* 
 	* @class StaticSpace
-	* @extends SpaceDom
+	* @extends BasicSpace
 	*/	
 	var StaticSpace = function(){
 		BasicSpace.apply(this, arguments);

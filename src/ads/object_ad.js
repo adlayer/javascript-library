@@ -1,3 +1,7 @@
+/**
+* @module ads
+* @requires dom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
@@ -10,7 +14,7 @@
 	* @param {Object} attributes
 	*
 	* @extends AdDom
-	* @extends Swf
+	* @uses Swf
 	*/	
 	var ObjectAd = function(){
 		var superclass = this;

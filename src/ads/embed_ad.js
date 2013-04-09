@@ -1,3 +1,7 @@
+/**
+* @module ads
+* @requires dom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
@@ -9,7 +13,7 @@
 	* @constructor
 	* @param {Object} attributes
 	* @extends AdDom
-	* @extends Swf
+	* @uses Swf
 	*/
 	var EmbedAd = function(){
 		AdDom.apply(this, arguments);

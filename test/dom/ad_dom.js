@@ -3,23 +3,19 @@ var document = document || require('../document');
 
 var AdDom = require('../../src/dom/ad_dom').AdDom;
 var Connection = require('../../src/connection/connection').Connection;
-var Tracker = require('../../src/tracker/tracker').Tracker;
 
 describe('AdDom', function(){
 	
 	var space = document.createElement('div');
 	space.id = 'uuid1293904';
 	
-	var tracker = new Tracker();
-	tracker.connection = new Connection();
-	
 	var ad = new AdDom({
 		id: '10',
 		campaign_id: '1235',
 		link: 'http://www.adlayer.com.br',
-		element: document.createElement('img')
+		element: document.createElement('img')	
 	});
-	ad.tracker = tracker;
+	ad.trackerUrl = 'http://dev.tracker.adlayerapp.com';
 	
 	describe('#getSpaceId', function(){
 

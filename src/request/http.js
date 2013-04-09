@@ -1,4 +1,9 @@
 /**
+* @module request
+* @requires core, utils
+*/
+
+/**
 * Abstract class to http requests, connections and responses
 *
 * @class Http

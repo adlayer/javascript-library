@@ -1,5 +1,11 @@
 /**
+* Handle all suported advertising spaces (Floater, Expandable and Static)
+*
 * @module spaces
+* @submodule spaces-spaces
+* @main
+* @example
+	spaces.spaces.create({type:'floater'});
 */
 (function(){	
 	exports.spaces = (function(){
@@ -8,6 +14,10 @@
 			Static = require('./static_space.js').StaticSpace;
 		
 		return {
+			/**
+			* @method create
+			* @param {Object} data Config to create the Space
+			*/
 			create: function(data){
 				data.id = data._id;
 				data.width = data.size.width;

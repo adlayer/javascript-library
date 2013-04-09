@@ -1,5 +1,11 @@
 /**
+* Handle all supported ad types (flash and image)
+*
 * @module ads
+* @main
+* @example
+	var ads = require('./src/ads/ads').ads;
+	ads.create({type: 'flash'});
 */
 (function(){
 	
@@ -8,6 +14,10 @@
 		var Img = require('./img_ad.js').ImgAd;
 		
 		return {
+			/**
+			* @method create
+			* @param {Object} data Config to create the ad
+			*/
 			create: function(data){
 				// mixin
 				data.id = data._id || data.id;

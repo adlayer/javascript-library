@@ -1,8 +1,11 @@
 /**
 * @module ads
+* @requires utils
 */
+
 /**
 * @class Swf
+* @constructor
 */
 var Swf = function(){
 	var queryString = require('../node_modules/querystring').querystring;
