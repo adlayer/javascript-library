@@ -1,10 +1,12 @@
-// Implementation of common.js
-var node_modules = {};
-var module = {};
+// Implementation of common.js 1.1
+if(!module){
+	var node_modules = {};
+	var module = {};
 
-module.exports = {};
-var exports = module.exports;
+	module.exports = {};
+	var exports = module.exports;
 
-var require = function(path){
-	return exports;	
-};
+	var require = function(path){
+		return exports;	
+	};	
+}
