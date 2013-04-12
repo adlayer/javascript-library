@@ -7,7 +7,7 @@ var AdDom = require('../../src/dom/ad_dom').AdDom;
 describe('SpaceDom', function(){
 	
 	describe('#getElement', function(){
-		it('Should not	 find the element', function(){
+		it('Should not find the element', function(){
 			
 			var space = new SpaceDom({
 				id: 'any',

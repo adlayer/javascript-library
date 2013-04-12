@@ -1,13 +1,21 @@
 {
-    "name": "adlayer-library"
-  , "version": "1.0.1"
-  , "description": "Adlayer javascript core library"
-  , "keywords": []
-  , "author": "Adlayer <adlayer@adlayer.org>"
-  , "dependencies": {
-	"jsdom":"x.x.x",
-	"mocha": "x.x.x"
+  "name": "adlayer-library",
+  "version": "1.0.1",
+  "description": "Adlayer javascript core library",
+  "keywords": [],
+  "author": "Adlayer <adlayer@adlayer.org>",
+  "dependencies": {
+    "jsdom": "x.x.x",
+    "mocha": "x.x.x",
+    "grunt": "x.x.x"
+  },
+  "main": "index",
+  "engines": {
+    "node": ">=0.6.x"
+  },
+  "devDependencies": {
+    "grunt-contrib-yuidoc": "~0.4.0",
+    "grunt-contrib-jshint": "~0.4.3",
+	"grunt-mocha-test:": "~0.2.2"
   }
-  , "main": "index"
-  , "engines": { "node": ">=0.6.x" }
 }

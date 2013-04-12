@@ -41,5 +41,5 @@ describe('AdDom', function(){
 			var clickTag = ad.getClickTag('http://tracker.adlayerapp.com', '9292', '3030', page_url);
 			expect(clickTag).to.contain('click/10');
 		});
-	})
+	});
 });

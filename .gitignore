@@ -2,3 +2,4 @@
 *.sock
 .svn
 docs
+node_modules

@@ -15,7 +15,7 @@ describe('DomElement', function(){
 	});
 	describe('#create', function(){
 		it('Should create a dom Element and store at this.element', function(){
-			expect(	new DomElement().create('div', document)['nodeName'] ).to.be.equal('DIV');
+			expect(	new DomElement().create('div', document).nodeName).to.be.equal('DIV');
 		});
 	});
 	

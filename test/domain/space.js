@@ -25,7 +25,7 @@ describe('Space', function(){
 					if(context){
 						return context.ads[0];
 					}
-				}
+				};
 			};
 			
 			var space = new Space({
