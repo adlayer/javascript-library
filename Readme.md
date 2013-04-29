@@ -3,7 +3,7 @@
 
 ## O que é isso ?
 
-Essa biblioteca contem um conjunto de módulos para interagir com dados da Adlayer.
+Essa biblioteca contem um conjunto de módulos para interagir com dados do Adlayer.
 
 A missão principal da JS Lib é evitar a replicação de código em projetos Javascript que lidam com as estruturas de dados da Adlayer.
 
@@ -11,7 +11,7 @@ A missão principal da JS Lib é evitar a replicação de código em projetos Ja
 
 ## Modulos
 
-O Adlayer JS Lib inclui classes de estruturas básicas como paginas, sites, espaços, peças e de responsabilidade mais avançadas como comunicação com o Adlayer Ad Server (Jocasta) e o Adlayer Tracker.
+O Adlayer JS Lib inclui classes de estruturas básicas como paginas, sites, espaços, peças e de responsabilidade mais avançadas como comunicação com o [Adlayer Ad Server](https://github.com/adlayer/adserver-api-docs) e o [Adlayer Tracker](https://github.com/adlayer/tracker-api-docs).
 
 Atualmente a biblioteca inclui os seguintes módulos:
 
