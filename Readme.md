@@ -11,7 +11,7 @@ A missão principal da JS Lib é evitar a replicação de código em projetos Ja
 
 ## Modulos
 
-O Adlayer JS Lib inclui classes de estruturas básicos como paginas, sites, espaços, peças e de responsabilidade mais avançadas como comunicação com o Adlayer Ad Server (Jocasta) e o Adlayer Tracker.
+O Adlayer JS Lib inclui classes de estruturas básicas como paginas, sites, espaços, peças e de responsabilidade mais avançadas como comunicação com o Adlayer Ad Server (Jocasta) e o Adlayer Tracker.
 
 Atualmente a biblioteca inclui os seguintes módulos:
 
