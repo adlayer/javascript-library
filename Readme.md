@@ -22,7 +22,6 @@ Atualmente a biblioteca inclui os seguintes módulos:
 * Node_modules
 * Request
 * Spaces
-* Tracker
 * Utils
 
 ## Cross Plataforma
@@ -37,8 +36,14 @@ Todos os módulos podem ser importados em ambientes que suportam common.js 1.0 c
 
 Usar o Adlayer js lib no node.js é bem simples, basta clonar este repositório dentro de seu projeto e incluir o modulo desejado:
 EX:
+
+```
+npm install adlayer-library
+```
+
 ```javascript
-var AdDom = require('./javascript-library/src/dom/ad_dom').AdDom;
+var lib = require('adlayer-library');
+var AdDom = lib.AdDom;
 ```
 
 ### Browser
