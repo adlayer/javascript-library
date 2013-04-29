@@ -70,28 +70,23 @@ floater.close();
 
 Grande parte do código usado em nossa [api javascript oficial](https://github.com/adlayer/javascript-api) é extraído dessa biblioteca.
 
-Outro caso de uso obvio é utilizar parte da biblioteca para criar wrapper para a api REST da Adlayer (em breve).
-
-## Documentação
-Você poderá ver a documentação na pasta docs e em breve online.
 
 ## Desenvolvimento
-sudo npm install stats -g
-sudo npm install yuidocjs -g
-make
+```
+npm install .
+```
 
-## Testes
+### Testes
 
 Todos os módulos possuem teste unitários escritos usando [Mocha](https://github.com/visionmedia/mocha) e [expect.js](https://github.com/LearnBoost/expect.js)
 
 Para rodar os teste unitários faça:
+
 ```
 make test
 ```
  
-## The open source license will be attached soon
-
 ## Copyright
 
-Copyright (c) 2011 Adlayer Adserver
-&lt;adalyer@adlayer.org&gt;
+Copyright (c) 2013 Adlayer Soluções Tecnológicas
+&lt;adlayer@adlayer.org&gt;
