@@ -100,7 +100,7 @@
 			site_id: config.site_id,
 			page_id: config.page_id,
 			page_url: config.page_url,
-			link: this.link
+			link: escape(this.link)
 		});
 
 		if( event.validate() && this.link ){
