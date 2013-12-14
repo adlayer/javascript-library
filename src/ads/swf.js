@@ -58,7 +58,8 @@ var Swf = function(){
 		}
 		
 		var url = this.preloader + '?' + queryString.stringify({
-			src: this.src, 
+			src: this.src,
+			link: this.link, 
 			callback: this.callback, 
 			value: this.id
 		});
