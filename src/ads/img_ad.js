@@ -35,6 +35,10 @@
 				});
 				
 				self.append(img);
+				self.element.onclick = function(){
+					window.open(self.element.href);
+					return false;
+				}
 			}
 			
 			self.element.style.height = self.height + 'px';
