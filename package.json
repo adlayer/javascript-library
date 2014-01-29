@@ -1,6 +1,6 @@
 {
   "name": "adlayer-library",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Adlayer javascript core library",
   "keywords": ["adlayer", "adserver", "javascript", "ad server", "ad seving"],
   "author": "Adlayer <adlayer@adlayer.org>",
