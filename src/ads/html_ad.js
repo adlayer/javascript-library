@@ -27,7 +27,9 @@
 			self.element.style.width = self.width + 'px';
 			self.element.setAttribute('height', self.height);
 			self.element.setAttribute('width', self.width);
-			
+			self.element.setAttribute('frameborder', '0');
+			self.element.setAttribute('scrolling', 'no');
+						
 			return self.element;
 		})(this);
 	};

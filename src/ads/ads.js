@@ -12,7 +12,7 @@
 	exports.ads = (function(){
 		var FlashAd = require('./flash_ad.js').EmbedAd;
 		var Img = require('./img_ad.js').ImgAd;
-		
+		var HtmlAd = require('./html_ad.js').HtmlAd;
 		return {
 			/**
 			* @method create
@@ -33,6 +33,8 @@
 						return new FlashAd(data);
 					case 'image':
 						return new Img(data);
+					case 'html':
+						return new HtmlAd(data);
 				}
 			}
 		};
