@@ -26,7 +26,7 @@ var RandomSpaceBehaviour = function(){
 	* @param {Space} context Expect space 'this' as argument
 	* @return {Object} Ad
 	*/
-	this.getAd = function(context){ 
+	this.getAd = function(context){
 		var ads = context.ads;
 		var total = ads.length;
 		var index = Math.floor(Math.random() * total);

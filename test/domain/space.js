@@ -54,5 +54,18 @@ describe('Space', function(){
 			});
 			expect(space.getAd()).to.be.a(Ad);
 		});
+		it('Should exclude the selected ad from the list', function(){
+			
+			var space = new Space({
+				ads: [
+					new Ad({id:1}),
+					new Ad({id:2})
+				]
+			});
+			var selected = space.getAd();
+			
+			expect(space.ads.length).to.be(1);
+			expect(space.ads[1]).to.not.be(selected);
+		});
 	});
 });
