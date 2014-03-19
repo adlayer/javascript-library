@@ -41,9 +41,10 @@
 			// Create an ad for space from 'this.ads' array, Selection made by behaviour by default will be random
 			var ad = ads.create(this.getAd());
 			ad.trackerUrl = tracker.connection.getUrl();
-			ad.setImpression(this, config);
 			
+			var self = this;
 			ad.on('load', function(){
+				ad.setImpression(self, config);
 				tracker.track(ad.impression);	
 			});
 			

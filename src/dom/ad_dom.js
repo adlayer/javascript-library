@@ -70,6 +70,19 @@
 		new AdDom(space, config);
 	*/
 	AdDom.prototype.setImpression = function(space, config){
+		//IE 5 does not support
+		//http://reference.sitepoint.com/javascript/Node/ownerDocument
+		var document = this.element.ownerDocument;
+		//http://stackoverflow.com/questions/10173236/window-innerheight-ie8-alternative
+		var doc = {
+			height: document.documentElement.clientHeight,
+			width: document.documentElement.clientWidth
+		};
+		
+		var horizontalVisible = (this.element.offsetLeft <= doc.width) && (this.element.offsetLeft >= 0);
+		var verticalVisible = (this.element.offsetTop <= doc.height) && (this.element.offsetTop >= 0);
+		
+		config.visible = horizontalVisible && verticalVisible;
 		config.type = 'impression';
 		config.ad_id = this.id;
 		
