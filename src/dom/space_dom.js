@@ -44,6 +44,7 @@
 	* @return {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
+		this.element.innerHTML = '';
 		this.element.appendChild(ad.element);
 		ad.emit('placement');
 		this.ad = ad;

@@ -19,9 +19,9 @@
 			* @param {Object} data Config to create the Space
 			*/
 			create: function(data){
-				data.id = data._id;
-				data.width = data.size.width;
-				data.height = data.size.height;
+				data.id = data._id || data.id;
+				data.width = data.width || data.size.width;
+				data.height = data.height || data.size.height;	
 				delete data._id;
 				delete data.size;
 
