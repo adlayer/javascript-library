@@ -86,6 +86,12 @@ var Event = function( attributes ){
 	this.browser = undefined;
 	
 	/**
+	* @property {String} visible Visibility of event
+	* @public
+	*/
+	this.visible = undefined;
+	
+	/**
 	* @method getFullDate
 	* @return {String} Even if date is not converted to string return ISOString
 	*/
