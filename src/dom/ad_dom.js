@@ -57,6 +57,7 @@
 		//IE 5 does not support
 		//http://reference.sitepoint.com/javascript/Node/ownerDocument
 		var document = this.element.ownerDocument;
+		
 		//http://stackoverflow.com/questions/10173236/window-innerheight-ie8-alternative
 		var doc = {
 			top: document.body.scrollTop,
@@ -79,7 +80,6 @@
 		var verticalVisible = ((element.top + element.halfHeight) <= doc.height) && ((element.top + element.halfHeight) >= doc.top) && (element.top >= 0);
 		var display = true;
 		var visibility = true;
-
 		if(element.style){
 			display = element.style.display != 'none';
 			visibility = element.style.visibility != 'hidden';
