@@ -79,9 +79,7 @@
 		var verticalVisible = ((element.top + element.halfHeight) <= doc.height) && ((element.top + element.halfHeight) >= doc.top) && (element.top >= 0);
 		var display = true;
 		var visibility = true;
-		//style não existe => true
-		//style existe e display none => false
-		//style existe e display block => true
+
 		if(element.style){
 			display = element.style.display != 'none';
 			visibility = element.style.visibility != 'hidden';
