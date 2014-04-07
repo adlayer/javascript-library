@@ -51,6 +51,46 @@
 	};
 	
 	/**
+	* @method isVisible
+	*/
+	AdDom.prototype.isVisible = function(){
+		//IE 5 does not support
+		//http://reference.sitepoint.com/javascript/Node/ownerDocument
+		var document = this.element.ownerDocument;
+		//http://stackoverflow.com/questions/10173236/window-innerheight-ie8-alternative
+		var doc = {
+			top: document.body.scrollTop,
+			left: document.body.scrollLeft,
+			height: document.documentElement.clientHeight,
+			width: document.documentElement.clientWidth
+		};
+		
+		var element = {
+			top: this.element.offsetTop,
+			left: this.element.offsetLeft,
+			height: this.element.offsetHeight,
+			width: this.element.offsetWidth,
+			style: document.defaultView.getComputedStyle(this.element, null)
+		}
+		element.halfHeight = element.height/2;
+		element.halfWidth = element.width/2;
+
+		var horizontalVisible = ((element.left + element.halfWidth) <= doc.width) && ((element.left + element.halfWidth) >= doc.left) && (element.left >= 0);
+		var verticalVisible = ((element.top + element.halfHeight) <= doc.height) && ((element.top + element.halfHeight) >= doc.top) && (element.top >= 0);
+		var display = true;
+		var visibility = true;
+		//style não existe => true
+		//style existe e display none => false
+		//style existe e display block => true
+		if(element.style){
+			display = element.style.display != 'none';
+			visibility = element.style.visibility != 'hidden';
+		}
+		var result = (horizontalVisible && verticalVisible && display && visibility);
+		return result;
+	};
+	
+	/**
 	* @method setImpression
 	* @param {Object} space
 	* @param {Object} config
@@ -81,8 +121,8 @@
 		
 		var horizontalVisible = (this.element.offsetLeft <= doc.width) && (this.element.offsetLeft >= 0);
 		var verticalVisible = (this.element.offsetTop <= doc.height) && (this.element.offsetTop >= 0);
-		
-		config.visible = horizontalVisible && verticalVisible;
+	
+		config.visible = this.isVisible();
 		config.type = 'impression';
 		config.ad_id = this.id;
 		
