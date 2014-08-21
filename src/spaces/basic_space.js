@@ -39,7 +39,9 @@
 	BasicSpace.prototype.init = function(tracker, config){
 		if(this.ads && this.ads.length > 0){
 			// Create an ad for space from 'this.ads' array, Selection made by behaviour by default will be random
-			var ad = ads.create(this.getAd());
+			var content = this.getAd();
+			content.trackerUrl = tracker.connection.getUrl();
+			var ad = ads.create(content);
 			ad.trackerUrl = tracker.connection.getUrl();
 			
 			var self = this;
