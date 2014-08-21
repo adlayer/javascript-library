@@ -24,7 +24,7 @@
 				data.src = data.file;
 				delete data.file;
 				delete data._id;
-				
+
 				switch(data.type){
 					case 'flash':
 						data.preloader = 'http://xframe.adlayerjavascriptsdk.com/main.swf';

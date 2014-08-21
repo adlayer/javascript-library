@@ -15,12 +15,14 @@
 	* @extends AdDom
 	* @uses Swf
 	*/
-	var EmbedAd = function(){
+	var EmbedAd = function(data){
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
+		this.trackerUrl = data.trackerUrl;
 		
 		var __construct = (function(self){
 			self.create('EMBED');
+			self.link = self.getClickTag({});
 			self.element.src = self.getSrc();
 			self.element.setAttribute('height', self.height);
 			self.element.setAttribute('width', self.width);

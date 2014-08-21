@@ -53,17 +53,18 @@ var Swf = function(){
 	* @return {String} src Will return the preloder url if defined
 	*/
 	this.getSrc = function(){
+		var self = this;
 		if(!this.preloader){
 			return this.src;
 		}
-		
+
 		var url = this.preloader + '?' + queryString.stringify({
-			src: this.src,
-			link: this.link, 
-			callback: this.callback, 
-			value: this.id
+			src: self.src,
+			link: escape(self.link),
+			callback: self.callback, 
+			value: self.id
 		});
-		
+
 		return url;
 	};
 };

@@ -143,15 +143,15 @@
 	AdDom.prototype.getClickTag = function(config){
 		// Tracker url
 		var trackerUrl = this.trackerUrl;
-		
+
 		var event = new Event({
 			ad_id: this.id,
 			type: 'click',
 			campaign_id: this.campaign_id,
-			space_id: this.getSpaceId(),
-			site_id: config.site_id,
-			page_id: config.page_id,
-			page_url: config.page_url,
+			space_id: this.getSpaceId() || undefined,
+			site_id: config.site_id || undefined,
+			page_id: config.page_id || undefined,
+			page_url: config.page_url || undefined,
 			link: escape(this.link)
 		});
 
