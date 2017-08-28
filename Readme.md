@@ -1,3 +1,4 @@
+SERVIÇO DESCONTINUADO
 
 # [Adayer](http://adlayer.com.br) Javascript Library
 
